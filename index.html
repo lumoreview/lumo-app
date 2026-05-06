@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Lumo</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --y:#FFE030;--yl:#FFF8C0;--b:#080808;--g:#777;--lg:#f3f3f3;
+  --w:#fff;--br:#e5e5e5;--green:#16a34a;--red:#dc2626;
+}
+html,body{width:100%;height:100%;overflow:hidden;}
+body{background:#111;font-family:'DM Sans',-apple-system,sans-serif;display:flex;justify-content:center;align-items:center;-webkit-font-smoothing:antialiased;}
+
+.phone{
+width:min(390px,100vw);height:min(844px,100vh);
+background:#fff;border-radius:min(44px,5vw);overflow:hidden;
+position:relative;display:flex;flex-direction:column;
+box-shadow:0 0 0 10px #1c1c1e,0 0 0 11px #2c2c2e,0 40px 80px rgba(0,0,0,0.6);
+}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:126px;height:37px;background:#080808;border-radius:0 0 22px 22px;z-index:999;}
+.status{height:50px;background:transparent;display:flex;justify-content:space-between;align-items:flex-end;padding:0 28px 8px;font-size:0.7rem;font-weight:700;color:#fff;flex-shrink:0;position:absolute;top:0;left:0;right:0;z-index:50;pointer-events:none;}
+.status.dark{color:#080808;}
+
+/* PAGES */
+.page{position:absolute;inset:0;display:none;flex-direction:column;overflow:hidden;}
+.page.active{display:flex;}
+
+/* SCROLL */
+.sc{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.sc::-webkit-scrollbar{display:none;}
+
+/* ── WELCOME ── */
+#p-welcome{background:#080808;}
+.wbg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(255,224,48,0.2) 0%,transparent 60%);}
+.wbg2{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(transparent,rgba(255,224,48,0.04));}
+.wcontent{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 28px 32px;text-align:center;}
+.wlogo{display:flex;align-items:center;gap:10px;margin-bottom:48px;}
+.wdot{width:32px;height:32px;background:var(–y);border-radius:50%;box-shadow:0 0 0 8px rgba(255,224,48,0.15),0 0 40px rgba(255,224,48,0.3);position:relative;}
+.wdot::after{content:’’;position:absolute;top:7px;left:7px;width:10px;height:10px;background:rgba(255,255,255,0.5);border-radius:50%;}
+.wname{font-family:‘Playfair Display’,serif;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-1px;}
+.wtag{font-size:0.65rem;color:rgba(255,224,48,0.6);letter-spacing:3px;text-transform:uppercase;margin-bottom:0;display:block;}
+.wh1{font-family:‘Playfair Display’,serif;font-size:2.4rem;font-weight:900;color:#fff;line-height:1.08;letter-spacing:-1.5px;margin-bottom:16px;}
+.wh1 em{font-style:italic;color:var(–y);}
+.wsub{font-size:0.88rem;color:rgba(255,255,255,0.4);line-height:1.65;margin-bottom:40px;max-width:280px;}
+.wbtns{width:100%;display:flex;flex-direction:column;gap:10px;}
+.wbtn-primary{background:var(–y);color:#080808;border:none;border-radius:14px;padding:16px;font-family:inherit;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all 0.15s;}
+.wbtn-primary:active{transform:scale(0.97);}
+.wbtn-secondary{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6);border:1.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:15px;font-family:inherit;font-size:0.9rem;font-weight:500;cursor:pointer;transition:all 0.15s;}
+.wbtn-secondary:active{background:rgba(255,255,255,0.1);}
+.wfooter{font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:20px;}
+
+/* ── AUTH ── */
+#p-auth{background:#fff;}
+.auth-hdr{padding:60px 24px 0;display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.back-btn{width:36px;height:36px;background:var(–lg);border-radius:50%;border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.auth-logo{display:flex;align-items:center;gap:8px;}
+.auth-dot{width:20px;height:20px;background:var(–y);border-radius:50%;flex-shrink:0;}
+.auth-name{font-family:‘Playfair Display’,serif;font-size:1.1rem;font-weight:900;color:#080808;}
+.auth-body{flex:1;padding:32px 24px 24px;display:flex;flex-direction:column;}
+.auth-title{font-family:‘Playfair Display’,serif;font-size:1.8rem;font-weight:900;color:#080808;letter-spacing:-1px;line-height:1.1;margin-bottom:6px;}
+.auth-sub{font-size:0.83rem;color:var(–g);margin-bottom:28px;line-height:1.5;}
+.tabs{display:flex;background:var(–lg);border-radius:12px;padding:3px;margin-bottom:24px;flex-shrink:0;}
+.tab{flex:1;padding:9px;text-align:center;font-size:0.83rem;font-weight:600;border-radius:10px;cursor:pointer;transition:all 0.2s;color:var(–g);}
+.tab.on{background:#fff;color:#080808;box-shadow:0 1px 4px rgba(0,0,0,0.08);}
+.input-wrap{margin-bottom:14px;}
+.input-label{font-size:0.72rem;font-weight:600;color:#080808;letter-spacing:0.5px;margin-bottom:6px;display:block;}
+.inp{width:100%;padding:14px 16px;border:1.5px solid var(–br);border-radius:12px;font-family:inherit;font-size:0.9rem;color:#080808;outline:none;transition:border-color 0.15s;background:#fff;}
+.inp:focus{border-color:#080808;}
+.inp::placeholder{color:#ccc;}
+.auth-btn{background:#080808;color:#fff;border:none;border-radius:13px;padding:16px;width:100%;font-family:inherit;font-size:0.92rem;font-weight:700;cursor:pointer;margin-top:6px;transition:all 0.15s;}
+.auth-btn:active{background:#333;}
+.auth-btn:disabled{background:#ccc;cursor:default;}
+.auth-divider{display:flex;align-items:center;gap:12px;margin:18px 0;}
+.auth-divider::before,.auth-divider::after{content:’’;flex:1;height:1px;background:var(–br);}
+.auth-divider span{font-size:0.72rem;color:#bbb;white-space:nowrap;}
+.google-btn{width:100%;padding:14px;border:1.5px solid var(–br);border-radius:13px;background:#fff;font-family:inherit;font-size:0.88rem;font-weight:600;color:#080808;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.15s;}
+.google-btn:active{background:var(–lg);}
+.auth-msg{font-size:0.78rem;margin-top:12px;text-align:center;min-height:18px;}
+.auth-msg.err{color:var(–red);}
+.auth-msg.ok{color:var(–green);}
+
+/* ── ONBOARDING ── */
+#p-onboard{background:#fff;}
+.ob-progress{height:3px;background:var(–lg);flex-shrink:0;}
+.ob-fill{height:100%;background:var(–y);transition:width 0.4s cubic-bezier(0.34,1.56,0.64,1);}
+.ob-hdr{padding:20px 24px 0;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.ob-step{font-size:0.7rem;font-weight:600;color:#bbb;letter-spacing:1px;}
+.ob-skip{font-size:0.75rem;color:#bbb;background:none;border:none;cursor:pointer;}
+.ob-body{flex:1;padding:24px 24px 0;display:flex;flex-direction:column;}
+.ob-emoji{font-size:2.5rem;margin-bottom:14px;}
+.ob-q{font-family:‘Playfair Display’,serif;font-size:1.5rem;font-weight:900;color:#080808;letter-spacing:-0.8px;line-height:1.2;margin-bottom:6px;}
+.ob-hint{font-size:0.8rem;color:var(–g);margin-bottom:24px;line-height:1.5;}
+.ob-options{display:flex;flex-direction:column;gap:9px;flex:1;}
+.ob-option{
+padding:14px 16px;border:1.5px solid var(–br);border-radius:14px;
+font-size:0.88rem;font-weight:500;color:#080808;cursor:pointer;
+transition:all 0.15s;display:flex;align-items:center;gap:12px;
+background:#fff;text-align:left;
+}
+.ob-option:active{transform:scale(0.98);}
+.ob-option.selected{border-color:#080808;background:#080808;color:#fff;}
+.ob-option.selected .ob-opt-icon{filter:brightness(10);}
+.ob-option-multi{
+padding:13px 16px;border:1.5px solid var(–br);border-radius:13px;
+font-size:0.86rem;font-weight:500;color:#080808;cursor:pointer;
+transition:all 0.15s;display:flex;align-items:center;gap:11px;
+background:#fff;text-align:left;
+}
+.ob-option-multi.selected{border-color:var(–y);background:var(–yl);color:#080808;}
+.ob-opt-icon{font-size:1.2rem;width:28px;text-align:center;flex-shrink:0;}
+.ob-opt-txt{}
+.ob-opt-label{font-weight:600;}
+.ob-opt-sub{font-size:0.72rem;color:inherit;opacity:0.6;margin-top:1px;}
+.ob-footer{padding:16px 24px 32px;flex-shrink:0;}
+.ob-next{background:#080808;color:#fff;border:none;border-radius:13px;padding:15px;width:100%;font-family:inherit;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.15s;}
+.ob-next:disabled{background:#e0e0e0;color:#bbb;cursor:default;}
+.ob-next:not(:disabled):active{background:#333;}
+
+/* ── MAIN APP ── */
+#p-app{background:#fff;}
+.app-status{height:50px;background:#fff;display:flex;justify-content:space-between;align-items:flex-end;padding:0 24px 8px;font-size:0.7rem;font-weight:700;color:#080808;flex-shrink:0;}
+
+/* HOME */
+.home-hdr{padding:8px 18px 10px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.home-logo{display:flex;align-items:center;gap:7px;font-family:‘Playfair Display’,serif;font-size:1.25rem;font-weight:900;color:#080808;}
+.hdot{width:20px;height:20px;background:var(–y);border-radius:50%;box-shadow:0 0 0 3px rgba(255,224,48,0.2);}
+.bell{width:34px;height:34px;background:var(–lg);border-radius:50%;border:none;cursor:pointer;font-size:0.95rem;position:relative;display:flex;align-items:center;justify-content:center;}
+.bell-dot{position:absolute;top:6px;right:6px;width:6px;height:6px;background:var(–red);border-radius:50%;border:2px solid #fff;}
+
+.pts-card{margin:2px 14px 14px;background:#080808;border-radius:20px;padding:18px 20px;position:relative;overflow:hidden;}
+.pts-card::before{content:’’;position:absolute;top:-40px;right:-40px;width:140px;height:140px;background:rgba(255,224,48,0.1);border-radius:50%;}
+.pts-lbl{font-size:0.62rem;color:#444;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.pts-val{font-family:‘Playfair Display’,serif;font-size:2.4rem;font-weight:900;color:#fff;line-height:1;display:flex;align-items:baseline;gap:5px;}
+.pts-unit{font-size:0.8rem;color:var(–y);font-family:‘DM Sans’,sans-serif;font-weight:500;}
+.pts-hint{margin-top:8px;font-size:0.7rem;color:#444;display:flex;align-items:center;gap:5px;}
+.pts-hint-dot{width:5px;height:5px;background:var(–y);border-radius:50%;}
+.pts-hint span{color:var(–y);}
+
+.shdr{display:flex;justify-content:space-between;align-items:center;padding:0 18px;margin-bottom:9px;}
+.shdr h3{font-size:0.9rem;font-weight:700;color:#080808;}
+.shdr button{font-size:0.75rem;color:var(–g);background:none;border:none;cursor:pointer;}
+
+.plist{padding:0 12px;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.pc{background:#fff;border:1.5px solid var(–br);border-radius:15px;padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all 0.15s;}
+.pc:active{border-color:var(–y);background:#fffdf0;}
+.pe{width:44px;height:44px;background:var(–lg);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;flex-shrink:0;}
+.pi{flex:1;min-width:0;}
+.pn{font-size:0.84rem;font-weight:600;color:#080808;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pb2{font-size:0.68rem;color:var(–g);margin-bottom:5px;}
+.pbar-w{height:3.5px;background:var(–lg);border-radius:100px;overflow:hidden;}
+.pbar{height:100%;border-radius:100px;}
+.pfoot{display:flex;justify-content:space-between;margin-top:3px;}
+.pd{font-size:0.61rem;color:var(–g);}
+.pp{font-size:0.61rem;font-weight:700;}
+.pbadge{font-size:0.56rem;font-weight:700;padding:3px 8px;border-radius:100px;white-space:nowrap;flex-shrink:0;text-transform:uppercase;letter-spacing:0.3px;}
+.bw{background:#fff3cd;color:#7a5800;}
+.bgr{background:#dcfce7;color:#14532d;}
+
+.qgrid{padding:0 12px 16px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.qb{background:var(–lg);border-radius:14px;padding:13px 11px;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all 0.15s;text-align:left;}
+.qb:active{background:var(–yl);transform:scale(0.97);}
+.qi{font-size:1.2rem;}
+.qt{font-size:0.78rem;font-weight:600;color:#080808;}
+.qs{font-size:0.64rem;color:var(–g);margin-top:1px;}
+
+/* BOTTOM NAV */
+.bnav{position:absolute;bottom:0;left:0;right:0;height:70px;background:#fff;border-top:1px solid #ebebeb;display:flex;justify-content:space-around;align-items:center;padding:4px 0 14px;z-index:100;}
+.ni{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;background:none;border:none;padding:4px 14px;border-radius:12px;}
+.ni .ic{font-size:1.15rem;transition:transform 0.1s;}
+.ni:active .ic{transform:scale(0.85);}
+.ni .lb{font-size:0.56rem;color:#bbb;font-weight:500;}
+.ni.on .lb{color:#080808;font-weight:700;}
+
+/* SUB SCREENS inside app */
+.subscreen{position:absolute;inset:0;top:50px;bottom:70px;display:none;flex-direction:column;background:#fff;z-index:10;}
+.subscreen.active{display:flex;}
+
+/* SCAN */
+.scan-hdr{padding:12px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0;background:#080808;}
+.sback{width:32px;height:32px;background:rgba(255,255,255,0.08);border-radius:50%;border:none;cursor:pointer;font-size:0.95rem;color:#fff;display:flex;align-items:center;justify-content:center;}
+.shtxt{font-family:‘Playfair Display’,serif;font-size:1.05rem;font-weight:700;color:#fff;}
+.cam-area{flex:1;background:#080808;position:relative;overflow:hidden;}
+#video{width:100%;height:100%;object-fit:cover;display:block;}
+.cam-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.cam-frame{width:220px;height:150px;position:relative;}
+.cfc{position:absolute;width:20px;height:20px;}
+.cf-tl{top:0;left:0;border-top:3px solid var(–y);border-left:3px solid var(–y);border-radius:3px 0 0 0;}
+.cf-tr{top:0;right:0;border-top:3px solid var(–y);border-right:3px solid var(–y);border-radius:0 3px 0 0;}
+.cf-bl{bottom:0;left:0;border-bottom:3px solid var(–y);border-left:3px solid var(–y);border-radius:0 0 0 3px;}
+.cf-br{bottom:0;right:0;border-bottom:3px solid var(–y);border-right:3px solid var(–y);border-radius:0 0 3px 0;}
+.sline{position:absolute;left:0;right:0;height:2px;background:var(–y);box-shadow:0 0 10px var(–y);animation:sl 2s ease-in-out infinite;}
+@keyframes sl{0%{top:0;}50%{top:calc(100% - 2px);}100%{top:0;}}
+.cam-hint-txt{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:30px 20px 16px;text-align:center;}
+.cam-hint-txt p{font-size:0.8rem;color:rgba(255,255,255,0.65);}
+.manual-area{background:#080808;padding:12px 14px 8px;flex-shrink:0;}
+.mlabel{font-size:0.68rem;color:#444;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;}
+.mrow{display:flex;gap:7px;}
+.minp{flex:1;background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.1);border-radius:11px;padding:11px 13px;font-family:inherit;font-size:0.88rem;color:#fff;outline:none;}
+.minp:focus{border-color:var(–y);}
+.minp::placeholder{color:#333;}
+.mbtn{background:var(–y);color:#080808;border:none;border-radius:11px;padding:11px 14px;font-family:inherit;font-size:0.82rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+.mbtn:active{transform:scale(0.96);}
+.scan-result{background:#fff;border-radius:18px 18px 0 0;padding:16px 16px 8px;position:absolute;bottom:0;left:0;right:0;transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.34,1.2,0.64,1);z-index:20;}
+.scan-result.open{transform:translateY(0);}
+.sr-handle{width:34px;height:3px;background:#e5e5e5;border-radius:100px;margin:0 auto 12px;}
+.sr-prod{display:flex;gap:12px;align-items:center;margin-bottom:14px;}
+.sr-em{width:52px;height:52px;background:var(–lg);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;}
+.sr-nm{font-family:‘Playfair Display’,serif;font-size:1rem;font-weight:700;color:#080808;}
+.sr-br{font-size:0.75rem;color:var(–g);margin-top:2px;}
+.sr-cat{font-size:0.66rem;color:#7a6200;background:var(–yl);padding:2px 8px;border-radius:100px;display:inline-block;margin-top:4px;}
+.sr-info{display:flex;gap:8px;margin-bottom:13px;}
+.sri{flex:1;background:var(–lg);border-radius:11px;padding:11px;text-align:center;}
+.sri-lbl{font-size:0.62rem;color:var(–g);margin-bottom:3px;}
+.sri-val{font-family:‘Playfair Display’,serif;font-size:1.1rem;font-weight:700;color:#080808;}
+.add-btn{background:#080808;color:#fff;border:none;border-radius:13px;padding:14px;width:100%;font-family:inherit;font-size:0.88rem;font-weight:700;cursor:pointer;margin-bottom:6px;}
+.add-btn:active{background:#333;}
+.cancel-btn{background:var(–lg);color:var(–g);border:none;border-radius:13px;padding:12px;width:100%;font-family:inherit;font-size:0.83rem;cursor:pointer;}
+
+/* REVIEWS */
+.rh{padding:14px 18px 8px;flex-shrink:0;}
+.rh h2{font-family:‘Playfair Display’,serif;font-size:1.3rem;font-weight:900;color:#080808;}
+.rh p{font-size:0.76rem;color:var(–g);margin-top:2px;}
+.srch{margin:0 12px 9px;background:var(–lg);border-radius:10px;padding:9px 12px;display:flex;align-items:center;gap:6px;border:1.5px solid var(–br);flex-shrink:0;}
+.srch input{background:none;border:none;outline:none;font-family:inherit;font-size:0.82rem;color:#080808;flex:1;}
+.srch input::placeholder{color:#bbb;}
+.cats{display:flex;gap:7px;padding:0 12px 10px;overflow-x:auto;flex-shrink:0;}
+.cats::-webkit-scrollbar{display:none;}
+.cat{background:var(–lg);border:1.5px solid var(–br);border-radius:100px;padding:6px 12px;font-size:0.7rem;font-weight:500;white-space:nowrap;cursor:pointer;transition:all 0.15s;}
+.cat.on{background:#080808;color:#fff;border-color:#080808;}
+.rvcards{padding:0 12px;display:flex;flex-direction:column;gap:10px;padding-bottom:16px;}
+.rvc{background:#fff;border:1.5px solid var(–br);border-radius:16px;padding:14px;}
+.rvc-top{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;}
+.rvc-em{width:40px;height:40px;background:var(–lg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.rvc-nm{font-size:0.84rem;font-weight:700;color:#080808;}
+.rvc-br{font-size:0.68rem;color:var(–g);}
+.rvtags{display:flex;gap:5px;margin-bottom:7px;flex-wrap:wrap;}
+.rvtag{font-size:0.58rem;font-weight:700;padding:2px 7px;border-radius:100px;text-transform:uppercase;}
+.tv{background:#dcfce7;color:#14532d;}
+.td{background:var(–yl);color:#7a5800;}
+.rvc-txt{font-size:0.8rem;line-height:1.6;color:#444;}
+.rvc-foot{display:flex;align-items:center;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid #f5f5f5;}
+.hlp{background:var(–lg);border:1.5px solid var(–br);border-radius:100px;padding:4px 10px;font-size:0.68rem;font-weight:500;cursor:pointer;transition:all 0.15s;}
+.hlp:active{background:var(–yl);border-color:var(–y);}
+.hlp-c{font-size:0.68rem;color:var(–g);margin-left:auto;}
+
+/* PROFILE */
+.ph2{padding:14px 18px 0;flex-shrink:0;}
+.ptop{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.avbig{width:58px;height:58px;background:#080808;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:‘Playfair Display’,serif;font-size:1.2rem;font-weight:900;color:var(–y);flex-shrink:0;}
+.pname{font-family:‘Playfair Display’,serif;font-size:1.1rem;font-weight:700;color:#080808;}
+.pemail{font-size:0.71rem;color:var(–g);margin-top:1px;}
+.pbadge2{display:inline-flex;align-items:center;gap:4px;background:var(–yl);border-radius:100px;padding:3px 9px;font-size:0.65rem;font-weight:700;color:#7a5800;margin-top:4px;}
+.srow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.sbox{background:var(–lg);border-radius:12px;padding:12px;text-align:center;}
+.sv{font-family:‘Playfair Display’,serif;font-size:1.3rem;font-weight:900;color:#080808;}
+.sl{font-size:0.61rem;color:var(–g);margin-top:2px;}
+.rteaser{margin:0 12px 14px;background:#080808;border-radius:15px;padding:14px;position:relative;overflow:hidden;cursor:pointer;}
+.rteaser::before{content:’’;position:absolute;top:-30px;right:-30px;width:90px;height:90px;background:rgba(255,224,48,0.1);border-radius:50%;}
+.rt-lbl{font-size:0.6rem;color:#444;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
+.rt-pts{font-family:‘Playfair Display’,serif;font-size:1.8rem;font-weight:900;color:#fff;display:flex;align-items:baseline;gap:4px;}
+.rt-unit{font-size:0.75rem;color:var(–y);font-family:‘DM Sans’,sans-serif;}
+.rt-bar{height:5px;background:#1a1a1a;border-radius:100px;overflow:hidden;margin:8px 0;}
+.rt-fill{height:100%;width:62%;background:linear-gradient(90deg,#FFE030,#FFB800);border-radius:100px;}
+.rt-hint{font-size:0.7rem;color:#444;}
+.rt-hint span{color:var(–y);}
+.mlist{display:flex;flex-direction:column;gap:2px;padding:0 12px 20px;}
+.mi{display:flex;align-items:center;gap:10px;padding:12px 13px;background:var(–lg);border-radius:12px;cursor:pointer;transition:background 0.15s;}
+.mi:active{background:var(–yl);}
+.mi-ic{font-size:0.95rem;width:24px;text-align:center;}
+.mi-tx{flex:1;font-size:0.84rem;font-weight:500;color:#080808;}
+.mi-ar{font-size:0.75rem;color:#ccc;}
+
+/* DETAIL OVERLAY */
+.overlay{position:absolute;inset:0;background:#fff;z-index:200;display:none;flex-direction:column;animation:su 0.25s cubic-bezier(0.34,1.2,0.64,1);}
+.overlay.show{display:flex;}
+@keyframes su{from{transform:translateY(28px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.ov-hdr{padding:14px 18px 0;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.ov-sc{flex:1;overflow-y:auto;padding:12px 18px 24px;}
+.ov-sc::-webkit-scrollbar{display:none;}
+.de{width:68px;height:68px;background:var(–lg);border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:10px;}
+.dn{font-family:‘Playfair Display’,serif;font-size:1.2rem;font-weight:700;color:#080808;margin-bottom:2px;}
+.dbr{font-size:0.76rem;color:var(–g);margin-bottom:16px;}
+.prog-card{background:var(–lg);border-radius:14px;padding:13px;margin-bottom:10px;}
+.prog-top{display:flex;justify-content:space-between;margin-bottom:8px;}
+.prog-title{font-size:0.8rem;font-weight:600;color:#080808;}
+.prog-days{font-size:0.76rem;color:var(–g);}
+.prog-b{height:6px;background:#e0e0e0;border-radius:100px;overflow:hidden;margin-bottom:6px;}
+.prog-f{height:100%;border-radius:100px;}
+.prog-status{font-size:0.7rem;font-weight:600;}
+.earn-card{background:#080808;border-radius:14px;padding:13px;margin-bottom:10px;}
+.earn-lbl{font-size:0.6rem;color:#444;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
+.earn-val{font-family:‘Playfair Display’,serif;font-size:1.6rem;font-weight:900;color:var(–y);display:flex;align-items:baseline;gap:4px;}
+.earn-unit{font-size:0.74rem;color:#444;font-family:‘DM Sans’,sans-serif;}
+.earn-sub{font-size:0.68rem;color:#444;margin-top:4px;}
+.earn-sub span{color:var(–y);}
+.tl{margin-bottom:12px;}
+.tli{display:flex;gap:10px;margin-bottom:10px;}
+.tld{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.68rem;flex-shrink:0;margin-top:2px;}
+.done-d{background:#dcfce7;color:#14532d;}
+.now-d{background:var(–y);color:#080808;}
+.fut-d{background:var(–lg);color:#bbb;}
+.tlt{font-size:0.82rem;font-weight:600;color:#080808;}
+.tls{font-size:0.68rem;color:var(–g);margin-top:1px;}
+.rv-btn{background:#080808;color:#fff;border:none;border-radius:12px;padding:14px;width:100%;font-family:inherit;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.15s;}
+.rv-btn:active{background:#333;}
+.rv-btn-dis{background:var(–lg);color:var(–g);cursor:default;}
+
+/* NOTIF */
+.nsheet{position:absolute;inset:0;background:rgba(0,0,0,0.4);z-index:300;display:none;align-items:flex-end;border-radius:inherit;overflow:hidden;}
+.nsheet.show{display:flex;}
+.ns-inner{background:#fff;border-radius:24px 24px 0 0;padding:16px 16px 28px;width:100%;}
+.ns-handle{width:34px;height:3px;background:#e5e5e5;border-radius:100px;margin:0 auto 12px;}
+.ns-title{font-family:‘Playfair Display’,serif;font-size:1rem;font-weight:700;color:#080808;margin-bottom:10px;}
+.ni2{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #f5f5f5;}
+.ni2:last-of-type{border:none;}
+.nidot{width:6px;height:6px;background:var(–y);border-radius:50%;flex-shrink:0;margin-top:5px;}
+.ni-txt{font-size:0.78rem;color:#080808;line-height:1.5;}
+.ni-time{font-size:0.63rem;color:var(–g);margin-top:2px;}
+.ns-close{background:#080808;color:#fff;border:none;border-radius:11px;padding:12px;width:100%;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;margin-top:10px;}
+
+/* LOADING */
+.loading{position:absolute;inset:0;background:rgba(0,0,0,0.65);z-index:500;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;border-radius:inherit;}
+.loading.show{display:flex;}
+.spin{width:38px;height:38px;border:3px solid rgba(255,224,48,0.15);border-top-color:var(–y);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.load-txt{font-size:0.82rem;color:rgba(255,255,255,0.6);}
+</style>
+
+</head>
+<body>
+<div class="phone">
+  <div class="notch"></div>
+  <div class="status" id="statusbar">9:41 <span>●●●●</span></div>
+
+  <!-- WELCOME -->
+
+  <div class="page active" id="p-welcome">
+    <div class="wbg"></div><div class="wbg2"></div>
+    <div class="wcontent">
+      <div class="wlogo">
+        <div class="wdot"></div>
+        <span class="wname">lumo</span>
+      </div>
+      <span class="wtag" style="color:rgba(255,224,48,0.5);letter-spacing:3px;font-size:0.65rem;margin-bottom:24px;">KOZMETİK & CİLT BAKIMI</span>
+      <div class="wh1">Gerçekten<br>kullananların<br><em>yorumu burada.</em></div>
+      <p class="wsub">Influencer reklamı değil. Barkodla doğrulanmış, zaman kilitli, gerçek deneyimler.</p>
+      <div class="wbtns">
+        <button class="wbtn-primary" onclick="showAuth('register')">Ücretsiz Başla →</button>
+        <button class="wbtn-secondary" onclick="showAuth('login')">Zaten hesabım var</button>
+      </div>
+      <p class="wfooter">Devam ederek Kullanım Koşulları'nı kabul etmiş olursun.</p>
+    </div>
+  </div>
+
+  <!-- AUTH -->
+
+  <div class="page" id="p-auth">
+    <div class="auth-hdr">
+      <button class="back-btn" onclick="showPage('p-welcome')">←</button>
+      <div class="auth-logo"><div class="auth-dot"></div><span class="auth-name">lumo</span></div>
+      <div style="width:36px;"></div>
+    </div>
+    <div class="auth-body">
+      <div class="auth-title" id="auth-title">Hesap Oluştur</div>
+      <div class="auth-sub" id="auth-sub">Kozmetik deneyimlerini paylaş, puan kazan.</div>
+      <div class="tabs">
+        <div class="tab on" id="tab-email" onclick="switchTab('email')">E-posta</div>
+        <div class="tab" id="tab-phone" onclick="switchTab('phone')">Telefon</div>
+      </div>
+      <div id="email-form">
+        <div class="input-wrap"><label class="input-label">E-POSTA</label><input class="inp" id="auth-email" type="email" placeholder="ornek@gmail.com" /></div>
+        <div class="input-wrap"><label class="input-label">ŞİFRE</label><input class="inp" id="auth-pass" type="password" placeholder="En az 6 karakter" /></div>
+      </div>
+      <div id="phone-form" style="display:none;">
+        <div class="input-wrap"><label class="input-label">TELEFON NUMARASI</label><input class="inp" id="auth-phone" type="tel" placeholder="+90 5xx xxx xx xx" /></div>
+        <div id="otp-wrap" style="display:none;"><div class="input-wrap"><label class="input-label">DOĞRULAMA KODU</label><input class="inp" id="auth-otp" type="number" placeholder="6 haneli kod" /></div></div>
+      </div>
+      <div class="auth-msg" id="auth-msg"></div>
+      <button class="auth-btn" id="auth-submit" onclick="handleAuth()">Devam Et →</button>
+      <div class="auth-divider"><span>veya</span></div>
+      <button class="google-btn" onclick="handleGoogle()">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        Google ile devam et
+      </button>
+    </div>
+  </div>
+
+  <!-- ONBOARDING -->
+
+  <div class="page" id="p-onboard">
+    <div class="ob-progress"><div class="ob-fill" id="ob-fill" style="width:14%"></div></div>
+    <div class="ob-hdr">
+      <span class="ob-step" id="ob-step-txt">1 / 7</span>
+      <button class="ob-skip" onclick="skipOnboard()">Geç</button>
+    </div>
+    <div class="ob-body">
+      <div class="ob-emoji" id="ob-emoji">🌿</div>
+      <div class="ob-q" id="ob-q"></div>
+      <div class="ob-hint" id="ob-hint"></div>
+      <div class="ob-options" id="ob-options"></div>
+    </div>
+    <div class="ob-footer">
+      <button class="ob-next" id="ob-next" onclick="nextObStep()" disabled>Devam Et →</button>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+
+  <div class="page" id="p-app">
+    <div class="app-status">9:41 <span>●●●●</span></div>
+
+```
+<!-- HOME SUBSCREEN -->
+<div class="subscreen active" id="ss-home">
+  <div class="home-hdr">
+    <div class="home-logo"><div class="hdot"></div>lumo</div>
+    <button class="bell" onclick="toggleNotif()">🔔<div class="bell-dot"></div></button>
+  </div>
+  <div class="sc">
+    <div class="pts-card">
+      <div class="pts-lbl">Birikmiş Puanın</div>
+      <div class="pts-val" id="total-pts">1.240 <span class="pts-unit">puan</span></div>
+      <div class="pts-hint"><div class="pts-hint-dot"></div>Bu hafta <span>+85 puan</span> — yakında daha fazlasını öğreneceksin</div>
+    </div>
+    <div class="shdr"><h3>Takip Ettiklerim</h3><button onclick="goSub('ss-scan')">+ Ekle</button></div>
+    <div class="plist" id="plist"></div>
+    <div class="shdr"><h3>Hızlı İşlemler</h3></div>
+    <div class="qgrid">
+      <button class="qb" onclick="goSub('ss-scan')"><span class="qi">📷</span><div><div class="qt">Barkod Tara</div><div class="qs">Ürün ekle</div></div></button>
+      <button class="qb" onclick="goSub('ss-reviews')"><span class="qi">⭐</span><div><div class="qt">Yorumlar</div><div class="qs">Keşfet</div></div></button>
+      <button class="qb" onclick="goSub('ss-profile')"><span class="qi">🎁</span><div><div class="qt">Ödül Merkezi</div><div class="qs">Yakında</div></div></button>
+      <button class="qb"><span class="qi">👥</span><div><div class="qt">Arkadaşlar</div><div class="qs">3 aktif</div></div></button>
+    </div>
+  </div>
+</div>
+
+<!-- SCAN SUBSCREEN -->
+<div class="subscreen" id="ss-scan">
+  <div class="scan-hdr">
+    <button class="sback" onclick="goSub('ss-home')">←</button>
+    <span class="shtxt">Ürün Tara</span>
+  </div>
+  <div class="cam-area">
+    <video id="video" autoplay playsinline muted></video>
+    <div class="cam-ov">
+      <div class="cam-frame">
+        <div class="cfc cf-tl"></div><div class="cfc cf-tr"></div>
+        <div class="cfc cf-bl"></div><div class="cfc cf-br"></div>
+        <div class="sline"></div>
+      </div>
+    </div>
+    <div class="cam-hint-txt"><p id="cam-status">Kozmetik ürünün barkodunu tara</p></div>
+    <div class="scan-result" id="scan-result">
+      <div class="sr-handle"></div>
+      <div class="sr-prod" id="sr-prod"></div>
+      <div class="sr-info" id="sr-info"></div>
+      <button class="add-btn" onclick="addProduct()">+ Takip Listeme Ekle</button>
+      <button class="cancel-btn" onclick="closeScanResult()">İptal</button>
+    </div>
+  </div>
+  <div class="manual-area">
+    <div class="mlabel">Manuel Barkod Gir</div>
+    <div class="mrow">
+      <input class="minp" id="minp" type="number" placeholder="Örn: 8690526506520" />
+      <button class="mbtn" onclick="searchBarcode()">Ara →</button>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS SUBSCREEN -->
+<div class="subscreen" id="ss-reviews">
+  <div class="rh"><h2>Yorumlar</h2><p>Doğrulanmış kozmetik deneyimleri</p></div>
+  <div class="srch"><span>🔍</span><input type="text" placeholder="Ürün veya marka ara..." /></div>
+  <div class="cats">
+    <div class="cat on" onclick="filterCat(this)">Tümü</div>
+    <div class="cat" onclick="filterCat(this)">Nemlendirici</div>
+    <div class="cat" onclick="filterCat(this)">Serum</div>
+    <div class="cat" onclick="filterCat(this)">Güneş Koruma</div>
+    <div class="cat" onclick="filterCat(this)">Temizleyici</div>
+    <div class="cat" onclick="filterCat(this)">Makyaj</div>
+  </div>
+  <div class="sc"><div class="rvcards" id="rvcards"></div></div>
+</div>
+
+<!-- PROFILE SUBSCREEN -->
+<div class="subscreen" id="ss-profile">
+  <div class="sc">
+    <div class="ph2">
+      <div class="ptop">
+        <div class="avbig" id="av-init">C</div>
+        <div>
+          <div class="pname" id="prof-name">Kullanıcı</div>
+          <div class="pemail" id="prof-email"></div>
+          <div class="pbadge2">⭐ Güvenilir Yorumcu</div>
+        </div>
+      </div>
+      <div class="srow">
+        <div class="sbox"><div class="sv">1.240</div><div class="sl">Puan</div></div>
+        <div class="sbox"><div class="sv" id="prod-count">4</div><div class="sl">Ürün</div></div>
+        <div class="sbox"><div class="sv">2</div><div class="sl">Yorum</div></div>
+      </div>
+    </div>
+    <div class="rteaser">
+      <div class="rt-lbl">Ödül Durumu</div>
+      <div class="rt-pts">1.240 <span class="rt-unit">puan</span></div>
+      <div class="rt-bar"><div class="rt-fill"></div></div>
+      <div class="rt-hint">Hedefe <span>260 puan</span> kaldı — yakında açıklanacak 👀</div>
+    </div>
+    <div class="mlist">
+      <div class="mi"><span class="mi-ic">📦</span><span class="mi-tx">Ürünlerim</span><span class="mi-ar">›</span></div>
+      <div class="mi"><span class="mi-ic">💬</span><span class="mi-tx">Yorumlarım</span><span class="mi-ar">›</span></div>
+      <div class="mi"><span class="mi-ic">👥</span><span class="mi-tx">Arkadaşlarım</span><span class="mi-ar">›</span></div>
+      <div class="mi"><span class="mi-ic">🎁</span><span class="mi-tx">Sample Programı</span><span class="mi-ar">›</span></div>
+      <div class="mi" onclick="handleLogout()"><span class="mi-ic">🚪</span><span class="mi-tx">Çıkış Yap</span><span class="mi-ar">›</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bnav">
+  <button class="ni on" id="n-home" onclick="goSub('ss-home')"><span class="ic">🏠</span><span class="lb">Ana Sayfa</span></button>
+  <button class="ni" id="n-scan" onclick="goSub('ss-scan')"><span class="ic">📷</span><span class="lb">Tara</span></button>
+  <button class="ni" id="n-reviews" onclick="goSub('ss-reviews')"><span class="ic">⭐</span><span class="lb">Yorumlar</span></button>
+  <button class="ni" id="n-profile" onclick="goSub('ss-profile')"><span class="ic">👤</span><span class="lb">Profil</span></button>
+</div>
+
+<!-- DETAIL OVERLAY -->
+<div class="overlay" id="detail-ov">
+  <div class="ov-hdr">
+    <button class="back-btn" onclick="closeDetail()">←</button>
+    <span style="font-size:0.8rem;font-weight:600;color:#aaa;">Ürün Detayı</span>
+    <div style="width:36px;"></div>
+  </div>
+  <div class="ov-sc" id="detail-body"></div>
+</div>
+
+<!-- NOTIF -->
+<div class="nsheet" id="nsheet" onclick="closeNotif(event)">
+  <div class="ns-inner">
+    <div class="ns-handle"></div>
+    <div class="ns-title">Bildirimler</div>
+    <div class="ni2"><div class="nidot"></div><div><div class="ni-txt">⭐ <strong>Serum (30 gün doldu!)</strong> — Artık yorum yazabilirsin. Puan seni bekliyor!</div><div class="ni-time">2 saat önce</div></div></div>
+    <div class="ni2"><div class="nidot"></div><div><div class="ni-txt">💡 <strong>Günlük puan!</strong> — Bugün 4 ürününden +8 puan kazandın.</div><div class="ni-time">6 saat önce</div></div></div>
+    <div class="ni2"><div style="width:6px;"></div><div><div class="ni-txt">👥 <strong>Arkadaşın Ayşe</strong> CeraVe Nemlendirici hakkında yorum yazdı.</div><div class="ni-time">Dün</div></div></div>
+    <button class="ns-close" onclick="closeNotif()">Kapat</button>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- LOADING -->
+
+  <div class="loading" id="loading"><div class="spin"></div><div class="load-txt" id="load-txt">Yükleniyor...</div></div>
+</div>
+
+<!-- Firebase -->
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC0-fPX4k7Gei0eON0672bCD_kfliyha3c",
+  authDomain: "lumo-app-c13df.firebaseapp.com",
+  projectId: "lumo-app-c13df",
+  storageBucket: "lumo-app-c13df.firebasestorage.app",
+  messagingSenderId: "336867151756",
+  appId: "1:336867151756:web:8f33bcddcf9bd11db590a9",
+  measurementId: "G-1HZPB32L9R"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+
+let currentTab = 'email';
+let confirmationResult = null;
+let isRegister = true;
+
+window.handleAuth = async function() {
+  const btn = document.getElementById('auth-submit');
+  const msg = document.getElementById('auth-msg');
+  btn.disabled = true;
+  msg.className = 'auth-msg';
+  msg.textContent = '';
+
+  try {
+    if(currentTab === 'email') {
+      const email = document.getElementById('auth-email').value.trim();
+      const pass = document.getElementById('auth-pass').value;
+      if(!email || !pass) { msg.className='auth-msg err'; msg.textContent='E-posta ve şifre gerekli.'; btn.disabled=false; return; }
+      if(isRegister) {
+        await createUserWithEmailAndPassword(auth, email, pass);
+      } else {
+        await signInWithEmailAndPassword(auth, email, pass);
+      }
+    } else {
+      const phone = document.getElementById('auth-phone').value.trim();
+      const otpWrap = document.getElementById('otp-wrap');
+      if(otpWrap.style.display === 'none') {
+        if(!phone) { msg.className='auth-msg err'; msg.textContent='Telefon numarası gerekli.'; btn.disabled=false; return; }
+        if(!window.recaptchaVerifier) {
+          window.recaptchaVerifier = new RecaptchaVerifier(auth, 'auth-submit', { size: 'invisible' });
+        }
+        showLoad('SMS gönderiliyor...');
+        confirmationResult = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
+        hideLoad();
+        otpWrap.style.display = 'block';
+        msg.className = 'auth-msg ok'; msg.textContent = 'SMS gönderildi! Kodu gir.';
+        btn.disabled = false;
+        return;
+      } else {
+        const otp = document.getElementById('auth-otp').value.trim();
+        if(!otp) { msg.className='auth-msg err'; msg.textContent='Kodu gir.'; btn.disabled=false; return; }
+        showLoad('Doğrulanıyor...');
+        await confirmationResult.confirm(otp);
+        hideLoad();
+      }
+    }
+  } catch(e) {
+    hideLoad();
+    const errs = {
+      'auth/email-already-in-use':'Bu e-posta zaten kayıtlı. Giriş yap.',
+      'auth/user-not-found':'Hesap bulunamadı.',
+      'auth/wrong-password':'Şifre yanlış.',
+      'auth/invalid-email':'Geçersiz e-posta.',
+      'auth/weak-password':'Şifre en az 6 karakter olmalı.',
+      'auth/too-many-requests':'Çok fazla deneme. Bir süre bekle.',
+      'auth/invalid-credential':'E-posta veya şifre hatalı.',
+    };
+    msg.className = 'auth-msg err';
+    msg.textContent = errs[e.code] || 'Bir hata oluştu: ' + e.message;
+    btn.disabled = false;
+    return;
+  }
+  btn.disabled = false;
+};
+
+window.handleGoogle = async function() {
+  try {
+    showLoad('Google ile giriş yapılıyor...');
+    await signInWithPopup(auth, googleProvider);
+    hideLoad();
+  } catch(e) {
+    hideLoad();
+    if(e.code !== 'auth/popup-closed-by-user') {
+      document.getElementById('auth-msg').className = 'auth-msg err';
+      document.getElementById('auth-msg').textContent = 'Google girişi başarısız oldu.';
+    }
+  }
+};
+
+window.handleLogout = async function() {
+  await signOut(auth);
+  showPage('p-welcome');
+};
+
+onAuthStateChanged(auth, (user) => {
+  if(user) {
+    const name = user.displayName || user.email?.split('@')[0] || 'Kullanıcı';
+    document.getElementById('prof-name').textContent = name;
+    document.getElementById('prof-email').textContent = user.email || user.phoneNumber || '';
+    document.getElementById('av-init').textContent = name[0].toUpperCase();
+    const ob = localStorage.getItem('lumo_ob_done');
+    if(!ob) {
+      showPage('p-onboard');
+      startOnboard();
+    } else {
+      showPage('p-app');
+    }
+  }
+});
+
+window.switchTab = function(tab) {
+  currentTab = tab;
+  document.getElementById('tab-email').classList.toggle('on', tab==='email');
+  document.getElementById('tab-phone').classList.toggle('on', tab==='phone');
+  document.getElementById('email-form').style.display = tab==='email'?'block':'none';
+  document.getElementById('phone-form').style.display = tab==='phone'?'block':'none';
+};
+
+window.showAuth = function(mode) {
+  isRegister = mode === 'register';
+  document.getElementById('auth-title').textContent = isRegister ? 'Hesap Oluştur' : 'Giriş Yap';
+  document.getElementById('auth-sub').textContent = isRegister
+    ? 'Kozmetik deneyimlerini paylaş, puan kazan.'
+    : 'Tekrar hoş geldin! 👋';
+  document.getElementById('auth-submit').textContent = isRegister ? 'Devam Et →' : 'Giriş Yap →';
+  showPage('p-auth');
+};
+</script>
+
+<!-- ZXing -->
+
+<script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.20.0/umd/index.min.js"></script>
+
+<script>
+// ONBOARDING
+const obSteps = [
+  {emoji:'🌿',q:'Cilt tipini seçelim',hint:'Sana en uygun ürünleri gösterebilmek için',type:'single',opts:[
+    {icon:'💧',label:'Normal Cilt',sub:'Ne çok yağlı ne çok kuru'},
+    {icon:'✨',label:'Yağlı Cilt',sub:'Parlama ve gözenek sorunu var'},
+    {icon:'🌸',label:'Kuru Cilt',sub:'Sıkışma ve kuruluk hissediyorum'},
+    {icon:'🔀',label:'Karma Cilt',sub:'T bölgesi yağlı, yanaklar kuru'},
+    {icon:'🌺',label:'Hassas Cilt',sub:'Kolay kızarma ve tahriş'},
+  ]},
+  {emoji:'🎯',q:'Cilt endişen nedir?',hint:'Birden fazla seçebilirsin',type:'multi',opts:[
+    {icon:'⚡',label:'Sivilce & Akne',sub:''},
+    {icon:'🌑',label:'Leke & Ton Eşitsizliği',sub:''},
+    {icon:'⏰',label:'Yaşlanma Karşıtı',sub:''},
+    {icon:'💦',label:'Nem & Kuruluk',sub:''},
+    {icon:'🔳',label:'Gözenek Görünümü',sub:''},
+    {icon:'🌥️',label:'Göz Altı Morluğu',sub:''},
+  ]},
+  {emoji:'☀️',q:'Güneş koruyucu kullanıyor musun?',hint:'',type:'single',opts:[
+    {icon:'✅',label:'Evet, her gün',sub:'SPF rutinimin bir parçası'},
+    {icon:'🔶',label:'Bazen',sub:'Güneşli günlerde kullanıyorum'},
+    {icon:'❌',label:'Hayır',sub:'Kullanmıyorum'},
+  ]},
+  {emoji:'💰',q:'Kozmetik bütçen ne kadar?',hint:'Aylık ortalama harcaman',type:'single',opts:[
+    {icon:'💵',label:'0 - 500 TL',sub:''},
+    {icon:'💵',label:'500 - 1.500 TL',sub:''},
+    {icon:'💎',label:'1.500 - 3.000 TL',sub:''},
+    {icon:'👑',label:'3.000 TL üzeri',sub:''},
+  ]},
+  {emoji:'🛍️',q:'Hangi kategorileri takip etmek istiyorsun?',hint:'Birden fazla seçebilirsin',type:'multi',opts:[
+    {icon:'🧴',label:'Nemlendirici',sub:''},
+    {icon:'💧',label:'Serum',sub:''},
+    {icon:'☀️',label:'Güneş Koruyucu',sub:''},
+    {icon:'🧼',label:'Temizleyici',sub:''},
+    {icon:'💄',label:'Makyaj',sub:''},
+    {icon:'💆',label:'Saç Bakımı',sub:''},
+  ]},
+  {emoji:'📱',q:'Ürün deneyimlerini nasıl paylaşmak istersin?',hint:'',type:'single',opts:[
+    {icon:'✍️',label:'Metin yorumu yazarım',sub:'Detaylı deneyimlerimi anlatırım'},
+    {icon:'⭐',label:'Puan veririm',sub:'Kısa ve öz değerlendirme'},
+    {icon:'📸',label:'Fotoğrafla paylaşırım',sub:'Görseller daha ikna edici'},
+    {icon:'🎬',label:'Video tercih ederim',sub:'Gerçek uygulama sürecini gösteririm'},
+  ]},
+  {emoji:'🔔',q:'Bildirimler nasıl olsun?',hint:'İstediğin zaman değiştirebilirsin',type:'single',opts:[
+    {icon:'🔔',label:'Hepsini Gönder',sub:'Günlük puan, yorum zamanı, arkadaşlar'},
+    {icon:'⚡',label:'Sadece Önemliler',sub:'Yorum zamanı gelince bildir'},
+    {icon:'🔕',label:'Bildirimleri Kapat',sub:'Şimdilik kapatacağım'},
+  ]},
+];
+
+let obIdx = 0;
+let obAnswers = {};
+
+function startOnboard() {
+  obIdx = 0;
+  obAnswers = {};
+  renderObStep();
+}
+
+function renderObStep() {
+  const step = obSteps[obIdx];
+  const pct = ((obIdx+1)/obSteps.length)*100;
+  document.getElementById('ob-fill').style.width = pct + '%';
+  document.getElementById('ob-step-txt').textContent = `${obIdx+1} / ${obSteps.length}`;
+  document.getElementById('ob-emoji').textContent = step.emoji;
+  document.getElementById('ob-q').textContent = step.q;
+  document.getElementById('ob-hint').textContent = step.hint;
+  document.getElementById('ob-next').disabled = true;
+
+  const opts = document.getElementById('ob-options');
+  const isMulti = step.type === 'multi';
+  opts.innerHTML = step.opts.map((o,i) => `
+    <button class="${isMulti?'ob-option-multi':'ob-option'}" onclick="selectOb(this,${i},${isMulti})" data-i="${i}">
+      <span class="ob-opt-icon">${o.icon}</span>
+      <div class="ob-opt-txt">
+        <div class="ob-opt-label">${o.label}</div>
+        ${o.sub ? `<div class="ob-opt-sub">${o.sub}</div>` : ''}
+      </div>
+    </button>`).join('');
+}
+
+window.selectOb = function(el, idx, isMulti) {
+  if(isMulti) {
+    el.classList.toggle('selected');
+    const selected = document.querySelectorAll('#ob-options .ob-option-multi.selected');
+    document.getElementById('ob-next').disabled = selected.length === 0;
+    obAnswers[obIdx] = Array.from(selected).map(e => parseInt(e.dataset.i));
+  } else {
+    document.querySelectorAll('#ob-options .ob-option').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('ob-next').disabled = false;
+    obAnswers[obIdx] = idx;
+  }
+};
+
+window.nextObStep = function() {
+  if(obIdx < obSteps.length - 1) {
+    obIdx++;
+    renderObStep();
+  } else {
+    localStorage.setItem('lumo_ob_done', JSON.stringify(obAnswers));
+    showPage('p-app');
+  }
+};
+
+window.skipOnboard = function() {
+  localStorage.setItem('lumo_ob_done', '{}');
+  showPage('p-app');
+};
+
+// PAGE NAV
+window.showPage = function(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const statusbar = document.getElementById('statusbar');
+  statusbar.className = 'status ' + (id === 'p-welcome' ? '' : 'dark');
+};
+
+window.goSub = function(id) {
+  document.querySelectorAll('.subscreen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
+  const map = {'ss-home':'n-home','ss-reviews':'n-reviews','ss-profile':'n-profile'};
+  if(map[id]) document.getElementById(map[id]).classList.add('on');
+  if(id === 'ss-scan') startCamera();
+  else stopCamera();
+};
+
+// PRODUCTS
+let products = [
+  {id:1,emoji:'🧴',name:'CeraVe Nemlendirici',brand:'CeraVe',total:30,done:30,pts:6,status:'ready',
+   tl:[{ok:true,t:'Barkod Tarandı',s:'24 Nisan 2025'},{ok:true,t:'7. Gün — İlk İzlenim',s:'+14 puan kazandın'},{now:true,t:'30. Gün — Yorum Zamanı!',s:'Yorum yazabilirsin — +50 bonus puan'}]},
+  {id:2,emoji:'💧',name:'The Ordinary Serum',brand:'The Ordinary',total:21,done:14,pts:4,status:'wait',
+   tl:[{ok:true,t:'Barkod Tarandı',s:'21 Nisan 2025'},{now:true,t:'14/21 Gün',s:'Her gün +4 puan kazanıyorsun'},{ok:false,t:'21. Gün — Yorum Zamanı',s:'7 gün kaldı'}]},
+  {id:3,emoji:'☀️',name:'La Roche-Posay SPF50',brand:'La Roche-Posay',total:30,done:8,pts:3,status:'wait',
+   tl:[{ok:true,t:'Barkod Tarandı',s:'26 Nisan 2025'},{now:true,t:'8/30 Gün',s:'Her gün +3 puan'},{ok:false,t:'30. Gün — Yorum Zamanı',s:'22 gün kaldı'}]},
+  {id:4,emoji:'🌸',name:'Laneige Lip Mask',brand:'Laneige',total:14,done:14,pts:5,status:'ready',
+   tl:[{ok:true,t:'Barkod Tarandı',s:'20 Nisan 2025'},{ok:true,t:'14. Gün — Yorum Zamanı!',s:'+30 bonus puan'},{now:true,t:'Yorumunu Yaz!',s:'Hazırsın'}]},
+];
+
+function renderProducts() {
+  document.getElementById('plist').innerHTML = products.map(p => {
+    const pct = Math.round((p.done/p.total)*100);
+    const col = p.status==='ready'?'#16a34a':p.done/p.total>0.6?'#FFE030':'#94a3b8';
+    const badge = p.status==='ready'
+      ? `<span class="pbadge bgr">✓ Hazır</span>`
+      : `<span class="pbadge bw">+${p.pts}pts/gün</span>`;
+    return `<div class="pc" onclick="showDetail(${p.id})">
+      <div class="pe">${p.emoji}</div>
+      <div class="pi">
+        <div class="pn">${p.name}</div>
+        <div class="pb2">${p.brand}</div>
+        <div class="pbar-w"><div class="pbar" style="width:${pct}%;background:${col}"></div></div>
+        <div class="pfoot"><span class="pd">${p.done}/${p.total} gün</span><span class="pp" style="color:${col}">${pct}%</span></div>
+      </div>${badge}</div>`;
+  }).join('');
+  document.getElementById('prod-count').textContent = products.length;
+}
+
+const reviews = [
+  {emoji:'🧴',name:'CeraVe Nemlendirici',brand:'CeraVe',stars:5,days:30,text:'30 gün kullandım, cildimde gerçekten fark yarattı. Yağlı ciltler için çok hafif, nem kaybını engelliyor. Sabah akşam kullandım, hiç komedojenik etki yapmadı.',helpful:47},
+  {emoji:'💧',name:'The Ordinary Niacinamide',brand:'The Ordinary',stars:4,days:21,text:'3 haftalık kullanım sonrası gözeneklerim belirgin şekilde küçüldü. Fiyat performans açısından rakipsiz. Tek eksi: hafif tahriş hissettim ilk haftada.',helpful:32},
+  {emoji:'☀️',name:'La Roche-Posay SPF50+',brand:'La Roche-Posay',stars:5,days:45,text:'45 gündür her sabah kullanıyorum. Güneş yanığı olmadı, cilde beyaz iz bırakmıyor. Hassas ciltler için en iyi güneş koruyucu.',helpful:61},
+  {emoji:'✨',name:'Drunk Elephant Serum',brand:'Drunk Elephant',stars:4,days:60,text:'2 aylık kullanım sonrası cilt tonu eşitlendi. Pahalı ama etkili. Vitamin C konsantrasyonu yüksek, dikkatli kullanmak gerekiyor.',helpful:28},
+];
+
+function renderReviews() {
+  document.getElementById('rvcards').innerHTML = reviews.map(r => `
+  <div class="rvc">
+    <div class="rvc-top">
+      <div class="rvc-em">${r.emoji}</div>
+      <div><div class="rvc-nm">${r.name}</div><div class="rvc-br">${r.brand}</div>
+      <div style="display:flex;gap:1px;margin-top:3px;">${'⭐'.repeat(r.stars)}</div></div>
+    </div>
+    <div class="rvtags"><span class="rvtag tv">✓ Doğrulanmış</span><span class="rvtag td">${r.days} gün kullanım</span></div>
+    <div class="rvc-txt">${r.text}</div>
+    <div class="rvc-foot">
+      <button class="hlp" onclick="this.textContent='👍 Beğendim!';this.style.background='#FFF8C0';this.style.borderColor='#FFE030'">👍 Faydalı</button>
+      <span class="hlp-c">${r.helpful} kişi faydalı buldu</span>
+    </div>
+  </div>`).join('');
+}
+
+// DETAIL
+window.showDetail = function(id) {
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  const pct = Math.round((p.done/p.total)*100);
+  const col = p.status==='ready'?'#16a34a':'#FFE030';
+  const earned = p.done*p.pts;
+  const tlHTML = p.tl.map(t=>{
+    const cls = t.ok?'done-d':t.now?'now-d':'fut-d';
+    const ic = t.ok?'✓':t.now?'●':'○';
+    return `<div class="tli"><div class="tld ${cls}">${ic}</div><div><div class="tlt">${t.t}</div><div class="tls">${t.s}</div></div></div>`;
+  }).join('');
+  const btn = p.status==='ready'
+    ? `<button class="rv-btn" onclick="writeReview()">✍️ Yorumumu Yaz (+50 Bonus Puan)</button>`
+    : `<button class="rv-btn rv-btn-dis" disabled>⏳ ${p.total-p.done} gün kaldı — her gün puan kazanıyorsun</button>`;
+  document.getElementById('detail-body').innerHTML = `
+    <div class="de">${p.emoji}</div>
+    <div class="dn">${p.name}</div>
+    <div class="dbr">${p.brand}</div>
+    <div class="prog-card">
+      <div class="prog-top"><span class="prog-title">Kullanım Süreci</span><span class="prog-days">${p.done}/${p.total} gün</span></div>
+      <div class="prog-b"><div class="prog-f" style="width:${pct}%;background:${col}"></div></div>
+      <div class="prog-status" style="color:${col}">${p.status==='ready'?'✓ Yorum yazabilirsin!':'%'+pct+' tamamlandı'}</div>
+    </div>
+    <div class="earn-card">
+      <div class="earn-lbl">Kazanılan Puan</div>
+      <div class="earn-val">${earned} <span class="earn-unit">puan</span></div>
+      <div class="earn-sub">Her geçen gün <span>+${p.pts} puan</span> · Yorum yazınca +50 bonus</div>
+    </div>
+    <div class="tl">${tlHTML}</div>${btn}`;
+  document.getElementById('detail-ov').classList.add('show');
+};
+
+window.closeDetail = function() { document.getElementById('detail-ov').classList.remove('show'); };
+window.writeReview = function() { alert('🎉 Yorumun kaydedildi! Puan kazandın. Teşekkürler!'); closeDetail(); };
+
+// CAMERA + BARCODE
+let codeReader = null;
+let scanActive = false;
+let scannedProduct = null;
+
+function startCamera() {
+  if(scanActive) return;
+  if(typeof ZXing === 'undefined') { document.getElementById('cam-status').textContent = 'Kütüphane yüklenemedi, manuel gir'; return; }
+  try {
+    codeReader = new ZXing.BrowserMultiFormatReader();
+    ZXing.BrowserCodeReader.listVideoInputDevices().then(devices => {
+      const deviceId = devices.length > 1 ? devices[devices.length-1].deviceId : devices[0]?.deviceId;
+      scanActive = true;
+      codeReader.decodeFromVideoDevice(deviceId, 'video', (result, err) => {
+        if(result && scanActive) {
+          scanActive = false;
+          codeReader.reset();
+          handleBarcode(result.getText());
+        }
+      });
+    });
+  } catch(e) {
+    document.getElementById('cam-status').textContent = 'Kamera izni ver veya manuel gir';
+  }
+}
+
+function stopCamera() {
+  if(codeReader) { try{codeReader.reset();}catch(e){} codeReader=null; }
+  scanActive = false;
+  const v = document.getElementById('video');
+  if(v.srcObject) { v.srcObject.getTracks().forEach(t=>t.stop()); v.srcObject=null; }
+}
+
+async function handleBarcode(barcode) {
+  showLoad('Ürün aranıyor...');
+  try {
+    const r = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json`);
+    const d = await r.json();
+    if(d.status===1 && d.product) {
+      const p = d.product;
+      const name = p.product_name_tr || p.product_name || p.product_name_en || 'Bilinmeyen Ürün';
+      const brand = p.brands || '';
+      const tags = p.categories_tags || [];
+      const cat = (tags[0]||'').replace('en:','').replace(/-/g,' ');
+      const emoji = getCosmeticEmoji(tags, cat);
+      const waitDays = 30;
+      const ptsPerDay = 4;
+      scannedProduct = {barcode,name,brand,emoji,waitDays,ptsPerDay,cat};
+      showScanResult();
+    } else {
+      hideLoad();
+      document.getElementById('cam-status').textContent = `"${barcode}" bulunamadı, tekrar dene`;
+    }
+  } catch(e) {
+    hideLoad();
+    document.getElementById('cam-status').textContent = 'Bağlantı hatası';
+  }
+}
+
+function getCosmeticEmoji(tags, cat) {
+  const t = tags.join(' ').toLowerCase() + ' ' + cat.toLowerCase();
+  if(t.includes('lip')) return '💋';
+  if(t.includes('eye')) return '👁️';
+  if(t.includes('serum')) return '💧';
+  if(t.includes('sun')||t.includes('spf')) return '☀️';
+  if(t.includes('cleanser')||t.includes('wash')) return '🧼';
+  if(t.includes('moistur')||t.includes('cream')) return '🧴';
+  if(t.includes('mask')) return '🫧';
+  if(t.includes('hair')) return '💆';
+  return '🌸';
+}
+
+function showScanResult() {
+  hideLoad();
+  const p = scannedProduct;
+  document.getElementById('sr-prod').innerHTML = `
+    <div class="sr-em">${p.emoji}</div>
+    <div>
+      <div class="sr-nm">${p.name}</div>
+      <div class="sr-br">${p.brand}</div>
+      <div class="sr-cat">${p.cat||'Kozmetik'}</div>
+    </div>`;
+  document.getElementById('sr-info').innerHTML = `
+    <div class="sri"><div class="sri-lbl">Bekleme</div><div class="sri-val">${p.waitDays} gün</div></div>
+    <div class="sri"><div class="sri-lbl">Günlük Puan</div><div class="sri-val">+${p.ptsPerDay}</div></div>
+    <div class="sri"><div class="sri-lbl">Toplam</div><div class="sri-val">${p.waitDays*p.ptsPerDay}pt</div></div>`;
+  document.getElementById('scan-result').classList.add('open');
+}
+
+window.closeScanResult = function() {
+  document.getElementById('scan-result').classList.remove('open');
+  scannedProduct = null;
+  scanActive = false;
+  if(codeReader) { try{codeReader.reset();}catch(e){} }
+  startCamera();
+};
+
+window.addProduct = function() {
+  if(!scannedProduct) return;
+  const p = scannedProduct;
+  products.unshift({
+    id:Date.now(), emoji:p.emoji, name:p.name, brand:p.brand,
+    total:p.waitDays, done:0, pts:p.ptsPerDay, status:'wait',
+    tl:[
+      {ok:true,t:'Barkod Tarandı',s:'Az önce'},
+      {now:true,t:`0/${p.waitDays} Gün`,s:`Her gün +${p.ptsPerDay} puan kazanıyorsun`},
+      {ok:false,t:`${p.waitDays}. Gün — Yorum Zamanı`,s:`${p.waitDays} gün kaldı`},
+    ]
+  });
+  renderProducts();
+  document.getElementById('scan-result').classList.remove('open');
+  scannedProduct = null;
+  goSub('ss-home');
+};
+
+window.searchBarcode = async function() {
+  const val = document.getElementById('minp').value.trim();
+  if(!val) return;
+  await handleBarcode(val);
+};
+
+window.filterCat = function(el) {
+  document.querySelectorAll('.cat').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+};
+
+window.toggleNotif = function() { document.getElementById('nsheet').classList.toggle('show'); };
+window.closeNotif = function(e) { if(!e||e.target===document.getElementById('nsheet')) document.getElementById('nsheet').classList.remove('show'); };
+
+function showLoad(txt) { document.getElementById('load-txt').textContent=txt||'Yükleniyor...'; document.getElementById('loading').classList.add('show'); }
+function hideLoad() { document.getElementById('loading').classList.remove('show'); }
+window.showLoad = showLoad; window.hideLoad = hideLoad;
+
+document.getElementById('minp').addEventListener('keydown', e => { if(e.key==='Enter') window.searchBarcode(); });
+
+renderProducts();
+renderReviews();
+</script>
+
+</body>
+</html>
