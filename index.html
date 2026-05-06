@@ -1038,41 +1038,68 @@ window.requestCamera=async function(){
 
 async function startCamera(){
   if(scanActive) return;
+  const statusEl=document.getElementById('cam-status');
+  const permBtn=document.getElementById('cam-perm-btn');
+  
   if(typeof ZXing==='undefined'){
-    document.getElementById('cam-status').textContent='Kütüphane yüklenemedi, manuel gir';
+    statusEl.textContent='Kütüphane yüklenemedi, manuel gir';
     return;
   }
+  
+  // Check if browser supports getUserMedia
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    statusEl.textContent='Tarayıcı kamerayı desteklemiyor, manuel gir';
+    return;
+  }
+  
   try {
-    // First request permission explicitly
-    const stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
-    stream.getTracks().forEach(t=>t.stop()); // stop test stream
+    statusEl.textContent='Kamera izni isteniyor...';
+    permBtn.style.display='none';
     
+    // Request camera directly — don't pre-test
     codeReader=new ZXing.BrowserMultiFormatReader();
-    const devices=await ZXing.BrowserCodeReader.listVideoInputDevices();
-    if(!devices||devices.length===0){
-      document.getElementById('cam-status').textContent='Kamera bulunamadı, manuel gir';
-      return;
-    }
-    const deviceId=devices.length>1?devices[devices.length-1].deviceId:devices[0].deviceId;
+    
+    // Use back camera on mobile
+    const constraints={video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}}};
+    const stream=await navigator.mediaDevices.getUserMedia(constraints);
+    
+    // Assign stream directly to video element
+    const video=document.getElementById('video');
+    video.srcObject=stream;
+    await video.play();
+    
     scanActive=true;
     cameraStarted=true;
-    document.getElementById('cam-status').textContent='Barkodu çerçeve içine getir...';
-    document.getElementById('cam-perm-btn').style.display='none';
-    await codeReader.decodeFromVideoDevice(deviceId,'video',(result,err)=>{
-      if(result&&scanActive){
-        scanActive=false;
-        if(codeReader){try{codeReader.reset();}catch(e){}}
-        handleBarcode(result.getText());
-      }
-    });
+    statusEl.textContent='Barkodu çerçeve içine getir...';
+    
+    // Start ZXing decoding on the video stream
+    const hints=new Map();
+    hints.set(ZXing.DecodeHintType.TRY_HARDER,true);
+    const reader=new ZXing.BrowserMultiFormatReader(hints);
+    codeReader=reader;
+    
+    const scanLoop=setInterval(async()=>{
+      if(!scanActive){clearInterval(scanLoop);return;}
+      try{
+        const result=await reader.decodeOnce(video);
+        if(result&&scanActive){
+          clearInterval(scanLoop);
+          scanActive=false;
+          handleBarcode(result.getText());
+        }
+      }catch(e2){}
+    },300);
+    
   } catch(e){
     if(e.name==='NotAllowedError'||e.name==='PermissionDeniedError'){
-      document.getElementById('cam-status').textContent='Kamera izni reddedildi';
-      document.getElementById('cam-perm-btn').style.display='block';
-      document.getElementById('cam-perm-btn').textContent='⚙️ Ayarlardan İzin Ver';
+      statusEl.textContent='Kamera izni verilmedi';
+      permBtn.style.display='block';
+      permBtn.textContent='📷 Kameraya İzin Ver';
+    } else if(e.name==='NotFoundError'){
+      statusEl.textContent='Kamera bulunamadı, manuel gir';
     } else {
-      document.getElementById('cam-status').textContent='Kamera açılamadı: '+e.message;
-      document.getElementById('cam-perm-btn').style.display='block';
+      statusEl.textContent='Kamera hatası: '+e.name;
+      permBtn.style.display='block';
     }
   }
 }
@@ -1088,37 +1115,25 @@ function stopCamera(){
 // BARCODE
 async function handleBarcode(barcode){
   showLoad('Ürün aranıyor...');
-  // Try multiple APIs
-  try {
-    // Try Open Food Facts first
-    const r1=await fetch(`https://world.openfoodfacts.org/api/v2/product/${barcode}?fields=product_name,product_name_tr,brands,categories_tags`);
-    const d1=await r1.json();
-    if(d1.status===1&&d1.product){
-      const p=d1.product;
-      const name=p.product_name_tr||p.product_name||'Bilinmeyen Ürün';
-      const brand=p.brands||'';
-      const tags=p.categories_tags||[];
-      processFoundProduct(barcode,name,brand,tags);
-      return;
-    }
-    // Try Open Beauty Facts for cosmetics
-    const r2=await fetch(`https://world.openbeautyfacts.org/api/v0/product/${barcode}.json`);
-    const d2=await r2.json();
-    if(d2.status===1&&d2.product){
-      const p=d2.product;
-      const name=p.product_name||p.product_name_en||'Bilinmeyen Ürün';
-      const brand=p.brands||'';
-      const tags=p.categories_tags||[];
-      processFoundProduct(barcode,name,brand,tags);
-      return;
-    }
-    // Not found in any DB — create manual entry
-    hideLoad();
-    showManualEntry(barcode);
-  } catch(e){
-    hideLoad();
-    showManualEntry(barcode);
+  const apis=[
+    `https://world.openbeautyfacts.org/api/v0/product/${barcode}.json`,
+    `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`,
+  ];
+  for(const url of apis){
+    try{
+      const r=await fetch(url);
+      const d=await r.json();
+      if(d.status===1&&d.product){
+        const p=d.product;
+        const name=p.product_name_tr||p.product_name||p.product_name_en||'';
+        const brand=p.brands||'';
+        const tags=p.categories_tags||[];
+        if(name){processFoundProduct(barcode,name,brand,tags);return;}
+      }
+    }catch(e){}
   }
+  hideLoad();
+  showManualEntry(barcode);
 }
 
 function showManualEntry(barcode){
