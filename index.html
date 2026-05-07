@@ -697,11 +697,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
         show('s-welcome');
       }
     });
-    // Always leave splash after 1.8s
-    setTimeout(function() {
-      var splash = document.getElementById('s-splash');
-      if (splash && splash.classList.contains('on')) show('s-welcome');
-    }, 1800);
+
 
     // ── ONBOARDING (4 questions only) ──
     var obSteps = [
@@ -1196,6 +1192,15 @@ window.submitFinalReview = function(id) {
 if (document.readyState === ‘complete’) { init(); }
 else { window.addEventListener(‘load’, init); }
 })();
+
+// Splash timeout - independent of Supabase
+setTimeout(function() {
+var splash = document.getElementById(‘s-splash’);
+if (splash && splash.classList.contains(‘on’)) {
+splash.classList.remove(‘on’);
+document.getElementById(‘s-welcome’).classList.add(‘on’);
+}
+}, 1800);
 </script>
 
 </body>
