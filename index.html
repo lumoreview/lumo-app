@@ -337,8 +337,25 @@ body{background:#111;font-family:'DM Sans',-apple-system,sans-serif;display:flex
 .spin{width:36px;height:36px;border:3px solid rgba(255,224,48,0.15);border-top-color:var(–y);border-radius:50%;animation:spin 0.8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .load-txt{font-size:0.8rem;color:rgba(255,255,255,0.6);}
-</style>
 
+/* QUIZ STYLES */
+.quiz-intro{font-size:0.82rem;color:var(–g);margin-bottom:18px;font-style:italic;}
+.quiz-q{background:var(–lg);border-radius:13px;padding:14px;margin-bottom:10px;}
+.qq-text{font-size:0.86rem;font-weight:600;color:var(–b);margin-bottom:10px;}
+.qq-opts{display:flex;gap:7px;flex-wrap:wrap;}
+.qq-btn{background:#fff;border:1.5px solid var(–br);border-radius:100px;padding:7px 14px;font-family:inherit;font-size:0.78rem;font-weight:500;color:var(–b);cursor:pointer;transition:all 0.15s;}
+.qq-btn.selected{background:var(–b);color:#fff;border-color:var(–b);}
+.qq-btn:active{transform:scale(0.96);}
+.result-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;}
+.result-tag{font-size:0.75rem;font-weight:600;padding:6px 12px;border-radius:100px;}
+.tag-good{background:#dcfce7;color:#14532d;}
+.tag-warn{background:#fef3c7;color:#92400e;}
+.result-suggest{background:var(–lg);border-radius:13px;padding:14px;margin-bottom:12px;}
+.rs-label{font-size:0.62rem;color:#aaa;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.rs-text{font-size:0.84rem;color:var(–b);line-height:1.55;}
+.result-rating{background:var(–lg);border-radius:13px;padding:14px;margin-bottom:12px;}
+
+</style>
 </head>
 <body>
 <div class="phone">
@@ -718,6 +735,251 @@ setTimeout(async () => {
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.20.0/umd/index.min.js"></script>
 
 <script>
+
+// ── CATEGORY QUESTIONS ──────────────────────────────────────
+const CATEGORY_QUESTIONS = {
+  makeup: [
+    {id:'coverage', q:'Kapama gücü yeterliydi mi?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'slide', q:'Gün içinde kaydı ya da topaklandı mı?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'tone', q:'Cilt tonunla iyi eşleşti mi?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'breakout', q:'Uygulama bölgesinde sivilce çıktı mı?', opts:['Evet','Hayır','Emin değilim']},
+  ],
+  lip: [
+    {id:'lasting', q:'Renk kalıcılığı nasıldı?', opts:['Çok iyi','Orta','Kötü']},
+    {id:'comfort', q:'Dudaklarında rahat hissettirdi mi?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'dry', q:'Dudaklarını kuruttunu mu?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'pigment', q:'Renk pigmantasyonu beklentini karşıladı mı?', opts:['Evet','Hayır','Emin değilim']},
+  ],
+  eye: [
+    {id:'crease', q:'Göz kıvrımına doldu mu?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'lasting', q:'Gün boyu kalıcı mıydı?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'irritation', q:'Gözlerini tahriş etti mi?', opts:['Evet','Hayır','Emin değilim']},
+  ],
+  skincare: [
+    {id:'texture', q:'Cildinde rahat emildi mi?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'glow', q:'Cildinde görünür bir iyileşme fark ettin mi?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'breakout', q:'Kullanım süresince sivilce çıktı mı?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'sensitivity', q:'Cildinde tahriş veya kızarma oldu mu?', opts:['Evet','Hayır','Emin değilim']},
+  ],
+  hair: [
+    {id:'clean', q:'Saçını yeterince temizledi mi?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'heavy', q:'Saçını ağırlaştırdı mı?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'scalp', q:'Saç derin tahriş etti mi?', opts:['Evet','Hayır','Emin değilim']},
+    {id:'shine', q:'Saçına parlaklık kattı mı?', opts:['Evet','Hayır','Emin değilim']},
+  ],
+};
+
+function getQuestionsForProduct(p){
+  const cat = p.category || 'skincare';
+  const name = (p.name||'').toLowerCase();
+  if(name.includes('ruj')||name.includes('lip')||name.includes('dudak')||name.includes('parlatıcı')) return CATEGORY_QUESTIONS.lip;
+  if(name.includes('maskara')||name.includes('eyeliner')||name.includes('göz')||name.includes('eye')) return CATEGORY_QUESTIONS.eye;
+  if(cat==='makeup') return CATEGORY_QUESTIONS.makeup;
+  if(cat==='hair') return CATEGORY_QUESTIONS.hair;
+  return CATEGORY_QUESTIONS.skincare;
+}
+
+// Smart analysis based on answers
+function analyzeAnswers(questions, answers, productName){
+  const tags = [];
+  const suggestions = [];
+  
+  // Analyze each answer
+  questions.forEach(q => {
+    const ans = answers[q.id];
+    if(!ans) return;
+    
+    if(q.id==='breakout' && ans==='Evet'){
+      tags.push({label:'⚠️ Sivilce oluşumu', type:'warn'});
+      suggestions.push('Sivilce oluşumu comedogenic içeriklerden olabilir. Non-comedogenic etiketli alternatifleri dene.');
+    }
+    if(q.id==='breakout' && ans==='Hayır'){
+      tags.push({label:'✓ Cilt dostu', type:'good'});
+    }
+    if(q.id==='tone' && ans==='Evet'){
+      tags.push({label:'✓ Ton uyumu var', type:'good'});
+    }
+    if(q.id==='tone' && ans==='Hayır'){
+      tags.push({label:'⚠️ Ton uyumsuz', type:'warn'});
+      suggestions.push('Ton uyumsuzluğu olabilir. Bir sonraki alımda cilt tonuna daha yakın renk dene veya renk eşleştirme servisi kullan.');
+    }
+    if(q.id==='slide' && ans==='Evet'){
+      tags.push({label:'⚠️ Kalıcılık sorunu', type:'warn'});
+      suggestions.push('Gün içinde kayma için primer kullanmayı dene. Bu ürünün üzerine setting spray ekleyebilirsin.');
+    }
+    if(q.id==='dry' && ans==='Evet'){
+      tags.push({label:'⚠️ Kurutan formül', type:'warn'});
+      suggestions.push('Dudakları kurutuyor. Önce lip balm uygula, üstüne bu ürünü kullan.');
+    }
+    if(q.id==='lasting' && (ans==='Kötü'||ans==='Orta')){
+      tags.push({label:'⚠️ Kalıcılık düşük', type:'warn'});
+    }
+    if(q.id==='lasting' && ans==='Çok iyi'){
+      tags.push({label:'✓ Uzun kalıcı', type:'good'});
+    }
+    if(q.id==='texture' && ans==='Evet'){
+      tags.push({label:'✓ İyi emilim', type:'good'});
+    }
+    if(q.id==='texture' && ans==='Hayır'){
+      tags.push({label:'⚠️ Emilim sorunu', type:'warn'});
+      suggestions.push('Ürün yüzeyde kalıyorsa daha az miktarda uygula veya hafif nemli cilde uygula.');
+    }
+    if(q.id==='glow' && ans==='Evet'){
+      tags.push({label:'✓ Görünür etki', type:'good'});
+    }
+    if(q.id==='sensitivity' && ans==='Evet'){
+      tags.push({label:'⚠️ Tahriş oluştu', type:'warn'});
+      suggestions.push('Tahriş oluşuyorsa kullanımı azalt veya dur. Dermatolog önerisi alabilirsin.');
+    }
+    if(q.id==='heavy' && ans==='Evet'){
+      tags.push({label:'⚠️ Saçı ağırlaştırıyor', type:'warn'});
+      suggestions.push('Saçı ağırlaştırıyor. Daha az miktarda kullan veya sadece uçlara uygula.');
+    }
+    if(q.id==='shine' && ans==='Evet'){
+      tags.push({label:'✓ Parlaklık kattı', type:'good'});
+    }
+    if(q.id==='coverage' && ans==='Evet'){
+      tags.push({label:'✓ İyi kapama', type:'good'});
+    }
+  });
+  
+  // Remove duplicates
+  const uniqueTags = tags.filter((t,i,a)=>a.findIndex(x=>x.label===t.label)===i);
+  const uniqueSuggestions = [...new Set(suggestions)];
+  
+  return {tags:uniqueTags, suggestions:uniqueSuggestions};
+}
+
+// ── REVIEW WITH QUESTIONS ──────────────────────────────────
+let currentQuizProductId = null;
+let currentQuizAnswers = {};
+let currentQuizRating = 0;
+
+window.openWriteReview = function(id){
+  const p = userProducts.find(x=>x.id===id);
+  if(!p) return;
+  currentQuizProductId = id;
+  currentQuizAnswers = {};
+  currentQuizRating = 0;
+  
+  const questions = getQuestionsForProduct(p);
+  
+  document.getElementById('wr-overlay').classList.add('show');
+  document.getElementById('wr-prod-info').innerHTML = `
+    <div class="wr-em">${p.emoji}</div>
+    <div><div class="wr-nm">${p.name}</div><div class="wr-br">${p.brand||''}</div></div>`;
+  
+  // Build questions UI
+  const qHTML = questions.map((q,i) => `
+    <div class="quiz-q" id="qq-${q.id}">
+      <div class="qq-text">${i+1}. ${q.q}</div>
+      <div class="qq-opts">
+        ${q.opts.map(opt => `
+          <button class="qq-btn" onclick="selectAnswer('${q.id}','${opt}',this)">${opt}</button>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+  
+  document.getElementById('wr-body').innerHTML = `
+    <div class="wr-prod-info" id="wr-prod-info">
+      <div class="wr-em">${p.emoji}</div>
+      <div><div class="wr-nm">${p.name}</div><div class="wr-br">${p.brand||''}</div></div>
+    </div>
+    <div class="quiz-intro">Bu deneyimini birkaç soruyla anlat</div>
+    ${qHTML}
+    <div class="quiz-q">
+      <div class="qq-text">Genel memnuniyet?</div>
+      <div class="star-row" id="star-row">
+        ${[1,2,3,4,5].map(n=>`<button class="star-btn" onclick="setQuizStar(${n})">☆</button>`).join('')}
+      </div>
+    </div>
+    <button class="wr-submit" id="wr-submit" onclick="submitQuizReview()" disabled>Deneyimi Paylaş</button>
+  `;
+};
+
+window.selectAnswer = function(qId, answer, btn){
+  currentQuizAnswers[qId] = answer;
+  btn.closest('.qq-opts').querySelectorAll('.qq-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  checkQuizReady();
+};
+
+window.setQuizStar = function(n){
+  currentQuizRating = n;
+  document.querySelectorAll('#star-row .star-btn').forEach((b,i)=>{
+    b.textContent = i<n?'⭐':'☆';
+  });
+  checkQuizReady();
+};
+
+function checkQuizReady(){
+  const p = userProducts.find(x=>x.id===currentQuizProductId);
+  if(!p) return;
+  const questions = getQuestionsForProduct(p);
+  const allAnswered = questions.every(q=>currentQuizAnswers[q.id]);
+  const hasRating = currentQuizRating > 0;
+  document.getElementById('wr-submit').disabled = !(allAnswered && hasRating);
+}
+
+window.submitQuizReview = function(){
+  const p = userProducts.find(x=>x.id===currentQuizProductId);
+  if(!p) return;
+  
+  const questions = getQuestionsForProduct(p);
+  const analysis = analyzeAnswers(questions, currentQuizAnswers, p.name);
+  
+  // Save review to product
+  p.status = 'reviewed';
+  p.review = {
+    answers: currentQuizAnswers,
+    rating: currentQuizRating,
+    tags: analysis.tags,
+    suggestions: analysis.suggestions,
+    date: new Date().toISOString()
+  };
+  
+  userPts += 50 + (currentQuizRating * 5);
+  reviewCount++;
+  saveProducts();
+  updatePtsDisplay();
+  renderProducts();
+  
+  // Show result screen
+  closeWriteReview();
+  showReviewResult(p, analysis);
+};
+
+function showReviewResult(p, analysis){
+  const ov = document.getElementById('detail-ov');
+  const tagsHTML = analysis.tags.map(t => `
+    <span class="result-tag ${t.type==='good'?'tag-good':'tag-warn'}">${t.label}</span>
+  `).join('');
+  
+  const sugHTML = analysis.suggestions.length > 0 ? `
+    <div class="result-suggest">
+      <div class="rs-label">LUMO ÖNERİSİ</div>
+      ${analysis.suggestions.map(s=>`<div class="rs-text">${s}</div>`).join('')}
+    </div>
+  ` : '';
+  
+  document.getElementById('detail-body').innerHTML = `
+    <div style="text-align:center;padding:20px 0 14px;">
+      <div style="font-size:2rem;margin-bottom:8px;">🤔</div>
+      <div class="dn">Birkaç şey dikkat çekti</div>
+      <div class="dbr">${p.name}</div>
+    </div>
+    <div class="result-tags">${tagsHTML}</div>
+    ${sugHTML}
+    <div class="result-rating">
+      <div class="rs-label">GENEL PUANIN</div>
+      <div>${'⭐'.repeat(p.review.rating)}${'☆'.repeat(5-p.review.rating)} · ${p.review.rating}/5</div>
+    </div>
+    <button class="rv-btn" onclick="closeDetail()" style="margin-top:16px;">Ana Sayfaya Dön</button>
+  `;
+  ov.classList.add('show');
+}
+
 // ONBOARDING
 const obSteps = [
   {emoji:'🌿',q:'Cilt tipini seçelim',hint:'Sana en uygun ürünleri gösterebilmek için',multi:false,opts:[
@@ -965,28 +1227,6 @@ window.closeDetail=function(){document.getElementById('detail-ov').classList.rem
 // WRITE REVIEW
 let currentReviewProductId=null;
 let currentStars=0;
-function getReviewPlaceholder(p){
-  const cat=p.category||'skincare';
-  if(cat==='makeup') return `Bu ürünü kaç gündür kullanıyorsun? Renk kalıcılığı nasıl? Cilde uygulaması kolay mı? Benzer fiyatlı alternatiflerle karşılaştırırsan?`;
-  if(cat==='hair') return `Saç tipine uygun mu? Köpük kalitesi nasıl? Saçını nasıl hissettirdi — yumuşak, hafif, ağır? Koku uzun süre kalıyor mu?`;
-  return `Bu ürünü kaç gündür kullanıyorsun? Cilt tipine uygun mu? Ne tür bir değişim fark ettin? Uzun vadeli kullanımda ne beklersin?`;
-}
-
-window.openWriteReview=function(id){
-  const p=userProducts.find(x=>x.id===id);
-  if(!p) return;
-  currentReviewProductId=id;
-  currentStars=0;
-  document.getElementById('wr-text').value='';
-  document.getElementById('wr-chars').textContent='0 / 500';
-  document.getElementById('wr-submit').disabled=true;
-  document.getElementById('wr-prod-info').innerHTML=`
-    <div class="wr-em">${p.emoji}</div>
-    <div><div class="wr-nm">${p.name}</div><div class="wr-br">${p.brand||''}</div></div>`;
-  document.getElementById('wr-text').placeholder=getReviewPlaceholder(p);
-  renderStars(0);
-  document.getElementById('wr-overlay').classList.add('show');
-};
 window.closeWriteReview=function(){document.getElementById('wr-overlay').classList.remove('show');currentReviewProductId=null;};
 window.setStar=function(n){currentStars=n;renderStars(n);checkSubmit();};
 function renderStars(n){
