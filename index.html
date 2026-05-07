@@ -884,17 +884,36 @@ function renderReviews(){
 }
 
 // DETAIL + TIMELINE
+function getMilestones(p){
+  const cat = p.category || 'skincare';
+  if(cat==='makeup') return [
+    {day:0,label:'Eklendi',sub:new Date(p.addedAt).toLocaleDateString('tr-TR')},
+    {day:1,label:'İlk İzlenim',sub:'İlk kullanım nasıldı? +5 puan'},
+    {day:3,label:'3. Gün',sub:'Renk kalıcılığı, doku — +8 puan'},
+    {day:7,label:'1. Hafta — Yorum Zamanı!',sub:'Tam yorum yaz — +50 bonus puan'},
+  ];
+  if(cat==='hair') return [
+    {day:0,label:'Eklendi',sub:new Date(p.addedAt).toLocaleDateString('tr-TR')},
+    {day:1,label:'İlk İzlenim',sub:'İlk yıkama nasıldı? +5 puan'},
+    {day:3,label:'3. Gün',sub:'Köpük, koku, his — +6 puan'},
+    {day:7,label:'1. Hafta',sub:'Saç durumu değişti mi? +10 puan'},
+    {day:14,label:'2. Hafta',sub:'Uzun vadeli etki — +10 puan'},
+    {day:21,label:'3. Hafta — Yorum Zamanı!',sub:'Tam yorum yaz — +50 bonus puan'},
+  ];
+  // skincare default
+  return [
+    {day:0,label:'Eklendi',sub:new Date(p.addedAt).toLocaleDateString('tr-TR')},
+    {day:1,label:'İlk İzlenim',sub:'Doku ve koku nasıl? +5 puan'},
+    {day:7,label:'1. Hafta',sub:'Cilt tonu değişti mi? +10 puan'},
+    {day:14,label:'2. Hafta',sub:'Belirgin etki var mı? +10 puan'},
+    {day:30,label:'1. Ay — Yorum Zamanı!',sub:'Tam yorum yaz — +50 bonus puan'},
+  ];
+}
+
 function makeTimeline(p){
   const now=new Date();
   const added=new Date(p.addedAt);
-  const milestones=[
-    {day:0,label:'Barkod Tarandı',sub:added.toLocaleDateString('tr-TR')},
-    {day:1,label:'İlk İzlenimler',sub:'Ürünü ilk kullandın'},
-    {day:3,label:'3. Gün Güncelleme',sub:'+6 puan'},
-    {day:7,label:'1. Hafta',sub:'+14 puan'},
-    {day:14,label:'2. Hafta',sub:'+14 puan'},
-    {day:p.total,label:`${p.total}. Gün — Yorum Zamanı!`,sub:'Tam yorum yazabilirsin — +50 bonus puan'},
-  ].filter(m=>m.day<=p.total);
+  const milestones=getMilestones(p).filter(m=>m.day<=p.total);
 
   return milestones.map(m=>{
     const daysElapsed=Math.floor((now-added)/(1000*60*60*24));
@@ -938,6 +957,13 @@ window.closeDetail=function(){document.getElementById('detail-ov').classList.rem
 // WRITE REVIEW
 let currentReviewProductId=null;
 let currentStars=0;
+function getReviewPlaceholder(p){
+  const cat=p.category||'skincare';
+  if(cat==='makeup') return `Bu ürünü kaç gündür kullanıyorsun? Renk kalıcılığı nasıl? Cilde uygulaması kolay mı? Benzer fiyatlı alternatiflerle karşılaştırırsan?`;
+  if(cat==='hair') return `Saç tipine uygun mu? Köpük kalitesi nasıl? Saçını nasıl hissettirdi — yumuşak, hafif, ağır? Koku uzun süre kalıyor mu?`;
+  return `Bu ürünü kaç gündür kullanıyorsun? Cilt tipine uygun mu? Ne tür bir değişim fark ettin? Uzun vadeli kullanımda ne beklersin?`;
+}
+
 window.openWriteReview=function(id){
   const p=userProducts.find(x=>x.id===id);
   if(!p) return;
@@ -948,7 +974,8 @@ window.openWriteReview=function(id){
   document.getElementById('wr-submit').disabled=true;
   document.getElementById('wr-prod-info').innerHTML=`
     <div class="wr-em">${p.emoji}</div>
-    <div><div class="wr-nm">${p.name}</div><div class="wr-br">${p.brand}</div></div>`;
+    <div><div class="wr-nm">${p.name}</div><div class="wr-br">${p.brand||''}</div></div>`;
+  document.getElementById('wr-text').placeholder=getReviewPlaceholder(p);
   renderStars(0);
   document.getElementById('wr-overlay').classList.add('show');
 };
@@ -1099,16 +1126,18 @@ function showManualEntry(barcode){
 function processFoundProduct(barcode,name,brand,tags){
   hideLoad();
   const cat=(tags[0]||'').replace('en:','').replace(/-/g,' ');
-  const emoji=getCosmeticEmoji(tags,cat);
-  const waitDays=30;
-  const ptsPerDay=4;
-  scannedProduct={barcode,name,brand,emoji,waitDays,ptsPerDay,cat};
+  const category=detectCategory(name,tags,cat);
+  const emoji=getCosmeticEmoji(tags,cat,name);
+  const waitDays=getWaitDaysByCategory(category);
+  const ptsPerDay=getPtsPerDay(category);
+  scannedProduct={barcode,name,brand,emoji,waitDays,ptsPerDay,cat,category};
+  const catLabel = category==='makeup'?'💄 Makyaj':category==='hair'?'💆 Saç Bakımı':'🧴 Cilt Bakımı';
   document.getElementById('sr-prod').innerHTML=`
     <div class="sr-em">${emoji}</div>
     <div>
       <div class="sr-nm">${name}</div>
       <div class="sr-br">${brand}</div>
-      <div class="sr-cat">${cat||'Kozmetik'}</div>
+      <div class="sr-cat">${catLabel}</div>
     </div>`;
   document.getElementById('sr-info').innerHTML=`
     <div class="sri"><div class="sri-lbl">Bekleme</div><div class="sri-val">${waitDays} gün</div></div>
@@ -1117,17 +1146,53 @@ function processFoundProduct(barcode,name,brand,tags){
   document.getElementById('scan-result').classList.add('open');
 }
 
-function getCosmeticEmoji(tags,cat){
-  const t=(tags.join(' ')+' '+cat).toLowerCase();
-  if(t.includes('lip')) return '💋';
-  if(t.includes('eye')) return '👁️';
+// Makeup keywords (Turkish + English)
+const MAKEUP_KW = ['allık','ruj','fondöten','pudra','kapatıcı','maskara','eyeliner','göz farı',
+  'rimel','contour','highlighter','bronzer','primer','dudak','parlatıcı','nemlendirici dudak',
+  'lip','blush','foundation','concealer','mascara','eyeshadow','lipstick','lipgloss',
+  'makeup','makyaj','rouge','tinted','bb cream','cc cream'];
+
+const HAIR_KW = ['şampuan','saç','kondisyoner','şampuanı','saç bakım',
+  'shampoo','conditioner','hair','scalp'];
+
+const SKINCARE_KW = ['serum','nemlendirici','krem','toner','cilt','peeling','maske',
+  'güneş','spf','retinol','vitamin c','niacinamide','hyaluronic',
+  'moisturizer','cleanser','toner','exfoliant','sunscreen','cream','lotion','foam','gel','essence'];
+
+function detectCategory(name, tags, cat){
+  const t = (name+' '+tags.join(' ')+' '+cat).toLowerCase();
+  for(const kw of MAKEUP_KW){ if(t.includes(kw)) return 'makeup'; }
+  for(const kw of HAIR_KW){ if(t.includes(kw)) return 'hair'; }
+  for(const kw of SKINCARE_KW){ if(t.includes(kw)) return 'skincare'; }
+  return 'skincare'; // default
+}
+
+function getWaitDaysByCategory(category){
+  if(category==='makeup') return 7;
+  if(category==='hair') return 21;
+  return 30; // skincare
+}
+
+function getPtsPerDay(category){
+  if(category==='makeup') return 5;
+  if(category==='hair') return 4;
+  return 4;
+}
+
+function getCosmeticEmoji(tags, cat, name=''){
+  const t = (tags.join(' ')+' '+cat+' '+name).toLowerCase();
+  if(t.includes('lip')||t.includes('ruj')||t.includes('dudak')) return '💄';
+  if(t.includes('allık')||t.includes('blush')||t.includes('rouge')) return '🌸';
+  if(t.includes('fondöten')||t.includes('foundation')||t.includes('concealer')||t.includes('kapatıcı')) return '✨';
+  if(t.includes('göz')||t.includes('eye')||t.includes('maskara')||t.includes('mascara')) return '👁️';
+  if(t.includes('pudra')||t.includes('powder')||t.includes('bronzer')) return '🪄';
   if(t.includes('serum')) return '💧';
-  if(t.includes('sun')||t.includes('spf')) return '☀️';
-  if(t.includes('cleanser')||t.includes('wash')||t.includes('foam')) return '🧼';
-  if(t.includes('moistur')||t.includes('cream')||t.includes('lotion')) return '🧴';
-  if(t.includes('mask')) return '🫧';
-  if(t.includes('hair')||t.includes('shampoo')) return '💆';
-  if(t.includes('perfume')||t.includes('fragrance')) return '🌸';
+  if(t.includes('sun')||t.includes('spf')||t.includes('güneş')) return '☀️';
+  if(t.includes('cleanser')||t.includes('wash')||t.includes('foam')||t.includes('temizleyici')) return '🧼';
+  if(t.includes('moistur')||t.includes('cream')||t.includes('nemlendirici')) return '🧴';
+  if(t.includes('mask')||t.includes('maske')) return '🫧';
+  if(t.includes('şampuan')||t.includes('shampoo')||t.includes('saç')||t.includes('hair')) return '💆';
+  if(t.includes('perfume')||t.includes('fragrance')||t.includes('parfüm')) return '🌹';
   return '✨';
 }
 
@@ -1143,8 +1208,13 @@ window.addProduct=function(){
   const p=scannedProduct;
   const nameEl=document.getElementById('manual-name-input');
   if(nameEl) p.name=nameEl.value?.trim()||nameEl.textContent?.trim()||p.name;
-  if(!p.name||p.name==='Ürün adını yaz...'||p.name.length<2){
-    alert('Lütfen ürün adını gir!');return;
+  if(!p.name||p.name.length<2){alert('Lütfen ürün adını gir!');return;}
+  // Re-detect category from name for manual entries
+  if(!p.category){
+    p.category=detectCategory(p.name,[],p.cat||'');
+    p.waitDays=getWaitDaysByCategory(p.category);
+    p.ptsPerDay=getPtsPerDay(p.category);
+    p.emoji=getCosmeticEmoji([],p.cat||'',p.name);
   }
   const newProd={
     id:'p_'+Date.now(),emoji:p.emoji,name:p.name||('Ürün '+p.barcode),brand:p.brand,
