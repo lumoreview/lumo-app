@@ -711,7 +711,7 @@ setTimeout(async () => {
 }, 1900);
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.20.0/umd/index.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
 <script>
 // ONBOARDING
@@ -1011,7 +1011,7 @@ window.submitReview=function(){
 };
 
 // CAMERA
-let codeReader=null, scanActive=false, scannedProduct=null, cameraStarted=false;
+let html5QrCode=null, scanActive=false, scannedProduct=null, cameraStarted=false;
 
 window.requestCamera=async function(){
   document.getElementById('cam-perm-btn').style.display='none';
@@ -1023,53 +1023,63 @@ async function startCamera(){
   if(scanActive) return;
   const statusEl=document.getElementById('cam-status');
   const permBtn=document.getElementById('cam-perm-btn');
-  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
-    statusEl.textContent='Kamera desteklenmiyor, manuel gir';
-    return;
+  if(typeof Html5Qrcode==='undefined'){
+    statusEl.textContent='Kütüphane yükleniyor...';
+    await new Promise(r=>setTimeout(r,1500));
+    if(typeof Html5Qrcode==='undefined'){
+      statusEl.textContent='Kütüphane yüklenemedi, manuel gir';
+      return;
+    }
   }
   try {
     statusEl.textContent='Kamera başlatılıyor...';
     permBtn.style.display='none';
-    if(typeof ZXing==='undefined'){
-      statusEl.textContent='Kütüphane yükleniyor, bekle...';
-      await new Promise(r=>setTimeout(r,2000));
+    // Create scanner div if not exists
+    let scanDiv=document.getElementById('qr-reader');
+    if(!scanDiv){
+      scanDiv=document.createElement('div');
+      scanDiv.id='qr-reader';
+      scanDiv.style.cssText='position:absolute;inset:0;z-index:5;';
+      document.getElementById('video').parentElement.appendChild(scanDiv);
+      document.getElementById('video').style.display='none';
     }
-    codeReader=new ZXing.BrowserMultiFormatReader();
-    const devices=await ZXing.BrowserCodeReader.listVideoInputDevices();
-    const deviceId=devices.length>1?devices[devices.length-1].deviceId:devices[0]?.deviceId;
-    scanActive=true;
-    cameraStarted=true;
-    statusEl.textContent='📷 Barkodu kameraya yaklaştır...';
-    permBtn.style.display='none';
-    await codeReader.decodeFromVideoDevice(deviceId,'video',(result,err)=>{
-      if(result&&scanActive){
+    html5QrCode=new Html5Qrcode('qr-reader');
+    await html5QrCode.start(
+      {facingMode:'environment'},
+      {fps:10, qrbox:{width:220,height:150}, aspectRatio:1.7},
+      (decodedText)=>{
+        if(!scanActive) return;
         scanActive=false;
-        try{codeReader.reset();}catch(e){}
         navigator.vibrate&&navigator.vibrate(100);
         statusEl.textContent='✓ Barkod okundu!';
-        handleBarcode(result.getText());
-      }
-    });
+        html5QrCode.stop().catch(()=>{});
+        handleBarcode(decodedText);
+      },
+      ()=>{}
+    );
+    scanActive=true;
+    cameraStarted=true;
+    statusEl.textContent='📷 Barkodu çerçeve içine getir...';
   } catch(e){
     scanActive=false;
-    if(e.name==='NotAllowedError'||e.name==='PermissionDeniedError'){
+    console.error('Camera:',e);
+    if(e.toString().includes('Permission')||e.toString().includes('NotAllowed')){
       statusEl.textContent='Kamera izni gerekli';
       permBtn.style.display='block';
       permBtn.textContent='📷 İzin Ver';
-    } else if(e.name==='NotFoundError'){
-      statusEl.textContent='Kamera bulunamadı, manuel gir';
     } else {
       statusEl.textContent='Kamera açılamadı, manuel gir';
-      console.error('Camera error:',e);
     }
   }
 }
 
 function stopCamera(){
-  if(codeReader){try{codeReader.reset();}catch(e){} codeReader=null;}
   scanActive=false;
-  const v=document.getElementById('video');
-  if(v&&v.srcObject){v.srcObject.getTracks().forEach(t=>t.stop());v.srcObject=null;}
+  if(html5QrCode){
+    html5QrCode.stop().catch(()=>{});
+    html5QrCode.clear().catch(()=>{});
+    html5QrCode=null;
+  }
   cameraStarted=false;
 }
 
@@ -1199,7 +1209,6 @@ function getCosmeticEmoji(tags, cat, name=''){
 window.closeScanResult=function(){
   document.getElementById('scan-result').classList.remove('open');
   scannedProduct=null; scanActive=false;
-  if(codeReader){try{codeReader.reset();}catch(e){}}
   setTimeout(startCamera,500);
 };
 
