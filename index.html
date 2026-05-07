@@ -13,9 +13,7 @@ html,body{width:100%;height:100%;overflow:hidden;}
 body{background:#111;font-family:'DM Sans',-apple-system,sans-serif;display:flex;justify-content:center;align-items:center;-webkit-font-smoothing:antialiased;}
 
 .phone{width:min(390px,100vw);height:min(844px,100vh);background:#fff;border-radius:min(44px,5vw);overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 0 0 10px #1c1c1e,0 0 0 11px #2c2c2e,0 40px 80px rgba(0,0,0,0.6);}
-.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:126px;height:37px;background:#080808;border-radius:0 0 22px 22px;z-index:999;}
-.status{height:50px;background:transparent;display:flex;justify-content:space-between;align-items:flex-end;padding:0 28px 8px;font-size:0.7rem;font-weight:700;color:#fff;flex-shrink:0;position:absolute;top:0;left:0;right:0;z-index:50;pointer-events:none;}
-.status.dark{color:#080808;}
+
 .page{position:absolute;inset:0;display:none;flex-direction:column;overflow:hidden;}
 .page.active{display:flex;}
 .sc{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
@@ -344,8 +342,6 @@ body{background:#111;font-family:'DM Sans',-apple-system,sans-serif;display:flex
 </head>
 <body>
 <div class="phone">
-  <div class="notch"></div>
-  <div class="status" id="statusbar">9:41 <span>●●●●</span></div>
 
   <!-- SPLASH -->
 
@@ -433,7 +429,6 @@ body{background:#111;font-family:'DM Sans',-apple-system,sans-serif;display:flex
   <!-- MAIN APP -->
 
   <div class="page" id="p-app">
-    <div class="app-status" id="app-status-bar">9:41 <span>●●●●</span></div>
 
 ```
 <!-- HOME -->
@@ -605,25 +600,13 @@ body{background:#111;font-family:'DM Sans',-apple-system,sans-serif;display:flex
   <div class="loading" id="loading"><div class="spin"></div><div class="load-txt" id="load-txt">Yükleniyor...</div></div>
 </div>
 
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
-const app = initializeApp({
-  apiKey:"AIzaSyC0-fPX4k7Gei0eON0672bCD_kfliyha3c",
-  authDomain:"lumo-app-c13df.firebaseapp.com",
-  projectId:"lumo-app-c13df",
-  storageBucket:"lumo-app-c13df.firebasestorage.app",
-  messagingSenderId:"336867151756",
-  appId:"1:336867151756:web:8f33bcddcf9bd11db590a9"
-});
-const auth = getAuth(app);
-auth.useDeviceLanguage();
-const gProvider = new GoogleAuthProvider();
-let currentTab = 'email';
-let confirmResult = null;
+<script>
+const _sb = supabase.createClient('https://xbljwitdojciurlohskw.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhibGp3aXRkb2pjaXVybG9oc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNDA4NzIsImV4cCI6MjA5MzcxNjg3Mn0.WO63UHn_pSD8_tXLhsNLMIxO0p8OMa4V_nX1Epj2cF4');
+
 let isRegister = true;
-let rcVerifier = null;
+let currentTab = 'email';
 
 window.switchTab = function(tab) {
   currentTab = tab;
@@ -646,71 +629,34 @@ window.handleAuth = async function() {
   const btn = document.getElementById('auth-submit');
   const msg = document.getElementById('auth-msg');
   btn.disabled = true; msg.className='auth-msg'; msg.textContent='';
-  const errs = {
-    'auth/email-already-in-use':'Bu e-posta zaten kayıtlı.',
-    'auth/user-not-found':'Hesap bulunamadı.',
-    'auth/wrong-password':'Şifre yanlış.',
-    'auth/invalid-email':'Geçersiz e-posta.',
-    'auth/weak-password':'Şifre en az 6 karakter olmalı.',
-    'auth/too-many-requests':'Çok fazla deneme, bekle.',
-    'auth/invalid-credential':'E-posta veya şifre hatalı.',
-    'auth/invalid-phone-number':'Geçersiz telefon numarası. +90 ile başlat.',
-    'auth/missing-phone-number':'Telefon numarası gir.',
-    'auth/quota-exceeded':'SMS limiti aşıldı.',
-    'auth/code-expired':'Kod süresi doldu.',
-    'auth/invalid-verification-code':'Yanlış kod.',
-  };
+  
+  const email = document.getElementById('auth-email').value.trim();
+  const pass = document.getElementById('auth-pass').value;
+  const uname = document.getElementById('auth-username')?.value.trim() || '';
+  
+  if(!email || !pass) { msg.className='auth-msg err'; msg.textContent='E-posta ve şifre gerekli.'; btn.disabled=false; return; }
+  if(isRegister && !uname) { msg.className='auth-msg err'; msg.textContent='Kullanıcı adı gerekli.'; btn.disabled=false; return; }
+  
   try {
-    if(currentTab==='email') {
-      const email = document.getElementById('auth-email').value.trim();
-      const pass = document.getElementById('auth-pass').value;
-      const uname = document.getElementById('auth-username').value.trim();
-      if(!email||!pass){msg.className='auth-msg err';msg.textContent='E-posta ve şifre gerekli.';btn.disabled=false;return;}
-      if(isRegister && !uname){msg.className='auth-msg err';msg.textContent='Kullanıcı adı gerekli.';btn.disabled=false;return;}
-      if(isRegister){
-        const cred = await createUserWithEmailAndPassword(auth,email,pass);
-        await updateProfile(cred.user,{displayName:uname});
-      } else {
-        await signInWithEmailAndPassword(auth,email,pass);
-      }
+    if(isRegister) {
+      const { data, error } = await _sb.auth.signUp({
+        email, password: pass,
+        options: { data: { username: uname } }
+      });
+      if(error) throw error;
     } else {
-      const phone = document.getElementById('auth-phone').value.trim();
-      const otpWrap = document.getElementById('otp-wrap');
-      if(otpWrap.style.display==='none'||!otpWrap.style.display) {
-        if(!phone){msg.className='auth-msg err';msg.textContent='Telefon numarası gir.';btn.disabled=false;return;}
-        showLoad('SMS gönderiliyor...');
-        try {
-          if(rcVerifier) { try{rcVerifier.clear();}catch(e){} }
-          rcVerifier = new RecaptchaVerifier(auth,'recaptcha-container',{
-            size:'normal',
-            callback: () => {},
-            'expired-callback': () => { msg.className='auth-msg err'; msg.textContent='reCAPTCHA süresi doldu, tekrar dene.'; }
-          });
-          await rcVerifier.render();
-          hideLoad();
-          showLoad('SMS gönderiliyor...');
-          confirmResult = await signInWithPhoneNumber(auth,phone,rcVerifier);
-          hideLoad();
-          otpWrap.style.display='block';
-          msg.className='auth-msg ok'; msg.textContent='SMS gönderildi! Kodu gir.';
-          btn.textContent='Doğrula →';
-          btn.disabled=false; return;
-        } catch(e2) {
-          hideLoad();
-          msg.className='auth-msg err'; msg.textContent=errs[e2.code]||'SMS gönderilemedi: '+e2.message;
-          btn.disabled=false; return;
-        }
-      } else {
-        const otp = document.getElementById('auth-otp').value.trim();
-        if(!otp){msg.className='auth-msg err';msg.textContent='Kodu gir.';btn.disabled=false;return;}
-        showLoad('Doğrulanıyor...');
-        await confirmResult.confirm(otp);
-        hideLoad();
-      }
+      const { data, error } = await _sb.auth.signInWithPassword({ email, password: pass });
+      if(error) throw error;
     }
   } catch(e) {
-    hideLoad();
-    msg.className='auth-msg err'; msg.textContent=errs[e.code]||'Hata: '+e.message;
+    const errs = {
+      'Invalid login credentials': 'E-posta veya şifre hatalı.',
+      'Email already registered': 'Bu e-posta zaten kayıtlı.',
+      'Password should be at least 6 characters': 'Şifre en az 6 karakter olmalı.',
+      'Unable to validate email address: invalid format': 'Geçersiz e-posta.',
+    };
+    msg.className='auth-msg err';
+    msg.textContent = errs[e.message] || e.message;
     btn.disabled=false; return;
   }
   btn.disabled=false;
@@ -719,15 +665,15 @@ window.handleAuth = async function() {
 window.handleGoogle = async function() {
   try {
     showLoad('Google ile giriş yapılıyor...');
-    gProvider.setCustomParameters({prompt:'select_account'});
-    await signInWithPopup(auth, gProvider);
-    hideLoad();
+    const { error } = await _sb.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.href }
+    });
+    if(error) throw error;
   } catch(e) {
     hideLoad();
-    if(e.code!=='auth/popup-closed-by-user'&&e.code!=='auth/cancelled-popup-request') {
-      document.getElementById('auth-msg').className='auth-msg err';
-      document.getElementById('auth-msg').textContent='Google girişi başarısız: '+e.message;
-    }
+    document.getElementById('auth-msg').className='auth-msg err';
+    document.getElementById('auth-msg').textContent='Google girişi başarısız oldu.';
   }
 };
 
@@ -736,22 +682,33 @@ window.handleLogout = async function() {
     localStorage.removeItem('lumo_ob_done');
     localStorage.removeItem('lumo_products');
     localStorage.removeItem('lumo_pts');
-    await signOut(auth);
+    await _sb.auth.signOut();
     showPage('p-welcome');
   }
 };
 
-onAuthStateChanged(auth, (user) => {
-  if(user) {
-    const name = user.displayName || user.email?.split('@')[0] || user.phoneNumber || 'Kullanıcı';
+// Auth state listener
+_sb.auth.onAuthStateChange((event, session) => {
+  if(session?.user) {
+    const user = session.user;
+    const name = user.user_metadata?.username || user.email?.split('@')[0] || 'Kullanıcı';
     document.getElementById('prof-name').textContent = name;
-    document.getElementById('prof-email').textContent = user.email||user.phoneNumber||'';
+    document.getElementById('prof-email').textContent = user.email || '';
     document.getElementById('av-init').textContent = name[0].toUpperCase();
     const ob = localStorage.getItem('lumo_ob_done');
     if(!ob) { showPage('p-onboard'); startOb(); }
     else { showPage('p-app'); loadUserData(); }
   }
 });
+
+// Check existing session on load
+setTimeout(async () => {
+  const { data: { session } } = await _sb.auth.getSession();
+  if(!session) {
+    showPage('p-welcome');
+    // statusbar removed
+  }
+}, 1900);
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.20.0/umd/index.min.js"></script>
@@ -835,8 +792,7 @@ window.skipOnboard=function(){localStorage.setItem('lumo_ob_done','{}');showPage
 window.showPage=function(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  const sb=document.getElementById('statusbar');
-  if(sb) sb.className='status'+(id==='p-welcome'||id==='p-splash'?'':' dark');
+  // statusbar removed
 };
 
 window.goSub=function(id){
@@ -1115,22 +1071,30 @@ function stopCamera(){
 // BARCODE
 async function handleBarcode(barcode){
   showLoad('Ürün aranıyor...');
-  const apis=[
+  // Try multiple product databases
+  const apis = [
     `https://world.openbeautyfacts.org/api/v0/product/${barcode}.json`,
     `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`,
+    `https://tr.openfoodfacts.org/api/v0/product/${barcode}.json`,
   ];
   for(const url of apis){
     try{
-      const r=await fetch(url);
-      const d=await r.json();
-      if(d.status===1&&d.product){
-        const p=d.product;
-        const name=p.product_name_tr||p.product_name||p.product_name_en||'';
-        const brand=p.brands||'';
-        const tags=p.categories_tags||[];
-        if(name){processFoundProduct(barcode,name,brand,tags);return;}
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
+      const r = await fetch(url, {signal: controller.signal});
+      clearTimeout(timeout);
+      const d = await r.json();
+      if(d.status===1 && d.product){
+        const p = d.product;
+        const name = p.product_name_tr || p.product_name || p.product_name_en || p.product_name_fr || '';
+        const brand = p.brands || '';
+        const tags = p.categories_tags || [];
+        if(name.length > 1){
+          processFoundProduct(barcode, name, brand, tags);
+          return;
+        }
       }
-    }catch(e){}
+    } catch(e){}
   }
   hideLoad();
   showManualEntry(barcode);
@@ -1254,7 +1218,7 @@ function addDailyPoints(){
 // SPLASH → WELCOME
 setTimeout(()=>{
   showPage('p-welcome');
-  document.getElementById('statusbar').className='status';
+  // statusbar removed
 },1800);
 
 renderReviews();
