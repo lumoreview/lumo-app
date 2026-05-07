@@ -355,6 +355,11 @@ body{background:#111;font-family:'DM Sans',-apple-system,sans-serif;display:flex
 .rs-text{font-size:0.84rem;color:var(–b);line-height:1.55;}
 .result-rating{background:var(–lg);border-radius:13px;padding:14px;margin-bottom:12px;}
 
+/* CHECK-IN */
+.checkin-tips{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.checkin-tip{background:var(–lg);border-radius:12px;padding:12px 14px;font-size:0.84rem;color:var(–b);line-height:1.5;}
+.checkin-badge{background:var(–y);color:var(–b);font-size:0.65rem;font-weight:700;padding:3px 8px;border-radius:100px;display:inline-block;margin-bottom:8px;}
+
 </style>
 </head>
 <body>
@@ -620,365 +625,11 @@ body{background:#111;font-family:'DM Sans',-apple-system,sans-serif;display:flex
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
 <script>
-const _sb = supabase.createClient('https://xbljwitdojciurlohskw.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhibGp3aXRkb2pjaXVybG9oc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNDA4NzIsImV4cCI6MjA5MzcxNjg3Mn0.WO63UHn_pSD8_tXLhsNLMIxO0p8OMa4V_nX1Epj2cF4');
+(function(){
+  function init(){
+    if(typeof supabase==="undefined"){setTimeout(init,100);return;}
+    var _sb = supabase.createClient('https://xbljwitdojciurlohskw.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhibGp3aXRkb2pjaXVybG9oc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNDA4NzIsImV4cCI6MjA5MzcxNjg3Mn0.WO63UHn_pSD8_tXLhsNLMIxO0p8OMa4V_nX1Epj2cF4');
 
-let isRegister = true;
-let currentTab = 'email';
-
-window.switchTab = function(tab) {
-  currentTab = tab;
-  document.getElementById('tab-email').classList.toggle('on', tab==='email');
-  document.getElementById('tab-phone').classList.toggle('on', tab==='phone');
-  document.getElementById('email-form').style.display = tab==='email'?'block':'none';
-  document.getElementById('phone-form').style.display = tab==='phone'?'block':'none';
-};
-
-window.showAuth = function(mode) {
-  isRegister = mode==='register';
-  document.getElementById('auth-title').textContent = isRegister?'Hesap Oluştur':'Giriş Yap';
-  document.getElementById('auth-sub').textContent = isRegister?'Kozmetik deneyimlerini paylaş, puan kazan.':'Tekrar hoş geldin! 👋';
-  document.getElementById('auth-submit').textContent = isRegister?'Devam Et →':'Giriş Yap →';
-  document.getElementById('username-wrap').style.display = isRegister?'block':'none';
-  showPage('p-auth');
-};
-
-window.handleAuth = async function() {
-  const btn = document.getElementById('auth-submit');
-  const msg = document.getElementById('auth-msg');
-  btn.disabled = true; msg.className='auth-msg'; msg.textContent='';
-  
-  const email = document.getElementById('auth-email').value.trim();
-  const pass = document.getElementById('auth-pass').value;
-  const uname = document.getElementById('auth-username')?.value.trim() || '';
-  
-  if(!email || !pass) { msg.className='auth-msg err'; msg.textContent='E-posta ve şifre gerekli.'; btn.disabled=false; return; }
-  if(isRegister && !uname) { msg.className='auth-msg err'; msg.textContent='Kullanıcı adı gerekli.'; btn.disabled=false; return; }
-  
-  try {
-    if(isRegister) {
-      const { data, error } = await _sb.auth.signUp({
-        email, password: pass,
-        options: { data: { username: uname } }
-      });
-      if(error) throw error;
-    } else {
-      const { data, error } = await _sb.auth.signInWithPassword({ email, password: pass });
-      if(error) throw error;
-    }
-  } catch(e) {
-    const errs = {
-      'Invalid login credentials': 'E-posta veya şifre hatalı.',
-      'Email already registered': 'Bu e-posta zaten kayıtlı.',
-      'Password should be at least 6 characters': 'Şifre en az 6 karakter olmalı.',
-      'Unable to validate email address: invalid format': 'Geçersiz e-posta.',
-    };
-    msg.className='auth-msg err';
-    msg.textContent = errs[e.message] || e.message;
-    btn.disabled=false; return;
-  }
-  btn.disabled=false;
-};
-
-window.handleGoogle = async function() {
-  try {
-    showLoad('Google ile giriş yapılıyor...');
-    const { error } = await _sb.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: window.location.href }
-    });
-    if(error) throw error;
-  } catch(e) {
-    hideLoad();
-    document.getElementById('auth-msg').className='auth-msg err';
-    document.getElementById('auth-msg').textContent='Google girişi başarısız oldu.';
-  }
-};
-
-window.handleLogout = async function() {
-  if(confirm('Çıkış yapmak istiyor musun?')) {
-    currentUserId = null;
-    await _sb.auth.signOut();
-    userProducts = [];
-    userPts = 0;
-    reviewCount = 0;
-    showPage('p-welcome');
-  }
-};
-
-// Auth state listener
-_sb.auth.onAuthStateChange((event, session) => {
-  if(session?.user) {
-    const user = session.user;
-    const name = user.user_metadata?.username || user.email?.split('@')[0] || 'Kullanıcı';
-    document.getElementById('prof-name').textContent = name;
-    document.getElementById('prof-email').textContent = user.email || '';
-    document.getElementById('av-init').textContent = name[0].toUpperCase();
-    currentUserId = user.id;
-    const ob = localStorage.getItem('lumo_ob_done_'+user.id);
-    if(!ob) { showPage('p-onboard'); startOb(); }
-    else { showPage('p-app'); loadUserData(); }
-  }
-});
-
-// Check existing session on load
-setTimeout(async () => {
-  const { data: { session } } = await _sb.auth.getSession();
-  if(!session) {
-    showPage('p-welcome');
-    // statusbar removed
-  }
-}, 1900);
-</script>
-
-<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.20.0/umd/index.min.js"></script>
-
-<script>
-
-// ── CATEGORY QUESTIONS ──────────────────────────────────────
-const CATEGORY_QUESTIONS = {
-  makeup: [
-    {id:'coverage', q:'Kapama gücü yeterliydi mi?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'slide', q:'Gün içinde kaydı ya da topaklandı mı?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'tone', q:'Cilt tonunla iyi eşleşti mi?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'breakout', q:'Uygulama bölgesinde sivilce çıktı mı?', opts:['Evet','Hayır','Emin değilim']},
-  ],
-  lip: [
-    {id:'lasting', q:'Renk kalıcılığı nasıldı?', opts:['Çok iyi','Orta','Kötü']},
-    {id:'comfort', q:'Dudaklarında rahat hissettirdi mi?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'dry', q:'Dudaklarını kuruttunu mu?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'pigment', q:'Renk pigmantasyonu beklentini karşıladı mı?', opts:['Evet','Hayır','Emin değilim']},
-  ],
-  eye: [
-    {id:'crease', q:'Göz kıvrımına doldu mu?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'lasting', q:'Gün boyu kalıcı mıydı?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'irritation', q:'Gözlerini tahriş etti mi?', opts:['Evet','Hayır','Emin değilim']},
-  ],
-  skincare: [
-    {id:'texture', q:'Cildinde rahat emildi mi?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'glow', q:'Cildinde görünür bir iyileşme fark ettin mi?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'breakout', q:'Kullanım süresince sivilce çıktı mı?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'sensitivity', q:'Cildinde tahriş veya kızarma oldu mu?', opts:['Evet','Hayır','Emin değilim']},
-  ],
-  hair: [
-    {id:'clean', q:'Saçını yeterince temizledi mi?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'heavy', q:'Saçını ağırlaştırdı mı?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'scalp', q:'Saç derin tahriş etti mi?', opts:['Evet','Hayır','Emin değilim']},
-    {id:'shine', q:'Saçına parlaklık kattı mı?', opts:['Evet','Hayır','Emin değilim']},
-  ],
-};
-
-function getQuestionsForProduct(p){
-  const cat = p.category || 'skincare';
-  const name = (p.name||'').toLowerCase();
-  if(name.includes('ruj')||name.includes('lip')||name.includes('dudak')||name.includes('parlatıcı')) return CATEGORY_QUESTIONS.lip;
-  if(name.includes('maskara')||name.includes('eyeliner')||name.includes('göz')||name.includes('eye')) return CATEGORY_QUESTIONS.eye;
-  if(cat==='makeup') return CATEGORY_QUESTIONS.makeup;
-  if(cat==='hair') return CATEGORY_QUESTIONS.hair;
-  return CATEGORY_QUESTIONS.skincare;
-}
-
-// Smart analysis based on answers
-function analyzeAnswers(questions, answers, productName){
-  const tags = [];
-  const suggestions = [];
-  
-  // Analyze each answer
-  questions.forEach(q => {
-    const ans = answers[q.id];
-    if(!ans) return;
-    
-    if(q.id==='breakout' && ans==='Evet'){
-      tags.push({label:'⚠️ Sivilce oluşumu', type:'warn'});
-      suggestions.push('Sivilce oluşumu comedogenic içeriklerden olabilir. Non-comedogenic etiketli alternatifleri dene.');
-    }
-    if(q.id==='breakout' && ans==='Hayır'){
-      tags.push({label:'✓ Cilt dostu', type:'good'});
-    }
-    if(q.id==='tone' && ans==='Evet'){
-      tags.push({label:'✓ Ton uyumu var', type:'good'});
-    }
-    if(q.id==='tone' && ans==='Hayır'){
-      tags.push({label:'⚠️ Ton uyumsuz', type:'warn'});
-      suggestions.push('Ton uyumsuzluğu olabilir. Bir sonraki alımda cilt tonuna daha yakın renk dene veya renk eşleştirme servisi kullan.');
-    }
-    if(q.id==='slide' && ans==='Evet'){
-      tags.push({label:'⚠️ Kalıcılık sorunu', type:'warn'});
-      suggestions.push('Gün içinde kayma için primer kullanmayı dene. Bu ürünün üzerine setting spray ekleyebilirsin.');
-    }
-    if(q.id==='dry' && ans==='Evet'){
-      tags.push({label:'⚠️ Kurutan formül', type:'warn'});
-      suggestions.push('Dudakları kurutuyor. Önce lip balm uygula, üstüne bu ürünü kullan.');
-    }
-    if(q.id==='lasting' && (ans==='Kötü'||ans==='Orta')){
-      tags.push({label:'⚠️ Kalıcılık düşük', type:'warn'});
-    }
-    if(q.id==='lasting' && ans==='Çok iyi'){
-      tags.push({label:'✓ Uzun kalıcı', type:'good'});
-    }
-    if(q.id==='texture' && ans==='Evet'){
-      tags.push({label:'✓ İyi emilim', type:'good'});
-    }
-    if(q.id==='texture' && ans==='Hayır'){
-      tags.push({label:'⚠️ Emilim sorunu', type:'warn'});
-      suggestions.push('Ürün yüzeyde kalıyorsa daha az miktarda uygula veya hafif nemli cilde uygula.');
-    }
-    if(q.id==='glow' && ans==='Evet'){
-      tags.push({label:'✓ Görünür etki', type:'good'});
-    }
-    if(q.id==='sensitivity' && ans==='Evet'){
-      tags.push({label:'⚠️ Tahriş oluştu', type:'warn'});
-      suggestions.push('Tahriş oluşuyorsa kullanımı azalt veya dur. Dermatolog önerisi alabilirsin.');
-    }
-    if(q.id==='heavy' && ans==='Evet'){
-      tags.push({label:'⚠️ Saçı ağırlaştırıyor', type:'warn'});
-      suggestions.push('Saçı ağırlaştırıyor. Daha az miktarda kullan veya sadece uçlara uygula.');
-    }
-    if(q.id==='shine' && ans==='Evet'){
-      tags.push({label:'✓ Parlaklık kattı', type:'good'});
-    }
-    if(q.id==='coverage' && ans==='Evet'){
-      tags.push({label:'✓ İyi kapama', type:'good'});
-    }
-  });
-  
-  // Remove duplicates
-  const uniqueTags = tags.filter((t,i,a)=>a.findIndex(x=>x.label===t.label)===i);
-  const uniqueSuggestions = [...new Set(suggestions)];
-  
-  return {tags:uniqueTags, suggestions:uniqueSuggestions};
-}
-
-// ── REVIEW WITH QUESTIONS ──────────────────────────────────
-let currentQuizProductId = null;
-let currentQuizAnswers = {};
-let currentQuizRating = 0;
-
-window.openWriteReview = function(id){
-  const p = userProducts.find(x=>x.id===id);
-  if(!p) return;
-  currentQuizProductId = id;
-  currentQuizAnswers = {};
-  currentQuizRating = 0;
-  
-  const questions = getQuestionsForProduct(p);
-  
-  document.getElementById('wr-overlay').classList.add('show');
-  document.getElementById('wr-prod-info').innerHTML = `
-    <div class="wr-em">${p.emoji}</div>
-    <div><div class="wr-nm">${p.name}</div><div class="wr-br">${p.brand||''}</div></div>`;
-  
-  // Build questions UI
-  const qHTML = questions.map((q,i) => `
-    <div class="quiz-q" id="qq-${q.id}">
-      <div class="qq-text">${i+1}. ${q.q}</div>
-      <div class="qq-opts">
-        ${q.opts.map(opt => `
-          <button class="qq-btn" onclick="selectAnswer('${q.id}','${opt}',this)">${opt}</button>
-        `).join('')}
-      </div>
-    </div>
-  `).join('');
-  
-  document.getElementById('wr-body').innerHTML = `
-    <div class="wr-prod-info" id="wr-prod-info">
-      <div class="wr-em">${p.emoji}</div>
-      <div><div class="wr-nm">${p.name}</div><div class="wr-br">${p.brand||''}</div></div>
-    </div>
-    <div class="quiz-intro">Bu deneyimini birkaç soruyla anlat</div>
-    ${qHTML}
-    <div class="quiz-q">
-      <div class="qq-text">Genel memnuniyet?</div>
-      <div class="star-row" id="star-row">
-        ${[1,2,3,4,5].map(n=>`<button class="star-btn" onclick="setQuizStar(${n})">☆</button>`).join('')}
-      </div>
-    </div>
-    <button class="wr-submit" id="wr-submit" onclick="submitQuizReview()" disabled>Deneyimi Paylaş</button>
-  `;
-};
-
-window.selectAnswer = function(qId, answer, btn){
-  currentQuizAnswers[qId] = answer;
-  btn.closest('.qq-opts').querySelectorAll('.qq-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  checkQuizReady();
-};
-
-window.setQuizStar = function(n){
-  currentQuizRating = n;
-  document.querySelectorAll('#star-row .star-btn').forEach((b,i)=>{
-    b.textContent = i<n?'⭐':'☆';
-  });
-  checkQuizReady();
-};
-
-function checkQuizReady(){
-  const p = userProducts.find(x=>x.id===currentQuizProductId);
-  if(!p) return;
-  const questions = getQuestionsForProduct(p);
-  const allAnswered = questions.every(q=>currentQuizAnswers[q.id]);
-  const hasRating = currentQuizRating > 0;
-  document.getElementById('wr-submit').disabled = !(allAnswered && hasRating);
-}
-
-window.submitQuizReview = function(){
-  const p = userProducts.find(x=>x.id===currentQuizProductId);
-  if(!p) return;
-  
-  const questions = getQuestionsForProduct(p);
-  const analysis = analyzeAnswers(questions, currentQuizAnswers, p.name);
-  
-  // Save review to product
-  p.status = 'reviewed';
-  p.review = {
-    answers: currentQuizAnswers,
-    rating: currentQuizRating,
-    tags: analysis.tags,
-    suggestions: analysis.suggestions,
-    date: new Date().toISOString()
-  };
-  
-  userPts += 50 + (currentQuizRating * 5);
-  reviewCount++;
-  saveProducts();
-  updatePtsDisplay();
-  renderProducts();
-  
-  // Show result screen
-  closeWriteReview();
-  showReviewResult(p, analysis);
-};
-
-function showReviewResult(p, analysis){
-  const ov = document.getElementById('detail-ov');
-  const tagsHTML = analysis.tags.map(t => `
-    <span class="result-tag ${t.type==='good'?'tag-good':'tag-warn'}">${t.label}</span>
-  `).join('');
-  
-  const sugHTML = analysis.suggestions.length > 0 ? `
-    <div class="result-suggest">
-      <div class="rs-label">LUMO ÖNERİSİ</div>
-      ${analysis.suggestions.map(s=>`<div class="rs-text">${s}</div>`).join('')}
-    </div>
-  ` : '';
-  
-  document.getElementById('detail-body').innerHTML = `
-    <div style="text-align:center;padding:20px 0 14px;">
-      <div style="font-size:2rem;margin-bottom:8px;">🤔</div>
-      <div class="dn">Birkaç şey dikkat çekti</div>
-      <div class="dbr">${p.name}</div>
-    </div>
-    <div class="result-tags">${tagsHTML}</div>
-    ${sugHTML}
-    <div class="result-rating">
-      <div class="rs-label">GENEL PUANIN</div>
-      <div>${'⭐'.repeat(p.review.rating)}${'☆'.repeat(5-p.review.rating)} · ${p.review.rating}/5</div>
-    </div>
-    <button class="rv-btn" onclick="closeDetail()" style="margin-top:16px;">Ana Sayfaya Dön</button>
-  `;
-  ov.classList.add('show');
-}
 
 // ONBOARDING
 const obSteps = [
@@ -1156,6 +807,11 @@ function renderReviews(){
 // DETAIL + TIMELINE
 function getMilestones(p){
   const cat = p.category || 'skincare';
+  if(cat==='lip'||cat==='eye') return [
+    {day:0,label:'Eklendi',sub:new Date(p.addedAt).toLocaleDateString('tr-TR')},
+    {day:1,label:'İlk İzlenim',sub:'İlk kullanım nasıldı?'},
+    {day:3,label:'3. Gün — Yorum Zamanı! ✨',sub:'Tam yorum yaz — +50 bonus puan'},
+  ];
   if(cat==='makeup') return [
     {day:0,label:'Eklendi',sub:new Date(p.addedAt).toLocaleDateString('tr-TR')},
     {day:1,label:'İlk İzlenim',sub:'İlk kullanım nasıldı? +5 puan'},
@@ -1170,7 +826,6 @@ function getMilestones(p){
     {day:14,label:'2. Hafta',sub:'Uzun vadeli etki — +10 puan'},
     {day:21,label:'3. Hafta — Yorum Zamanı!',sub:'Tam yorum yaz — +50 bonus puan'},
   ];
-  // skincare default
   return [
     {day:0,label:'Eklendi',sub:new Date(p.addedAt).toLocaleDateString('tr-TR')},
     {day:1,label:'İlk İzlenim',sub:'Doku ve koku nasıl? +5 puan'},
@@ -1202,9 +857,17 @@ window.showDetail=function(id){
   const col=p.status==='ready'?'#16a34a':'#FFE030';
   const earned=p.done*p.pts;
   const tlHTML=makeTimeline(p);
-  const btn=p.status==='ready'
-    ?`<button class="rv-btn" onclick="openWriteReview('${p.id}')">✍️ Yorumumu Yaz (+50 Bonus Puan)</button>`
-    :`<button class="rv-btn rv-btn-dis" disabled>⏳ ${p.total-p.done} gün kaldı — her gün puan kazanıyorsun</button>`;
+  const checkIn = getCheckInForProduct(p);
+  let btn = '';
+  if(p.status==='ready'){
+    btn = `<button class="rv-btn" onclick="openWriteReview('${p.id}')">✍️ Son Değerlendirmeyi Yaz (+50 Puan)</button>`;
+  } else if(checkIn){
+    // Store checkIn data on window to avoid HTML escaping issues
+    window._pendingCheckIn = checkIn;
+    btn = `<button class="rv-btn" onclick="openCheckIn('${p.id}', window._pendingCheckIn)">💬 ${checkIn.day}. Gün Check-in (+10 Puan)</button>`;
+  } else {
+    btn = `<button class="rv-btn rv-btn-dis" disabled>⏳ ${p.total-p.done} gün kaldı</button>`;
+  }
   document.getElementById('detail-body').innerHTML=`
     <div class="de">${p.emoji}</div>
     <div class="dn">${p.name}</div>
@@ -1306,23 +969,7 @@ async function startCamera(){
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         ctx.drawImage(video,0,0);
-        // Try ZXing if available
-        if(typeof ZXing !== 'undefined' && !window._zxReader){
-          window._zxReader = new ZXing.BrowserMultiFormatReader();
-        }
-        try {
-          if(window._zxReader){
-            const result = await window._zxReader.decodeFromCanvas(canvas);
-            if(result && scanActive){
-              scanActive = false;
-              navigator.vibrate&&navigator.vibrate(100);
-              statusEl.textContent = '✓ Barkod okundu!';
-              stream.getTracks().forEach(t=>t.stop());
-              handleBarcode(result.getText());
-              return;
-            }
-          }
-        } catch(e2){}
+            // Canvas scan placeholder - html5-qrcode handles primary scanning
       }
       if(scanActive) requestAnimationFrame(scanFrame);
     }
@@ -1411,7 +1058,7 @@ function processFoundProduct(barcode,name,brand,tags){
   const waitDays=getWaitDaysByCategory(category);
   const ptsPerDay=getPtsPerDay(category);
   scannedProduct={barcode,name,brand,emoji,waitDays,ptsPerDay,cat,category};
-  const catLabel = category==='makeup'?'💄 Makyaj':category==='hair'?'💆 Saç Bakımı':'🧴 Cilt Bakımı';
+  const catLabel = category==='lip'?'💋 Dudak Ürünü (3 gün)':category==='eye'?'👁️ Göz Makyajı (3 gün)':category==='makeup'?'💄 Makyaj (7 gün)':category==='hair'?'💆 Saç Bakımı (21 gün)':'🧴 Cilt Bakımı (30 gün)';
   document.getElementById('sr-prod').innerHTML=`
     <div class="sr-em">${emoji}</div>
     <div>
@@ -1439,21 +1086,41 @@ const SKINCARE_KW = ['serum','nemlendirici','krem','toner','cilt','peeling','mas
   'güneş','spf','retinol','vitamin c','niacinamide','hyaluronic',
   'moisturizer','cleanser','toner','exfoliant','sunscreen','cream','lotion','foam','gel','essence'];
 
+// Lip product keywords
+const LIP_KW = ['ruj','gloss','dudak','lip','parlatıcı','lip gloss','lip balm',
+  'dudak kalemi','dudak nemlendirici','lipstick','lipliner','lip liner',
+  'lip oil','lip tint','lip stain','balm','chapstick'];
+
+// Eye product keywords  
+const EYE_KW = ['maskara','eyeliner','göz farı','far','rimel','kaş',
+  'mascara','eyeshadow','eye liner','brow','kajal','kohl'];
+
 function detectCategory(name, tags, cat){
   const t = (name+' '+tags.join(' ')+' '+cat).toLowerCase();
-  for(const kw of MAKEUP_KW){ if(t.includes(kw)) return 'makeup'; }
+  // Lip first - most specific
+  for(const kw of LIP_KW){ if(t.includes(kw)) return 'lip'; }
+  // Eye
+  for(const kw of EYE_KW){ if(t.includes(kw)) return 'eye'; }
+  // Hair
   for(const kw of HAIR_KW){ if(t.includes(kw)) return 'hair'; }
+  // General makeup
+  for(const kw of MAKEUP_KW){ if(t.includes(kw)) return 'makeup'; }
+  // Skincare
   for(const kw of SKINCARE_KW){ if(t.includes(kw)) return 'skincare'; }
-  return 'skincare'; // default
+  return 'skincare';
 }
 
 function getWaitDaysByCategory(category){
+  if(category==='lip') return 3;
+  if(category==='eye') return 3;
   if(category==='makeup') return 7;
   if(category==='hair') return 21;
   return 30; // skincare
 }
 
 function getPtsPerDay(category){
+  if(category==='lip') return 6;
+  if(category==='eye') return 6;
   if(category==='makeup') return 5;
   if(category==='hair') return 4;
   return 4;
@@ -1574,6 +1241,87 @@ window.goSub=function(id){
     },300);
   }
 };
+
+
+
+
+
+    var isRegister = true;
+    window.switchTab = function(tab) {
+      document.getElementById('tab-email').classList.toggle('on', tab==='email');
+      document.getElementById('tab-phone').classList.toggle('on', tab==='phone');
+      document.getElementById('email-form').style.display = tab==='email'?'block':'none';
+      document.getElementById('phone-form').style.display = tab==='phone'?'block':'none';
+    };
+    window.showAuth = function(mode) {
+      isRegister = mode==='register';
+      document.getElementById('auth-title').textContent = isRegister?'Hesap Oluştur':'Giriş Yap';
+      document.getElementById('auth-sub').textContent = isRegister?'Kozmetik deneyimlerini paylaş, puan kazan.':'Tekrar hoş geldin!';
+      document.getElementById('auth-submit').textContent = isRegister?'Devam Et →':'Giriş Yap →';
+      document.getElementById('username-wrap').style.display = isRegister?'block':'none';
+      showPage('p-auth');
+    };
+    window.handleAuth = async function() {
+      var btn = document.getElementById('auth-submit');
+      var msg = document.getElementById('auth-msg');
+      btn.disabled = true; msg.className='auth-msg'; msg.textContent='';
+      var email = document.getElementById('auth-email').value.trim();
+      var pass = document.getElementById('auth-pass').value;
+      var unameEl = document.getElementById('auth-username');
+      var uname = unameEl ? unameEl.value.trim() : '';
+      if(!email||!pass){msg.className='auth-msg err';msg.textContent='E-posta ve şifre gerekli.';btn.disabled=false;return;}
+      if(isRegister&&!uname){msg.className='auth-msg err';msg.textContent='Kullanıcı adı gerekli.';btn.disabled=false;return;}
+      try {
+        var r = isRegister
+          ? await _sb.auth.signUp({email:email,password:pass,options:{data:{username:uname}}})
+          : await _sb.auth.signInWithPassword({email:email,password:pass});
+        if(r.error) throw r.error;
+      } catch(e) {
+        msg.className='auth-msg err';
+        msg.textContent = e.message==='Invalid login credentials'?'E-posta veya şifre hatalı.':e.message;
+      }
+      btn.disabled=false;
+    };
+    window.handleGoogle = async function() {
+      try {
+        showLoad('Google ile giriş...');
+        var r = await _sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.href}});
+        if(r.error) throw r.error;
+      } catch(e) {
+        hideLoad();
+        document.getElementById('auth-msg').className='auth-msg err';
+        document.getElementById('auth-msg').textContent='Google girişi başarısız.';
+      }
+    };
+    window.handleLogout = async function() {
+      if(confirm('Çıkış yapmak istiyor musun?')) {
+        currentUserId = null;
+        await _sb.auth.signOut();
+        userProducts=[];userPts=0;reviewCount=0;
+        showPage('p-welcome');
+      }
+    };
+    _sb.auth.onAuthStateChange(function(event, session) {
+      if(session && session.user) {
+        var user = session.user;
+        currentUserId = user.id;
+        var uname = (user.user_metadata && user.user_metadata.username) || (user.email && user.email.split('@')[0]) || 'Kullanıcı';
+        if(document.getElementById('prof-name')) document.getElementById('prof-name').textContent = uname;
+        if(document.getElementById('prof-email')) document.getElementById('prof-email').textContent = user.email||'';
+        if(document.getElementById('av-init')) document.getElementById('av-init').textContent = uname[0].toUpperCase();
+        var ob = localStorage.getItem('lumo_ob_done_'+user.id);
+        if(!ob){showPage('p-onboard');startOb();}
+        else{showPage('p-app');loadUserData();}
+      }
+    });
+    _sb.auth.getSession().then(function(r) {
+      if(!r.data || !r.data.session) showPage('p-welcome');
+    });
+
+  }
+  if(document.readyState==="complete"){init();}
+  else{window.addEventListener("load",init);}
+})();
 </script>
 
 </body>
