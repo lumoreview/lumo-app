@@ -996,66 +996,44 @@ async function startCamera(){
   if(scanActive) return;
   const statusEl=document.getElementById('cam-status');
   const permBtn=document.getElementById('cam-perm-btn');
-  
-  if(typeof ZXing==='undefined'){
-    statusEl.textContent='Kütüphane yüklenemedi, manuel gir';
-    return;
-  }
-  
-  // Check if browser supports getUserMedia
   if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
-    statusEl.textContent='Tarayıcı kamerayı desteklemiyor, manuel gir';
+    statusEl.textContent='Kamera desteklenmiyor, manuel gir';
     return;
   }
-  
   try {
-    statusEl.textContent='Kamera izni isteniyor...';
+    statusEl.textContent='Kamera başlatılıyor...';
     permBtn.style.display='none';
-    
-    // Request camera directly — don't pre-test
+    if(typeof ZXing==='undefined'){
+      statusEl.textContent='Kütüphane yükleniyor, bekle...';
+      await new Promise(r=>setTimeout(r,2000));
+    }
     codeReader=new ZXing.BrowserMultiFormatReader();
-    
-    // Use back camera on mobile
-    const constraints={video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}}};
-    const stream=await navigator.mediaDevices.getUserMedia(constraints);
-    
-    // Assign stream directly to video element
-    const video=document.getElementById('video');
-    video.srcObject=stream;
-    await video.play();
-    
+    const devices=await ZXing.BrowserCodeReader.listVideoInputDevices();
+    const deviceId=devices.length>1?devices[devices.length-1].deviceId:devices[0]?.deviceId;
     scanActive=true;
     cameraStarted=true;
-    statusEl.textContent='Barkodu çerçeve içine getir...';
-    
-    // Start ZXing decoding on the video stream
-    const hints=new Map();
-    hints.set(ZXing.DecodeHintType.TRY_HARDER,true);
-    const reader=new ZXing.BrowserMultiFormatReader(hints);
-    codeReader=reader;
-    
-    const scanLoop=setInterval(async()=>{
-      if(!scanActive){clearInterval(scanLoop);return;}
-      try{
-        const result=await reader.decodeOnce(video);
-        if(result&&scanActive){
-          clearInterval(scanLoop);
-          scanActive=false;
-          handleBarcode(result.getText());
-        }
-      }catch(e2){}
-    },300);
-    
+    statusEl.textContent='📷 Barkodu kameraya yaklaştır...';
+    permBtn.style.display='none';
+    await codeReader.decodeFromVideoDevice(deviceId,'video',(result,err)=>{
+      if(result&&scanActive){
+        scanActive=false;
+        try{codeReader.reset();}catch(e){}
+        navigator.vibrate&&navigator.vibrate(100);
+        statusEl.textContent='✓ Barkod okundu!';
+        handleBarcode(result.getText());
+      }
+    });
   } catch(e){
+    scanActive=false;
     if(e.name==='NotAllowedError'||e.name==='PermissionDeniedError'){
-      statusEl.textContent='Kamera izni verilmedi';
+      statusEl.textContent='Kamera izni gerekli';
       permBtn.style.display='block';
-      permBtn.textContent='📷 Kameraya İzin Ver';
+      permBtn.textContent='📷 İzin Ver';
     } else if(e.name==='NotFoundError'){
       statusEl.textContent='Kamera bulunamadı, manuel gir';
     } else {
-      statusEl.textContent='Kamera hatası: '+e.name;
-      permBtn.style.display='block';
+      statusEl.textContent='Kamera açılamadı, manuel gir';
+      console.error('Camera error:',e);
     }
   }
 }
@@ -1101,14 +1079,15 @@ async function handleBarcode(barcode){
 }
 
 function showManualEntry(barcode){
-  // Show result panel with manual entry
-  scannedProduct={barcode,name:'Ürün ('+barcode+')',brand:'',emoji:'🌸',waitDays:30,ptsPerDay:4,cat:'Kozmetik'};
+  scannedProduct={barcode,name:'',brand:'',emoji:'🌸',waitDays:30,ptsPerDay:4,cat:'Kozmetik'};
   document.getElementById('sr-prod').innerHTML=`
     <div class="sr-em">🌸</div>
-    <div>
-      <div class="sr-nm" id="manual-name-input" contenteditable="true" style="border-bottom:1px solid #e5e5e5;min-width:150px;outline:none;">Ürün adını yaz</div>
-      <div class="sr-br">Barkod: ${barcode}</div>
-      <div class="sr-cat">Kozmetik</div>
+    <div style="flex:1;">
+      <div style="font-size:0.7rem;color:#aaa;margin-bottom:6px;">Barkod: ${barcode}</div>
+      <input id="manual-name-input" type="text" placeholder="Ürün adını yaz..."
+        style="width:100%;border:none;border-bottom:1.5px solid #080808;outline:none;font-family:inherit;font-size:0.88rem;font-weight:600;padding:4px 0;color:#080808;background:transparent;" />
+      <a href="https://www.google.com/search?q=${barcode}+kozmetik" target="_blank"
+        style="display:inline-block;margin-top:8px;font-size:0.72rem;color:#3b82f6;text-decoration:none;">🔍 Google'da barkodu ara →</a>
     </div>`;
   document.getElementById('sr-info').innerHTML=`
     <div class="sri"><div class="sri-lbl">Bekleme</div><div class="sri-val">30 gün</div></div>
@@ -1163,7 +1142,10 @@ window.addProduct=function(){
   if(!scannedProduct) return;
   const p=scannedProduct;
   const nameEl=document.getElementById('manual-name-input');
-  if(nameEl&&nameEl.textContent!=='Ürün adını yaz') p.name=nameEl.textContent.trim();
+  if(nameEl) p.name=nameEl.value?.trim()||nameEl.textContent?.trim()||p.name;
+  if(!p.name||p.name==='Ürün adını yaz...'||p.name.length<2){
+    alert('Lütfen ürün adını gir!');return;
+  }
   const newProd={
     id:'p_'+Date.now(),emoji:p.emoji,name:p.name||('Ürün '+p.barcode),brand:p.brand,
     total:p.waitDays,done:0,pts:p.ptsPerDay,status:'wait',
