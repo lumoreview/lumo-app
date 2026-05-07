@@ -570,11 +570,15 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-
-<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
 
 <script>
+// Splash always transitions
+setTimeout(function(){
+  var s=document.getElementById("s-splash");
+  if(s&&s.classList.contains("on")){s.classList.remove("on");document.getElementById("s-welcome").classList.add("on");}
+},1800);
+
 (function() {
   function init() {
     if (typeof supabase === 'undefined') { setTimeout(init, 100); return; }
@@ -1193,15 +1197,6 @@ if (document.readyState === ‘complete’) { init(); }
 else { window.addEventListener(‘load’, init); }
 })();
 
-// Splash timeout - independent of Supabase
-setTimeout(function() {
-var splash = document.getElementById(‘s-splash’);
-if (splash && splash.classList.contains(‘on’)) {
-splash.classList.remove(‘on’);
-document.getElementById(‘s-welcome’).classList.add(‘on’);
-}
-}, 1800);
 </script>
-
 </body>
 </html>
