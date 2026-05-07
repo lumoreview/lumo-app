@@ -679,10 +679,11 @@ window.handleGoogle = async function() {
 
 window.handleLogout = async function() {
   if(confirm('Çıkış yapmak istiyor musun?')) {
-    localStorage.removeItem('lumo_ob_done');
-    localStorage.removeItem('lumo_products');
-    localStorage.removeItem('lumo_pts');
+    currentUserId = null;
     await _sb.auth.signOut();
+    userProducts = [];
+    userPts = 0;
+    reviewCount = 0;
     showPage('p-welcome');
   }
 };
@@ -695,7 +696,8 @@ _sb.auth.onAuthStateChange((event, session) => {
     document.getElementById('prof-name').textContent = name;
     document.getElementById('prof-email').textContent = user.email || '';
     document.getElementById('av-init').textContent = name[0].toUpperCase();
-    const ob = localStorage.getItem('lumo_ob_done');
+    currentUserId = user.id;
+    const ob = localStorage.getItem('lumo_ob_done_'+user.id);
     if(!ob) { showPage('p-onboard'); startOb(); }
     else { showPage('p-app'); loadUserData(); }
   }
@@ -712,6 +714,8 @@ setTimeout(async () => {
 </script>
 
 <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.20.0/umd/index.min.js"></script>
 
 <script>
 // ONBOARDING
@@ -784,9 +788,9 @@ window.selectOb=function(el,idx,multi){
 };
 window.nextOb=function(){
   if(obIdx<obSteps.length-1){obIdx++;renderOb();}
-  else{localStorage.setItem('lumo_ob_done',JSON.stringify(obAnswers));showPage('p-app');loadUserData();}
+  else{localStorage.setItem('lumo_ob_done_'+(currentUserId||'guest'),JSON.stringify(obAnswers));showPage('p-app');loadUserData();}
 };
-window.skipOnboard=function(){localStorage.setItem('lumo_ob_done','{}');showPage('p-app');loadUserData();};
+window.skipOnboard=function(){localStorage.setItem('lumo_ob_done_'+(currentUserId||'guest'),'{}');showPage('p-app');loadUserData();};
 
 // PAGE NAV
 window.showPage=function(id){
@@ -810,19 +814,23 @@ let userProducts=[];
 let userPts=0;
 let reviewCount=0;
 
+let currentUserId = null;
+
 function loadUserData(){
-  const saved=localStorage.getItem('lumo_products');
+  if(!currentUserId) return;
+  const saved=localStorage.getItem('lumo_products_'+currentUserId);
   userProducts=saved?JSON.parse(saved):[];
-  userPts=parseInt(localStorage.getItem('lumo_pts')||'0');
-  reviewCount=parseInt(localStorage.getItem('lumo_reviews')||'0');
+  userPts=parseInt(localStorage.getItem('lumo_pts_'+currentUserId)||'0');
+  reviewCount=parseInt(localStorage.getItem('lumo_reviews_'+currentUserId)||'0');
   updatePtsDisplay();
   renderProducts();
 }
 
 function saveProducts(){
-  localStorage.setItem('lumo_products',JSON.stringify(userProducts));
-  localStorage.setItem('lumo_pts',userPts.toString());
-  localStorage.setItem('lumo_reviews',reviewCount.toString());
+  if(!currentUserId) return;
+  localStorage.setItem('lumo_products_'+currentUserId,JSON.stringify(userProducts));
+  localStorage.setItem('lumo_pts_'+currentUserId,userPts.toString());
+  localStorage.setItem('lumo_reviews_'+currentUserId,reviewCount.toString());
 }
 
 function updatePtsDisplay(){
@@ -1023,52 +1031,74 @@ async function startCamera(){
   if(scanActive) return;
   const statusEl=document.getElementById('cam-status');
   const permBtn=document.getElementById('cam-perm-btn');
-  if(typeof Html5Qrcode==='undefined'){
-    statusEl.textContent='Kütüphane yükleniyor...';
-    await new Promise(r=>setTimeout(r,1500));
-    if(typeof Html5Qrcode==='undefined'){
-      statusEl.textContent='Kütüphane yüklenemedi, manuel gir';
-      return;
-    }
-  }
+  const video=document.getElementById('video');
+  
   try {
-    statusEl.textContent='Kamera başlatılıyor...';
+    statusEl.textContent='📷 Kamera başlatılıyor...';
     permBtn.style.display='none';
-    // Create scanner div if not exists
-    let scanDiv=document.getElementById('qr-reader');
-    if(!scanDiv){
-      scanDiv=document.createElement('div');
-      scanDiv.id='qr-reader';
-      scanDiv.style.cssText='position:absolute;inset:0;z-index:5;';
-      document.getElementById('video').parentElement.appendChild(scanDiv);
-      document.getElementById('video').style.display='none';
+    
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}}
+    });
+    
+    video.srcObject = stream;
+    video.setAttribute('playsinline','true');
+    video.setAttribute('autoplay','true');
+    await video.play();
+    
+    scanActive = true;
+    cameraStarted = true;
+    statusEl.textContent = '📷 Barkodu kameraya yaklaştır...';
+    
+    // Use html5-qrcode if available, fallback to canvas scanning
+    if(typeof Html5Qrcode !== 'undefined'){
+      const scanner = new Html5Qrcode('video');
+      html5QrCode = scanner;
     }
-    html5QrCode=new Html5Qrcode('qr-reader');
-    await html5QrCode.start(
-      {facingMode:'environment'},
-      {fps:10, qrbox:{width:220,height:150}, aspectRatio:1.7},
-      (decodedText)=>{
-        if(!scanActive) return;
-        scanActive=false;
-        navigator.vibrate&&navigator.vibrate(100);
-        statusEl.textContent='✓ Barkod okundu!';
-        html5QrCode.stop().catch(()=>{});
-        handleBarcode(decodedText);
-      },
-      ()=>{}
-    );
-    scanActive=true;
-    cameraStarted=true;
-    statusEl.textContent='📷 Barkodu çerçeve içine getir...';
+    
+    // Canvas-based barcode scanning loop
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    async function scanFrame(){
+      if(!scanActive) return;
+      if(video.readyState === video.HAVE_ENOUGH_DATA){
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        ctx.drawImage(video,0,0);
+        // Try ZXing if available
+        if(typeof ZXing !== 'undefined' && !window._zxReader){
+          window._zxReader = new ZXing.BrowserMultiFormatReader();
+        }
+        try {
+          if(window._zxReader){
+            const result = await window._zxReader.decodeFromCanvas(canvas);
+            if(result && scanActive){
+              scanActive = false;
+              navigator.vibrate&&navigator.vibrate(100);
+              statusEl.textContent = '✓ Barkod okundu!';
+              stream.getTracks().forEach(t=>t.stop());
+              handleBarcode(result.getText());
+              return;
+            }
+          }
+        } catch(e2){}
+      }
+      if(scanActive) requestAnimationFrame(scanFrame);
+    }
+    requestAnimationFrame(scanFrame);
+    
   } catch(e){
-    scanActive=false;
-    console.error('Camera:',e);
-    if(e.toString().includes('Permission')||e.toString().includes('NotAllowed')){
-      statusEl.textContent='Kamera izni gerekli';
+    scanActive = false;
+    console.error('Camera error:', e.name, e.message);
+    if(e.name==='NotAllowedError'){
+      statusEl.textContent = 'Kamera izni verilmedi — Ayarlar > Safari > Kamera > İzin Ver';
       permBtn.style.display='block';
-      permBtn.textContent='📷 İzin Ver';
+      permBtn.textContent='📷 Tekrar Dene';
+    } else if(e.name==='NotFoundError'){
+      statusEl.textContent = 'Kamera bulunamadı, manuel gir';
     } else {
-      statusEl.textContent='Kamera açılamadı, manuel gir';
+      statusEl.textContent = 'Manuel barkod girişini kullan ↓';
     }
   }
 }
