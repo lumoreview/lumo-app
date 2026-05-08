@@ -80,7 +80,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .msg.err{color:var(–danger);}
 .msg.ok{color:var(–safe);}
 
-/* SKIN PROFILE ONBOARD */
+/* ONBOARDING */
 #s-profile{background:#080808;}
 .ob-bar{height:2px;background:rgba(255,255,255,0.08);flex-shrink:0;}
 .ob-fill{height:100%;background:var(–accent);transition:width 0.4s ease;}
@@ -102,14 +102,12 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 
 /* APP */
 #s-app{background:var(–paper);}
-
-/* HOME */
 .home-hdr{padding:54px 22px 16px;display:flex;justify-content:space-between;align-items:flex-end;flex-shrink:0;}
 .home-title{font-family:‘Instrument Serif’,serif;font-size:1.5rem;color:var(–ink);}
 .home-title span{font-style:italic;color:var(–accent);}
 .av{width:34px;height:34px;background:var(–ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:‘Instrument Serif’,serif;font-size:0.85rem;color:var(–accent);cursor:pointer;}
 
-/* PRE-PURCHASE */
+/* PRE-PURCHASE BANNER */
 .prepurchase{margin:0 16px 16px;background:var(–ink);border-radius:8px;padding:16px;cursor:pointer;transition:opacity 0.15s;}
 .prepurchase:active{opacity:0.9;}
 .pp-eyebrow{font-size:0.58rem;color:var(–accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
@@ -140,7 +138,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .empty-icon{font-size:2rem;margin-bottom:8px;opacity:0.3;}
 .empty-txt{font-size:0.82rem;line-height:1.6;}
 
-/* DAILY CHECK-IN CARD */
+/* DAILY CHECK-IN */
 .checkin-card{margin:0 16px 14px;background:var(–warm);border:1px solid var(–br);border-radius:6px;padding:14px;}
 .ci-label{font-size:0.6rem;color:var(–accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
 .ci-q{font-family:‘Instrument Serif’,serif;font-size:1rem;color:var(–ink);margin-bottom:12px;}
@@ -159,8 +157,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .nav-lb{font-size:0.52rem;color:#bbb;font-weight:500;letter-spacing:0.3px;}
 .nav-btn.on .nav-lb{color:var(–ink);}
 
-/* SUBSCREEN */
-.sub{position:absolute;inset:0;top:0;background:var(–paper);display:none;flex-direction:column;z-index:10;animation:slideUp 0.25s ease-out;}
+/* SUB SCREENS */
+.sub{position:absolute;inset:0;background:var(–paper);display:none;flex-direction:column;z-index:10;animation:slideUp 0.25s ease-out;}
 .sub.on{display:flex;}
 @keyframes slideUp{from{transform:translateY(16px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 .sub-hdr{padding:54px 22px 16px;display:flex;align-items:center;gap:14px;flex-shrink:0;}
@@ -191,8 +189,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .det-em{font-size:2.2rem;margin-bottom:8px;}
 .det-name{font-family:‘Instrument Serif’,serif;font-size:1.5rem;color:var(–ink);letter-spacing:-0.3px;margin-bottom:3px;}
 .det-cat{font-size:0.72rem;color:var(–mid);}
-
-/* DECISION ENGINE */
 .decision-card{border-radius:6px;padding:16px;margin-bottom:12px;}
 .dc-label{font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-weight:500;}
 .dc-main{font-family:‘Instrument Serif’,serif;font-size:1.15rem;line-height:1.3;margin-bottom:6px;}
@@ -213,8 +209,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .dc-neutral .dc-label{color:var(–accent);}
 .dc-neutral .dc-main{color:var(–ink);}
 .dc-neutral .dc-sub{color:#666;}
-
-/* PROGRESS */
 .prog-section{background:#fff;border:1px solid var(–br);border-radius:6px;padding:14px;margin-bottom:12px;}
 .prog-hdr{display:flex;justify-content:space-between;margin-bottom:10px;}
 .prog-label{font-size:0.65rem;font-weight:500;color:var(–mid);letter-spacing:1px;text-transform:uppercase;}
@@ -222,8 +216,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .prog-track{height:4px;background:var(–br);border-radius:2px;overflow:hidden;margin-bottom:8px;}
 .prog-fill{height:100%;border-radius:2px;background:var(–accent);transition:width 0.8s ease;}
 .prog-status{font-size:0.72rem;color:var(–mid);}
-
-/* INSIGHT PATTERNS */
 .insight-section{margin-bottom:12px;}
 .ins-label{font-size:0.6rem;font-weight:500;color:var(–mid);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
 .ins-row{display:flex;gap:8px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(–br);}
@@ -234,22 +226,19 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .ins-prob.high{color:var(–danger);}
 .ins-prob.mid{color:var(–warn);}
 .ins-prob.low{color:var(–safe);}
-
-/* ACTION BUTTON */
 .action-btn{background:var(–ink);color:#fff;border:none;border-radius:3px;padding:15px;width:100%;font-family:inherit;font-size:0.88rem;font-weight:500;cursor:pointer;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px;}
 .action-btn:active{opacity:0.85;}
 .action-btn-outline{background:transparent;color:var(–ink);border:1px solid var(–br);border-radius:3px;padding:13px;width:100%;font-family:inherit;font-size:0.84rem;cursor:pointer;margin-top:8px;}
 
-/* PRE-PURCHASE SCREEN */
+/* PRE-PURCHASE */
 #sub-prepurchase .scroll{padding:0 22px 30px;}
-.pp-search{margin-bottom:20px;}
 .pp-result{background:#fff;border:1px solid var(–br);border-radius:6px;padding:16px;margin-bottom:12px;}
 .pp-score{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .score-ring{width:56px;height:56px;flex-shrink:0;}
 .score-val{font-family:‘Instrument Serif’,serif;font-size:2rem;color:var(–ink);}
 .score-label{font-size:0.7rem;color:var(–mid);margin-top:1px;}
 
-/* PROFILE SCREEN */
+/* PROFILE */
 #sub-profile .scroll{padding:0 22px 30px;}
 .prof-top{padding-top:10px;margin-bottom:20px;}
 .prof-av{width:54px;height:54px;background:var(–ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:‘Instrument Serif’,serif;font-size:1.2rem;color:var(–accent);margin-bottom:10px;}
@@ -266,7 +255,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .menu-txt{flex:1;font-size:0.82rem;color:var(–ink);}
 .menu-ar{font-size:0.72rem;color:#ccc;}
 
-/* LOADING OVERLAY */
+/* LOADING */
 .loading{position:absolute;inset:0;background:rgba(250,250,248,0.85);z-index:999;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
 .loading.on{display:flex;}
 .spinner{width:28px;height:28px;border:2px solid var(–br);border-top-color:var(–accent);border-radius:50%;animation:spin 0.7s linear infinite;}
@@ -343,7 +332,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     </div>
   </div>
 
-  <!-- SKIN PROFILE ONBOARD -->
+  <!-- ONBOARDING -->
 
   <div class="screen" id="s-profile">
     <div class="ob-bar"><div class="ob-fill" id="ob-fill" style="width:25%"></div></div>
@@ -365,7 +354,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
   <!-- MAIN APP -->
 
   <div class="screen" id="s-app">
-    <!-- HOME TAB -->
     <div class="scroll" id="tab-home">
       <div class="home-hdr">
         <div class="home-title">Merhaba<br><span id="home-name">·</span></div>
@@ -373,7 +361,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
       </div>
 
 ```
-  <!-- DAILY CHECK-IN (shown when products exist) -->
   <div id="daily-checkin" style="display:none;">
     <div class="checkin-card">
       <div class="ci-label">Günlük Check-in</div>
@@ -386,7 +373,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     </div>
   </div>
 
-  <!-- PRE-PURCHASE BANNER -->
   <div class="prepurchase" onclick="openSub('sub-prepurchase')">
     <div class="pp-eyebrow">Satın Almadan Önce</div>
     <div class="pp-title">Bu ürün cildime uyar mı?</div>
@@ -394,7 +380,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     <div class="pp-arrow">→</div>
   </div>
 
-  <!-- PRODUCTS -->
   <div class="section-hdr">
     <span class="section-title">Takip Ettiklerim</span>
     <button class="section-add" onclick="openSub('sub-add')">+ Ekle</button>
@@ -408,7 +393,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
   <div style="height:20px;"></div>
 </div>
 
-<!-- BOTTOM NAV -->
 <div class="bnav">
   <button class="nav-btn on" id="nav-home" onclick="switchTab('home')">
     <span class="nav-ic">◇</span><span class="nav-lb">Ana Sayfa</span>
@@ -424,7 +408,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
   </button>
 </div>
 
-<!-- SUB: ADD PRODUCT -->
+<!-- SUB: ADD -->
 <div class="sub" id="sub-add">
   <div class="sub-hdr">
     <button class="sub-back" onclick="closeSub('sub-add')">←</button>
@@ -439,49 +423,31 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
       <div style="font-size:0.65rem;font-weight:500;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">Kategori</div>
       <div class="cat-grid" id="cat-grid">
         <div class="cat-card" data-cat="lip" data-days="3" onclick="selectCat(this)">
-          <div class="cat-ic">💄</div>
-          <div class="cat-nm">Dudak Ürünü</div>
-          <div class="cat-days">3 günde anlarsın</div>
+          <div class="cat-ic">💄</div><div class="cat-nm">Dudak Ürünü</div><div class="cat-days">3 günde anlarsın</div>
         </div>
         <div class="cat-card" data-cat="eye" data-days="3" onclick="selectCat(this)">
-          <div class="cat-ic">👁️</div>
-          <div class="cat-nm">Göz Makyajı</div>
-          <div class="cat-days">3 günde anlarsın</div>
+          <div class="cat-ic">👁️</div><div class="cat-nm">Göz Makyajı</div><div class="cat-days">3 günde anlarsın</div>
         </div>
         <div class="cat-card" data-cat="foundation" data-days="7" onclick="selectCat(this)">
-          <div class="cat-ic">🫧</div>
-          <div class="cat-nm">Fondöten</div>
-          <div class="cat-days">1 haftada anlarsın</div>
+          <div class="cat-ic">🫧</div><div class="cat-nm">Fondöten</div><div class="cat-days">1 haftada anlarsın</div>
         </div>
         <div class="cat-card" data-cat="makeup" data-days="7" onclick="selectCat(this)">
-          <div class="cat-ic">✨</div>
-          <div class="cat-nm">Makyaj</div>
-          <div class="cat-days">1 haftada anlarsın</div>
+          <div class="cat-ic">✨</div><div class="cat-nm">Makyaj</div><div class="cat-days">1 haftada anlarsın</div>
         </div>
         <div class="cat-card" data-cat="moisturizer" data-days="14" onclick="selectCat(this)">
-          <div class="cat-ic">💧</div>
-          <div class="cat-nm">Nemlendirici</div>
-          <div class="cat-days">2 haftada anlarsın</div>
+          <div class="cat-ic">💧</div><div class="cat-nm">Nemlendirici</div><div class="cat-days">2 haftada anlarsın</div>
         </div>
         <div class="cat-card" data-cat="serum" data-days="42" onclick="selectCat(this)">
-          <div class="cat-ic">🧬</div>
-          <div class="cat-nm">Serum / Asit</div>
-          <div class="cat-days">6 haftada anlarsın</div>
+          <div class="cat-ic">🧬</div><div class="cat-nm">Serum / Asit</div><div class="cat-days">6 haftada anlarsın</div>
         </div>
         <div class="cat-card" data-cat="hair" data-days="14" onclick="selectCat(this)">
-          <div class="cat-ic">✦</div>
-          <div class="cat-nm">Saç Bakımı</div>
-          <div class="cat-days">2 haftada anlarsın</div>
+          <div class="cat-ic">✦</div><div class="cat-nm">Saç Bakımı</div><div class="cat-days">2 haftada anlarsın</div>
         </div>
         <div class="cat-card" data-cat="spf" data-days="5" onclick="selectCat(this)">
-          <div class="cat-ic">☀️</div>
-          <div class="cat-nm">SPF / Güneş</div>
-          <div class="cat-days">5 günde anlarsın</div>
+          <div class="cat-ic">☀️</div><div class="cat-nm">SPF / Güneş</div><div class="cat-days">5 günde anlarsın</div>
         </div>
         <div class="cat-card" data-cat="cleanser" data-days="7" onclick="selectCat(this)">
-          <div class="cat-ic">🧼</div>
-          <div class="cat-nm">Temizleyici</div>
-          <div class="cat-days">1 haftada anlarsın</div>
+          <div class="cat-ic">🧼</div><div class="cat-nm">Temizleyici</div><div class="cat-days">1 haftada anlarsın</div>
         </div>
       </div>
       <div class="scan-toggle" onclick="toggleScan()">
@@ -503,7 +469,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
   </div>
 </div>
 
-<!-- SUB: PRODUCT DETAIL -->
+<!-- SUB: DETAIL -->
 <div class="sub" id="sub-detail">
   <div class="sub-hdr">
     <button class="sub-back" onclick="closeSub('sub-detail')">←</button>
@@ -573,11 +539,14 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
 
 <script>
-// Splash always transitions
+// Splash auto-transition
 setTimeout(function(){
-  var s=document.getElementById("s-splash");
-  if(s&&s.classList.contains("on")){s.classList.remove("on");document.getElementById("s-welcome").classList.add("on");}
-},1800);
+  var s = document.getElementById('s-splash');
+  if(s && s.classList.contains('on')){
+    s.classList.remove('on');
+    document.getElementById('s-welcome').classList.add('on');
+  }
+}, 1800);
 
 (function() {
   function init() {
@@ -587,35 +556,30 @@ setTimeout(function(){
     var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhibGp3aXRkb2pjaXVybG9oc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNDA4NzIsImV4cCI6MjA5MzcxNjg3Mn0.WO63UHn_pSD8_tXLhsNLMIxO0p8OMa4V_nX1Epj2cF4';
     var _sb = supabase.createClient(SUPA_URL, SUPA_KEY);
 
-    // ── STATE ──
     var currentUser = null;
     var skinProfile = {};
     var products = [];
 
     // ── UTILS ──
     window.show = function(id) {
-      document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('on'); });
+      document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('on'); });
       document.getElementById(id).classList.add('on');
     };
-    window.openSub = function(id) { document.getElementById(id).classList.add('on'); };
-    window.closeSub = function(id) {
+    window.openSub = function(id){ document.getElementById(id).classList.add('on'); };
+    window.closeSub = function(id){
       document.getElementById(id).classList.remove('on');
-      if (id === 'sub-add') resetAddForm();
+      if(id === 'sub-add') resetAddForm();
     };
-    function showLoad(txt) {
-      document.getElementById('load-txt').textContent = txt || 'Yükleniyor';
-      document.getElementById('loading').classList.add('on');
-    }
-    function hideLoad() { document.getElementById('loading').classList.remove('on'); }
-
-    function getKey(k) { return currentUser ? k + '_' + currentUser.id : null; }
-    function save(k, v) { var key = getKey(k); if(key) localStorage.setItem(key, JSON.stringify(v)); }
-    function load(k, def) { var key = getKey(k); if(!key) return def; var v = localStorage.getItem(key); return v ? JSON.parse(v) : def; }
+    function showLoad(txt){ document.getElementById('load-txt').textContent = txt||'Yükleniyor'; document.getElementById('loading').classList.add('on'); }
+    function hideLoad(){ document.getElementById('loading').classList.remove('on'); }
+    function getKey(k){ return currentUser ? k+'_'+currentUser.id : null; }
+    function save(k,v){ var key=getKey(k); if(key) localStorage.setItem(key, JSON.stringify(v)); }
+    function load(k,def){ var key=getKey(k); if(!key) return def; var v=localStorage.getItem(key); return v ? JSON.parse(v) : def; }
 
     // ── AUTH ──
     var isReg = true;
 
-    window.showAuth = function(mode) {
+    window.showAuth = function(mode){
       isReg = mode === 'register';
       document.getElementById('auth-h').textContent = isReg ? 'Hesap Oluştur' : 'Giriş Yap';
       document.getElementById('auth-sub').textContent = isReg ? 'Cildine özel kararlar için birkaç adım.' : 'Tekrar hoş geldin.';
@@ -625,61 +589,59 @@ setTimeout(function(){
       show('s-auth');
     };
 
-    window.switchTab = function(tab) {
-      if (tab === 'email' || tab === 'phone') {
-        document.querySelectorAll('#s-auth .tab').forEach(function(t,i) { t.classList.toggle('on', i === (tab==='email'?0:1)); });
+    window.switchTab = function(tab){
+      if(tab === 'email' || tab === 'phone'){
+        document.querySelectorAll('#s-auth .tab').forEach(function(t,i){ t.classList.toggle('on', i===(tab==='email'?0:1)); });
         document.getElementById('email-form').style.display = tab==='email' ? 'block' : 'none';
         document.getElementById('phone-form').style.display = tab==='phone' ? 'block' : 'none';
         return;
       }
-      // App tabs
-      document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('on'); });
-      document.getElementById('nav-' + tab).classList.add('on');
+      document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('on'); });
+      document.getElementById('nav-'+tab).classList.add('on');
     };
 
-    window.handleAuth = async function() {
+    window.handleAuth = async function(){
       var btn = document.getElementById('auth-btn');
       var msg = document.getElementById('auth-msg');
-      btn.disabled = true; msg.className = 'msg'; msg.textContent = '';
+      btn.disabled = true; msg.className='msg'; msg.textContent='';
       var email = document.getElementById('inp-email').value.trim();
       var pass = document.getElementById('inp-pass').value;
-      var uname = (document.getElementById('inp-uname') || {}).value || '';
-      uname = uname.trim();
-      if (!email || !pass) { msg.className='msg err'; msg.textContent='E-posta ve şifre gerekli.'; btn.disabled=false; return; }
-      if (isReg && !uname) { msg.className='msg err'; msg.textContent='Kullanıcı adı gerekli.'; btn.disabled=false; return; }
+      var uname = document.getElementById('inp-uname').value.trim();
+      if(!email || !pass){ msg.className='msg err'; msg.textContent='E-posta ve şifre gerekli.'; btn.disabled=false; return; }
+      if(isReg && !uname){ msg.className='msg err'; msg.textContent='Kullanıcı adı gerekli.'; btn.disabled=false; return; }
       try {
         var r = isReg
           ? await _sb.auth.signUp({email:email, password:pass, options:{data:{username:uname}}})
           : await _sb.auth.signInWithPassword({email:email, password:pass});
-        if (r.error) throw r.error;
-      } catch(e) {
-        msg.className = 'msg err';
-        msg.textContent = e.message === 'Invalid login credentials' ? 'E-posta veya şifre hatalı.' : e.message;
+        if(r.error) throw r.error;
+      } catch(e){
+        msg.className='msg err';
+        msg.textContent = e.message==='Invalid login credentials' ? 'E-posta veya şifre hatalı.' : e.message;
       }
-      btn.disabled = false;
+      btn.disabled=false;
     };
 
-    window.handleGoogle = async function() {
+    window.handleGoogle = async function(){
       try {
         showLoad('Google ile giriş...');
         var r = await _sb.auth.signInWithOAuth({provider:'google', options:{redirectTo:window.location.href}});
-        if (r.error) throw r.error;
-      } catch(e) {
+        if(r.error) throw r.error;
+      } catch(e){
         hideLoad();
-        document.getElementById('auth-msg').className = 'msg err';
-        document.getElementById('auth-msg').textContent = 'Google girişi başarısız.';
+        document.getElementById('auth-msg').className='msg err';
+        document.getElementById('auth-msg').textContent='Google girişi başarısız.';
       }
     };
 
-    window.handleLogout = async function() {
-      if (!confirm('Çıkış yapmak istiyor musun?')) return;
+    window.handleLogout = async function(){
+      if(!confirm('Çıkış yapmak istiyor musun?')) return;
       await _sb.auth.signOut();
-      currentUser = null; skinProfile = {}; products = [];
+      currentUser=null; skinProfile={}; products=[];
       show('s-welcome');
     };
 
-    _sb.auth.onAuthStateChange(function(event, session) {
-      if (session && session.user) {
+    _sb.auth.onAuthStateChange(function(event, session){
+      if(session && session.user){
         currentUser = session.user;
         var uname = (currentUser.user_metadata && currentUser.user_metadata.username) || currentUser.email.split('@')[0];
         skinProfile = load('skin', {});
@@ -691,60 +653,55 @@ setTimeout(function(){
         document.getElementById('prof-email').textContent = currentUser.email || '';
         renderSkinTags();
         var hasProfile = Object.keys(skinProfile).length > 0;
-        if (!hasProfile) { show('s-profile'); startOb(); }
+        if(!hasProfile){ show('s-profile'); startOb(); }
         else { show('s-app'); renderProducts(); checkDailyCheckin(); }
       }
     });
 
-    _sb.auth.getSession().then(function(r) {
-      if (!r.data || !r.data.session) {
-        show('s-welcome');
-      }
+    _sb.auth.getSession().then(function(r){
+      if(!r.data || !r.data.session){ show('s-welcome'); }
     });
 
-
-    // ── ONBOARDING (4 questions only) ──
+    // ── ONBOARDING ──
     var obSteps = [
-      { icon:'🌿', q:'Cilt tipini seçelim', hint:'Sana en doğru analizi yapabilmek için', multi:false, key:'type', opts:['Normal','Yağlı','Kuru','Karma','Hassas'] },
-      { icon:'⚡', q:'En büyük cilt endişen nedir?', hint:'Birden fazla seçebilirsin', multi:true, key:'concerns', opts:['Sivilce & Akne','Leke','Gözenek','Yaşlanma Karşıtı','Nem & Kuruluk','Hassasiyet'] },
-      { icon:'🌡️', q:'Alerjin veya tahriş geçmişin var mı?', hint:'', multi:false, key:'allergy', opts:['Evet, var','Hayır, yok','Emin değilim'] },
-      { icon:'💊', q:'Aktif olarak cilt bakım ürünü kullanıyor musun?', hint:'', multi:false, key:'routine', opts:['Evet, düzenli','Ara sıra','Hayır, başlangıç yapıyorum'] },
+      {icon:'🌿', q:'Cilt tipini seçelim', hint:'Sana en doğru analizi yapabilmek için', multi:false, key:'type', opts:['Normal','Yağlı','Kuru','Karma','Hassas']},
+      {icon:'⚡', q:'En büyük cilt endişen nedir?', hint:'Birden fazla seçebilirsin', multi:true, key:'concerns', opts:['Sivilce & Akne','Leke','Gözenek','Yaşlanma Karşıtı','Nem & Kuruluk','Hassasiyet']},
+      {icon:'🌡️', q:'Alerjin veya tahriş geçmişin var mı?', hint:'', multi:false, key:'allergy', opts:['Evet, var','Hayır, yok','Emin değilim']},
+      {icon:'💊', q:'Aktif olarak cilt bakım ürünü kullanıyor musun?', hint:'', multi:false, key:'routine', opts:['Evet, düzenli','Ara sıra','Hayır, başlangıç yapıyorum']},
     ];
-    var obIdx = 0;
-    var obAns = {};
+    var obIdx=0, obAns={};
 
-    function startOb() { obIdx = 0; obAns = {}; renderOb(); }
+    function startOb(){ obIdx=0; obAns={}; renderOb(); }
 
-    function renderOb() {
+    function renderOb(){
       var s = obSteps[obIdx];
-      document.getElementById('ob-fill').style.width = ((obIdx+1)/obSteps.length*100) + '%';
-      document.getElementById('ob-n').textContent = (obIdx+1) + ' / ' + obSteps.length;
+      document.getElementById('ob-fill').style.width = ((obIdx+1)/obSteps.length*100)+'%';
+      document.getElementById('ob-n').textContent = (obIdx+1)+' / '+obSteps.length;
       document.getElementById('ob-icon').textContent = s.icon;
       document.getElementById('ob-q').textContent = s.q;
       document.getElementById('ob-hint').textContent = s.hint;
       document.getElementById('ob-next').disabled = true;
       var el = document.getElementById('ob-opts');
-      el.innerHTML = s.opts.map(function(o, i) {
-        return '<button class="ob-opt" onclick="selOb(this,' + i + ',' + s.multi + ')">' + o + '</button>';
+      el.innerHTML = s.opts.map(function(o,i){
+        return '<button class="ob-opt" onclick="selOb(this,'+i+','+s.multi+')">'+o+'</button>';
       }).join('');
     }
 
-    window.selOb = function(btn, idx, multi) {
-      if (multi) {
+    window.selOb = function(btn, idx, multi){
+      if(multi){
         btn.classList.toggle('sel');
         document.getElementById('ob-next').disabled = document.querySelectorAll('#ob-opts .ob-opt.sel').length === 0;
-        var s = obSteps[obIdx];
-        obAns[s.key] = Array.from(document.querySelectorAll('#ob-opts .ob-opt.sel')).map(function(b) { return b.textContent; });
+        obAns[obSteps[obIdx].key] = Array.from(document.querySelectorAll('#ob-opts .ob-opt.sel')).map(function(b){ return b.textContent; });
       } else {
-        document.querySelectorAll('#ob-opts .ob-opt').forEach(function(b) { b.classList.remove('sel'); });
+        document.querySelectorAll('#ob-opts .ob-opt').forEach(function(b){ b.classList.remove('sel'); });
         btn.classList.add('sel');
         document.getElementById('ob-next').disabled = false;
         obAns[obSteps[obIdx].key] = btn.textContent;
       }
     };
 
-    window.nextOb = function() {
-      if (obIdx < obSteps.length - 1) { obIdx++; renderOb(); }
+    window.nextOb = function(){
+      if(obIdx < obSteps.length-1){ obIdx++; renderOb(); }
       else {
         skinProfile = obAns;
         save('skin', skinProfile);
@@ -755,40 +712,38 @@ setTimeout(function(){
       }
     };
 
-    window.skipOb = function() {
-      skinProfile = { type: 'Bilinmiyor', concerns: [], allergy: 'Emin değilim', routine: 'Başlangıç yapıyorum' };
+    window.skipOb = function(){
+      skinProfile = {type:'Bilinmiyor', concerns:[], allergy:'Emin değilim', routine:'Başlangıç yapıyorum'};
       save('skin', skinProfile);
       show('s-app');
       renderProducts();
     };
 
-    function renderSkinTags() {
+    function renderSkinTags(){
       var tags = document.getElementById('skin-tags');
-      if (!tags) return;
+      if(!tags) return;
       var items = [];
-      if (skinProfile.type) items.push(skinProfile.type);
-      if (skinProfile.concerns && skinProfile.concerns.length) items = items.concat(skinProfile.concerns.slice(0,3));
-      tags.innerHTML = items.length ? items.map(function(t) { return '<span class="ss-tag">' + t + '</span>'; }).join('') : '<span class="ss-tag">Profil yok</span>';
+      if(skinProfile.type) items.push(skinProfile.type);
+      if(skinProfile.concerns && skinProfile.concerns.length) items = items.concat(skinProfile.concerns.slice(0,3));
+      tags.innerHTML = items.length ? items.map(function(t){ return '<span class="ss-tag">'+t+'</span>'; }).join('') : '<span class="ss-tag">Profil yok</span>';
     }
 
     // ── PRODUCTS ──
     var CAT_META = {
-      lip:         { emoji:'💄', label:'Dudak Ürünü',  days:3  },
-      eye:         { emoji:'👁️', label:'Göz Makyajı',  days:3  },
-      foundation:  { emoji:'🫧', label:'Fondöten',     days:7  },
-      makeup:      { emoji:'✨', label:'Makyaj',       days:7  },
-      moisturizer: { emoji:'💧', label:'Nemlendirici', days:14 },
-      serum:       { emoji:'🧬', label:'Serum / Asit', days:42 },
-      hair:        { emoji:'✦',  label:'Saç Bakımı',  days:14 },
-      spf:         { emoji:'☀️', label:'SPF / Güneş',  days:5  },
-      cleanser:    { emoji:'🧼', label:'Temizleyici',  days:7  },
+      lip:         {emoji:'💄', label:'Dudak Ürünü',  days:3 },
+      eye:         {emoji:'👁️', label:'Göz Makyajı',  days:3 },
+      foundation:  {emoji:'🫧', label:'Fondöten',     days:7 },
+      makeup:      {emoji:'✨', label:'Makyaj',       days:7 },
+      moisturizer: {emoji:'💧', label:'Nemlendirici', days:14},
+      serum:       {emoji:'🧬', label:'Serum / Asit', days:42},
+      hair:        {emoji:'✦',  label:'Saç Bakımı',  days:14},
+      spf:         {emoji:'☀️', label:'SPF / Güneş',  days:5 },
+      cleanser:    {emoji:'🧼', label:'Temizleyici',  days:7 },
     };
+    var selectedCat=null, selectedDays=0;
 
-    var selectedCat = null;
-    var selectedDays = 0;
-
-    window.selectCat = function(el) {
-      document.querySelectorAll('.cat-card').forEach(function(c) { c.classList.remove('sel'); });
+    window.selectCat = function(el){
+      document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('sel'); });
       el.classList.add('sel');
       selectedCat = el.dataset.cat;
       selectedDays = parseInt(el.dataset.days);
@@ -797,36 +752,29 @@ setTimeout(function(){
 
     document.getElementById('add-name').addEventListener('input', checkAddReady);
 
-    function checkAddReady() {
+    function checkAddReady(){
       var name = document.getElementById('add-name').value.trim();
       document.getElementById('add-submit').disabled = !(name && selectedCat);
     }
 
-    function resetAddForm() {
-      document.getElementById('add-name').value = '';
-      document.querySelectorAll('.cat-card').forEach(function(c) { c.classList.remove('sel'); });
-      selectedCat = null; selectedDays = 0;
-      document.getElementById('add-submit').disabled = true;
+    function resetAddForm(){
+      document.getElementById('add-name').value='';
+      document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('sel'); });
+      selectedCat=null; selectedDays=0;
+      document.getElementById('add-submit').disabled=true;
       stopScan();
-      document.getElementById('scan-area').style.display = 'none';
-      document.getElementById('scan-toggle-ic').textContent = '›';
+      document.getElementById('scan-area').style.display='none';
+      document.getElementById('scan-toggle-ic').textContent='›';
     }
 
-    window.addProduct = function() {
+    window.addProduct = function(){
       var name = document.getElementById('add-name').value.trim();
-      if (!name || !selectedCat) return;
+      if(!name || !selectedCat) return;
       var meta = CAT_META[selectedCat];
       var prod = {
-        id: 'p_' + Date.now(),
-        name: name,
-        cat: selectedCat,
-        emoji: meta.emoji,
-        label: meta.label,
-        days: meta.days,
-        done: 0,
-        added: new Date().toISOString(),
-        checkins: [],
-        status: 'active'
+        id:'p_'+Date.now(), name:name, cat:selectedCat,
+        emoji:meta.emoji, label:meta.label, days:meta.days,
+        done:0, added:new Date().toISOString(), checkins:[], status:'active'
       };
       products.unshift(prod);
       save('products', products);
@@ -836,354 +784,207 @@ setTimeout(function(){
       openDetail(prod.id);
     };
 
-    function renderProducts() {
+    function renderProducts(){
       var list = document.getElementById('prod-list');
-      if (!products.length) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-icon">◯</div><div class="empty-txt">Henüz ürün eklemedin.<br>Bir ürün ekle, izlemeye başla.</div></div>';
+      if(!products.length){
+        list.innerHTML='<div class="empty-state"><div class="empty-icon">◯</div><div class="empty-txt">Henüz ürün eklemedin.<br>Bir ürün ekle, izlemeye başla.</div></div>';
         return;
       }
-      list.innerHTML = products.map(function(p) {
-        var pct = Math.min(Math.round((p.done / p.days) * 100), 100);
+      list.innerHTML = products.map(function(p){
+        var pct = Math.min(Math.round((p.done/p.days)*100),100);
         var risk = getRiskLevel(p);
-        var barColor = pct === 100 ? '#27ae60' : risk === 'high' ? '#e67e22' : '#c8a96e';
-        var riskClass = risk === 'high' ? 'risk-high' : risk === 'mid' ? 'risk-mid' : 'risk-low';
-        return '<div class="prod-card" onclick="openDetail(\'' + p.id + '\')">'
-          + '<div class="prod-em">' + p.emoji + '</div>'
-          + '<div class="prod-info">'
-          + '<div class="prod-name">' + p.name + '</div>'
-          + '<div class="prod-cat">' + p.label + '</div>'
-          + '<div class="prod-status">'
-          + '<div class="risk-dot ' + riskClass + '"></div>'
-          + '<div class="prod-bar"><div class="prod-bar-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div>'
-          + '<div class="prod-day">' + p.done + '/' + p.days + ' gün</div>'
-          + '</div></div></div>';
+        var barColor = pct===100 ? '#27ae60' : risk==='high' ? '#e67e22' : '#c8a96e';
+        var riskClass = risk==='high' ? 'risk-high' : risk==='mid' ? 'risk-mid' : 'risk-low';
+        return '<div class="prod-card" onclick="openDetail(\''+p.id+'\')"><div class="prod-em">'+p.emoji+'</div><div class="prod-info"><div class="prod-name">'+p.name+'</div><div class="prod-cat">'+p.label+'</div><div class="prod-status"><div class="risk-dot '+riskClass+'"></div><div class="prod-bar"><div class="prod-bar-fill" style="width:'+pct+'%;background:'+barColor+'"></div></div><div class="prod-day">'+p.done+'/'+p.days+' gün</div></div></div></div>';
       }).join('');
     }
 
-    function getRiskLevel(p) {
-      if (!p.checkins || !p.checkins.length) return 'low';
-      var last3 = p.checkins.slice(-3);
-      var worse = last3.filter(function(c) { return c.reaction === 'worse'; }).length;
-      if (worse >= 2) return 'high';
-      if (worse >= 1) return 'mid';
+    function getRiskLevel(p){
+      if(!p.checkins||!p.checkins.length) return 'low';
+      var last3=p.checkins.slice(-3);
+      var worse=last3.filter(function(c){ return c.reaction==='worse'; }).length;
+      if(worse>=2) return 'high';
+      if(worse>=1) return 'mid';
       return 'low';
     }
 
     // ── DETAIL ──
-    window.openDetail = function(id) {
-      var p = products.find(function(x) { return x.id === id; });
-      if (!p) return;
+    window.openDetail = function(id){
+      var p = products.find(function(x){ return x.id===id; });
+      if(!p) return;
       document.getElementById('det-title').textContent = p.name;
-      var pct = Math.min(Math.round((p.done / p.days) * 100), 100);
+      var pct = Math.min(Math.round((p.done/p.days)*100),100);
       var decision = getDecision(p);
       var insights = getInsights(p);
       var actionBtn = p.done >= p.days
-        ? '<button class="action-btn" onclick="openFinalReview(\'' + p.id + '\')">Değerlendirmeyi Yaz →</button>'
-        : '<button class="action-btn" style="background:var(--warm);color:var(--ink);" disabled>⏳ ' + (p.days - p.done) + ' gün kaldı</button>';
-
+        ? '<button class="action-btn" onclick="openFinalReview(\''+p.id+'\')">Değerlendirmeyi Yaz →</button>'
+        : '<button class="action-btn" style="background:var(--warm);color:var(--ink);" disabled>⏳ '+(p.days-p.done)+' gün kaldı</button>';
       document.getElementById('det-body').innerHTML =
-        '<div class="det-top">'
-        + '<div class="det-em">' + p.emoji + '</div>'
-        + '<div class="det-name">' + p.name + '</div>'
-        + '<div class="det-cat">' + p.label + '</div>'
-        + '</div>'
-        + '<div class="decision-card ' + decision.cls + '">'
-        + '<div class="dc-label">' + decision.label + '</div>'
-        + '<div class="dc-main">' + decision.main + '</div>'
-        + '<div class="dc-sub">' + decision.sub + '</div>'
-        + '</div>'
-        + '<div class="prog-section">'
-        + '<div class="prog-hdr"><span class="prog-label">Kullanım Süreci</span><span class="prog-days">' + p.done + ' / ' + p.days + ' gün</span></div>'
-        + '<div class="prog-track"><div class="prog-fill" style="width:' + pct + '%"></div></div>'
-        + '<div class="prog-status">' + (pct === 100 ? '✓ Değerlendirme zamanı' : '%' + pct + ' tamamlandı') + '</div>'
-        + '</div>'
-        + '<div class="insight-section">'
-        + '<div class="ins-label">Gözlemler</div>'
-        + insights
-        + '</div>'
-        + actionBtn
-        + '<button class="action-btn-outline" onclick="closeSub(\'sub-detail\')">Geri</button>';
-
+        '<div class="det-top"><div class="det-em">'+p.emoji+'</div><div class="det-name">'+p.name+'</div><div class="det-cat">'+p.label+'</div></div>'
+        +'<div class="decision-card '+decision.cls+'"><div class="dc-label">'+decision.label+'</div><div class="dc-main">'+decision.main+'</div><div class="dc-sub">'+decision.sub+'</div></div>'
+        +'<div class="prog-section"><div class="prog-hdr"><span class="prog-label">Kullanım Süreci</span><span class="prog-days">'+p.done+' / '+p.days+' gün</span></div><div class="prog-track"><div class="prog-fill" style="width:'+pct+'%"></div></div><div class="prog-status">'+(pct===100?'✓ Değerlendirme zamanı':'%'+pct+' tamamlandı')+'</div></div>'
+        +'<div class="insight-section"><div class="ins-label">Gözlemler</div>'+insights+'</div>'
+        +actionBtn
+        +'<button class="action-btn-outline" onclick="closeSub(\'sub-detail\')">Geri</button>';
       openSub('sub-detail');
     };
 
-    function getDecision(p) {
-      var risk = getRiskLevel(p);
-      var daysUsed = p.done;
-      var total = p.days;
-      if (daysUsed === 0) {
-        return { cls:'dc-neutral', label:'BAŞLANGIÇ ANALİZİ', main:'Takip başladı.', sub:'Her gün check-in yap. İlk 3 günde ciddi bir reaksiyon olmadığı sürece devam et.' };
-      }
-      if (risk === 'high') {
-        return { cls:'dc-risk', label:'RİSK TESPİT EDİLDİ', main:'Kullanımı durdurman önerilir.', sub:'Son günlerde cildin olumsuz tepki veriyor. Bu ürün cilt profiliyle uyumsuz olabilir.' };
-      }
-      if (risk === 'mid') {
-        return { cls:'dc-warn', label:'DİKKATLİ DEVAM', main:'Gözlem altında tut.', sub:'Ara sıra olumsuz reaksiyon var. Kullanım sıklığını azaltarak devam et ve gözlemle.' };
-      }
-      if (daysUsed >= total) {
-        return { cls:'dc-safe', label:'SONUÇ HAZIR', main:'Değerlendirme yazabilirsin.', sub:'Yeterli süre geçti. Deneyimini paylaş — bu diğer kullanıcılara yol gösterecek.' };
-      }
-      return { cls:'dc-safe', label:'İYİ GİDİYOR', main:'Devam et.', sub:'Şu ana kadar olumsuz bir sinyal yok. Takibe devam et.' };
+    function getDecision(p){
+      var risk=getRiskLevel(p);
+      if(p.done===0) return {cls:'dc-neutral', label:'BAŞLANGIÇ ANALİZİ', main:'Takip başladı.', sub:'Her gün check-in yap. İlk 3 günde ciddi bir reaksiyon olmadığı sürece devam et.'};
+      if(risk==='high') return {cls:'dc-risk', label:'RİSK TESPİT EDİLDİ', main:'Kullanımı durdurman önerilir.', sub:'Son günlerde cildin olumsuz tepki veriyor. Bu ürün cilt profiliyle uyumsuz olabilir.'};
+      if(risk==='mid') return {cls:'dc-warn', label:'DİKKATLİ DEVAM', main:'Gözlem altında tut.', sub:'Ara sıra olumsuz reaksiyon var. Kullanım sıklığını azaltarak devam et ve gözlemle.'};
+      if(p.done>=p.days) return {cls:'dc-safe', label:'SONUÇ HAZIR', main:'Değerlendirme yazabilirsin.', sub:'Yeterli süre geçti. Deneyimini paylaş — bu diğer kullanıcılara yol gösterecek.'};
+      return {cls:'dc-safe', label:'İYİ GİDİYOR', main:'Devam et.', sub:'Şu ana kadar olumsuz bir sinyal yok. Takibe devam et.'};
     }
 
-    function getInsights(p) {
-      if (!p.checkins || p.checkins.length === 0) {
-        return '<div class="ins-row"><span class="ins-icon">◌</span><div class="ins-txt">Henüz veri yok.<br><span class="ins-prob mid">Her gün check-in yaparak veri topla.</span></div></div>';
-      }
-      var worse = p.checkins.filter(function(c) { return c.reaction === 'worse'; }).length;
-      var better = p.checkins.filter(function(c) { return c.reaction === 'better'; }).length;
-      var total = p.checkins.length;
-      var worseRate = Math.round((worse / total) * 100);
-      var betterRate = Math.round((better / total) * 100);
-      var rows = '';
-      if (worseRate > 40) {
-        rows += '<div class="ins-row"><span class="ins-icon">⚠</span><div class="ins-txt">Günlerin %' + worseRate + '\'inde cildin kötüleşti.<br><span class="ins-prob high">Yüksek uyumsuzluk sinyali.</span></div></div>';
-      } else if (betterRate > 50) {
-        rows += '<div class="ins-row"><span class="ins-icon">↗</span><div class="ins-txt">Günlerin %' + betterRate + '\'inde iyileşme görüldü.<br><span class="ins-prob low">Ürün cildine uyuyor görünüyor.</span></div></div>';
-      } else {
-        rows += '<div class="ins-row"><span class="ins-icon">→</span><div class="ins-txt">Nötr tepki. Değişim henüz belirgin değil.<br><span class="ins-prob mid">Takibe devam et.</span></div></div>';
-      }
-      var skinType = skinProfile.type || '';
-      if (skinType === 'Hassas' && worse > 0) {
-        rows += '<div class="ins-row"><span class="ins-icon">⚡</span><div class="ins-txt">Hassas cilt + reaksiyon kombinasyonu.<br><span class="ins-prob high">Bu ürünü bırakmayı değerlendir.</span></div></div>';
-      }
-      if (skinType === 'Yağlı' && (p.cat === 'moisturizer' || p.cat === 'serum')) {
-        rows += '<div class="ins-row"><span class="ins-icon">◈</span><div class="ins-txt">Yağlı cilt için bu kategori riskli olabilir.<br><span class="ins-prob mid">Non-comedogenic formül olduğundan emin ol.</span></div></div>';
-      }
+    function getInsights(p){
+      if(!p.checkins||!p.checkins.length) return '<div class="ins-row"><span class="ins-icon">◌</span><div class="ins-txt">Henüz veri yok.<br><span class="ins-prob mid">Her gün check-in yaparak veri topla.</span></div></div>';
+      var worse=p.checkins.filter(function(c){ return c.reaction==='worse'; }).length;
+      var better=p.checkins.filter(function(c){ return c.reaction==='better'; }).length;
+      var total=p.checkins.length;
+      var worseRate=Math.round((worse/total)*100);
+      var betterRate=Math.round((better/total)*100);
+      var rows='';
+      if(worseRate>40) rows+='<div class="ins-row"><span class="ins-icon">⚠</span><div class="ins-txt">Günlerin %'+worseRate+'\'inde cildin kötüleşti.<br><span class="ins-prob high">Yüksek uyumsuzluk sinyali.</span></div></div>';
+      else if(betterRate>50) rows+='<div class="ins-row"><span class="ins-icon">↗</span><div class="ins-txt">Günlerin %'+betterRate+'\'inde iyileşme görüldü.<br><span class="ins-prob low">Ürün cildine uyuyor görünüyor.</span></div></div>';
+      else rows+='<div class="ins-row"><span class="ins-icon">→</span><div class="ins-txt">Nötr tepki. Değişim henüz belirgin değil.<br><span class="ins-prob mid">Takibe devam et.</span></div></div>';
+      if(skinProfile.type==='Hassas'&&worse>0) rows+='<div class="ins-row"><span class="ins-icon">⚡</span><div class="ins-txt">Hassas cilt + reaksiyon kombinasyonu.<br><span class="ins-prob high">Bu ürünü bırakmayı değerlendir.</span></div></div>';
+      if(skinProfile.type==='Yağlı'&&(p.cat==='moisturizer'||p.cat==='serum')) rows+='<div class="ins-row"><span class="ins-icon">◈</span><div class="ins-txt">Yağlı cilt için bu kategori riskli olabilir.<br><span class="ins-prob mid">Non-comedogenic formül olduğundan emin ol.</span></div></div>';
       return rows;
     }
 
     // ── DAILY CHECK-IN ──
-    function checkDailyCheckin() {
-      if (!products.length) { document.getElementById('daily-checkin').style.display = 'none'; return; }
-      var today = new Date().toDateString();
-      var todayKey = getKey('checkin_date');
-      var lastDate = todayKey ? localStorage.getItem(todayKey) : null;
-      if (lastDate === today) { document.getElementById('daily-checkin').style.display = 'none'; return; }
-      document.getElementById('daily-checkin').style.display = 'block';
-      var activeProds = products.filter(function(p) { return p.status === 'active' && p.done < p.days; });
-      if (activeProds.length === 0) { document.getElementById('daily-checkin').style.display = 'none'; return; }
-      var prod = activeProds[0];
-      document.getElementById('ci-q').textContent = '"' + prod.name + '" — bugün cildin nasıl hissettirdi?';
+    function checkDailyCheckin(){
+      if(!products.length){ document.getElementById('daily-checkin').style.display='none'; return; }
+      var today=new Date().toDateString();
+      var todayKey=getKey('checkin_date');
+      var lastDate=todayKey ? localStorage.getItem(todayKey) : null;
+      if(lastDate===today){ document.getElementById('daily-checkin').style.display='none'; return; }
+      var activeProds=products.filter(function(p){ return p.status==='active'&&p.done<p.days; });
+      if(!activeProds.length){ document.getElementById('daily-checkin').style.display='none'; return; }
+      document.getElementById('daily-checkin').style.display='block';
+      document.getElementById('ci-q').textContent='"'+activeProds[0].name+'" — bugün cildin nasıl hissettirdi?';
     }
 
-    window.doCheckIn = function(reaction, btn) {
-      btn.closest('.ci-opts').querySelectorAll('.ci-btn').forEach(function(b) { b.classList.remove('sel'); });
+    window.doCheckIn = function(reaction, btn){
+      btn.closest('.ci-opts').querySelectorAll('.ci-btn').forEach(function(b){ b.classList.remove('sel'); });
       btn.classList.add('sel');
-      var today = new Date().toDateString();
-      var todayKey = getKey('checkin_date');
-      if (todayKey) localStorage.setItem(todayKey, today);
-      var activeProds = products.filter(function(p) { return p.status === 'active' && p.done < p.days; });
-      if (activeProds.length > 0) {
-        var prod = activeProds[0];
-        prod.done = Math.min(prod.done + 1, prod.days);
-        if (!prod.checkins) prod.checkins = [];
-        prod.checkins.push({ date: new Date().toISOString(), reaction: reaction });
+      var today=new Date().toDateString();
+      var todayKey=getKey('checkin_date');
+      if(todayKey) localStorage.setItem(todayKey, today);
+      var activeProds=products.filter(function(p){ return p.status==='active'&&p.done<p.days; });
+      if(activeProds.length){
+        var prod=activeProds[0];
+        prod.done=Math.min(prod.done+1, prod.days);
+        if(!prod.checkins) prod.checkins=[];
+        prod.checkins.push({date:new Date().toISOString(), reaction:reaction});
         save('products', products);
         renderProducts();
-        setTimeout(function() {
-          document.getElementById('daily-checkin').style.display = 'none';
-          if (reaction === 'worse') showInsightToast('⚠️ Olumsuz reaksiyon kaydedildi. Ürün detayına bak.');
-          else if (reaction === 'better') showInsightToast('✓ İyileşme kaydedildi.');
+        setTimeout(function(){
+          document.getElementById('daily-checkin').style.display='none';
+          if(reaction==='worse') showInsightToast('⚠️ Olumsuz reaksiyon kaydedildi. Ürün detayına bak.');
+          else if(reaction==='better') showInsightToast('✓ İyileşme kaydedildi.');
         }, 600);
       }
     };
 
-    function showInsightToast(msg) {
-      var t = document.createElement('div');
-      t.style.cssText = 'position:absolute;bottom:80px;left:16px;right:16px;background:var(--ink);color:#fff;padding:12px 16px;border-radius:4px;font-size:0.78rem;z-index:200;text-align:center;';
-      t.textContent = msg;
+    function showInsightToast(msg){
+      var t=document.createElement('div');
+      t.style.cssText='position:absolute;bottom:80px;left:16px;right:16px;background:var(--ink);color:#fff;padding:12px 16px;border-radius:4px;font-size:0.78rem;z-index:200;text-align:center;';
+      t.textContent=msg;
       document.querySelector('.phone').appendChild(t);
-      setTimeout(function() { t.remove(); }, 2800);
+      setTimeout(function(){ t.remove(); }, 2800);
     }
 
     // ── PRE-PURCHASE ──
-    window.runPrePurchase = function() {
+    window.runPrePurchase = function(){
       var name = document.getElementById('pp-inp').value.trim();
-      if (!name) return;
+      if(!name) return;
       var res = document.getElementById('pp-result');
-      var skinType = skinProfile.type || 'Bilinmiyor';
-      var concerns = skinProfile.concerns || [];
-      var allergy = skinProfile.allergy || 'Emin değilim';
-
-      // Simple rule-based scoring
-      var score = 75;
-      var warnings = [];
-      var positives = [];
-
-      var nameLow = name.toLowerCase();
-
-      if (skinType === 'Hassas') {
-        if (nameLow.includes('asit') || nameLow.includes('acid') || nameLow.includes('retinol') || nameLow.includes('aha') || nameLow.includes('bha')) {
-          score -= 25; warnings.push('Hassas cilt için asit içerikli ürünler tahriş riski taşır.');
-        }
-      }
-      if (skinType === 'Yağlı') {
-        if (nameLow.includes('oil') || nameLow.includes('yağ') || nameLow.includes('krem')) {
-          score -= 15; warnings.push('Yağlı cilt için yoğun kremler gözenek tıkanmasına yol açabilir.');
-        }
-        if (nameLow.includes('niacinamide') || nameLow.includes('salisilik') || nameLow.includes('salicylic')) {
-          score += 10; positives.push('Yağlı cilt için uygun içerik.');
-        }
-      }
-      if (skinType === 'Kuru') {
-        if (nameLow.includes('hyaluronic') || nameLow.includes('hyaluronik') || nameLow.includes('nemlendirici') || nameLow.includes('moisturizer')) {
-          score += 10; positives.push('Kuru cilt için iyi bir seçim.');
-        }
-        if (nameLow.includes('foam') || nameLow.includes('köpük')) {
-          score -= 10; warnings.push('Köpük temizleyiciler kuru cildi daha da kurutabilir.');
-        }
-      }
-      if (allergy === 'Evet, var') {
-        warnings.push('Alerjin olduğunu belirttin — içerikleri dikkatle incele.');
-        score -= 10;
-      }
-      if (concerns.includes('Sivilce & Akne')) {
-        if (nameLow.includes('oil') || nameLow.includes('coconut') || nameLow.includes('hindistan')) {
-          score -= 15; warnings.push('Akne eğilimli cilt için comedogenic olabilir.');
-        }
-      }
-
-      score = Math.max(20, Math.min(98, score));
-      var scoreColor = score >= 70 ? 'var(--safe)' : score >= 50 ? 'var(--warn)' : 'var(--danger)';
-      var verdict = score >= 70 ? 'Uyumlu görünüyor' : score >= 50 ? 'Dikkatli kullan' : 'Riskli olabilir';
-
-      var warnHTML = warnings.map(function(w) {
-        return '<div class="ins-row"><span class="ins-icon">⚠</span><div class="ins-txt">' + w + '</div></div>';
-      }).join('');
-      var posHTML = positives.map(function(p) {
-        return '<div class="ins-row"><span class="ins-icon">✓</span><div class="ins-txt">' + p + '</div></div>';
-      }).join('');
-
-      res.innerHTML = '<div class="pp-result" style="margin-top:16px;">'
-        + '<div class="pp-score">'
-        + '<svg class="score-ring" viewBox="0 0 56 56"><circle cx="28" cy="28" r="22" fill="none" stroke="var(--br)" stroke-width="4"/><circle cx="28" cy="28" r="22" fill="none" stroke="' + scoreColor + '" stroke-width="4" stroke-dasharray="' + (Math.round(score/100*138)) + ' 138" stroke-linecap="round" transform="rotate(-90 28 28)"/></svg>'
-        + '<div><div class="score-val" style="color:' + scoreColor + '">' + score + '</div><div class="score-label">' + verdict + '</div></div>'
-        + '</div>'
-        + '<div style="font-size:0.65rem;font-weight:500;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">CİLT PROFİLİN İÇİN</div>'
-        + (posHTML || '') + (warnHTML || '')
-        + (!warnings.length && !positives.length ? '<div class="ins-row"><span class="ins-icon">◌</span><div class="ins-txt">Cilt profilini doldurursan daha kesin sonuç alırsın.</div></div>' : '')
-        + '</div>'
-        + '<button class="action-btn" style="margin-top:12px;" onclick="startFromPrePurchase()">Deneyeceğim, takibe al →</button>';
+      var skinType=skinProfile.type||'Bilinmiyor';
+      var concerns=skinProfile.concerns||[];
+      var allergy=skinProfile.allergy||'Emin değilim';
+      var score=75, warnings=[], positives=[];
+      var nameLow=name.toLowerCase();
+      if(skinType==='Hassas'){ if(nameLow.includes('asit')||nameLow.includes('acid')||nameLow.includes('retinol')||nameLow.includes('aha')||nameLow.includes('bha')){ score-=25; warnings.push('Hassas cilt için asit içerikli ürünler tahriş riski taşır.'); } }
+      if(skinType==='Yağlı'){ if(nameLow.includes('oil')||nameLow.includes('yağ')||nameLow.includes('krem')){ score-=15; warnings.push('Yağlı cilt için yoğun kremler gözenek tıkanmasına yol açabilir.'); } if(nameLow.includes('niacinamide')||nameLow.includes('salisilik')||nameLow.includes('salicylic')){ score+=10; positives.push('Yağlı cilt için uygun içerik.'); } }
+      if(skinType==='Kuru'){ if(nameLow.includes('hyaluronic')||nameLow.includes('hyaluronik')||nameLow.includes('nemlendirici')||nameLow.includes('moisturizer')){ score+=10; positives.push('Kuru cilt için iyi bir seçim.'); } if(nameLow.includes('foam')||nameLow.includes('köpük')){ score-=10; warnings.push('Köpük temizleyiciler kuru cildi daha da kurutabilir.'); } }
+      if(allergy==='Evet, var'){ warnings.push('Alerjin olduğunu belirttin — içerikleri dikkatle incele.'); score-=10; }
+      if(concerns.includes('Sivilce & Akne')){ if(nameLow.includes('oil')||nameLow.includes('coconut')||nameLow.includes('hindistan')){ score-=15; warnings.push('Akne eğilimli cilt için comedogenic olabilir.'); } }
+      score=Math.max(20,Math.min(98,score));
+      var scoreColor=score>=70?'var(--safe)':score>=50?'var(--warn)':'var(--danger)';
+      var verdict=score>=70?'Uyumlu görünüyor':score>=50?'Dikkatli kullan':'Riskli olabilir';
+      var warnHTML=warnings.map(function(w){ return '<div class="ins-row"><span class="ins-icon">⚠</span><div class="ins-txt">'+w+'</div></div>'; }).join('');
+      var posHTML=positives.map(function(p){ return '<div class="ins-row"><span class="ins-icon">✓</span><div class="ins-txt">'+p+'</div></div>'; }).join('');
+      res.innerHTML='<div class="pp-result" style="margin-top:16px;"><div class="pp-score"><svg class="score-ring" viewBox="0 0 56 56"><circle cx="28" cy="28" r="22" fill="none" stroke="var(--br)" stroke-width="4"/><circle cx="28" cy="28" r="22" fill="none" stroke="'+scoreColor+'" stroke-width="4" stroke-dasharray="'+Math.round(score/100*138)+' 138" stroke-linecap="round" transform="rotate(-90 28 28)"/></svg><div><div class="score-val" style="color:'+scoreColor+'">'+score+'</div><div class="score-label">'+verdict+'</div></div></div><div style="font-size:0.65rem;font-weight:500;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">CİLT PROFİLİN İÇİN</div>'+(posHTML||'')+(warnHTML||'')+(!warnings.length&&!positives.length?'<div class="ins-row"><span class="ins-icon">◌</span><div class="ins-txt">Cilt profilini doldurursan daha kesin sonuç alırsın.</div></div>':'')+'</div><button class="action-btn" style="margin-top:12px;" onclick="startFromPrePurchase()">Deneyeceğim, takibe al →</button>';
     };
 
-    window.startFromPrePurchase = function() {
-      closeSub('sub-prepurchase');
-      openSub('sub-add');
+    window.startFromPrePurchase = function(){ closeSub('sub-prepurchase'); openSub('sub-add'); };
+
+    // ── BARCODE ──
+    var scanActive=false, html5Scanner=null;
+    window.toggleScan = function(){
+      var area=document.getElementById('scan-area');
+      var ic=document.getElementById('scan-toggle-ic');
+      if(area.style.display==='none'){ area.style.display='block'; ic.textContent='↓'; startScan(); }
+      else { area.style.display='none'; ic.textContent='›'; stopScan(); }
     };
-
-    // ── BARCODE SCAN ──
-    var scanActive = false;
-    var html5Scanner = null;
-
-    window.toggleScan = function() {
-      var area = document.getElementById('scan-area');
-      var ic = document.getElementById('scan-toggle-ic');
-      if (area.style.display === 'none') {
-        area.style.display = 'block';
-        ic.textContent = '↓';
-        startScan();
-      } else {
-        area.style.display = 'none';
-        ic.textContent = '›';
-        stopScan();
-      }
-    };
-
-    function startScan() {
-      if (scanActive) return;
-      var statusEl = document.getElementById('scan-status');
+    function startScan(){
+      if(scanActive) return;
+      var statusEl=document.getElementById('scan-status');
       try {
-        html5Scanner = new Html5Qrcode('scan-video');
-        html5Scanner.start(
-          { facingMode: 'environment' },
-          { fps: 10, qrbox: { width: 200, height: 100 } },
-          function(decodedText) {
-            scanActive = false;
-            html5Scanner.stop().catch(function(){});
-            statusEl.textContent = '✓ Barkod okundu: ' + decodedText;
-            document.getElementById('scan-area').style.display = 'none';
-            document.getElementById('scan-toggle-ic').textContent = '›';
-            // Try to find product name from barcode
-            fetchBarcode(decodedText);
-          },
-          function() {}
+        html5Scanner=new Html5Qrcode('scan-video');
+        html5Scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:200,height:100}},
+          function(decodedText){ scanActive=false; html5Scanner.stop().catch(function(){}); statusEl.textContent='✓ Barkod okundu: '+decodedText; document.getElementById('scan-area').style.display='none'; document.getElementById('scan-toggle-ic').textContent='›'; fetchBarcode(decodedText); },
+          function(){}
         );
-        scanActive = true;
-        statusEl.textContent = 'Barkodu çerçeve içine getir';
-      } catch(e) {
-        statusEl.textContent = 'Kamera açılamadı';
-      }
+        scanActive=true; statusEl.textContent='Barkodu çerçeve içine getir';
+      } catch(e){ statusEl.textContent='Kamera açılamadı'; }
     }
-
-    function stopScan() {
-      if (html5Scanner) { html5Scanner.stop().catch(function(){}); html5Scanner = null; }
-      scanActive = false;
-    }
-
-    function fetchBarcode(code) {
+    function stopScan(){ if(html5Scanner){ html5Scanner.stop().catch(function(){}); html5Scanner=null; } scanActive=false; }
+    function fetchBarcode(code){
       showLoad('Ürün aranıyor...');
-      fetch('https://world.openbeautyfacts.org/api/v0/product/' + code + '.json')
-        .then(function(r) { return r.json(); })
-        .then(function(d) {
-          hideLoad();
-          if (d.status === 1 && d.product && d.product.product_name) {
-            document.getElementById('add-name').value = d.product.product_name;
-            checkAddReady();
-          } else {
-            return fetch('https://world.openfoodfacts.org/api/v0/product/' + code + '.json');
-          }
-        })
-        .then(function(r) { if(r) return r.json(); })
-        .then(function(d) {
-          hideLoad();
-          if (d && d.status === 1 && d.product && d.product.product_name) {
-            document.getElementById('add-name').value = d.product.product_name;
-            checkAddReady();
-          }
-        })
-        .catch(function() { hideLoad(); });
+      fetch('https://world.openbeautyfacts.org/api/v0/product/'+code+'.json')
+        .then(function(r){ return r.json(); })
+        .then(function(d){ hideLoad(); if(d.status===1&&d.product&&d.product.product_name){ document.getElementById('add-name').value=d.product.product_name; checkAddReady(); } })
+        .catch(function(){ hideLoad(); });
     }
 
     // ── FINAL REVIEW ──
-    window.openFinalReview = function(id) {
-      var p = products.find(function(x) { return x.id === id; });
-      if (!p) return;
-      var body = document.getElementById('det-body');
-      body.innerHTML = '<div style="font-family:\'Instrument Serif\',serif;font-size:1.3rem;color:var(--ink);margin-bottom:6px;">Son Değerlendirme</div>'
-        + '<div style="font-size:0.75rem;color:var(--mid);margin-bottom:20px;">' + p.name + ' · ' + p.done + ' gün kullandın</div>'
-        + '<div style="font-size:0.72rem;font-weight:500;color:var(--mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Genel Sonuç</div>'
-        + '<div style="display:flex;gap:8px;margin-bottom:16px;">'
-        + '<button class="ci-btn" style="flex:1;" onclick="setFinalVerdict(\'recommend\',this)">✓ Öneriyorum</button>'
-        + '<button class="ci-btn" style="flex:1;" onclick="setFinalVerdict(\'neutral\',this)">— Kararsızım</button>'
-        + '<button class="ci-btn" style="flex:1;" onclick="setFinalVerdict(\'avoid\',this)">✗ Önermiyorum</button>'
-        + '</div>'
-        + '<div style="font-size:0.72rem;font-weight:500;color:var(--mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Neler fark ettin?</div>'
-        + '<textarea id="rv-text" style="width:100%;padding:12px;border:1px solid var(--br);border-radius:3px;font-family:inherit;font-size:0.84rem;height:100px;resize:none;outline:none;color:var(--ink);" placeholder="Cildinde ne değişti? Kimler için uygun? Tekrar alır mısın?"></textarea>'
+    window.openFinalReview = function(id){
+      var p=products.find(function(x){ return x.id===id; });
+      if(!p) return;
+      document.getElementById('det-body').innerHTML=
+        '<div style="font-family:\'Instrument Serif\',serif;font-size:1.3rem;color:var(--ink);margin-bottom:6px;">Son Değerlendirme</div>'
+        +'<div style="font-size:0.75rem;color:var(--mid);margin-bottom:20px;">'+p.name+' · '+p.done+' gün kullandın</div>'
+        +'<div style="font-size:0.72rem;font-weight:500;color:var(--mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Genel Sonuç</div>'
+        +'<div style="display:flex;gap:8px;margin-bottom:16px;"><button class="ci-btn" style="flex:1;" onclick="setFinalVerdict(\'recommend\',this)">✓ Öneriyorum</button><button class="ci-btn" style="flex:1;" onclick="setFinalVerdict(\'neutral\',this)">— Kararsızım</button><button class="ci-btn" style="flex:1;" onclick="setFinalVerdict(\'avoid\',this)">✗ Önermiyorum</button></div>'
+        +'<div style="font-size:0.72rem;font-weight:500;color:var(--mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Neler fark ettin?</div>'
+        +'<textarea id="rv-text" style="width:100%;padding:12px;border:1px solid var(--br);border-radius:3px;font-family:inherit;font-size:0.84rem;height:100px;resize:none;outline:none;color:var(--ink);" placeholder="Cildinde ne değişti?"></textarea>'
 
 ```
-    + '<button class="action-btn" style="margin-top:12px;" id="rv-submit" onclick="submitFinalReview(\'' + p.id + '\')" disabled>Paylaş →</button>';
-
-  document.getElementById('rv-text').addEventListener('input', function() {
+    +'<button class="action-btn" style="margin-top:12px;" id="rv-submit" onclick="submitFinalReview(\''+p.id+'\')" disabled>Paylaş →</button>';
+  document.getElementById('rv-text').addEventListener('input', function(){
     document.getElementById('rv-submit').disabled = !this.value.trim() || !window._finalVerdict;
   });
 };
 
 window._finalVerdict = null;
-window.setFinalVerdict = function(v, btn) {
-  btn.parentElement.querySelectorAll('.ci-btn').forEach(function(b) { b.classList.remove('sel'); });
+window.setFinalVerdict = function(v, btn){
+  btn.parentElement.querySelectorAll('.ci-btn').forEach(function(b){ b.classList.remove('sel'); });
   btn.classList.add('sel');
-  window._finalVerdict = v;
-  var txt = document.getElementById('rv-text');
-  if (txt) document.getElementById('rv-submit').disabled = !txt.value.trim();
+  window._finalVerdict=v;
+  var txt=document.getElementById('rv-text');
+  if(txt) document.getElementById('rv-submit').disabled=!txt.value.trim();
 };
 
-window.submitFinalReview = function(id) {
-  var p = products.find(function(x) { return x.id === id; });
-  if (!p) return;
-  p.status = 'reviewed';
-  p.review = { verdict: window._finalVerdict, text: document.getElementById('rv-text').value.trim(), date: new Date().toISOString() };
-  window._finalVerdict = null;
+window.submitFinalReview = function(id){
+  var p=products.find(function(x){ return x.id===id; });
+  if(!p) return;
+  p.status='reviewed';
+  p.review={verdict:window._finalVerdict, text:document.getElementById('rv-text').value.trim(), date:new Date().toISOString()};
+  window._finalVerdict=null;
   save('products', products);
   renderProducts();
   closeSub('sub-detail');
@@ -1191,12 +992,12 @@ window.submitFinalReview = function(id) {
 };
 ```
 
-} // end init
+}
 
-if (document.readyState === ‘complete’) { init(); }
+if(document.readyState===‘complete’){ init(); }
 else { window.addEventListener(‘load’, init); }
 })();
-
 </script>
+
 </body>
 </html>
