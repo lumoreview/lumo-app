@@ -45,9 +45,9 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .w-h1{font-family:‘Instrument Serif’,serif;font-size:2.6rem;color:#fff;line-height:1.08;letter-spacing:-1px;margin-bottom:14px;}
 .w-h1 em{font-style:italic;color:var(–accent);}
 .w-body{font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.7;margin-bottom:32px;max-width:300px;}
-.btn-p{background:var(–accent);color:#080808;border:none;border-radius:3px;padding:16px 24px;font-family:inherit;font-size:0.88rem;font-weight:500;width:100%;cursor:pointer;letter-spacing:0.3px;transition:opacity 0.15s;}
+.btn-p{background:#FFE030;color:#080808;border:none;border-radius:3px;padding:16px 24px;font-family:inherit;font-size:0.88rem;font-weight:500;width:100%;cursor:pointer;letter-spacing:0.3px;transition:opacity 0.15s;}
 .btn-p:active{opacity:0.85;}
-.btn-s{background:transparent;color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:3px;padding:14px 24px;font-family:inherit;font-size:0.82rem;width:100%;cursor:pointer;margin-top:8px;transition:all 0.15s;}
+.btn-s{background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.2);border-radius:3px;padding:14px 24px;font-family:inherit;font-size:0.82rem;width:100%;cursor:pointer;margin-top:8px;transition:all 0.15s;}
 .btn-s:active{background:rgba(255,255,255,0.05);}
 .w-disc{font-size:0.62rem;color:rgba(255,255,255,0.15);text-align:center;margin-top:16px;}
 
@@ -570,8 +570,10 @@ var _auth = firebase.auth();
 
     // ── UTILS ──
     window.show = function(id) {
-      document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('on'); });
-      document.getElementById(id).classList.add('on');
+      document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('on'); s.style.display=''; });
+      var el = document.getElementById(id);
+      el.classList.add('on');
+      el.style.display = 'flex';
     };
     window.openSub = function(id){ document.getElementById(id).classList.add('on'); };
     window.closeSub = function(id){
@@ -595,7 +597,11 @@ var _auth = firebase.auth();
       document.getElementById('auth-btn').textContent = isReg ? 'Devam Et →' : 'Giriş Yap →';
       document.getElementById('uname-field').style.display = isReg ? 'block' : 'none';
       document.getElementById('auth-msg').textContent = '';
-      show('s-auth');
+      // show all screens off, show auth
+      document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('on'); s.style.display=''; });
+      var el = document.getElementById('s-auth');
+      el.classList.add('on');
+      el.style.display='flex';
     };
 
     window.switchTab = function(tab){
@@ -998,8 +1004,9 @@ window.submitFinalReview = function(id){
 
 }
 
-if(document.readyState===‘complete’){ init(); }
-else { window.addEventListener(‘load’, init); }
+function safeInit(){ try { init(); } catch(e){ console.log(‘init error:’, e); } }
+if(document.readyState===‘complete’){ safeInit(); }
+else { window.addEventListener(‘load’, safeInit); }
 })();
 
 </script>
