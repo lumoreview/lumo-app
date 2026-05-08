@@ -536,9 +536,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
-
 <script>
+
 // Splash auto-transition — runs immediately, no dependency on Supabase
 setTimeout(function(){
   var splash = document.getElementById('s-splash');
@@ -549,15 +548,23 @@ setTimeout(function(){
 
 (function() {
   function init() {
-    if (typeof supabase === 'undefined') { setTimeout(init, 100); return; }
 
-    var SUPA_URL = 'https://xbljwitdojciurlohskw.supabase.co';
-    var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhibGp3aXRkb2pjaXVybG9oc2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNDA4NzIsImV4cCI6MjA5MzcxNjg3Mn0.WO63UHn_pSD8_tXLhsNLMIxO0p8OMa4V_nX1Epj2cF4';
-    var _sb = supabase.createClient(SUPA_URL, SUPA_KEY);
 
     var currentUser = null;
     var skinProfile = {};
     var products = [];
+
+
+    // Restore session if exists
+    var savedSession = localStorage.getItem('lumo_session');
+    if(savedSession){
+      try {
+        var sess = JSON.parse(savedSession);
+        currentUser = {email:sess.email, id:sess.id, uname:sess.uname};
+        onLogin(sess.uname);
+      } catch(e){ localStorage.removeItem('lumo_session'); show('s-welcome'); }
+    }
+    // (welcome screen already shown by splash timeout if no session)
 
     // ── UTILS ──
     window.show = function(id) {
@@ -575,7 +582,8 @@ setTimeout(function(){
     function save(k,v){ var key=getKey(k); if(key) localStorage.setItem(key, JSON.stringify(v)); }
     function load(k,def){ var key=getKey(k); if(!key) return def; var v=localStorage.getItem(key); return v ? JSON.parse(v) : def; }
 
-    // ── AUTH ──
+
+    // ── AUTH (localStorage — no backend) ──
     var isReg = true;
 
     window.showAuth = function(mode){
@@ -599,7 +607,7 @@ setTimeout(function(){
       document.getElementById('nav-'+tab).classList.add('on');
     };
 
-    window.handleAuth = async function(){
+    window.handleAuth = function(){
       var btn = document.getElementById('auth-btn');
       var msg = document.getElementById('auth-msg');
       btn.disabled = true; msg.className='msg'; msg.textContent='';
@@ -608,59 +616,55 @@ setTimeout(function(){
       var uname = document.getElementById('inp-uname').value.trim();
       if(!email || !pass){ msg.className='msg err'; msg.textContent='E-posta ve şifre gerekli.'; btn.disabled=false; return; }
       if(isReg && !uname){ msg.className='msg err'; msg.textContent='Kullanıcı adı gerekli.'; btn.disabled=false; return; }
-      try {
-        var r = isReg
-          ? await _sb.auth.signUp({email:email, password:pass, options:{data:{username:uname}}})
-          : await _sb.auth.signInWithPassword({email:email, password:pass});
-        if(r.error) throw r.error;
-      } catch(e){
-        msg.className='msg err';
-        msg.textContent = e.message==='Invalid login credentials' ? 'E-posta veya şifre hatalı.' : e.message;
+
+      if(isReg){
+        if(localStorage.getItem('lumo_user_'+email)){ msg.className='msg err'; msg.textContent='Bu e-posta zaten kayıtlı.'; btn.disabled=false; return; }
+        localStorage.setItem('lumo_user_'+email, JSON.stringify({email:email, pass:pass, uname:uname}));
+        loginUser(email, uname);
+      } else {
+        var stored = localStorage.getItem('lumo_user_'+email);
+        if(!stored){ msg.className='msg err'; msg.textContent='Kullanıcı bulunamadı.'; btn.disabled=false; return; }
+        var user = JSON.parse(stored);
+        if(user.pass !== pass){ msg.className='msg err'; msg.textContent='Şifre hatalı.'; btn.disabled=false; return; }
+        loginUser(email, user.uname);
       }
       btn.disabled=false;
     };
 
-    window.handleGoogle = async function(){
-      try {
-        showLoad('Google ile giriş...');
-        var r = await _sb.auth.signInWithOAuth({provider:'google', options:{redirectTo:window.location.href}});
-        if(r.error) throw r.error;
-      } catch(e){
-        hideLoad();
-        document.getElementById('auth-msg').className='msg err';
-        document.getElementById('auth-msg').textContent='Google girişi başarısız.';
-      }
+    window.handleGoogle = function(){
+      // Simplified: just ask for a name
+      var name = prompt('Kullanıcı adın nedir?');
+      if(!name) return;
+      var email = name.toLowerCase().replace(/\s/g,'')+'@google.user';
+      loginUser(email, name);
     };
 
-    window.handleLogout = async function(){
+    window.handleLogout = function(){
       if(!confirm('Çıkış yapmak istiyor musun?')) return;
-      await _sb.auth.signOut();
+      localStorage.removeItem('lumo_session');
       currentUser=null; skinProfile={}; products=[];
       show('s-welcome');
     };
 
-    _sb.auth.onAuthStateChange(function(event, session){
-      if(session && session.user){
-        currentUser = session.user;
-        var uname = (currentUser.user_metadata && currentUser.user_metadata.username) || currentUser.email.split('@')[0];
-        skinProfile = load('skin', {});
-        products = load('products', []);
-        document.getElementById('home-name').textContent = uname;
-        document.getElementById('home-av').textContent = uname[0].toUpperCase();
-        document.getElementById('prof-av').textContent = uname[0].toUpperCase();
-        document.getElementById('prof-name').textContent = uname;
-        document.getElementById('prof-email').textContent = currentUser.email || '';
-        renderSkinTags();
-        var hasProfile = Object.keys(skinProfile).length > 0;
-        if(!hasProfile){ show('s-profile'); startOb(); }
-        else { show('s-app'); renderProducts(); checkDailyCheckin(); }
-      }
-    });
+    function loginUser(email, uname){
+      localStorage.setItem('lumo_session', JSON.stringify({email:email, uname:uname, id:btoa(email)}));
+      currentUser = {email:email, id:btoa(email), uname:uname};
+      onLogin(uname);
+    }
 
-    _sb.auth.getSession().then(function(r){
-      if(!r.data || !r.data.session){ show('s-welcome'); }
-    });
-
+    function onLogin(uname){
+      skinProfile = load('skin', {});
+      products = load('products', []);
+      document.getElementById('home-name').textContent = uname;
+      document.getElementById('home-av').textContent = uname[0].toUpperCase();
+      document.getElementById('prof-av').textContent = uname[0].toUpperCase();
+      document.getElementById('prof-name').textContent = uname;
+      document.getElementById('prof-email').textContent = currentUser.email || '';
+      renderSkinTags();
+      var hasProfile = Object.keys(skinProfile).length > 0;
+      if(!hasProfile){ show('s-profile'); startOb(); }
+      else { show('s-app'); renderProducts(); checkDailyCheckin(); }
+    }
     // ── ONBOARDING ──
     var obSteps = [
       {icon:'🌿', q:'Cilt tipini seçelim', hint:'Sana en doğru analizi yapabilmek için', multi:false, key:'type', opts:['Normal','Yağlı','Kuru','Karma','Hassas']},
@@ -996,7 +1000,7 @@ window.submitFinalReview = function(id){
 if(document.readyState===‘complete’){ init(); }
 else { window.addEventListener(‘load’, init); }
 })();
-</script>
 
+</script>
 </body>
 </html>
