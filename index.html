@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -29,379 +28,311 @@
 }
 html,body{width:100%;height:100%;overflow:hidden;background:#000;}
 body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-items:center;-webkit-font-smoothing:antialiased;}
-
-/* GRAIN OVERLAY */
-body::before{content:’’;position:fixed;inset:0;background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘noise’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23noise)’ opacity=‘0.03’/%3E%3C/svg%3E”);pointer-events:none;z-index:9999;opacity:0.4;}
-
-.phone{width:min(390px,100vw);height:min(844px,100vh);background:var(–black);overflow:hidden;position:relative;display:flex;flex-direction:column;border-radius:min(44px,5vw);box-shadow:0 0 0 1px rgba(255,255,255,0.06),0 40px 120px rgba(0,0,0,0.9),0 0 60px rgba(201,169,110,0.05);}
-
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
+.phone{width:min(390px,100vw);height:min(844px,100vh);background:var(--black);overflow:hidden;position:relative;display:flex;flex-direction:column;border-radius:min(44px,5vw);box-shadow:0 0 0 1px rgba(255,255,255,0.06),0 40px 120px rgba(0,0,0,0.9),0 0 60px rgba(201,169,110,0.05);}
 .screen{position:absolute;inset:0;display:none;flex-direction:column;}
 .screen.on{display:flex;}
 .scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .scroll::-webkit-scrollbar{display:none;}
-
-/* ── SPLASH ── */
-#s-splash{background:var(–black);justify-content:center;align-items:center;z-index:100;}
-#s-splash.fade{animation:splashFade 0.5s 1.8s ease-out forwards;}
-@keyframes splashFade{to{opacity:0;pointer-events:none;visibility:hidden;}}
+#s-splash{background:var(--black);justify-content:center;align-items:center;z-index:100;}
 .sp-ring{width:64px;height:64px;position:relative;margin-bottom:20px;}
 .sp-ring svg{width:100%;height:100%;animation:ringIn 1s ease-out forwards;}
 @keyframes ringIn{from{opacity:0;transform:scale(0.6) rotate(-90deg);}to{opacity:1;transform:scale(1) rotate(0deg);}}
-.sp-logo{font-family:‘Playfair Display’,serif;font-size:2.8rem;font-weight:900;color:var(–white);letter-spacing:-2px;opacity:0;animation:logoUp 0.6s 0.4s ease-out forwards;}
+.sp-logo{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--white);letter-spacing:-2px;opacity:0;animation:logoUp 0.6s 0.4s ease-out forwards;}
 @keyframes logoUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-.sp-tag{font-family:‘Syne’,sans-serif;font-size:0.52rem;letter-spacing:4px;text-transform:uppercase;color:var(–gold);opacity:0;animation:logoUp 0.6s 0.7s ease-out forwards;margin-top:6px;}
-
-/* ── WELCOME ── */
-#s-welcome{background:var(–black);}
+.sp-tag{font-family:'Syne',sans-serif;font-size:0.52rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:0;animation:logoUp 0.6s 0.7s ease-out forwards;margin-top:6px;}
+#s-welcome{background:var(--black);}
 .wl-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(201,169,110,0.08) 0%,transparent 70%);pointer-events:none;}
 .wl-content{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;padding:0 0 48px;}
 .wl-top{padding:60px 28px 0;flex:1;display:flex;flex-direction:column;justify-content:flex-end;}
-.wl-kicker{font-family:‘Syne’,sans-serif;font-size:0.5rem;letter-spacing:5px;text-transform:uppercase;color:var(–gold);margin-bottom:20px;opacity:0.8;}
-.wl-h1{font-family:‘Playfair Display’,serif;font-size:3rem;font-weight:900;line-height:0.95;letter-spacing:-1.5px;color:var(–white);margin-bottom:8px;}
-.wl-h1 em{font-style:italic;color:var(–gold2);}
-.wl-sub{font-size:0.82rem;color:var(–mid);line-height:1.7;max-width:280px;margin-bottom:32px;font-weight:300;}
+.wl-kicker{font-family:'Syne',sans-serif;font-size:0.5rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0.8;}
+.wl-h1{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;line-height:0.95;letter-spacing:-1.5px;color:var(--white);margin-bottom:8px;}
+.wl-h1 em{font-style:italic;color:var(--gold2);}
+.wl-sub{font-size:0.82rem;color:var(--mid);line-height:1.7;max-width:280px;margin-bottom:32px;font-weight:300;}
 .wl-proof{display:flex;align-items:center;gap:10px;margin-bottom:40px;}
 .wl-faces{display:flex;}
-.wl-face{width:26px;height:26px;border-radius:50%;border:2px solid var(–black);background:var(–card);font-size:0.6rem;display:flex;align-items:center;justify-content:center;margin-left:-8px;}
+.wl-face{width:26px;height:26px;border-radius:50%;border:2px solid var(--black);background:var(--card);font-size:0.6rem;display:flex;align-items:center;justify-content:center;margin-left:-8px;}
 .wl-face:first-child{margin-left:0;}
-.wl-proof-txt{font-size:0.7rem;color:var(–mid);line-height:1.4;}
-.wl-proof-txt strong{color:var(–white);}
+.wl-proof-txt{font-size:0.7rem;color:var(--mid);line-height:1.4;}
+.wl-proof-txt strong{color:var(--white);}
 .wl-actions{padding:0 24px;}
-.btn-gold{background:linear-gradient(135deg,var(–gold) 0%,var(–gold2) 100%);color:var(–black);border:none;border-radius:2px;padding:17px 24px;font-family:‘Syne’,sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;width:100%;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
-.btn-gold::after{content:’’;position:absolute;inset:0;background:rgba(255,255,255,0);transition:background 0.2s;}
+.btn-gold{background:#c9a96e;background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);color:var(--black);border:none;border-radius:2px;padding:17px 24px;font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;width:100%;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
+.btn-gold::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0);transition:background 0.2s;}
 .btn-gold:active::after{background:rgba(255,255,255,0.1);}
-.btn-ghost{background:transparent;color:var(–mid);border:1px solid var(–border2);border-radius:2px;padding:15px 24px;font-family:‘Syne’,sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.5px;width:100%;cursor:pointer;margin-top:10px;transition:all 0.2s;}
-.btn-ghost:active{border-color:var(–gold);color:var(–gold);}
+.btn-ghost{background:transparent;color:var(--mid);border:1px solid var(--border2);border-radius:2px;padding:15px 24px;font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.5px;width:100%;cursor:pointer;margin-top:10px;transition:all 0.2s;}
+.btn-ghost:active{border-color:var(--gold);color:var(--gold);}
 .wl-terms{font-size:0.58rem;color:rgba(255,255,255,0.15);text-align:center;margin-top:14px;letter-spacing:0.3px;}
-
-/* ── AUTH ── */
-#s-auth{background:var(–deep);}
+#s-auth{background:var(--deep);}
 .auth-nav{padding:52px 22px 0;display:flex;align-items:center;gap:14px;}
-.back-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(–border2);background:transparent;cursor:pointer;color:var(–white);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
-.back-btn:active{background:var(–faint);}
-.auth-wordmark{font-family:‘Playfair Display’,serif;font-size:1.1rem;font-weight:700;color:var(–white);letter-spacing:-0.5px;}
+.back-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--white);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+.back-btn:active{background:var(--faint);}
+.auth-wordmark{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--white);letter-spacing:-0.5px;}
 .auth-scroll{flex:1;overflow-y:auto;padding:28px 24px 32px;}
 .auth-scroll::-webkit-scrollbar{display:none;}
-.auth-eyebrow{font-family:‘Syne’,sans-serif;font-size:0.5rem;letter-spacing:4px;text-transform:uppercase;color:var(–gold);margin-bottom:10px;}
-.auth-title{font-family:‘Playfair Display’,serif;font-size:2rem;font-weight:700;color:var(–white);letter-spacing:-0.5px;margin-bottom:4px;line-height:1.1;}
-.auth-title em{font-style:italic;color:var(–gold2);}
-.auth-sub{font-size:0.76rem;color:var(–mid);margin-bottom:28px;font-weight:300;}
-.seg{display:flex;background:var(–surface);border-radius:2px;padding:3px;margin-bottom:24px;border:1px solid var(–border);}
-.seg-btn{flex:1;padding:9px;text-align:center;font-family:‘Syne’,sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;border-radius:1px;cursor:pointer;color:var(–mid);transition:all 0.2s;}
-.seg-btn.on{background:var(–card);color:var(–white);}
+.auth-eyebrow{font-family:'Syne',sans-serif;font-size:0.5rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.auth-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--white);letter-spacing:-0.5px;margin-bottom:4px;line-height:1.1;}
+.auth-title em{font-style:italic;color:var(--gold2);}
+.auth-sub{font-size:0.76rem;color:var(--mid);margin-bottom:28px;font-weight:300;}
+.seg{display:flex;background:var(--surface);border-radius:2px;padding:3px;margin-bottom:24px;border:1px solid var(--border);}
+.seg-btn{flex:1;padding:9px;text-align:center;font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;border-radius:1px;cursor:pointer;color:var(--mid);transition:all 0.2s;}
+.seg-btn.on{background:var(--card);color:var(--white);}
 .fld{margin-bottom:16px;}
-.fld-label{font-family:‘Syne’,sans-serif;font-size:0.55rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);display:block;margin-bottom:7px;}
-.fld-inp{width:100%;padding:14px 16px;border:1px solid var(–border);border-radius:2px;font-family:‘DM Sans’,sans-serif;font-size:0.88rem;color:var(–white);outline:none;background:var(–surface);transition:border-color 0.2s;-webkit-appearance:none;}
-.fld-inp:focus{border-color:var(–gold);}
+.fld-label{font-family:'Syne',sans-serif;font-size:0.55rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);display:block;margin-bottom:7px;}
+.fld-inp{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--white);outline:none;background:var(--surface);transition:border-color 0.2s;-webkit-appearance:none;}
+.fld-inp:focus{border-color:var(--gold);}
 .fld-inp::placeholder{color:rgba(255,255,255,0.2);}
-.auth-action{background:linear-gradient(135deg,var(–gold) 0%,var(–gold2) 100%);color:var(–black);border:none;border-radius:2px;padding:16px;width:100%;font-family:‘Syne’,sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;margin-top:8px;transition:opacity 0.2s;}
-.auth-action:disabled{background:var(–surface);color:rgba(255,255,255,0.2);cursor:default;}
+.auth-action{background:#c9a96e;background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);color:var(--black);border:none;border-radius:2px;padding:16px;width:100%;font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;margin-top:8px;transition:opacity 0.2s;}
+.auth-action:disabled{background:var(--surface);color:rgba(255,255,255,0.2);cursor:default;}
 .divider{display:flex;align-items:center;gap:12px;margin:18px 0;}
-.divider::before,.divider::after{content:’’;flex:1;height:1px;background:var(–border);}
-.divider span{font-size:0.62rem;color:rgba(255,255,255,0.2);font-family:‘Syne’,sans-serif;letter-spacing:1px;}
-.g-btn{width:100%;padding:14px;border:1px solid var(–border2);border-radius:2px;background:transparent;font-family:‘Syne’,sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.5px;color:var(–white);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.2s;}
-.g-btn:active{background:var(–faint);}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.divider span{font-size:0.62rem;color:rgba(255,255,255,0.2);font-family:'Syne',sans-serif;letter-spacing:1px;}
+.g-btn{width:100%;padding:14px;border:1px solid var(--border2);border-radius:2px;background:transparent;font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.5px;color:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.2s;}
+.g-btn:active{background:var(--faint);}
 .auth-msg{font-size:0.72rem;min-height:18px;text-align:center;margin-top:10px;font-weight:400;}
-.auth-msg.err{color:var(–red);}
-.auth-msg.ok{color:var(–green);}
-
-/* ── ONBOARDING ── */
-#s-ob{background:var(–black);}
-.ob-progress{height:1px;background:var(–border);flex-shrink:0;}
-.ob-bar{height:100%;background:linear-gradient(90deg,var(–gold),var(–gold2));transition:width 0.4s ease;}
+.auth-msg.err{color:var(--red);}
+.auth-msg.ok{color:var(--green);}
+#s-ob{background:var(--black);}
+.ob-progress{height:1px;background:var(--border);flex-shrink:0;}
+.ob-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width 0.4s ease;}
 .ob-nav{padding:20px 24px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
-.ob-step{font-family:‘Syne’,sans-serif;font-size:0.55rem;letter-spacing:2px;color:rgba(255,255,255,0.25);text-transform:uppercase;}
-.ob-skip{background:none;border:none;font-family:‘Syne’,sans-serif;font-size:0.62rem;color:rgba(255,255,255,0.2);cursor:pointer;letter-spacing:0.5px;}
+.ob-step{font-family:'Syne',sans-serif;font-size:0.55rem;letter-spacing:2px;color:rgba(255,255,255,0.25);text-transform:uppercase;}
+.ob-skip{background:none;border:none;font-family:'Syne',sans-serif;font-size:0.62rem;color:rgba(255,255,255,0.2);cursor:pointer;letter-spacing:0.5px;}
 .ob-body{flex:1;padding:10px 24px 0;overflow-y:auto;}
 .ob-body::-webkit-scrollbar{display:none;}
 .ob-emoji{font-size:2.4rem;margin-bottom:16px;display:block;}
-.ob-q{font-family:‘Playfair Display’,serif;font-size:1.6rem;font-weight:700;color:var(–white);line-height:1.15;margin-bottom:8px;letter-spacing:-0.5px;}
-.ob-hint{font-size:0.75rem;color:var(–mid);margin-bottom:22px;line-height:1.5;font-weight:300;}
+.ob-q{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--white);line-height:1.15;margin-bottom:8px;letter-spacing:-0.5px;}
+.ob-hint{font-size:0.75rem;color:var(--mid);margin-bottom:22px;line-height:1.5;font-weight:300;}
 .ob-opts{display:flex;flex-direction:column;gap:8px;}
-.ob-opt{padding:14px 16px;border:1px solid var(–border);border-radius:2px;font-size:0.84rem;color:rgba(255,255,255,0.6);cursor:pointer;transition:all 0.2s;background:var(–surface);text-align:left;font-family:‘DM Sans’,sans-serif;display:flex;align-items:center;justify-content:space-between;}
-.ob-opt:active{transform:scale(0.99);}
-.ob-opt.sel{border-color:var(–gold);background:rgba(201,169,110,0.08);color:var(–white);}
-.ob-opt.sel::after{content:‘✓’;color:var(–gold);font-size:0.8rem;}
+.ob-opt{padding:14px 16px;border:1px solid var(--border);border-radius:2px;font-size:0.84rem;color:rgba(255,255,255,0.6);cursor:pointer;transition:all 0.2s;background:var(--surface);text-align:left;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:space-between;}
+.ob-opt.sel{border-color:var(--gold);background:rgba(201,169,110,0.08);color:var(--white);}
+.ob-opt.sel::after{content:'✓';color:var(--gold);font-size:0.8rem;}
 .ob-foot{padding:16px 24px 32px;flex-shrink:0;}
-.ob-next{background:linear-gradient(135deg,var(–gold) 0%,var(–gold2) 100%);color:var(–black);border:none;border-radius:2px;padding:16px;width:100%;font-family:‘Syne’,sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
-.ob-next:disabled{background:var(–surface);color:rgba(255,255,255,0.15);cursor:default;}
-
-/* ── MAIN APP ── */
-#s-app{background:var(–black);}
-
-/* BOTTOM NAV */
-.bnav{height:68px;background:var(–deep);border-top:1px solid var(–border);display:flex;justify-content:space-around;align-items:center;padding-bottom:8px;flex-shrink:0;position:relative;}
-.bnav::before{content:’’;position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.3),transparent);}
+.ob-next{background:#c9a96e;background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);color:var(--black);border:none;border-radius:2px;padding:16px;width:100%;font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+.ob-next:disabled{background:var(--surface);color:rgba(255,255,255,0.15);cursor:default;}
+#s-app{background:var(--black);}
+.bnav{height:68px;background:var(--deep);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding-bottom:8px;flex-shrink:0;position:relative;}
+.bnav::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.3),transparent);}
 .nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;background:none;border:none;padding:6px 16px;position:relative;}
 .nav-ic{font-size:1.1rem;opacity:0.35;transition:all 0.2s;}
-.nav-lb{font-family:‘Syne’,sans-serif;font-size:0.48rem;color:rgba(255,255,255,0.25);font-weight:600;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s;}
+.nav-lb{font-family:'Syne',sans-serif;font-size:0.48rem;color:rgba(255,255,255,0.25);font-weight:600;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s;}
 .nav-btn.on .nav-ic{opacity:1;}
-.nav-btn.on .nav-lb{color:var(–gold);}
-.nav-scan-btn{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(–gold),var(–gold2));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 0 20px rgba(201,169,110,0.4);transition:all 0.2s;margin-top:-16px;}
+.nav-btn.on .nav-lb{color:var(--gold);}
+.nav-scan-btn{width:52px;height:52px;border-radius:50%;background:#c9a96e;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 0 20px rgba(201,169,110,0.4);transition:all 0.2s;margin-top:-16px;}
 .nav-scan-btn:active{transform:scale(0.95);}
-
-/* HOME TAB */
 .tab-content{position:absolute;inset:0;bottom:68px;display:none;flex-direction:column;overflow-y:auto;}
 .tab-content::-webkit-scrollbar{display:none;}
 .tab-content.on{display:flex;}
-
 .home-header{padding:54px 22px 0;display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0;}
-.home-greeting{font-family:‘Playfair Display’,serif;}
-.home-greeting-sub{font-size:0.65rem;color:var(–mid);margin-bottom:2px;font-family:‘Syne’,sans-serif;letter-spacing:1px;text-transform:uppercase;}
-.home-greeting-name{font-size:1.6rem;font-weight:700;color:var(–white);letter-spacing:-0.5px;}
-.home-greeting-name em{font-style:italic;color:var(–gold2);}
-.home-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(–gold),var(–gold2));display:flex;align-items:center;justify-content:center;font-family:‘Playfair Display’,serif;font-size:1rem;font-weight:700;color:var(–black);cursor:pointer;flex-shrink:0;}
-
-/* HERO BANNER */
-.hero-banner{margin:20px 16px 0;background:var(–surface);border:1px solid var(–border);border-radius:4px;padding:20px;position:relative;overflow:hidden;cursor:pointer;}
-.hero-banner::before{content:’’;position:absolute;top:-30px;right:-20px;width:120px;height:120px;background:radial-gradient(circle,rgba(201,169,110,0.12) 0%,transparent 70%);}
-.hb-tag{font-family:‘Syne’,sans-serif;font-size:0.48rem;letter-spacing:3px;text-transform:uppercase;color:var(–gold);margin-bottom:10px;}
-.hb-title{font-family:‘Playfair Display’,serif;font-size:1.2rem;font-weight:700;color:var(–white);margin-bottom:5px;line-height:1.2;}
-.hb-sub{font-size:0.72rem;color:var(–mid);font-weight:300;line-height:1.5;}
-.hb-arrow{position:absolute;right:20px;top:50%;transform:translateY(-50%);color:var(–gold);font-size:1.2rem;opacity:0.7;}
+.home-greeting{font-family:'Playfair Display',serif;}
+.home-greeting-sub{font-size:0.65rem;color:var(--mid);margin-bottom:2px;font-family:'Syne',sans-serif;letter-spacing:1px;text-transform:uppercase;}
+.home-greeting-name{font-size:1.6rem;font-weight:700;color:var(--white);letter-spacing:-0.5px;}
+.home-greeting-name em{font-style:italic;color:var(--gold2);}
+.home-av{width:38px;height:38px;border-radius:50%;background:#c9a96e;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--black);cursor:pointer;flex-shrink:0;}
+.hero-banner{margin:20px 16px 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;position:relative;overflow:hidden;cursor:pointer;}
+.hero-banner::before{content:'';position:absolute;top:-30px;right:-20px;width:120px;height:120px;background:radial-gradient(circle,rgba(201,169,110,0.12) 0%,transparent 70%);}
+.hb-tag{font-family:'Syne',sans-serif;font-size:0.48rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.hb-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:5px;line-height:1.2;}
+.hb-sub{font-size:0.72rem;color:var(--mid);font-weight:300;line-height:1.5;}
+.hb-arrow{position:absolute;right:20px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:1.2rem;opacity:0.7;}
 .hb-stats{display:flex;gap:16px;margin-top:14px;}
-.hb-stat{font-family:‘Syne’,sans-serif;}
-.hb-stat-n{font-size:1.1rem;font-weight:700;color:var(–white);}
-.hb-stat-l{font-size:0.52rem;color:var(–mid);letter-spacing:0.5px;margin-top:1px;}
-
-/* SECTION */
+.hb-stat{font-family:'Syne',sans-serif;}
+.hb-stat-n{font-size:1.1rem;font-weight:700;color:var(--white);}
+.hb-stat-l{font-size:0.52rem;color:var(--mid);letter-spacing:0.5px;margin-top:1px;}
 .section{padding:24px 0 0;}
 .section-hdr{padding:0 22px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-.section-title{font-family:‘Syne’,sans-serif;font-size:0.55rem;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:2.5px;text-transform:uppercase;}
-.section-action{font-family:‘Syne’,sans-serif;font-size:0.6rem;color:var(–gold);cursor:pointer;letter-spacing:0.3px;}
-
-/* PRODUCT CARDS */
+.section-title{font-family:'Syne',sans-serif;font-size:0.55rem;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:2.5px;text-transform:uppercase;}
+.section-action{font-family:'Syne',sans-serif;font-size:0.6rem;color:var(--gold);cursor:pointer;letter-spacing:0.3px;}
 .prod-list{padding:0 16px;display:flex;flex-direction:column;gap:10px;}
-.prod-card{background:var(–card);border:1px solid var(–border);border-radius:4px;padding:16px;display:flex;gap:14px;align-items:center;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
-.prod-card::before{content:’’;position:absolute;left:0;top:0;bottom:0;width:2px;background:var(–border);transition:background 0.2s;}
-.prod-card.risk-high::before{background:var(–red);}
-.prod-card.risk-mid::before{background:var(–orange);}
-.prod-card.risk-low::before{background:var(–green);}
-.prod-card:active{background:var(–surface);}
-.prod-emoji-wrap{width:44px;height:44px;background:var(–surface);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.prod-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px;display:flex;gap:14px;align-items:center;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
+.prod-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border);transition:background 0.2s;}
+.prod-card.risk-high::before{background:var(--red);}
+.prod-card.risk-mid::before{background:var(--orange);}
+.prod-card.risk-low::before{background:var(--green);}
+.prod-card:active{background:var(--surface);}
+.prod-emoji-wrap{width:44px;height:44px;background:var(--surface);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
 .prod-info{flex:1;min-width:0;}
-.prod-name{font-size:0.86rem;font-weight:500;color:var(–white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
-.prod-cat{font-family:‘Syne’,sans-serif;font-size:0.52rem;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.prod-name{font-size:0.86rem;font-weight:500;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
+.prod-cat{font-family:'Syne',sans-serif;font-size:0.52rem;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
 .prod-progress{display:flex;align-items:center;gap:8px;}
-.prod-bar{flex:1;height:2px;background:var(–border);border-radius:1px;overflow:hidden;}
+.prod-bar{flex:1;height:2px;background:var(--border);border-radius:1px;overflow:hidden;}
 .prod-bar-fill{height:100%;border-radius:1px;transition:width 0.6s ease;}
-.prod-days{font-family:‘Syne’,sans-serif;font-size:0.52rem;color:rgba(255,255,255,0.25);letter-spacing:0.3px;}
-.prod-verdict{font-family:‘Syne’,sans-serif;font-size:0.5rem;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:1px;flex-shrink:0;}
+.prod-days{font-family:'Syne',sans-serif;font-size:0.52rem;color:rgba(255,255,255,0.25);letter-spacing:0.3px;}
+.prod-verdict{font-family:'Syne',sans-serif;font-size:0.5rem;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:1px;flex-shrink:0;}
 .verdict-wait{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.3);}
-.verdict-good{background:rgba(93,202,138,0.12);color:var(–green);}
-.verdict-warn{background:rgba(232,149,93,0.12);color:var(–orange);}
-.verdict-bad{background:rgba(232,93,93,0.12);color:var(–red);}
-
-/* EMPTY */
+.verdict-good{background:rgba(93,202,138,0.12);color:var(--green);}
+.verdict-warn{background:rgba(232,149,93,0.12);color:var(--orange);}
+.verdict-bad{background:rgba(232,93,93,0.12);color:var(--red);}
 .empty{text-align:center;padding:48px 24px;}
 .empty-icon{font-size:2.4rem;margin-bottom:12px;opacity:0.2;}
 .empty-txt{font-size:0.8rem;color:rgba(255,255,255,0.2);line-height:1.7;font-weight:300;}
-
-/* CHECKIN CARD */
-.checkin{margin:0 16px 0;background:var(–surface);border:1px solid var(–border);border-radius:4px;padding:16px;display:none;}
-.ci-tag{font-family:‘Syne’,sans-serif;font-size:0.48rem;letter-spacing:3px;text-transform:uppercase;color:var(–gold);margin-bottom:8px;}
-.ci-q{font-family:‘Playfair Display’,serif;font-size:1rem;color:var(–white);margin-bottom:14px;line-height:1.3;}
+.checkin{margin:0 16px 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;}
+.ci-tag{font-family:'Syne',sans-serif;font-size:0.48rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.ci-q{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);margin-bottom:14px;line-height:1.3;}
 .ci-btns{display:flex;gap:8px;}
-.ci-btn{flex:1;padding:11px 6px;border:1px solid var(–border);border-radius:2px;background:transparent;font-family:‘Syne’,sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;text-align:center;}
-.ci-btn:active{transform:scale(0.97);}
-.ci-worse.sel{background:rgba(232,93,93,0.15);border-color:var(–red);color:var(–red);}
-.ci-same.sel{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.3);color:var(–white);}
-.ci-better.sel{background:rgba(93,202,138,0.15);border-color:var(–green);color:var(–green);}
-
-/* TRENDING */
+.ci-btn{flex:1;padding:11px 6px;border:1px solid var(--border);border-radius:2px;background:transparent;font-family:'Syne',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.2s;text-align:center;}
+.ci-worse.sel{background:rgba(232,93,93,0.15);border-color:var(--red);color:var(--red);}
+.ci-same.sel{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.3);color:var(--white);}
+.ci-better.sel{background:rgba(93,202,138,0.15);border-color:var(--green);color:var(--green);}
 .trending-scroll{display:flex;gap:10px;padding:0 16px;overflow-x:auto;}
 .trending-scroll::-webkit-scrollbar{display:none;}
-.trend-card{flex-shrink:0;width:130px;background:var(–card);border:1px solid var(–border);border-radius:4px;padding:14px;cursor:pointer;}
+.trend-card{flex-shrink:0;width:130px;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:14px;cursor:pointer;}
 .trend-emoji{font-size:1.6rem;margin-bottom:8px;}
-.trend-name{font-size:0.76rem;font-weight:500;color:var(–white);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.trend-meta{font-family:‘Syne’,sans-serif;font-size:0.5rem;color:var(–mid);letter-spacing:0.5px;}
+.trend-name{font-size:0.76rem;font-weight:500;color:var(--white);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.trend-meta{font-family:'Syne',sans-serif;font-size:0.5rem;color:var(--mid);letter-spacing:0.5px;}
 .trend-score{display:flex;align-items:center;gap:5px;margin-top:8px;}
-.trend-score-n{font-family:‘Syne’,sans-serif;font-size:0.72rem;font-weight:700;}
-.trend-score-l{font-size:0.55rem;color:var(–mid);}
-
-/* ── SUBS ── */
-.sub{position:absolute;inset:0;background:var(–black);display:none;flex-direction:column;z-index:20;}
+.trend-score-n{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;}
+.trend-score-l{font-size:0.55rem;color:var(--mid);}
+.sub{position:absolute;inset:0;background:var(--black);display:none;flex-direction:column;z-index:20;}
 .sub.on{display:flex;animation:subIn 0.28s cubic-bezier(0.16,1,0.3,1);}
 @keyframes subIn{from{transform:translateY(20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 .sub-nav{padding:52px 22px 16px;display:flex;align-items:center;gap:14px;flex-shrink:0;}
-.sub-title{font-family:‘Playfair Display’,serif;font-size:1.2rem;font-weight:700;color:var(–white);letter-spacing:-0.3px;}
-
-/* ── SCAN ── */
+.sub-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white);letter-spacing:-0.3px;}
 #sub-scan{background:#000;}
 .scan-header{padding:52px 22px 16px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
-.scan-title{font-family:‘Playfair Display’,serif;font-size:1.3rem;color:var(–white);font-weight:700;}
-.scan-close{width:32px;height:32px;border-radius:50%;border:1px solid var(–border2);background:transparent;color:var(–white);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;}
+.scan-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);font-weight:700;}
+.scan-close{width:32px;height:32px;border-radius:50%;border:1px solid var(--border2);background:transparent;color:var(--white);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;}
 .scan-viewfinder{margin:0 22px;border-radius:4px;overflow:hidden;position:relative;background:#000;aspect-ratio:4/3;}
 .scan-vf-video{width:100%;height:100%;object-fit:cover;display:block;}
 .scan-vf-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
 .scan-frame{width:200px;height:100px;position:relative;}
-.scan-frame::before,.scan-frame::after{content:’’;position:absolute;width:20px;height:20px;border-color:var(–gold);border-style:solid;}
+.scan-frame::before,.scan-frame::after{content:'';position:absolute;width:20px;height:20px;border-color:var(--gold);border-style:solid;}
 .scan-frame::before{top:0;left:0;border-width:2px 0 0 2px;}
 .scan-frame::after{bottom:0;right:0;border-width:0 2px 2px 0;}
 .scan-frame-tl,.scan-frame-br{position:absolute;width:20px;height:20px;}
-.scan-frame-tl{top:0;right:0;border-top:2px solid var(–gold);border-right:2px solid var(–gold);}
-.scan-frame-br{bottom:0;left:0;border-bottom:2px solid var(–gold);border-left:2px solid var(–gold);}
-.scan-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(–gold),transparent);animation:scanLine 2s ease-in-out infinite;}
+.scan-frame-tl{top:0;right:0;border-top:2px solid var(--gold);border-right:2px solid var(--gold);}
+.scan-frame-br{bottom:0;left:0;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold);}
+.scan-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:scanLine 2s ease-in-out infinite;}
 @keyframes scanLine{0%{top:10%;}50%{top:90%;}100%{top:10%;}}
-.scan-status{text-align:center;padding:16px 22px;font-family:‘Syne’,sans-serif;font-size:0.65rem;color:var(–mid);letter-spacing:1px;text-transform:uppercase;}
+.scan-status{text-align:center;padding:16px 22px;font-family:'Syne',sans-serif;font-size:0.65rem;color:var(--mid);letter-spacing:1px;text-transform:uppercase;}
 .scan-or{padding:0 22px;display:flex;align-items:center;gap:12px;margin:4px 0;}
-.scan-or::before,.scan-or::after{content:’’;flex:1;height:1px;background:var(–border);}
-.scan-or span{font-family:‘Syne’,sans-serif;font-size:0.55rem;color:rgba(255,255,255,0.2);letter-spacing:1px;}
+.scan-or::before,.scan-or::after{content:'';flex:1;height:1px;background:var(--border);}
+.scan-or span{font-family:'Syne',sans-serif;font-size:0.55rem;color:rgba(255,255,255,0.2);letter-spacing:1px;}
 .scan-manual{padding:0 22px;}
-.scan-manual-inp{width:100%;padding:14px 16px;border:1px solid var(–border);border-radius:2px;font-family:‘DM Sans’,sans-serif;font-size:0.88rem;color:var(–white);background:var(–surface);outline:none;-webkit-appearance:none;}
-.scan-manual-inp:focus{border-color:var(–gold);}
+.scan-manual-inp{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--white);background:var(--surface);outline:none;-webkit-appearance:none;}
+.scan-manual-inp:focus{border-color:var(--gold);}
 .scan-manual-inp::placeholder{color:rgba(255,255,255,0.2);}
 .scan-cats{padding:16px 22px 0;}
-.scan-cats-title{font-family:‘Syne’,sans-serif;font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;}
+.scan-cats-title{font-family:'Syne',sans-serif;font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;}
 .cat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
-.cat-tile{background:var(–surface);border:1px solid var(–border);border-radius:3px;padding:12px 10px;cursor:pointer;transition:all 0.2s;text-align:center;}
-.cat-tile:active{background:var(–card);}
-.cat-tile.sel{border-color:var(–gold);background:rgba(201,169,110,0.06);}
+.cat-tile{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:12px 10px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.cat-tile:active{background:var(--card);}
+.cat-tile.sel{border-color:var(--gold);background:rgba(201,169,110,0.06);}
 .cat-tile-ic{font-size:1.3rem;margin-bottom:5px;}
-.cat-tile-nm{font-family:‘Syne’,sans-serif;font-size:0.55rem;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.3px;text-transform:uppercase;}
+.cat-tile-nm{font-family:'Syne',sans-serif;font-size:0.55rem;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.3px;text-transform:uppercase;}
 .cat-tile-d{font-size:0.55rem;color:rgba(255,255,255,0.25);margin-top:2px;}
-.cat-tile.sel .cat-tile-nm{color:var(–gold);}
+.cat-tile.sel .cat-tile-nm{color:var(--gold);}
 .scan-submit-wrap{padding:16px 22px 32px;}
-.scan-submit{background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–black);border:none;border-radius:2px;padding:16px;width:100%;font-family:‘Syne’,sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
-.scan-submit:disabled{background:var(–surface);color:rgba(255,255,255,0.15);cursor:default;}
-
-/* ── PRODUCT DETAIL ── */
-#sub-detail{background:var(–black);}
+.scan-submit{background:#c9a96e;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);border:none;border-radius:2px;padding:16px;width:100%;font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+.scan-submit:disabled{background:var(--surface);color:rgba(255,255,255,0.15);cursor:default;}
+#sub-detail{background:var(--black);}
 #sub-detail .scroll{padding-bottom:32px;}
 .det-hero{padding:52px 22px 20px;}
 .det-emoji{font-size:3rem;margin-bottom:12px;display:block;}
-.det-brand{font-family:‘Syne’,sans-serif;font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(–gold);margin-bottom:5px;}
-.det-name{font-family:‘Playfair Display’,serif;font-size:1.8rem;font-weight:700;color:var(–white);letter-spacing:-0.5px;line-height:1.1;margin-bottom:4px;}
-.det-cat{font-size:0.72rem;color:var(–mid);font-weight:300;}
-
-/* VERDICT CARD */
+.det-brand{font-family:'Syne',sans-serif;font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.det-name{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--white);letter-spacing:-0.5px;line-height:1.1;margin-bottom:4px;}
+.det-cat{font-size:0.72rem;color:var(--mid);font-weight:300;}
 .verdict-hero{margin:0 16px 16px;border-radius:4px;padding:20px;position:relative;overflow:hidden;}
 .vh-safe{background:linear-gradient(135deg,rgba(93,202,138,0.12),rgba(93,202,138,0.04));border:1px solid rgba(93,202,138,0.2);}
 .vh-warn{background:linear-gradient(135deg,rgba(232,149,93,0.12),rgba(232,149,93,0.04));border:1px solid rgba(232,149,93,0.2);}
 .vh-risk{background:linear-gradient(135deg,rgba(232,93,93,0.15),rgba(232,93,93,0.04));border:1px solid rgba(232,93,93,0.25);}
 .vh-neutral{background:linear-gradient(135deg,rgba(201,169,110,0.1),rgba(201,169,110,0.03));border:1px solid rgba(201,169,110,0.15);}
-.vh-tag{font-family:‘Syne’,sans-serif;font-size:0.48rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;font-weight:700;}
-.vh-safe .vh-tag{color:var(–green);}
-.vh-warn .vh-tag{color:var(–orange);}
-.vh-risk .vh-tag{color:var(–red);}
-.vh-neutral .vh-tag{color:var(–gold);}
-.vh-main{font-family:‘Playfair Display’,serif;font-size:1.3rem;color:var(–white);margin-bottom:6px;line-height:1.2;}
-.vh-sub{font-size:0.75rem;color:var(–mid);line-height:1.6;font-weight:300;}
-
-/* PROGRESS */
-.prog-card{margin:0 16px 12px;background:var(–card);border:1px solid var(–border);border-radius:4px;padding:16px;}
+.vh-tag{font-family:'Syne',sans-serif;font-size:0.48rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;font-weight:700;}
+.vh-safe .vh-tag{color:var(--green);}
+.vh-warn .vh-tag{color:var(--orange);}
+.vh-risk .vh-tag{color:var(--red);}
+.vh-neutral .vh-tag{color:var(--gold);}
+.vh-main{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);margin-bottom:6px;line-height:1.2;}
+.vh-sub{font-size:0.75rem;color:var(--mid);line-height:1.6;font-weight:300;}
+.prog-card{margin:0 16px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px;}
 .prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
-.prog-label{font-family:‘Syne’,sans-serif;font-size:0.55rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);}
-.prog-days{font-family:‘Syne’,sans-serif;font-size:0.72rem;color:var(–white);font-weight:700;}
-.prog-track{height:3px;background:var(–border);border-radius:2px;overflow:hidden;margin-bottom:10px;}
-.prog-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(–gold),var(–gold2));transition:width 0.8s ease;}
-.prog-status{font-size:0.72rem;color:var(–mid);}
-
-/* INGREDIENTS */
+.prog-label{font-family:'Syne',sans-serif;font-size:0.55rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.prog-days{font-family:'Syne',sans-serif;font-size:0.72rem;color:var(--white);font-weight:700;}
+.prog-track{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:10px;}
+.prog-fill{height:100%;border-radius:2px;background:#c9a96e;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width 0.8s ease;}
+.prog-status{font-size:0.72rem;color:var(--mid);}
 .ing-section{margin:0 16px 12px;}
-.ing-title{font-family:‘Syne’,sans-serif;font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;}
-.ing-row{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:var(–card);border:1px solid var(–border);border-radius:3px;margin-bottom:8px;}
+.ing-title{font-family:'Syne',sans-serif;font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;}
+.ing-row{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:3px;margin-bottom:8px;}
 .ing-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;}
-.ing-dot-safe{background:var(–green);}
-.ing-dot-warn{background:var(–orange);}
-.ing-dot-risk{background:var(–red);}
+.ing-dot-safe{background:var(--green);}
+.ing-dot-warn{background:var(--orange);}
+.ing-dot-risk{background:var(--red);}
 .ing-dot-mid{background:rgba(255,255,255,0.2);}
 .ing-content{flex:1;}
-.ing-name{font-size:0.8rem;color:var(–white);margin-bottom:3px;font-weight:500;}
-.ing-desc{font-size:0.7rem;color:var(–mid);line-height:1.5;font-weight:300;}
-.ing-badge{font-family:‘Syne’,sans-serif;font-size:0.48rem;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:1px;flex-shrink:0;margin-top:2px;}
-.ing-badge-risk{background:rgba(232,93,93,0.12);color:var(–red);}
-.ing-badge-warn{background:rgba(232,149,93,0.12);color:var(–orange);}
-.ing-badge-good{background:rgba(93,202,138,0.12);color:var(–green);}
-
-/* CHECKIN SECTION */
-.det-checkin{margin:0 16px 12px;background:var(–surface);border:1px solid var(–border);border-radius:4px;padding:16px;}
-.dc-label{font-family:‘Syne’,sans-serif;font-size:0.48rem;letter-spacing:3px;text-transform:uppercase;color:var(–gold);margin-bottom:10px;}
-.dc-q{font-family:‘Playfair Display’,serif;font-size:1rem;color:var(–white);margin-bottom:14px;line-height:1.3;}
+.ing-name{font-size:0.8rem;color:var(--white);margin-bottom:3px;font-weight:500;}
+.ing-desc{font-size:0.7rem;color:var(--mid);line-height:1.5;font-weight:300;}
+.ing-badge{font-family:'Syne',sans-serif;font-size:0.48rem;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:1px;flex-shrink:0;margin-top:2px;}
+.ing-badge-risk{background:rgba(232,93,93,0.12);color:var(--red);}
+.ing-badge-warn{background:rgba(232,149,93,0.12);color:var(--orange);}
+.ing-badge-good{background:rgba(93,202,138,0.12);color:var(--green);}
+.det-checkin{margin:0 16px 12px;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;}
+.dc-label{font-family:'Syne',sans-serif;font-size:0.48rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.dc-q{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);margin-bottom:14px;line-height:1.3;}
 .dc-btns{display:flex;gap:8px;}
-.dc-btn{flex:1;padding:11px 4px;border:1px solid var(–border);border-radius:2px;background:transparent;font-family:‘Syne’,sans-serif;font-size:0.55rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);cursor:pointer;transition:all 0.2s;}
-.dc-worse.sel{background:rgba(232,93,93,0.12);border-color:var(–red);color:var(–red);}
-.dc-same.sel{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.25);color:var(–white);}
-.dc-better.sel{background:rgba(93,202,138,0.12);border-color:var(–green);color:var(–green);}
-
-/* ACTION BTNS */
-.act-btn{margin:0 16px 10px;background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–black);border:none;border-radius:2px;padding:16px;width:calc(100% - 32px);font-family:‘Syne’,sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
-.act-btn:disabled{background:var(–surface);color:rgba(255,255,255,0.15);cursor:default;}
-.act-btn-outline{margin:0 16px 10px;background:transparent;color:var(–mid);border:1px solid var(–border);border-radius:2px;padding:14px;width:calc(100% - 32px);font-family:‘Syne’,sans-serif;font-size:0.72rem;cursor:pointer;letter-spacing:0.3px;}
-
-/* PRE-PURCHASE */
+.dc-btn{flex:1;padding:11px 4px;border:1px solid var(--border);border-radius:2px;background:transparent;font-family:'Syne',sans-serif;font-size:0.55rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);cursor:pointer;transition:all 0.2s;}
+.dc-worse.sel{background:rgba(232,93,93,0.12);border-color:var(--red);color:var(--red);}
+.dc-same.sel{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.25);color:var(--white);}
+.dc-better.sel{background:rgba(93,202,138,0.12);border-color:var(--green);color:var(--green);}
+.act-btn{margin:0 16px 10px;background:#c9a96e;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);border:none;border-radius:2px;padding:16px;width:calc(100% - 32px);font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+.act-btn:disabled{background:var(--surface);color:rgba(255,255,255,0.15);cursor:default;}
+.act-btn-outline{margin:0 16px 10px;background:transparent;color:var(--mid);border:1px solid var(--border);border-radius:2px;padding:14px;width:calc(100% - 32px);font-family:'Syne',sans-serif;font-size:0.72rem;cursor:pointer;letter-spacing:0.3px;}
 #sub-prepurchase .scroll{padding-bottom:32px;}
 .pp-body{padding:0 22px 20px;}
-.pp-hero{background:var(–surface);border:1px solid var(–border);border-radius:4px;padding:20px;margin-bottom:20px;position:relative;overflow:hidden;}
-.pp-hero::before{content:’’;position:absolute;top:-40px;right:-20px;width:140px;height:140px;background:radial-gradient(circle,rgba(201,169,110,0.08) 0%,transparent 70%);}
-.pp-hero-tag{font-family:‘Syne’,sans-serif;font-size:0.48rem;letter-spacing:3px;color:var(–gold);text-transform:uppercase;margin-bottom:8px;}
-.pp-hero-title{font-family:‘Playfair Display’,serif;font-size:1.2rem;font-weight:700;color:var(–white);margin-bottom:5px;line-height:1.2;}
-.pp-hero-sub{font-size:0.72rem;color:var(–mid);font-weight:300;line-height:1.5;}
+.pp-hero{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;margin-bottom:20px;position:relative;overflow:hidden;}
+.pp-hero::before{content:'';position:absolute;top:-40px;right:-20px;width:140px;height:140px;background:radial-gradient(circle,rgba(201,169,110,0.08) 0%,transparent 70%);}
+.pp-hero-tag{font-family:'Syne',sans-serif;font-size:0.48rem;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.pp-hero-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:5px;line-height:1.2;}
+.pp-hero-sub{font-size:0.72rem;color:var(--mid);font-weight:300;line-height:1.5;}
 .pp-inp-wrap{position:relative;margin-bottom:16px;}
 .pp-search-ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.2);font-size:0.9rem;}
-.pp-inp{width:100%;padding:14px 14px 14px 38px;border:1px solid var(–border);border-radius:2px;font-family:‘DM Sans’,sans-serif;font-size:0.88rem;color:var(–white);background:var(–surface);outline:none;-webkit-appearance:none;}
-.pp-inp:focus{border-color:var(–gold);}
+.pp-inp{width:100%;padding:14px 14px 14px 38px;border:1px solid var(--border);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--white);background:var(--surface);outline:none;-webkit-appearance:none;}
+.pp-inp:focus{border-color:var(--gold);}
 .pp-inp::placeholder{color:rgba(255,255,255,0.2);}
 .pp-result{margin-top:20px;}
-
-/* SCORE RING */
 .score-wrap{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
 .score-ring-svg{width:64px;height:64px;flex-shrink:0;}
-.score-info{}
-.score-num{font-family:‘Playfair Display’,serif;font-size:2.2rem;font-weight:900;line-height:1;}
-.score-label{font-family:‘Syne’,sans-serif;font-size:0.6rem;letter-spacing:1px;text-transform:uppercase;margin-top:3px;}
-
-/* PROFILE */
+.score-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;line-height:1;}
+.score-label{font-family:'Syne',sans-serif;font-size:0.6rem;letter-spacing:1px;text-transform:uppercase;margin-top:3px;}
 #sub-profile .scroll{padding-bottom:32px;}
 .prof-header{padding:52px 22px 20px;}
-.prof-av-lg{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(–gold),var(–gold2));display:flex;align-items:center;justify-content:center;font-family:‘Playfair Display’,serif;font-size:1.5rem;font-weight:700;color:var(–black);margin-bottom:14px;}
-.prof-name{font-family:‘Playfair Display’,serif;font-size:1.4rem;font-weight:700;color:var(–white);letter-spacing:-0.3px;}
-.prof-email{font-size:0.72rem;color:var(–mid);margin-top:3px;font-weight:300;}
-.prof-stats{display:flex;gap:0;margin:20px 22px;background:var(–surface);border:1px solid var(–border);border-radius:4px;overflow:hidden;}
-.prof-stat{flex:1;padding:16px;text-align:center;border-right:1px solid var(–border);}
+.prof-av-lg{width:64px;height:64px;border-radius:50%;background:#c9a96e;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--black);margin-bottom:14px;}
+.prof-name{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--white);letter-spacing:-0.3px;}
+.prof-email{font-size:0.72rem;color:var(--mid);margin-top:3px;font-weight:300;}
+.prof-stats{display:flex;gap:0;margin:20px 22px;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.prof-stat{flex:1;padding:16px;text-align:center;border-right:1px solid var(--border);}
 .prof-stat:last-child{border-right:none;}
-.prof-stat-n{font-family:‘Playfair Display’,serif;font-size:1.4rem;font-weight:700;color:var(–white);}
-.prof-stat-l{font-family:‘Syne’,sans-serif;font-size:0.48rem;letter-spacing:1px;text-transform:uppercase;color:var(–mid);margin-top:3px;}
-.skin-card{margin:0 22px 20px;background:var(–surface);border:1px solid var(–border);border-radius:4px;padding:16px;}
-.skin-card-tag{font-family:‘Syne’,sans-serif;font-size:0.48px;letter-spacing:3px;text-transform:uppercase;color:var(–gold);margin-bottom:10px;font-size:0.48rem;}
+.prof-stat-n{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--white);}
+.prof-stat-l{font-family:'Syne',sans-serif;font-size:0.48rem;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:3px;}
+.skin-card{margin:0 22px 20px;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px;}
+.skin-card-tag{font-family:'Syne',sans-serif;font-size:0.48rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
 .skin-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.skin-tag{background:var(–card);border:1px solid var(–border);border-radius:2px;padding:5px 10px;font-family:‘Syne’,sans-serif;font-size:0.6rem;color:rgba(255,255,255,0.6);letter-spacing:0.3px;}
+.skin-tag{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:5px 10px;font-family:'Syne',sans-serif;font-size:0.6rem;color:rgba(255,255,255,0.6);letter-spacing:0.3px;}
 .menu{padding:0 22px;display:flex;flex-direction:column;gap:2px;}
-.menu-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(–surface);border-radius:3px;cursor:pointer;transition:background 0.15s;margin-bottom:2px;}
-.menu-row:active{background:var(–card);}
+.menu-row{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--surface);border-radius:3px;cursor:pointer;transition:background 0.15s;margin-bottom:2px;}
+.menu-row:active{background:var(--card);}
 .menu-row-ic{font-size:1rem;width:20px;text-align:center;opacity:0.6;}
-.menu-row-txt{flex:1;font-size:0.82rem;color:var(–white);}
+.menu-row-txt{flex:1;font-size:0.82rem;color:var(--white);}
 .menu-row-ar{color:rgba(255,255,255,0.2);font-size:0.8rem;}
-
-/* REVIEW */
 .review-section{margin:0 16px 12px;}
-.rv-textarea{width:100%;padding:14px 16px;border:1px solid var(–border);border-radius:2px;font-family:‘DM Sans’,sans-serif;font-size:0.85rem;color:var(–white);background:var(–surface);height:110px;resize:none;outline:none;-webkit-appearance:none;line-height:1.6;}
-.rv-textarea:focus{border-color:var(–gold);}
+.rv-textarea{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--white);background:var(--surface);height:110px;resize:none;outline:none;-webkit-appearance:none;line-height:1.6;}
+.rv-textarea:focus{border-color:var(--gold);}
 .rv-textarea::placeholder{color:rgba(255,255,255,0.2);}
 .rv-btns{display:flex;gap:8px;margin-top:12px;}
-.rv-btn{flex:1;padding:13px 6px;border:1px solid var(–border);border-radius:2px;background:transparent;font-family:‘Syne’,sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);cursor:pointer;transition:all 0.2s;text-align:center;}
-.rv-btn.sel-good{background:rgba(93,202,138,0.12);border-color:var(–green);color:var(–green);}
-.rv-btn.sel-mid{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.25);color:var(–white);}
-.rv-btn.sel-bad{background:rgba(232,93,93,0.12);border-color:var(–red);color:var(–red);}
-
-/* LOADING */
+.rv-btn{flex:1;padding:13px 6px;border:1px solid var(--border);border-radius:2px;background:transparent;font-family:'Syne',sans-serif;font-size:0.58rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);cursor:pointer;transition:all 0.2s;text-align:center;}
+.rv-btn.sel-good{background:rgba(93,202,138,0.12);border-color:var(--green);color:var(--green);}
+.rv-btn.sel-mid{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.25);color:var(--white);}
+.rv-btn.sel-bad{background:rgba(232,93,93,0.12);border-color:var(--red);color:var(--red);}
 .loading{position:absolute;inset:0;background:rgba(6,6,8,0.9);z-index:999;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;backdrop-filter:blur(4px);}
 .loading.on{display:flex;}
-.spinner{width:32px;height:32px;border:1.5px solid var(–border);border-top-color:var(–gold);border-radius:50%;animation:spin 0.7s linear infinite;}
+.spinner{width:32px;height:32px;border:1.5px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 0.7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.load-txt{font-family:‘Syne’,sans-serif;font-size:0.6rem;color:var(–mid);letter-spacing:2px;text-transform:uppercase;}
-
-/* TOAST */
-.toast{position:absolute;bottom:84px;left:16px;right:16px;background:var(–card);border:1px solid var(–border2);color:var(–white);padding:14px 16px;border-radius:3px;font-size:0.78rem;z-index:300;text-align:center;animation:toastIn 0.3s ease-out;pointer-events:none;}
+.load-txt{font-family:'Syne',sans-serif;font-size:0.6rem;color:var(--mid);letter-spacing:2px;text-transform:uppercase;}
+.toast{position:absolute;bottom:84px;left:16px;right:16px;background:var(--card);border:1px solid var(--border2);color:var(--white);padding:14px 16px;border-radius:3px;font-size:0.78rem;z-index:300;text-align:center;animation:toastIn 0.3s ease-out;pointer-events:none;}
 @keyframes toastIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 </style>
-
 </head>
 <body>
 <div class="phone">
-
-<!-- SPLASH -->
-
 <div class="screen on" id="s-splash">
   <div class="sp-ring">
     <svg viewBox="0 0 64 64" fill="none">
@@ -413,10 +344,7 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
   <div class="sp-logo">lumo</div>
   <div class="sp-tag">Beauty Intelligence</div>
 </div>
-
-<!-- WELCOME -->
-
-<div class="screen on" id="s-welcome">
+<div class="screen" id="s-welcome">
   <div class="wl-bg"></div>
   <div class="wl-content">
     <div class="wl-top">
@@ -440,9 +368,6 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     </div>
   </div>
 </div>
-
-<!-- AUTH -->
-
 <div class="screen" id="s-auth">
   <div class="auth-nav">
     <button class="back-btn" onclick="show('s-welcome')">←</button>
@@ -485,9 +410,6 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     </button>
   </div>
 </div>
-
-<!-- ONBOARDING -->
-
 <div class="screen" id="s-ob">
   <div class="ob-progress"><div class="ob-bar" id="ob-bar" style="width:25%"></div></div>
   <div class="ob-nav">
@@ -504,121 +426,69 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     <button class="ob-next" id="ob-next" onclick="nextOb()" disabled>Continue →</button>
   </div>
 </div>
-
-<!-- MAIN APP -->
-
 <div class="screen" id="s-app">
-  <!-- HOME -->
   <div class="tab-content on" id="tab-home">
     <div class="home-header">
       <div class="home-greeting">
         <div class="home-greeting-sub">Good to see you</div>
         <div class="home-greeting-name"><em id="home-name">·</em></div>
       </div>
-      <div class="home-av" id="home-av" onclick="openSub('sub-profile')">?</div>
+      <div class="home-av" id="home-av" onclick="switchTab('profile')">?</div>
     </div>
-
-```
-<div id="home-checkin" style="display:none;padding:16px 16px 0;">
-  <div class="checkin">
-    <div class="ci-tag">Daily Check-in</div>
-    <div class="ci-q" id="ci-q">How did your skin feel today?</div>
-    <div class="ci-btns">
-      <button class="ci-btn ci-worse" onclick="doCheckIn('worse',this)">Worse</button>
-      <button class="ci-btn ci-same" onclick="doCheckIn('same',this)">Same</button>
-      <button class="ci-btn ci-better" onclick="doCheckIn('better',this)">Better</button>
+    <div id="home-checkin" style="display:none;padding:16px 16px 0;">
+      <div class="checkin">
+        <div class="ci-tag">Daily Check-in</div>
+        <div class="ci-q" id="ci-q">How did your skin feel today?</div>
+        <div class="ci-btns">
+          <button class="ci-btn ci-worse" onclick="doCheckIn('worse',this)">Worse</button>
+          <button class="ci-btn ci-same" onclick="doCheckIn('same',this)">Same</button>
+          <button class="ci-btn ci-better" onclick="doCheckIn('better',this)">Better</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-<div class="hero-banner" onclick="openSub('sub-prepurchase')" style="margin-top:16px;">
-  <div class="hb-tag">Before You Buy</div>
-  <div class="hb-title">Will this product work for my skin?</div>
-  <div class="hb-sub">Get a compatibility score before spending your money.</div>
-  <div class="hb-arrow">→</div>
-  <div class="hb-stats">
-    <div class="hb-stat"><div class="hb-stat-n">94%</div><div class="hb-stat-l">accuracy</div></div>
-    <div class="hb-stat"><div class="hb-stat-n">2min</div><div class="hb-stat-l">analysis</div></div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="section-hdr">
-    <span class="section-title">Trending Now</span>
-  </div>
-  <div class="trending-scroll" id="trending-scroll">
-    <div class="trend-card"><div class="trend-emoji">💧</div><div class="trend-name">CeraVe Moisturizer</div><div class="trend-meta">MOISTURIZER · 847 reviews</div><div class="trend-score"><span class="trend-score-n" style="color:var(--green)">91</span><span class="trend-score-l">/ 100</span></div></div>
-    <div class="trend-card"><div class="trend-emoji">🧬</div><div class="trend-name">The Ordinary Niacinamide</div><div class="trend-meta">SERUM · 1,204 reviews</div><div class="trend-score"><span class="trend-score-n" style="color:var(--green)">87</span><span class="trend-score-l">/ 100</span></div></div>
-    <div class="trend-card"><div class="trend-emoji">☀️</div><div class="trend-name">Purito SPF50</div><div class="trend-meta">SPF · 623 reviews</div><div class="trend-score"><span class="trend-score-n" style="color:var(--orange)">72</span><span class="trend-score-l">/ 100</span></div></div>
-    <div class="trend-card"><div class="trend-emoji">🫧</div><div class="trend-name">Charlotte Tilbury Foundation</div><div class="trend-meta">FOUNDATION · 389 reviews</div><div class="trend-score"><span class="trend-score-n" style="color:var(--red)">54</span><span class="trend-score-l">/ 100</span></div></div>
-  </div>
-</div>
-
-<div class="section" style="padding-bottom:24px;">
-  <div class="section-hdr">
-    <span class="section-title">My Tracking</span>
-    <span class="section-action" onclick="openSub('sub-scan')">+ Add product</span>
-  </div>
-  <div class="prod-list" id="prod-list">
-    <div class="empty">
-      <div class="empty-icon">◎</div>
-      <div class="empty-txt">No products tracked yet.<br>Scan a barcode or search to start.</div>
+    <div class="hero-banner" onclick="openSub('sub-prepurchase')" style="margin-top:16px;">
+      <div class="hb-tag">Before You Buy</div>
+      <div class="hb-title">Will this product work for my skin?</div>
+      <div class="hb-sub">Get a compatibility score before spending your money.</div>
+      <div class="hb-arrow">→</div>
+      <div class="hb-stats">
+        <div class="hb-stat"><div class="hb-stat-n">94%</div><div class="hb-stat-l">accuracy</div></div>
+        <div class="hb-stat"><div class="hb-stat-n">2min</div><div class="hb-stat-l">analysis</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-hdr">
+        <span class="section-title">Trending Now</span>
+      </div>
+      <div class="trending-scroll">
+        <div class="trend-card"><div class="trend-emoji">💧</div><div class="trend-name">CeraVe Moisturizer</div><div class="trend-meta">MOISTURIZER · 847 reviews</div><div class="trend-score"><span class="trend-score-n" style="color:var(--green)">91</span><span class="trend-score-l">/ 100</span></div></div>
+        <div class="trend-card"><div class="trend-emoji">🧬</div><div class="trend-name">The Ordinary Niacinamide</div><div class="trend-meta">SERUM · 1,204 reviews</div><div class="trend-score"><span class="trend-score-n" style="color:var(--green)">87</span><span class="trend-score-l">/ 100</span></div></div>
+        <div class="trend-card"><div class="trend-emoji">☀️</div><div class="trend-name">Purito SPF50</div><div class="trend-meta">SPF · 623 reviews</div><div class="trend-score"><span class="trend-score-n" style="color:var(--orange)">72</span><span class="trend-score-l">/ 100</span></div></div>
+        <div class="trend-card"><div class="trend-emoji">🫧</div><div class="trend-name">Charlotte Tilbury</div><div class="trend-meta">FOUNDATION · 389 reviews</div><div class="trend-score"><span class="trend-score-n" style="color:var(--red)">54</span><span class="trend-score-l">/ 100</span></div></div>
+      </div>
+    </div>
+    <div class="section" style="padding-bottom:24px;">
+      <div class="section-hdr">
+        <span class="section-title">My Tracking</span>
+        <span class="section-action" onclick="openSub('sub-scan')">+ Add product</span>
+      </div>
+      <div class="prod-list" id="prod-list">
+        <div class="empty"><div class="empty-icon">◎</div><div class="empty-txt">No products tracked yet.<br>Scan a barcode or search to start.</div></div>
+      </div>
     </div>
   </div>
-</div>
-```
-
-  </div>
-
-  <!-- DISCOVER TAB -->
-
   <div class="tab-content" id="tab-discover">
     <div style="padding:54px 22px 20px;">
       <div style="font-family:'Syne',sans-serif;font-size:0.5rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Discover</div>
       <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--white);letter-spacing:-0.5px;">Community<br><em style="color:var(--gold2);">Verdicts</em></div>
     </div>
     <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px;padding-bottom:24px;">
-      <div class="prod-card risk-low" style="cursor:default;">
-        <div class="prod-emoji-wrap">💧</div>
-        <div class="prod-info">
-          <div class="prod-name">CeraVe Moisturizing Cream</div>
-          <div class="prod-cat">Moisturizer · 847 reviews</div>
-          <div style="font-size:0.72rem;color:var(--mid);margin-top:4px;font-weight:300;">"Actually cleared my skin barrier after 2 weeks"</div>
-        </div>
-        <div class="prod-verdict verdict-good">91/100</div>
-      </div>
-      <div class="prod-card risk-low" style="cursor:default;">
-        <div class="prod-emoji-wrap">🧬</div>
-        <div class="prod-info">
-          <div class="prod-name">The Ordinary Niacinamide 10%</div>
-          <div class="prod-cat">Serum · 1,204 reviews</div>
-          <div style="font-size:0.72rem;color:var(--mid);margin-top:4px;font-weight:300;">"Pores visibly smaller in 6 weeks"</div>
-        </div>
-        <div class="prod-verdict verdict-good">87/100</div>
-      </div>
-      <div class="prod-card risk-mid" style="cursor:default;">
-        <div class="prod-emoji-wrap">☀️</div>
-        <div class="prod-info">
-          <div class="prod-name">Purito Daily Soft Touch SPF50</div>
-          <div class="prod-cat">SPF · 623 reviews</div>
-          <div style="font-size:0.72rem;color:var(--mid);margin-top:4px;font-weight:300;">"Good but breaks out oily skin"</div>
-        </div>
-        <div class="prod-verdict verdict-warn">72/100</div>
-      </div>
-      <div class="prod-card risk-high" style="cursor:default;">
-        <div class="prod-emoji-wrap">🫧</div>
-        <div class="prod-info">
-          <div class="prod-name">Charlotte Tilbury Magic Foundation</div>
-          <div class="prod-cat">Foundation · 389 reviews</div>
-          <div style="font-size:0.72rem;color:var(--mid);margin-top:4px;font-weight:300;">"Caused breakouts for 60% of users"</div>
-        </div>
-        <div class="prod-verdict verdict-bad">54/100</div>
-      </div>
+      <div class="prod-card risk-low" style="cursor:default;"><div class="prod-emoji-wrap">💧</div><div class="prod-info"><div class="prod-name">CeraVe Moisturizing Cream</div><div class="prod-cat">Moisturizer · 847 reviews</div><div style="font-size:0.72rem;color:var(--mid);margin-top:4px;font-weight:300;">"Actually cleared my skin barrier after 2 weeks"</div></div><div class="prod-verdict verdict-good">91/100</div></div>
+      <div class="prod-card risk-low" style="cursor:default;"><div class="prod-emoji-wrap">🧬</div><div class="prod-info"><div class="prod-name">The Ordinary Niacinamide 10%</div><div class="prod-cat">Serum · 1,204 reviews</div><div style="font-size:0.72rem;color:var(--mid);margin-top:4px;font-weight:300;">"Pores visibly smaller in 6 weeks"</div></div><div class="prod-verdict verdict-good">87/100</div></div>
+      <div class="prod-card risk-mid" style="cursor:default;"><div class="prod-emoji-wrap">☀️</div><div class="prod-info"><div class="prod-name">Purito Daily Soft Touch SPF50</div><div class="prod-cat">SPF · 623 reviews</div><div style="font-size:0.72rem;color:var(--mid);margin-top:4px;font-weight:300;">"Good but breaks out oily skin"</div></div><div class="prod-verdict verdict-warn">72/100</div></div>
+      <div class="prod-card risk-high" style="cursor:default;"><div class="prod-emoji-wrap">🫧</div><div class="prod-info"><div class="prod-name">Charlotte Tilbury Foundation</div><div class="prod-cat">Foundation · 389 reviews</div><div style="font-size:0.72rem;color:var(--mid);margin-top:4px;font-weight:300;">"Caused breakouts for 60% of users"</div></div><div class="prod-verdict verdict-bad">54/100</div></div>
     </div>
   </div>
-
-  <!-- PROFILE TAB -->
-
   <div class="tab-content" id="tab-profile">
     <div style="padding:54px 22px 16px;">
       <div class="prof-av-lg" id="tab-prof-av">?</div>
@@ -641,27 +511,13 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
       <div class="menu-row" onclick="handleLogout()"><span class="menu-row-ic" style="opacity:0.4;">→</span><span class="menu-row-txt" style="color:var(--mid);">Sign Out</span></div>
     </div>
   </div>
-
-  <!-- BOTTOM NAV -->
-
   <div class="bnav">
-    <button class="nav-btn on" id="nav-home" onclick="switchTab('home')">
-      <span class="nav-ic">◇</span><span class="nav-lb">Home</span>
-    </button>
-    <button class="nav-btn" id="nav-discover" onclick="switchTab('discover')">
-      <span class="nav-ic">◈</span><span class="nav-lb">Discover</span>
-    </button>
+    <button class="nav-btn on" id="nav-home" onclick="switchTab('home')"><span class="nav-ic">◇</span><span class="nav-lb">Home</span></button>
+    <button class="nav-btn" id="nav-discover" onclick="switchTab('discover')"><span class="nav-ic">◈</span><span class="nav-lb">Discover</span></button>
     <button class="nav-scan-btn" onclick="openSub('sub-scan')">📷</button>
-    <button class="nav-btn" id="nav-prepurchase" onclick="openSub('sub-prepurchase')">
-      <span class="nav-ic">◎</span><span class="nav-lb">Analyze</span>
-    </button>
-    <button class="nav-btn" id="nav-profile" onclick="switchTab('profile')">
-      <span class="nav-ic">◐</span><span class="nav-lb">Profile</span>
-    </button>
+    <button class="nav-btn" id="nav-prepurchase" onclick="openSub('sub-prepurchase')"><span class="nav-ic">◎</span><span class="nav-lb">Analyze</span></button>
+    <button class="nav-btn" id="nav-profile" onclick="switchTab('profile')"><span class="nav-ic">◐</span><span class="nav-lb">Profile</span></button>
   </div>
-
-  <!-- SUB: SCAN / ADD -->
-
   <div class="sub" id="sub-scan">
     <div class="scan-header">
       <div class="scan-title">Scan Product</div>
@@ -685,7 +541,7 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
       </div>
       <div class="scan-cats">
         <div class="scan-cats-title">Category</div>
-        <div class="cat-grid" id="cat-grid">
+        <div class="cat-grid">
           <div class="cat-tile" data-cat="lip" data-days="3" onclick="selectCat(this)"><div class="cat-tile-ic">💄</div><div class="cat-tile-nm">Lip</div><div class="cat-tile-d">3 days</div></div>
           <div class="cat-tile" data-cat="eye" data-days="3" onclick="selectCat(this)"><div class="cat-tile-ic">👁️</div><div class="cat-tile-nm">Eye</div><div class="cat-tile-d">3 days</div></div>
           <div class="cat-tile" data-cat="foundation" data-days="7" onclick="selectCat(this)"><div class="cat-tile-ic">🫧</div><div class="cat-tile-nm">Foundation</div><div class="cat-tile-d">1 week</div></div>
@@ -702,9 +558,6 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
       </div>
     </div>
   </div>
-
-  <!-- SUB: DETAIL -->
-
   <div class="sub" id="sub-detail">
     <div class="sub-nav">
       <button class="back-btn" onclick="closeSub('sub-detail')">←</button>
@@ -712,9 +565,6 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     </div>
     <div class="scroll" id="det-scroll"></div>
   </div>
-
-  <!-- SUB: PRE-PURCHASE -->
-
   <div class="sub" id="sub-prepurchase">
     <div class="sub-nav">
       <button class="back-btn" onclick="closeSub('sub-prepurchase')">←</button>
@@ -725,7 +575,7 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
         <div class="pp-hero">
           <div class="pp-hero-tag">Skin Intelligence</div>
           <div class="pp-hero-title">Is this product right for my skin?</div>
-          <div class="pp-hero-sub">Enter a product name — we'll analyze it against your skin profile in seconds.</div>
+          <div class="pp-hero-sub">Enter a product name — we'll analyze it against your skin profile.</div>
         </div>
         <div class="pp-inp-wrap">
           <span class="pp-search-ic">⌕</span>
@@ -737,25 +587,23 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     </div>
   </div>
 </div>
-
 <div class="loading" id="loading">
   <div class="spinner"></div>
   <div class="load-txt" id="load-txt">Analyzing</div>
 </div>
 </div>
-
 <script>
 (function(){
-  var currentUser=null, skinProfile={}, products=[];
-
-  // ── UTILS ──
+  var currentUser=null,skinProfile={},products=[];
   window.show=function(id){
     document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');s.style.display='';});
     var el=document.getElementById(id);
-    el.classList.add('on');
-    el.style.display='flex';
+    el.classList.add('on');el.style.display='flex';
   };
-  window.openSub=function(id){document.getElementById(id).classList.add('on');};
+  window.openSub=function(id){
+    document.getElementById(id).classList.add('on');
+    if(id==='sub-scan')setTimeout(startScan,300);
+  };
   window.closeSub=function(id){
     document.getElementById(id).classList.remove('on');
     if(id==='sub-scan')resetScanForm();
@@ -765,24 +613,25 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
   function getKey(k){return currentUser?k+'_'+(currentUser.uid||'local'):null;}
   function save(k,v){var key=getKey(k);if(key)localStorage.setItem(key,JSON.stringify(v));}
   function load(k,def){var key=getKey(k);if(!key)return def;var v=localStorage.getItem(key);return v?JSON.parse(v):def;}
-  function toast(msg,color){
+  function toast(msg){
     var t=document.createElement('div');
-    t.className='toast';
-    if(color)t.style.borderColor=color;
-    t.textContent=msg;
+    t.className='toast';t.textContent=msg;
     document.querySelector('.phone').appendChild(t);
     setTimeout(function(){t.style.opacity='0';t.style.transition='opacity 0.3s';setTimeout(function(){t.remove();},300);},2600);
   }
-
-  // ── SPLASH ──
+  document.getElementById('s-welcome').classList.remove('on');
+  document.getElementById('s-welcome').style.display='';
   setTimeout(function(){
-    var sp=document.getElementById('s-splash');
-    sp.classList.add('fade');
-  },100);
-
-  // ── AUTH ──
+    document.getElementById('s-splash').style.transition='opacity 0.5s';
+    document.getElementById('s-splash').style.opacity='0';
+    setTimeout(function(){
+      document.getElementById('s-splash').classList.remove('on');
+      document.getElementById('s-splash').style.display='none';
+      var wl=document.getElementById('s-welcome');
+      wl.classList.add('on');wl.style.display='flex';
+    },500);
+  },1600);
   var isReg=true;
-
   window.showAuth=function(mode){
     isReg=mode==='register';
     document.getElementById('auth-title').innerHTML=isReg?'Create your<br><em>account</em>':'Welcome<br><em>back</em>';
@@ -794,13 +643,11 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     var el=document.getElementById('s-auth');
     el.classList.add('on');el.style.display='flex';
   };
-
   window.switchAuthTab=function(tab){
     document.querySelectorAll('.seg-btn').forEach(function(b,i){b.classList.toggle('on',i===(tab==='email'?0:1));});
     document.getElementById('email-form').style.display=tab==='email'?'block':'none';
     document.getElementById('phone-form').style.display=tab==='phone'?'block':'none';
   };
-
   window.handleAuth=function(){
     var btn=document.getElementById('auth-btn');
     var msg=document.getElementById('auth-msg');
@@ -823,32 +670,27 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     }
     btn.disabled=false;
   };
-
   window.handleGoogle=function(){
     var name=prompt('Choose a username:');
     if(!name)return;
     doLogin(name+'@g',name);
   };
-
   window.handleLogout=function(){
     if(!confirm('Sign out?'))return;
     localStorage.removeItem('lu_session');
     currentUser=null;skinProfile={};products=[];
     show('s-welcome');
   };
-
   function doLogin(email,uname){
     var id=btoa(unescape(encodeURIComponent(email))).replace(/=/g,'');
     localStorage.setItem('lu_session',JSON.stringify({email:email,uname:uname,id:id}));
     currentUser={email:email,uid:id};
     onLogin(uname);
   }
-
   (function(){
     var s=localStorage.getItem('lu_session');
     if(s){try{var d=JSON.parse(s);currentUser={email:d.email,uid:d.id};onLogin(d.uname);}catch(e){localStorage.removeItem('lu_session');}}
   })();
-
   function onLogin(uname){
     skinProfile=load('skin',{});
     products=load('products',[]);
@@ -858,14 +700,11 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     document.getElementById('tab-prof-av').textContent=av;
     document.getElementById('tab-prof-name').textContent=uname;
     document.getElementById('tab-prof-email').textContent=currentUser.email||'';
-    renderSkinTags();
-    renderStats();
+    renderSkinTags();renderStats();
     var hasProfile=Object.keys(skinProfile).length>0;
     if(!hasProfile){show('s-ob');startOb();}
     else{show('s-app');renderProducts();checkCheckin();}
   }
-
-  // ── ONBOARDING ──
   var OB=[
     {emoji:'🌿',q:'What\'s your skin type?',hint:'This shapes every recommendation we make.',multi:false,key:'type',opts:['Normal','Oily','Dry','Combination','Sensitive']},
     {emoji:'⚡',q:'Your biggest skin concerns?',hint:'Select all that apply.',multi:true,key:'concerns',opts:['Acne & Breakouts','Dark Spots','Large Pores','Anti-Aging','Dryness','Sensitivity']},
@@ -873,9 +712,7 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     {emoji:'💊',q:'Current skincare routine?',hint:'',multi:false,key:'routine',opts:['Yes, consistent','Sometimes','Just starting out']},
   ];
   var obIdx=0,obAns={};
-
   function startOb(){obIdx=0;obAns={};renderOb();}
-
   function renderOb(){
     var s=OB[obIdx];
     document.getElementById('ob-bar').style.width=((obIdx+1)/OB.length*100)+'%';
@@ -885,11 +722,8 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     document.getElementById('ob-hint').textContent=s.hint;
     document.getElementById('ob-next').disabled=true;
     var el=document.getElementById('ob-opts');
-    el.innerHTML=s.opts.map(function(o,i){
-      return '<button class="ob-opt" onclick="selOb(this,'+i+','+s.multi+')">'+o+'</button>';
-    }).join('');
+    el.innerHTML=s.opts.map(function(o,i){return '<button class="ob-opt" onclick="selOb(this,'+i+','+s.multi+')">'+o+'</button>';}).join('');
   }
-
   window.selOb=function(btn,idx,multi){
     if(multi){
       btn.classList.toggle('sel');
@@ -902,35 +736,24 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
       obAns[OB[obIdx].key]=btn.textContent;
     }
   };
-
   window.nextOb=function(){
     if(obIdx<OB.length-1){obIdx++;renderOb();}
     else{
-      skinProfile=obAns;
-      save('skin',skinProfile);
-      renderSkinTags();
-      show('s-app');
-      renderProducts();
-      checkCheckin();
+      skinProfile=obAns;save('skin',skinProfile);renderSkinTags();
+      show('s-app');renderProducts();checkCheckin();
     }
   };
-
   window.skipOb=function(){
     skinProfile={type:'Unknown',concerns:[],allergy:'Not sure',routine:'Just starting out'};
-    save('skin',skinProfile);
-    show('s-app');
-    renderProducts();
+    save('skin',skinProfile);show('s-app');renderProducts();
   };
-
   function renderSkinTags(){
-    var tags=document.getElementById('tab-skin-tags');
-    if(!tags)return;
+    var tags=document.getElementById('tab-skin-tags');if(!tags)return;
     var items=[];
     if(skinProfile.type)items.push(skinProfile.type);
     if(skinProfile.concerns&&skinProfile.concerns.length)items=items.concat(skinProfile.concerns.slice(0,3));
     tags.innerHTML=items.length?items.map(function(t){return '<span class="skin-tag">'+t+'</span>';}).join(''):'<span class="skin-tag">No profile</span>';
   }
-
   function renderStats(){
     var reviewed=products.filter(function(p){return p.status==='reviewed';}).length;
     var totalDays=products.reduce(function(a,p){return a+p.done;},0);
@@ -938,8 +761,6 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     document.getElementById('stat-reviewed').textContent=reviewed;
     document.getElementById('stat-days').textContent=totalDays;
   }
-
-  // ── TAB SWITCHING ──
   window.switchTab=function(tab){
     document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('on');});
     document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('on');});
@@ -948,72 +769,44 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     if(tc)tc.classList.add('on');
     if(nb)nb.classList.add('on');
   };
-
-  // ── PRODUCTS ──
   var CATS={
-    lip:{emoji:'💄',label:'Lip',days:3},
-    eye:{emoji:'👁️',label:'Eye',days:3},
-    foundation:{emoji:'🫧',label:'Foundation',days:7},
-    makeup:{emoji:'✨',label:'Makeup',days:7},
-    moisturizer:{emoji:'💧',label:'Moisturizer',days:14},
-    serum:{emoji:'🧬',label:'Serum',days:42},
-    spf:{emoji:'☀️',label:'SPF',days:5},
-    cleanser:{emoji:'🧼',label:'Cleanser',days:7},
-    hair:{emoji:'✦',label:'Hair',days:14},
+    lip:{emoji:'💄',label:'Lip',days:3},eye:{emoji:'👁️',label:'Eye',days:3},
+    foundation:{emoji:'🫧',label:'Foundation',days:7},makeup:{emoji:'✨',label:'Makeup',days:7},
+    moisturizer:{emoji:'💧',label:'Moisturizer',days:14},serum:{emoji:'🧬',label:'Serum',days:42},
+    spf:{emoji:'☀️',label:'SPF',days:5},cleanser:{emoji:'🧼',label:'Cleanser',days:7},hair:{emoji:'✦',label:'Hair',days:14},
   };
   var selCat=null;
-
   window.selectCat=function(el){
     document.querySelectorAll('.cat-tile').forEach(function(c){c.classList.remove('sel');});
-    el.classList.add('sel');
-    selCat=el.dataset.cat;
-    checkScanReady();
+    el.classList.add('sel');selCat=el.dataset.cat;checkScanReady();
   };
-
   document.getElementById('scan-name').addEventListener('input',checkScanReady);
-
   function checkScanReady(){
-    var name=document.getElementById('scan-name').value.trim();
-    document.getElementById('scan-submit').disabled=!(name&&selCat);
+    document.getElementById('scan-submit').disabled=!(document.getElementById('scan-name').value.trim()&&selCat);
   }
-
   function resetScanForm(){
     document.getElementById('scan-name').value='';
     document.querySelectorAll('.cat-tile').forEach(function(c){c.classList.remove('sel');});
-    selCat=null;
-    document.getElementById('scan-submit').disabled=true;
-    stopScan();
+    selCat=null;document.getElementById('scan-submit').disabled=true;stopScan();
   }
-
   window.addProduct=function(){
     var name=document.getElementById('scan-name').value.trim();
     if(!name||!selCat)return;
     var meta=CATS[selCat];
     var prod={id:'p_'+Date.now(),name:name,cat:selCat,emoji:meta.emoji,label:meta.label,days:meta.days,done:0,added:new Date().toISOString(),checkins:[],status:'active'};
-    products.unshift(prod);
-    save('products',products);
-    renderStats();
-    closeSub('sub-scan');
-    renderProducts();
-    checkCheckin();
+    products.unshift(prod);save('products',products);renderStats();
+    closeSub('sub-scan');renderProducts();checkCheckin();
     setTimeout(function(){openDetail(prod.id);},200);
   };
-
   function getRisk(p){
     if(!p.checkins||!p.checkins.length)return 'none';
     var last3=p.checkins.slice(-3);
     var worse=last3.filter(function(c){return c.reaction==='worse';}).length;
-    if(worse>=2)return 'high';
-    if(worse>=1)return 'mid';
-    return 'low';
+    if(worse>=2)return 'high';if(worse>=1)return 'mid';return 'low';
   }
-
   function renderProducts(){
     var list=document.getElementById('prod-list');
-    if(!products.length){
-      list.innerHTML='<div class="empty"><div class="empty-icon">◎</div><div class="empty-txt">No products tracked yet.<br>Scan a barcode or search to start.</div></div>';
-      return;
-    }
+    if(!products.length){list.innerHTML='<div class="empty"><div class="empty-icon">◎</div><div class="empty-txt">No products tracked yet.<br>Scan a barcode or search to start.</div></div>';return;}
     list.innerHTML=products.map(function(p){
       var pct=Math.min(Math.round((p.done/p.days)*100),100);
       var risk=getRisk(p);
@@ -1021,120 +814,71 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
       var barColor=pct===100?'var(--green)':risk==='high'?'var(--red)':risk==='mid'?'var(--orange)':'var(--gold)';
       var vLabel=pct===100?'Complete':risk==='high'?'At Risk':risk==='mid'?'Monitor':'Tracking';
       var vClass=pct===100?'verdict-good':risk==='high'?'verdict-bad':risk==='mid'?'verdict-warn':'verdict-wait';
-      return '<div class="prod-card '+riskClass+'" onclick="openDetail(\''+p.id+'\')">'
-        +'<div class="prod-emoji-wrap">'+p.emoji+'</div>'
-        +'<div class="prod-info">'
-        +'<div class="prod-name">'+p.name+'</div>'
-        +'<div class="prod-cat">'+p.label.toUpperCase()+'</div>'
-        +'<div class="prod-progress"><div class="prod-bar"><div class="prod-bar-fill" style="width:'+pct+'%;background:'+barColor+'"></div></div>'
-        +'<div class="prod-days">'+p.done+'/'+p.days+'d</div></div>'
-        +'</div>'
-        +'<div class="prod-verdict '+vClass+'">'+vLabel+'</div>'
-        +'</div>';
+      return '<div class="prod-card '+riskClass+'" onclick="openDetail(\''+p.id+'\')"><div class="prod-emoji-wrap">'+p.emoji+'</div><div class="prod-info"><div class="prod-name">'+p.name+'</div><div class="prod-cat">'+p.label.toUpperCase()+'</div><div class="prod-progress"><div class="prod-bar"><div class="prod-bar-fill" style="width:'+pct+'%;background:'+barColor+'"></div></div><div class="prod-days">'+p.done+'/'+p.days+'d</div></div></div><div class="prod-verdict '+vClass+'">'+vLabel+'</div></div>';
     }).join('');
   }
-
-  // ── DETAIL ──
   window.openDetail=function(id){
-    var p=products.find(function(x){return x.id===id;});
-    if(!p)return;
+    var p=products.find(function(x){return x.id===id;});if(!p)return;
     document.getElementById('det-title').textContent=p.name;
     var pct=Math.min(Math.round((p.done/p.days)*100),100);
     var risk=getRisk(p);
     var verdict=getVerdict(p,risk);
-    var insights=getInsights(p,risk);
     var ingredients=getIngredients(p);
+    var insights=getInsights(p,risk);
     var today=new Date().toDateString();
     var todayKey=getKey('checkin_date');
     var lastDate=todayKey?localStorage.getItem(todayKey):null;
     var showCheckin=p.status==='active'&&p.done<p.days&&lastDate!==today;
-    var checkinHTML=showCheckin?
-      '<div class="det-checkin">'
-      +'<div class="dc-label">Daily Check-in</div>'
-      +'<div class="dc-q">"'+p.name+'" — how\'s your skin today?</div>'
-      +'<div class="dc-btns">'
-      +'<button class="dc-btn dc-worse" onclick="doDetailCheckin(\'worse\',this,\''+p.id+'\')">Worse</button>'
-      +'<button class="dc-btn dc-same" onclick="doDetailCheckin(\'same\',this,\''+p.id+'\')">Same</button>'
-      +'<button class="dc-btn dc-better" onclick="doDetailCheckin(\'better\',this,\''+p.id+'\')">Better</button>'
-      +'</div></div>'
-      :'';
-    var actionHTML=p.done>=p.days&&p.status!=='reviewed'
-      ?'<button class="act-btn" onclick="openReview(\''+p.id+'\')">Write Your Review →</button>'
-      :p.status==='reviewed'
-      ?'<button class="act-btn" style="background:var(--surface);color:var(--green);cursor:default;">✓ Review Complete</button>'
-      :'<button class="act-btn" disabled>⏳ '+( p.days-p.done)+' days remaining</button>';
-
+    var checkinHTML=showCheckin?'<div class="det-checkin"><div class="dc-label">Daily Check-in</div><div class="dc-q">"'+p.name+'" — how\'s your skin today?</div><div class="dc-btns"><button class="dc-btn dc-worse" onclick="doDetailCheckin(\'worse\',this,\''+p.id+'\')">Worse</button><button class="dc-btn dc-same" onclick="doDetailCheckin(\'same\',this,\''+p.id+'\')">Same</button><button class="dc-btn dc-better" onclick="doDetailCheckin(\'better\',this,\''+p.id+'\')">Better</button></div></div>':'';
+    var actionHTML=p.done>=p.days&&p.status!=='reviewed'?'<button class="act-btn" onclick="openReview(\''+p.id+'\')">Write Your Review →</button>':p.status==='reviewed'?'<button class="act-btn" style="background:var(--surface);color:var(--green);cursor:default;">✓ Review Complete</button>':'<button class="act-btn" disabled>⏳ '+(p.days-p.done)+' days remaining</button>';
     document.getElementById('det-scroll').innerHTML=
-      '<div class="det-hero">'
-      +'<span class="det-emoji">'+p.emoji+'</span>'
-      +'<div class="det-brand">'+p.label.toUpperCase()+'</div>'
-      +'<div class="det-name">'+p.name+'</div>'
-      +'<div class="det-cat">Added '+new Date(p.added).toLocaleDateString('en',{month:'short',day:'numeric'})+'</div>'
-      +'</div>'
-      +'<div class="verdict-hero '+verdict.cls+'">'
-      +'<div class="vh-tag">'+verdict.tag+'</div>'
-      +'<div class="vh-main">'+verdict.main+'</div>'
-      +'<div class="vh-sub">'+verdict.sub+'</div>'
-      +'</div>'
-      +'<div class="prog-card">'
-      +'<div class="prog-top"><span class="prog-label">Progress</span><span class="prog-days">'+p.done+' / '+p.days+' days</span></div>'
-      +'<div class="prog-track"><div class="prog-fill" style="width:'+pct+'%"></div></div>'
-      +'<div class="prog-status">'+(pct===100?'✓ Ready for review':''+pct+'% complete — keep going')+'</div>'
-      +'</div>'
+      '<div class="det-hero"><span class="det-emoji">'+p.emoji+'</span><div class="det-brand">'+p.label.toUpperCase()+'</div><div class="det-name">'+p.name+'</div><div class="det-cat">Added '+new Date(p.added).toLocaleDateString('en',{month:'short',day:'numeric'})+'</div></div>'
+      +'<div class="verdict-hero '+verdict.cls+'"><div class="vh-tag">'+verdict.tag+'</div><div class="vh-main">'+verdict.main+'</div><div class="vh-sub">'+verdict.sub+'</div></div>'
+      +'<div class="prog-card"><div class="prog-top"><span class="prog-label">Progress</span><span class="prog-days">'+p.done+' / '+p.days+' days</span></div><div class="prog-track"><div class="prog-fill" style="width:'+pct+'%"></div></div><div class="prog-status">'+(pct===100?'✓ Ready for review':pct+'% complete — keep going')+'</div></div>'
       +checkinHTML
-      +'<div class="ing-section">'
-      +'<div class="ing-title">Ingredient Intelligence</div>'
-      +ingredients
-      +'</div>'
+      +'<div class="ing-section"><div class="ing-title">Ingredient Intelligence</div>'+ingredients+'</div>'
       +insights
       +actionHTML
       +'<button class="act-btn-outline" onclick="closeSub(\'sub-detail\')">← Back</button>';
     openSub('sub-detail');
   };
-
   function getVerdict(p,risk){
-    if(p.done===0)return{cls:'vh-neutral',tag:'JUST STARTED',main:'Tracking has begun.',sub:'Check in every day to build up your skin data. The more consistent you are, the more accurate the verdict.'};
+    if(p.done===0)return{cls:'vh-neutral',tag:'JUST STARTED',main:'Tracking has begun.',sub:'Check in every day to build your skin data. The more consistent you are, the more accurate the verdict.'};
     if(risk==='high')return{cls:'vh-risk',tag:'HIGH RISK DETECTED',main:'Consider stopping this product.',sub:'Your skin has shown consistent negative reactions. This product may not be compatible with your skin profile.'};
-    if(risk==='mid')return{cls:'vh-warn',tag:'PROCEED WITH CAUTION',main:'Mixed signals from your skin.',sub:'Some negative reactions detected. Consider reducing frequency and monitor closely for the next few days.'};
+    if(risk==='mid')return{cls:'vh-warn',tag:'PROCEED WITH CAUTION',main:'Mixed signals from your skin.',sub:'Some negative reactions detected. Consider reducing frequency and monitor closely.'};
     if(p.done>=p.days)return{cls:'vh-safe',tag:'VERDICT READY',main:'You\'ve completed the tracking period.',sub:'Your data is ready. Write your review and help others make smarter decisions.'};
     return{cls:'vh-safe',tag:'LOOKING GOOD',main:'Your skin is tolerating this well.',sub:'No significant negative reactions so far. Keep tracking to confirm compatibility.'};
   }
-
   function getIngredients(p){
-    var cat=p.cat;
     var ingMap={
-      serum:[[' risk','Fragrance','Can cause irritation in sensitive skin','warn'],[' good','Niacinamide','Reduces pores and controls sebum','good'],[' good','Hyaluronic Acid','Deep hydration, suitable for all types','good']],
-      moisturizer:[[' good','Ceramides','Strengthens skin barrier','good'],[' warn','Mineral Oil','May clog pores on oily/acne-prone skin','warn'],[' good','Glycerin','Humectant, locks in moisture','good']],
-      spf:[[' warn','Oxybenzone','Potential hormone disruptor — controversial','warn'],[' good','Zinc Oxide','Physical blocker, gentle on sensitive skin','good'],[' risk','Fragrance','Common irritant, especially for sensitive skin','risk']],
-      foundation:[[' warn','Silicones','Can trap bacteria if not cleansed properly','warn'],[' risk','Comedogenic Oils','May cause breakouts for acne-prone skin','risk'],[' good','Titanium Dioxide','Physical SPF, generally well-tolerated','good']],
+      serum:[['warn','Fragrance','Can cause irritation in sensitive skin','warn'],['good','Niacinamide','Reduces pores and controls sebum','good'],['good','Hyaluronic Acid','Deep hydration, suitable for all types','good']],
+      moisturizer:[['good','Ceramides','Strengthens skin barrier','good'],['warn','Mineral Oil','May clog pores on oily/acne-prone skin','warn'],['good','Glycerin','Humectant, locks in moisture','good']],
+      spf:[['warn','Oxybenzone','Potential hormone disruptor — controversial','warn'],['good','Zinc Oxide','Physical blocker, gentle on sensitive skin','good'],['risk','Fragrance','Common irritant, especially for sensitive skin','risk']],
+      foundation:[['warn','Silicones','Can trap bacteria if not cleansed properly','warn'],['risk','Comedogenic Oils','May cause breakouts for acne-prone skin','risk'],['good','Titanium Dioxide','Physical SPF, generally well-tolerated','good']],
     };
-    var ings=ingMap[cat]||[[' good','Water','Primary base ingredient','good'],[' mid','Emulsifiers','Blends oil and water ingredients','mid'],[' good','Preservatives','Prevents bacterial growth','good']];
+    var ings=ingMap[p.cat]||[['good','Water','Primary base ingredient','good'],['mid','Emulsifiers','Blends oil and water ingredients','mid'],['good','Preservatives','Prevents bacterial growth','good']];
     return ings.map(function(i){
+      if(i[3]==='mid')return '<div class="ing-row"><div class="ing-dot ing-dot-mid"></div><div class="ing-content"><div class="ing-name">'+i[1]+'</div><div class="ing-desc">'+i[2]+'</div></div></div>';
       var dotClass='ing-dot-'+i[3];
       var badgeClass=i[3]==='risk'?'ing-badge-risk':i[3]==='warn'?'ing-badge-warn':'ing-badge-good';
       var badgeLabel=i[3]==='risk'?'HIGH RISK':i[3]==='warn'?'CAUTION':'SAFE';
-      if(i[3]==='mid')return '<div class="ing-row"><div class="ing-dot ing-dot-mid"></div><div class="ing-content"><div class="ing-name">'+i[1]+'</div><div class="ing-desc">'+i[2]+'</div></div></div>';
       return '<div class="ing-row"><div class="ing-dot '+dotClass+'"></div><div class="ing-content"><div class="ing-name">'+i[1]+'</div><div class="ing-desc">'+i[2]+'</div></div><div class="ing-badge '+badgeClass+'">'+badgeLabel+'</div></div>';
     }).join('');
   }
-
   function getInsights(p,risk){
     if(!p.checkins||!p.checkins.length)return '';
     var worse=p.checkins.filter(function(c){return c.reaction==='worse';}).length;
     var better=p.checkins.filter(function(c){return c.reaction==='better';}).length;
     var total=p.checkins.length;
-    var rows='<div class="ing-section"><div class="ing-title">Your Data</div>';
     var worseRate=Math.round((worse/total)*100);
     var betterRate=Math.round((better/total)*100);
-    if(worseRate>40)rows+='<div class="ing-row"><div class="ing-dot ing-dot-risk"></div><div class="ing-content"><div class="ing-name">High reaction rate</div><div class="ing-desc">'+worseRate+'% of check-ins showed skin worsening. Strong incompatibility signal.</div></div></div>';
-    else if(betterRate>50)rows+='<div class="ing-row"><div class="ing-dot ing-dot-safe"></div><div class="ing-content"><div class="ing-name">Positive response</div><div class="ing-desc">'+betterRate+'% of check-ins showed improvement. Product appears compatible.</div></div></div>';
+    var rows='<div class="ing-section"><div class="ing-title">Your Data</div>';
+    if(worseRate>40)rows+='<div class="ing-row"><div class="ing-dot ing-dot-risk"></div><div class="ing-content"><div class="ing-name">High reaction rate</div><div class="ing-desc">'+worseRate+'% of check-ins showed skin worsening.</div></div></div>';
+    else if(betterRate>50)rows+='<div class="ing-row"><div class="ing-dot ing-dot-safe"></div><div class="ing-content"><div class="ing-name">Positive response</div><div class="ing-desc">'+betterRate+'% of check-ins showed improvement.</div></div></div>';
     else rows+='<div class="ing-row"><div class="ing-dot ing-dot-mid"></div><div class="ing-content"><div class="ing-name">Neutral response</div><div class="ing-desc">No significant change detected yet. Continue tracking.</div></div></div>';
-    if(skinProfile.type==='Sensitive'&&worse>0)rows+='<div class="ing-row"><div class="ing-dot ing-dot-risk"></div><div class="ing-content"><div class="ing-name">Sensitive skin alert</div><div class="ing-desc">Sensitive skin + negative reactions is a high-risk signal. Consider stopping.</div></div></div>';
-    rows+='</div>';
-    return rows;
+    if(skinProfile.type==='Sensitive'&&worse>0)rows+='<div class="ing-row"><div class="ing-dot ing-dot-risk"></div><div class="ing-content"><div class="ing-name">Sensitive skin alert</div><div class="ing-desc">Sensitive skin + negative reactions is a high-risk signal.</div></div></div>';
+    return rows+'</div>';
   }
-
-  // ── CHECK-IN ──
   function checkCheckin(){
     if(!products.length){document.getElementById('home-checkin').style.display='none';return;}
     var today=new Date().toDateString();
@@ -1147,35 +891,28 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
     document.getElementById('home-checkin').querySelector('.checkin').style.display='block';
     document.getElementById('ci-q').textContent='"'+active[0].name+'" — how\'s your skin today?';
   }
-
   window.doCheckIn=function(reaction,btn){
     btn.closest('.ci-btns').querySelectorAll('.ci-btn').forEach(function(b){b.classList.remove('sel');});
-    btn.classList.add(reaction==='worse'?'ci-worse':reaction==='better'?'ci-better':'ci-same');
     btn.classList.add('sel');
     var today=new Date().toDateString();
     var todayKey=getKey('checkin_date');
     if(todayKey)localStorage.setItem(todayKey,today);
     var active=products.filter(function(p){return p.status==='active'&&p.done<p.days;});
     if(active.length){
-      var prod=active[0];
-      prod.done=Math.min(prod.done+1,prod.days);
+      var prod=active[0];prod.done=Math.min(prod.done+1,prod.days);
       if(!prod.checkins)prod.checkins=[];
       prod.checkins.push({date:new Date().toISOString(),reaction:reaction});
-      save('products',products);
-      renderProducts();
-      renderStats();
+      save('products',products);renderProducts();renderStats();
       setTimeout(function(){
         document.getElementById('home-checkin').style.display='none';
-        if(reaction==='worse')toast('⚠ Negative reaction logged. Check product details.',null);
-        else if(reaction==='better')toast('✓ Improvement logged. Keep it up.',null);
+        if(reaction==='worse')toast('⚠ Negative reaction logged.');
+        else if(reaction==='better')toast('✓ Improvement logged.');
       },700);
     }
   };
-
   window.doDetailCheckin=function(reaction,btn,id){
     btn.parentElement.querySelectorAll('.dc-btn').forEach(function(b){b.classList.remove('sel');});
-    btn.classList.add('dc-'+reaction);
-    btn.classList.add('sel');
+    btn.classList.add('dc-'+reaction);btn.classList.add('sel');
     var today=new Date().toDateString();
     var todayKey=getKey('checkin_date');
     if(todayKey)localStorage.setItem(todayKey,today);
@@ -1184,140 +921,93 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
       p.done=Math.min(p.done+1,p.days);
       if(!p.checkins)p.checkins=[];
       p.checkins.push({date:new Date().toISOString(),reaction:reaction});
-      save('products',products);
-      renderProducts();
-      renderStats();
-      setTimeout(function(){
-        openDetail(id);
-      },600);
+      save('products',products);renderProducts();renderStats();
+      setTimeout(function(){openDetail(id);},600);
     }
   };
-
-  // ── PRE-PURCHASE ──
   window.runPrePurchase=function(){
-    var name=document.getElementById('pp-inp').value.trim();
-    if(!name)return;
+    var name=document.getElementById('pp-inp').value.trim();if(!name)return;
     var skinType=skinProfile.type||'Unknown';
     var concerns=skinProfile.concerns||[];
     var allergy=skinProfile.allergy||'Not sure';
     var score=75,warnings=[],positives=[];
     var nl=name.toLowerCase();
     if(skinType==='Sensitive'){if(nl.includes('acid')||nl.includes('retinol')||nl.includes('aha')||nl.includes('bha')){score-=25;warnings.push('Acid-based products carry high irritation risk for sensitive skin.');}}
-    if(skinType==='Oily'){if(nl.includes('oil')||nl.includes('cream')||nl.includes('butter')){score-=15;warnings.push('Heavy formulas may clog pores on oily skin.');}if(nl.includes('niacinamide')||nl.includes('salicylic')){score+=10;positives.push('This ingredient is typically great for oily skin.');}}
+    if(skinType==='Oily'){if(nl.includes('oil')||nl.includes('cream')||nl.includes('butter')){score-=15;warnings.push('Heavy formulas may clog pores on oily skin.');}if(nl.includes('niacinamide')||nl.includes('salicylic')){score+=10;positives.push('This ingredient is great for oily skin.');}}
     if(skinType==='Dry'){if(nl.includes('hyaluronic')||nl.includes('moisturizer')||nl.includes('cream')){score+=10;positives.push('Good hydration match for dry skin.');}if(nl.includes('foam')||nl.includes('gel')){score-=10;warnings.push('Foam cleansers can strip moisture from dry skin.');}}
     if(allergy==='Yes, I have some'){warnings.push('You flagged allergies — scan the ingredient list carefully.');score-=10;}
     if(concerns.includes('Acne & Breakouts')){if(nl.includes('oil')||nl.includes('coconut')){score-=15;warnings.push('Comedogenic ingredients detected — high breakout risk.');}}
     score=Math.max(20,Math.min(98,score));
     var scoreColor=score>=70?'var(--green)':score>=50?'var(--orange)':'var(--red)';
     var verdict=score>=70?'Compatible':score>=50?'Use with caution':'High risk';
+    var dashOffset=Math.round((1-(score/100))*176);
     var warnHTML=warnings.map(function(w){return '<div class="ing-row"><div class="ing-dot ing-dot-risk"></div><div class="ing-content"><div class="ing-desc">'+w+'</div></div></div>';}).join('');
     var posHTML=positives.map(function(p){return '<div class="ing-row"><div class="ing-dot ing-dot-safe"></div><div class="ing-content"><div class="ing-desc">'+p+'</div></div></div>';}).join('');
-    var dashOffset=Math.round((1-(score/100))*176);
     document.getElementById('pp-result').innerHTML=
       '<div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:20px;">'
-      +'<div class="score-wrap">'
-      +'<svg class="score-ring-svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="var(--border)" stroke-width="3"/><circle cx="32" cy="32" r="28" fill="none" stroke="'+scoreColor+'" stroke-width="3" stroke-dasharray="176" stroke-dashoffset="'+dashOffset+'" stroke-linecap="round" transform="rotate(-90 32 32)"/></svg>'
-      +'<div class="score-info"><div class="score-num" style="color:'+scoreColor+'">'+score+'</div><div class="score-label" style="color:'+scoreColor+'">'+verdict+'</div></div>'
-      +'</div>'
+      +'<div class="score-wrap"><svg class="score-ring-svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="var(--border)" stroke-width="3"/><circle cx="32" cy="32" r="28" fill="none" stroke="'+scoreColor+'" stroke-width="3" stroke-dasharray="176" stroke-dashoffset="'+dashOffset+'" stroke-linecap="round" transform="rotate(-90 32 32)"/></svg>'
+      +'<div><div class="score-num" style="color:'+scoreColor+'">'+score+'</div><div class="score-label" style="color:'+scoreColor+'">'+verdict+'</div></div></div>'
       +'<div style="font-family:\'Syne\',sans-serif;font-size:0.52rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">For your '+skinType+' skin</div>'
       +(posHTML||'')+(warnHTML||'')
       +(!warnings.length&&!positives.length?'<div style="font-size:0.75rem;color:var(--mid);">Build your skin profile for a more accurate analysis.</div>':'')
-      +'</div>'
-      +'<button class="scan-submit" style="width:100%;margin-top:12px;" onclick="closeSub(\'sub-prepurchase\');openSub(\'sub-scan\');">I\'ll try it — start tracking →</button>';
+      +'</div><button class="scan-submit" style="width:100%;margin-top:12px;" onclick="closeSub(\'sub-prepurchase\');openSub(\'sub-scan\');">I\'ll try it — start tracking →</button>';
   };
-
-  // ── REVIEW ──
   window.openReview=function(id){
-    var p=products.find(function(x){return x.id===id;});
-    if(!p)return;
+    var p=products.find(function(x){return x.id===id;});if(!p)return;
     window._rv=null;
     document.getElementById('det-scroll').innerHTML=
-      '<div style="padding:52px 22px 20px;">'
-      +'<div style="font-family:\'Syne\',sans-serif;font-size:0.5rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Final Review</div>'
+      '<div style="padding:52px 22px 20px;"><div style="font-family:\'Syne\',sans-serif;font-size:0.5rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Final Review</div>'
       +'<div style="font-family:\'Playfair Display\',serif;font-size:1.6rem;font-weight:700;color:var(--white);letter-spacing:-0.5px;line-height:1.1;margin-bottom:4px;">Your verdict on<br><em style="color:var(--gold2);">'+p.name+'</em></div>'
-      +'<div style="font-size:0.72rem;color:var(--mid);margin-bottom:24px;font-weight:300;">'+p.done+' days tracked</div>'
-      +'</div>'
+      +'<div style="font-size:0.72rem;color:var(--mid);margin-bottom:24px;font-weight:300;">'+p.done+' days tracked</div></div>'
       +'<div class="review-section">'
       +'<div style="font-family:\'Syne\',sans-serif;font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;">Overall verdict</div>'
-      +'<div class="rv-btns">'
-      +'<button class="rv-btn" onclick="setRV(\'recommend\',this,\'sel-good\')">✓ Recommend</button>'
-      +'<button class="rv-btn" onclick="setRV(\'neutral\',this,\'sel-mid\')">— Neutral</button>'
-      +'<button class="rv-btn" onclick="setRV(\'avoid\',this,\'sel-bad\')">✗ Avoid</button>'
-      +'</div>'
+      +'<div class="rv-btns"><button class="rv-btn" onclick="setRV(\'recommend\',this,\'sel-good\')">✓ Recommend</button><button class="rv-btn" onclick="setRV(\'neutral\',this,\'sel-mid\')">— Neutral</button><button class="rv-btn" onclick="setRV(\'avoid\',this,\'sel-bad\')">✗ Avoid</button></div>'
       +'<div style="font-family:\'Syne\',sans-serif;font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:16px 0 10px;">What did you notice?</div>'
       +'<textarea class="rv-textarea" id="rv-text" placeholder="What changed on your skin? Be specific — this helps others."></textarea>'
-
-```
-  +'</div>'
-  +'<button class="act-btn" id="rv-submit" onclick="submitReview(\''+p.id+'\')" disabled>Publish Review →</button>'
-  +'<button class="act-btn-outline" onclick="openDetail(\''+p.id+'\')">← Back</button>';
-document.getElementById('rv-text').addEventListener('input',function(){
-  document.getElementById('rv-submit').disabled=!this.value.trim()||!window._rv;
-});
-```
-
-};
-
-window._rv=null;
-window.setRV=function(v,btn,cls){
-btn.parentElement.querySelectorAll(’.rv-btn’).forEach(function(b){b.className=‘rv-btn’;});
-btn.classList.add(cls);
-window._rv=v;
-var txt=document.getElementById(‘rv-text’);
-if(txt)document.getElementById(‘rv-submit’).disabled=!txt.value.trim();
-};
-
-window.submitReview=function(id){
-var p=products.find(function(x){return x.id===id;});
-if(!p)return;
-p.status=‘reviewed’;
-p.review={verdict:window._rv,text:document.getElementById(‘rv-text’).value.trim(),date:new Date().toISOString()};
-window._rv=null;
-save(‘products’,products);
-renderProducts();
-renderStats();
-closeSub(‘sub-detail’);
-toast(‘✓ Review published. Thank you for helping the community.’,null);
-};
-
-// ── BARCODE ──
-var scanActive=false,html5Scanner=null;
-function startScan(){
-if(scanActive)return;
-var statusEl=document.getElementById(‘scan-status’);
-try{
-if(typeof Html5Qrcode===‘undefined’){statusEl.textContent=‘Camera scanner not available’;return;}
-html5Scanner=new Html5Qrcode(‘scan-video’);
-html5Scanner.start({facingMode:‘environment’},{fps:10,qrbox:{width:200,height:100}},
-function(code){
-scanActive=false;
-html5Scanner.stop().catch(function(){});
-statusEl.textContent=‘✓ Barcode scanned’;
-fetchBarcode(code);
-},
-function(){}
-);
-scanActive=true;
-}catch(e){statusEl.textContent=‘Camera unavailable’;}
-}
-function stopScan(){if(html5Scanner){html5Scanner.stop().catch(function(){});html5Scanner=null;}scanActive=false;}
-function fetchBarcode(code){
-showLoad(‘Looking up product…’);
-fetch(‘https://world.openbeautyfacts.org/api/v0/product/’+code+’.json’)
-.then(function(r){return r.json();})
-.then(function(d){hideLoad();if(d.status===1&&d.product&&d.product.product_name){document.getElementById(‘scan-name’).value=d.product.product_name;checkScanReady();}})
-.catch(function(){hideLoad();});
-}
-
-// Auto-start scan when sub-scan opens
-var origOpenSub=window.openSub;
-window.openSub=function(id){
-origOpenSub(id);
-if(id===‘sub-scan’)setTimeout(startScan,300);
-};
-
+      +'</div>'
+      +'<button class="act-btn" id="rv-submit" onclick="submitReview(\''+p.id+'\')" disabled>Publish Review →</button>'
+      +'<button class="act-btn-outline" onclick="openDetail(\''+p.id+'\')">← Back</button>';
+    document.getElementById('rv-text').addEventListener('input',function(){
+      document.getElementById('rv-submit').disabled=!this.value.trim()||!window._rv;
+    });
+  };
+  window._rv=null;
+  window.setRV=function(v,btn,cls){
+    btn.parentElement.querySelectorAll('.rv-btn').forEach(function(b){b.className='rv-btn';});
+    btn.classList.add(cls);window._rv=v;
+    var txt=document.getElementById('rv-text');
+    if(txt)document.getElementById('rv-submit').disabled=!txt.value.trim();
+  };
+  window.submitReview=function(id){
+    var p=products.find(function(x){return x.id===id;});if(!p)return;
+    p.status='reviewed';
+    p.review={verdict:window._rv,text:document.getElementById('rv-text').value.trim(),date:new Date().toISOString()};
+    window._rv=null;save('products',products);renderProducts();renderStats();
+    closeSub('sub-detail');toast('✓ Review published. Thank you!');
+  };
+  var scanActive=false,html5Scanner=null;
+  function startScan(){
+    if(scanActive)return;
+    var statusEl=document.getElementById('scan-status');
+    try{
+      if(typeof Html5Qrcode==='undefined'){statusEl.textContent='Camera scanner not available';return;}
+      html5Scanner=new Html5Qrcode('scan-video');
+      html5Scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:200,height:100}},
+        function(code){scanActive=false;html5Scanner.stop().catch(function(){});statusEl.textContent='✓ Barcode scanned';fetchBarcode(code);},
+        function(){}
+      );
+      scanActive=true;
+    }catch(e){statusEl.textContent='Camera unavailable';}
+  }
+  function stopScan(){if(html5Scanner){html5Scanner.stop().catch(function(){});html5Scanner=null;}scanActive=false;}
+  function fetchBarcode(code){
+    showLoad('Looking up product...');
+    fetch('https://world.openbeautyfacts.org/api/v0/product/'+code+'.json')
+      .then(function(r){return r.json();})
+      .then(function(d){hideLoad();if(d.status===1&&d.product&&d.product.product_name){document.getElementById('scan-name').value=d.product.product_name;checkScanReady();}})
+      .catch(function(){hideLoad();});
+  }
 })();
 </script>
-
 </body>
 </html>
