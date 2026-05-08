@@ -536,24 +536,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
   </div>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAwfYXmAzT_I4VcASFZanM_7W9KsRGC7-A",
-  authDomain: "lumo-app-2.firebaseapp.com",
-  projectId: "lumo-app-2",
-  storageBucket: "lumo-app-2.firebasestorage.app",
-  messagingSenderId: "955741390090",
-  appId: "1:955741390090:web:e7710e148665e6e4ac26f3",
-  measurementId: "G-MGR9MT8ZGL"
-};
-firebase.initializeApp(firebaseConfig);
-var _auth = firebase.auth();
-</script>
-
 <script>
 
 // Splash hides via CSS animation — welcome is always on behind it
@@ -625,39 +607,44 @@ var _auth = firebase.auth();
       if(!email || !pass){ msg.className='msg err'; msg.textContent='E-posta ve şifre gerekli.'; btn.disabled=false; return; }
       if(isReg && !uname){ msg.className='msg err'; msg.textContent='Kullanıcı adı gerekli.'; btn.disabled=false; return; }
       if(isReg){
-        _auth.createUserWithEmailAndPassword(email, pass)
-          .then(function(r){ return r.user.updateProfile({displayName: uname}); })
-          .then(function(){ })
-          .catch(function(e){ msg.className='msg err'; msg.textContent=e.message; btn.disabled=false; });
+        if(localStorage.getItem('lu_'+email)){ msg.className='msg err'; msg.textContent='Bu e-posta zaten kayıtlı.'; btn.disabled=false; return; }
+        localStorage.setItem('lu_'+email, JSON.stringify({email:email,pass:pass,uname:uname}));
+        doLogin(email, uname);
       } else {
-        _auth.signInWithEmailAndPassword(email, pass)
-          .catch(function(e){ msg.className='msg err'; msg.textContent='E-posta veya şifre hatalı.'; btn.disabled=false; });
+        var u = localStorage.getItem('lu_'+email);
+        if(!u){ msg.className='msg err'; msg.textContent='Kullanıcı bulunamadı.'; btn.disabled=false; return; }
+        u = JSON.parse(u);
+        if(u.pass !== pass){ msg.className='msg err'; msg.textContent='Şifre hatalı.'; btn.disabled=false; return; }
+        doLogin(email, u.uname);
       }
+      btn.disabled=false;
     };
 
     window.handleGoogle = function(){
-      var provider = new firebase.auth.GoogleAuthProvider();
-      _auth.signInWithPopup(provider).catch(function(e){
-        document.getElementById('auth-msg').className='msg err';
-        document.getElementById('auth-msg').textContent='Google girişi başarısız.';
-      });
+      var name = prompt('Kullanıcı adın nedir?');
+      if(!name) return;
+      doLogin(name+'@g', name);
     };
 
     window.handleLogout = function(){
       if(!confirm('Çıkış yapmak istiyor musun?')) return;
-      _auth.signOut();
+      localStorage.removeItem('lu_session');
+      currentUser=null; skinProfile={}; products=[];
+      show('s-welcome');
     };
 
-    _auth.onAuthStateChanged(function(user){
-      if(user){
-        currentUser = user;
-        var uname = user.displayName || user.email.split('@')[0];
-        onLogin(uname);
-      } else {
-        currentUser = null; skinProfile = {}; products = [];
-        show('s-welcome');
-      }
-    });
+    function doLogin(email, uname){
+      var id = btoa(unescape(encodeURIComponent(email))).replace(/=/g,'');
+      localStorage.setItem('lu_session', JSON.stringify({email:email,uname:uname,id:id}));
+      currentUser = {email:email, uid:id};
+      onLogin(uname);
+    }
+
+    // Restore session
+    (function(){
+      var s = localStorage.getItem('lu_session');
+      if(s){ try{ var d=JSON.parse(s); currentUser={email:d.email,uid:d.id}; onLogin(d.uname); }catch(e){ localStorage.removeItem('lu_session'); } }
+    })();
 
     function onLogin(uname){
       skinProfile = load('skin', {});
