@@ -31,7 +31,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .scroll::-webkit-scrollbar{display:none;}
 
 /* SPLASH */
-#s-splash{background:#080808;justify-content:center;align-items:center;}
+#s-splash{background:#080808;justify-content:center;align-items:center;z-index:100;}
 .splash-mark{width:48px;height:48px;background:var(–accent);border-radius:50%;animation:bloom 0.9s ease-out forwards;}
 @keyframes bloom{0%{transform:scale(0);opacity:0;}60%{transform:scale(1.15);}100%{transform:scale(1);opacity:1;}}
 .splash-wordmark{font-family:‘Instrument Serif’,serif;font-size:2.4rem;color:#fff;margin-top:14px;opacity:0;animation:rise 0.5s 0.5s ease-out forwards;}
@@ -542,8 +542,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 setTimeout(function(){
   var splash = document.getElementById('s-splash');
   var welcome = document.getElementById('s-welcome');
-  if(splash) splash.classList.remove('on');
-  if(welcome) welcome.classList.add('on');
+  if(splash){ splash.style.display='none'; }
+  if(welcome){ welcome.style.display='flex'; welcome.classList.add('on'); }
 }, 1800);
 
 (function() {
