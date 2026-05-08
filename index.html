@@ -1,1 +1,868 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Lumo</title></head><body><script>window.location.href="https://lumoreview.netlify.app/index.html"</script></body></html>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Lumo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0f0f0f;
+  --paper:#fafaf8;
+  --warm:#f5f0e8;
+  --accent:#FFE030;
+  --danger:#c0392b;
+  --safe:#27ae60;
+  --warn:#e67e22;
+  --mid:#888;
+  --br:#e8e4dc;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:#080808;}
+body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-items:center;-webkit-font-smoothing:antialiased;}
+.phone{width:min(390px,100vw);height:min(844px,100vh);background:#080808;overflow:hidden;position:relative;display:flex;flex-direction:column;border-radius:min(44px,5vw);box-shadow:0 0 0 8px #111,0 30px 80px rgba(0,0,0,0.7);}
+.screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--paper);}
+.screen.on{display:flex;}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.scroll::-webkit-scrollbar{display:none;}
+#s-splash{background:#080808;justify-content:center;align-items:center;z-index:100;animation:splashOut 0.4s 1.6s ease-out forwards;}
+@keyframes splashOut{to{opacity:0;pointer-events:none;visibility:hidden;}}
+.splash-mark{width:48px;height:48px;background:var(--accent);border-radius:50%;animation:bloom 0.9s ease-out forwards;}
+@keyframes bloom{0%{transform:scale(0);opacity:0;}60%{transform:scale(1.15);}100%{transform:scale(1);opacity:1;}}
+.splash-wordmark{font-family:'Instrument Serif',serif;font-size:2.4rem;color:#fff;margin-top:14px;opacity:0;animation:rise 0.5s 0.5s ease-out forwards;}
+.splash-sub{font-size:0.58rem;color:rgba(200,169,110,0.6);letter-spacing:3px;text-transform:uppercase;margin-top:5px;opacity:0;animation:rise 0.5s 0.8s ease-out forwards;}
+@keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+#s-welcome{background:#080808;}
+.w-inner{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 26px 40px;}
+.w-eyebrow{font-size:0.58rem;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;}
+.w-h1{font-family:'Instrument Serif',serif;font-size:2.6rem;color:#fff;line-height:1.08;letter-spacing:-1px;margin-bottom:14px;}
+.w-h1 em{font-style:italic;color:var(--accent);}
+.w-body{font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.7;margin-bottom:32px;max-width:300px;}
+.btn-p{background:#FFE030;color:#080808;border:none;border-radius:3px;padding:16px 24px;font-family:inherit;font-size:0.88rem;font-weight:500;width:100%;cursor:pointer;letter-spacing:0.3px;transition:opacity 0.15s;}
+.btn-p:active{opacity:0.85;}
+.btn-s{background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.2);border-radius:3px;padding:14px 24px;font-family:inherit;font-size:0.82rem;width:100%;cursor:pointer;margin-top:8px;transition:all 0.15s;}
+.btn-s:active{background:rgba(255,255,255,0.05);}
+.w-disc{font-size:0.62rem;color:rgba(255,255,255,0.15);text-align:center;margin-top:16px;}
+#s-auth{background:var(--paper);}
+.auth-top{padding:54px 24px 0;display:flex;align-items:center;gap:12px;}
+.back{width:34px;height:34px;background:var(--warm);border-radius:50%;border:none;cursor:pointer;font-size:0.85rem;color:var(--ink);display:flex;align-items:center;justify-content:center;}
+.auth-logo{font-family:'Instrument Serif',serif;font-size:1rem;color:var(--ink);}
+.auth-body{padding:28px 24px 20px;flex:1;display:flex;flex-direction:column;overflow-y:auto;}
+.auth-body::-webkit-scrollbar{display:none;}
+.auth-h{font-family:'Instrument Serif',serif;font-size:1.8rem;color:var(--ink);letter-spacing:-0.5px;margin-bottom:4px;}
+.auth-sub{font-size:0.78rem;color:var(--mid);margin-bottom:24px;}
+.tabs{display:flex;background:var(--warm);border-radius:3px;padding:3px;margin-bottom:20px;}
+.tab{flex:1;padding:9px;text-align:center;font-size:0.78rem;font-weight:500;border-radius:2px;cursor:pointer;color:var(--mid);transition:all 0.2s;}
+.tab.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+.field{margin-bottom:14px;}
+.field label{font-size:0.65rem;font-weight:500;color:var(--ink);letter-spacing:0.8px;text-transform:uppercase;display:block;margin-bottom:6px;}
+.inp{width:100%;padding:13px 14px;border:1px solid var(--br);border-radius:3px;font-family:inherit;font-size:0.88rem;color:var(--ink);outline:none;background:#fff;transition:border-color 0.15s;}
+.inp:focus{border-color:var(--ink);}
+.inp::placeholder{color:#ccc;}
+.auth-btn{background:var(--ink);color:#fff;border:none;border-radius:3px;padding:15px;width:100%;font-family:inherit;font-size:0.88rem;font-weight:500;cursor:pointer;margin-top:6px;transition:opacity 0.15s;}
+.auth-btn:active{opacity:0.85;}
+.auth-btn:disabled{background:#ccc;cursor:default;}
+.or{display:flex;align-items:center;gap:10px;margin:14px 0;}
+.or::before,.or::after{content:'';flex:1;height:1px;background:var(--br);}
+.or span{font-size:0.68rem;color:#ccc;}
+.g-btn{width:100%;padding:13px;border:1px solid var(--br);border-radius:3px;background:#fff;font-family:inherit;font-size:0.82rem;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.15s;}
+.g-btn:active{background:var(--warm);}
+.msg{font-size:0.75rem;min-height:16px;text-align:center;margin-top:8px;}
+.msg.err{color:var(--danger);}
+.msg.ok{color:var(--safe);}
+#s-profile{background:#080808;}
+.ob-bar{height:2px;background:rgba(255,255,255,0.08);flex-shrink:0;}
+.ob-fill{height:100%;background:var(--accent);transition:width 0.4s ease;}
+.ob-hdr{padding:20px 24px 0;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.ob-n{font-size:0.65rem;color:rgba(255,255,255,0.3);letter-spacing:1px;}
+.ob-skip{background:none;border:none;font-family:inherit;font-size:0.72rem;color:rgba(255,255,255,0.25);cursor:pointer;}
+.ob-body{flex:1;padding:24px 24px 0;overflow-y:auto;}
+.ob-body::-webkit-scrollbar{display:none;}
+.ob-icon{font-size:2rem;margin-bottom:12px;}
+.ob-q{font-family:'Instrument Serif',serif;font-size:1.45rem;color:#fff;line-height:1.2;margin-bottom:6px;}
+.ob-hint{font-size:0.75rem;color:rgba(255,255,255,0.3);margin-bottom:20px;line-height:1.5;}
+.ob-opts{display:flex;flex-direction:column;gap:7px;}
+.ob-opt{padding:13px 16px;border:1px solid rgba(255,255,255,0.1);border-radius:3px;font-size:0.84rem;color:rgba(255,255,255,0.7);cursor:pointer;transition:all 0.15s;background:rgba(255,255,255,0.03);text-align:left;font-family:inherit;}
+.ob-opt:active{transform:scale(0.99);}
+.ob-opt.sel{border-color:var(--accent);background:rgba(200,169,110,0.1);color:#fff;}
+.ob-foot{padding:16px 24px 28px;flex-shrink:0;}
+.ob-next{background:var(--accent);color:#080808;border:none;border-radius:3px;padding:15px;width:100%;font-family:inherit;font-size:0.88rem;font-weight:500;cursor:pointer;transition:opacity 0.15s;}
+.ob-next:disabled{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.2);cursor:default;}
+#s-app{background:var(--paper);}
+.home-hdr{padding:54px 22px 16px;display:flex;justify-content:space-between;align-items:flex-end;flex-shrink:0;}
+.home-title{font-family:'Instrument Serif',serif;font-size:1.5rem;color:var(--ink);}
+.home-title span{font-style:italic;color:var(--accent);}
+.av{width:34px;height:34px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:0.85rem;color:var(--accent);cursor:pointer;}
+.prepurchase{margin:0 16px 16px;background:var(--ink);border-radius:8px;padding:16px;cursor:pointer;transition:opacity 0.15s;}
+.prepurchase:active{opacity:0.9;}
+.pp-eyebrow{font-size:0.58rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.pp-title{font-family:'Instrument Serif',serif;font-size:1.1rem;color:#fff;margin-bottom:4px;}
+.pp-sub{font-size:0.72rem;color:rgba(255,255,255,0.35);}
+.pp-arrow{float:right;color:var(--accent);font-size:1.1rem;margin-top:-28px;}
+.section-hdr{padding:0 22px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.section-title{font-size:0.65rem;font-weight:500;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;}
+.section-add{background:none;border:none;font-size:0.72rem;color:var(--accent);cursor:pointer;font-family:inherit;}
+.prod-list{padding:0 16px;display:flex;flex-direction:column;gap:8px;}
+.prod-card{background:#fff;border:1px solid var(--br);border-radius:6px;padding:14px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:all 0.15s;}
+.prod-card:active{background:var(--warm);border-color:var(--accent);}
+.prod-em{width:40px;height:40px;background:var(--warm);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.prod-info{flex:1;min-width:0;}
+.prod-name{font-size:0.84rem;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.prod-cat{font-size:0.66rem;color:var(--mid);margin-top:1px;}
+.prod-status{display:flex;align-items:center;gap:6px;margin-top:5px;}
+.prod-bar{flex:1;height:2px;background:var(--br);border-radius:2px;overflow:hidden;}
+.prod-bar-fill{height:100%;border-radius:2px;transition:width 0.5s ease;}
+.prod-day{font-size:0.62rem;color:var(--mid);}
+.risk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.risk-low{background:var(--safe);}
+.risk-mid{background:var(--warn);}
+.risk-high{background:var(--danger);}
+.empty-state{text-align:center;padding:40px 20px;color:var(--mid);}
+.empty-icon{font-size:2rem;margin-bottom:8px;opacity:0.3;}
+.empty-txt{font-size:0.82rem;line-height:1.6;}
+.checkin-card{margin:0 16px 14px;background:var(--warm);border:1px solid var(--br);border-radius:6px;padding:14px;}
+.ci-label{font-size:0.6rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.ci-q{font-family:'Instrument Serif',serif;font-size:1rem;color:var(--ink);margin-bottom:12px;}
+.ci-opts{display:flex;gap:7px;}
+.ci-btn{flex:1;padding:10px 6px;border:1px solid var(--br);border-radius:3px;background:#fff;font-family:inherit;font-size:0.75rem;color:var(--ink);cursor:pointer;text-align:center;transition:all 0.15s;}
+.ci-btn:active{transform:scale(0.97);}
+.ci-worse{border-color:#ecc;}
+.ci-worse.sel{background:var(--danger);color:#fff;border-color:var(--danger);}
+.ci-same.sel{background:var(--mid);color:#fff;border-color:var(--mid);}
+.ci-better.sel{background:var(--safe);color:#fff;border-color:var(--safe);}
+.bnav{height:64px;background:#fff;border-top:1px solid var(--br);display:flex;justify-content:space-around;align-items:center;padding-bottom:10px;flex-shrink:0;}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;background:none;border:none;padding:6px 14px;}
+.nav-ic{font-size:1.05rem;}
+.nav-lb{font-size:0.52rem;color:#bbb;font-weight:500;letter-spacing:0.3px;}
+.nav-btn.on .nav-lb{color:var(--ink);}
+.sub{position:absolute;inset:0;background:var(--paper);display:none;flex-direction:column;z-index:10;animation:slideUp 0.25s ease-out;}
+.sub.on{display:flex;}
+@keyframes slideUp{from{transform:translateY(16px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.sub-hdr{padding:54px 22px 16px;display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.sub-back{width:32px;height:32px;background:var(--warm);border-radius:50%;border:none;cursor:pointer;font-size:0.85rem;color:var(--ink);display:flex;align-items:center;justify-content:center;}
+.sub-title{font-family:'Instrument Serif',serif;font-size:1.1rem;color:var(--ink);}
+#sub-add .scroll{padding:0 22px 20px;}
+.search-wrap{position:relative;margin-bottom:20px;}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:0.9rem;color:#bbb;}
+.search-inp{width:100%;padding:13px 13px 13px 36px;border:1px solid var(--br);border-radius:3px;font-family:inherit;font-size:0.88rem;color:var(--ink);outline:none;background:#fff;}
+.search-inp:focus{border-color:var(--ink);}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+.cat-card{background:#fff;border:1px solid var(--br);border-radius:5px;padding:14px;cursor:pointer;transition:all 0.15s;}
+.cat-card:active{background:var(--warm);}
+.cat-card.sel{border-color:var(--accent);background:rgba(200,169,110,0.06);}
+.cat-ic{font-size:1.4rem;margin-bottom:7px;}
+.cat-nm{font-size:0.82rem;font-weight:500;color:var(--ink);}
+.cat-days{font-size:0.65rem;color:var(--mid);margin-top:2px;}
+.scan-toggle{display:flex;align-items:center;gap:8px;padding:12px 14px;border:1px dashed var(--br);border-radius:3px;cursor:pointer;margin-bottom:14px;background:transparent;}
+.scan-toggle-txt{font-size:0.78rem;color:var(--mid);}
+.add-submit{background:var(--ink);color:#fff;border:none;border-radius:3px;padding:15px;width:100%;font-family:inherit;font-size:0.88rem;font-weight:500;cursor:pointer;margin-top:4px;}
+.add-submit:disabled{background:#ddd;color:#aaa;cursor:default;}
+#sub-detail .scroll{padding:0 22px 30px;}
+.det-top{margin-bottom:20px;}
+.det-em{font-size:2.2rem;margin-bottom:8px;}
+.det-name{font-family:'Instrument Serif',serif;font-size:1.5rem;color:var(--ink);letter-spacing:-0.3px;margin-bottom:3px;}
+.det-cat{font-size:0.72rem;color:var(--mid);}
+.decision-card{border-radius:6px;padding:16px;margin-bottom:12px;}
+.dc-label{font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-weight:500;}
+.dc-main{font-family:'Instrument Serif',serif;font-size:1.15rem;line-height:1.3;margin-bottom:6px;}
+.dc-sub{font-size:0.75rem;line-height:1.55;}
+.dc-safe{background:#e8f5e9;}
+.dc-safe .dc-label{color:var(--safe);}
+.dc-safe .dc-main{color:#1b5e20;}
+.dc-safe .dc-sub{color:#388e3c;}
+.dc-warn{background:#fff8e1;}
+.dc-warn .dc-label{color:var(--warn);}
+.dc-warn .dc-main{color:#e65100;}
+.dc-warn .dc-sub{color:#f57c00;}
+.dc-risk{background:#fce4ec;}
+.dc-risk .dc-label{color:var(--danger);}
+.dc-risk .dc-main{color:#880e4f;}
+.dc-risk .dc-sub{color:#c62828;}
+.dc-neutral{background:var(--warm);}
+.dc-neutral .dc-label{color:var(--accent);}
+.dc-neutral .dc-main{color:var(--ink);}
+.dc-neutral .dc-sub{color:#666;}
+.prog-section{background:#fff;border:1px solid var(--br);border-radius:6px;padding:14px;margin-bottom:12px;}
+.prog-hdr{display:flex;justify-content:space-between;margin-bottom:10px;}
+.prog-label{font-size:0.65rem;font-weight:500;color:var(--mid);letter-spacing:1px;text-transform:uppercase;}
+.prog-days{font-size:0.72rem;color:var(--ink);}
+.prog-track{height:4px;background:var(--br);border-radius:2px;overflow:hidden;margin-bottom:8px;}
+.prog-fill{height:100%;border-radius:2px;background:var(--accent);transition:width 0.8s ease;}
+.prog-status{font-size:0.72rem;color:var(--mid);}
+.insight-section{margin-bottom:12px;}
+.ins-label{font-size:0.6rem;font-weight:500;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.ins-row{display:flex;gap:8px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--br);}
+.ins-row:last-child{border:none;}
+.ins-icon{font-size:0.9rem;flex-shrink:0;margin-top:1px;}
+.ins-txt{font-size:0.79rem;color:var(--ink);line-height:1.5;}
+.ins-prob{font-size:0.65rem;font-weight:500;margin-top:2px;}
+.ins-prob.high{color:var(--danger);}
+.ins-prob.mid{color:var(--warn);}
+.ins-prob.low{color:var(--safe);}
+.action-btn{background:var(--ink);color:#fff;border:none;border-radius:3px;padding:15px;width:100%;font-family:inherit;font-size:0.88rem;font-weight:500;cursor:pointer;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.action-btn:active{opacity:0.85;}
+.action-btn-outline{background:transparent;color:var(--ink);border:1px solid var(--br);border-radius:3px;padding:13px;width:100%;font-family:inherit;font-size:0.84rem;cursor:pointer;margin-top:8px;}
+#sub-prepurchase .scroll{padding:0 22px 30px;}
+.pp-result{background:#fff;border:1px solid var(--br);border-radius:6px;padding:16px;margin-bottom:12px;}
+.pp-score{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.score-ring{width:56px;height:56px;flex-shrink:0;}
+.score-val{font-family:'Instrument Serif',serif;font-size:2rem;color:var(--ink);}
+.score-label{font-size:0.7rem;color:var(--mid);margin-top:1px;}
+#sub-profile .scroll{padding:0 22px 30px;}
+.prof-top{padding-top:10px;margin-bottom:20px;}
+.prof-av{width:54px;height:54px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:1.2rem;color:var(--accent);margin-bottom:10px;}
+.prof-name{font-family:'Instrument Serif',serif;font-size:1.2rem;color:var(--ink);}
+.prof-email{font-size:0.72rem;color:var(--mid);margin-top:2px;}
+.skin-summary{background:var(--warm);border-radius:6px;padding:14px;margin-bottom:16px;}
+.ss-label{font-size:0.6rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.ss-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.ss-tag{background:#fff;border:1px solid var(--br);border-radius:2px;padding:4px 8px;font-size:0.7rem;color:var(--ink);}
+.menu-list{display:flex;flex-direction:column;gap:2px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:13px 14px;background:var(--warm);border-radius:4px;cursor:pointer;transition:background 0.15s;}
+.menu-item:active{background:var(--br);}
+.menu-ic{font-size:0.9rem;width:20px;text-align:center;}
+.menu-txt{flex:1;font-size:0.82rem;color:var(--ink);}
+.menu-ar{font-size:0.72rem;color:#ccc;}
+.loading{position:absolute;inset:0;background:rgba(250,250,248,0.85);z-index:999;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
+.loading.on{display:flex;}
+.spinner{width:28px;height:28px;border:2px solid var(--br);border-top-color:var(--accent);border-radius:50%;animation:spin 0.7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.load-txt{font-size:0.75rem;color:var(--mid);}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="screen on" id="s-splash">
+    <div class="splash-mark"></div>
+    <div class="splash-wordmark">lumo</div>
+    <div class="splash-sub">skincare intelligence</div>
+  </div>
+  <div class="screen on" id="s-welcome">
+    <div class="w-inner">
+      <div class="w-eyebrow">Lumo · Skincare Intelligence</div>
+      <h1 class="w-h1">Cildine ne<br>yapacağını <em>bil,<br>önce.</em></h1>
+      <p class="w-body">Ürünlerin cildinde nasıl davranacağını önceden tahmin eden, kullanırken de izleyen bir sistem.</p>
+      <button class="btn-p" onclick="showAuth('register')">Başla →</button>
+      <button class="btn-s" onclick="showAuth('login')">Zaten hesabım var</button>
+      <div class="w-disc">Devam ederek Kullanım Koşulları'nı kabul etmiş olursun.</div>
+    </div>
+  </div>
+  <div class="screen" id="s-auth">
+    <div class="auth-top">
+      <button class="back" onclick="show('s-welcome')">←</button>
+      <span class="auth-logo">lumo</span>
+    </div>
+    <div class="auth-body">
+      <div class="auth-h" id="auth-h">Hesap Oluştur</div>
+      <div class="auth-sub" id="auth-sub">Cildine özel kararlar için birkaç adım.</div>
+      <div class="tabs">
+        <div class="tab on" onclick="switchTab('email')">E-posta</div>
+        <div class="tab" onclick="switchTab('phone')">Telefon</div>
+      </div>
+      <div id="email-form">
+        <div class="field" id="uname-field">
+          <label>Kullanıcı Adı</label>
+          <input class="inp" id="inp-uname" type="text" placeholder="örn. cemskin">
+        </div>
+        <div class="field">
+          <label>E-posta</label>
+          <input class="inp" id="inp-email" type="email" placeholder="ornek@gmail.com">
+        </div>
+        <div class="field">
+          <label>Şifre</label>
+          <input class="inp" id="inp-pass" type="password" placeholder="En az 6 karakter">
+        </div>
+      </div>
+      <div id="phone-form" style="display:none;">
+        <div class="field">
+          <label>Telefon</label>
+          <input class="inp" id="inp-phone" type="tel" placeholder="+90 5xx xxx xx xx">
+        </div>
+      </div>
+      <div class="msg" id="auth-msg"></div>
+      <button class="auth-btn" id="auth-btn" onclick="handleAuth()">Devam Et →</button>
+      <div class="or"><span>veya</span></div>
+      <button class="g-btn" onclick="handleGoogle()">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        Google ile devam et
+      </button>
+    </div>
+  </div>
+  <div class="screen" id="s-profile">
+    <div class="ob-bar"><div class="ob-fill" id="ob-fill" style="width:25%"></div></div>
+    <div class="ob-hdr">
+      <span class="ob-n" id="ob-n">1 / 4</span>
+      <button class="ob-skip" onclick="skipOb()">Geç →</button>
+    </div>
+    <div class="ob-body">
+      <div class="ob-icon" id="ob-icon">🌿</div>
+      <div class="ob-q" id="ob-q"></div>
+      <div class="ob-hint" id="ob-hint"></div>
+      <div class="ob-opts" id="ob-opts"></div>
+    </div>
+    <div class="ob-foot">
+      <button class="ob-next" id="ob-next" onclick="nextOb()" disabled>Devam →</button>
+    </div>
+  </div>
+  <div class="screen" id="s-app">
+    <div class="scroll" id="tab-home">
+      <div class="home-hdr">
+        <div class="home-title">Merhaba<br><span id="home-name">·</span></div>
+        <div class="av" id="home-av" onclick="openSub('sub-profile')">?</div>
+      </div>
+      <div id="daily-checkin" style="display:none;">
+        <div class="checkin-card">
+          <div class="ci-label">Günlük Check-in</div>
+          <div class="ci-q" id="ci-q">Bugün cildin nasıl hissettirdi?</div>
+          <div class="ci-opts">
+            <button class="ci-btn ci-worse" onclick="doCheckIn('worse',this)">Kötüleşti</button>
+            <button class="ci-btn ci-same" onclick="doCheckIn('same',this)">Aynı</button>
+            <button class="ci-btn ci-better" onclick="doCheckIn('better',this)">İyileşti</button>
+          </div>
+        </div>
+      </div>
+      <div class="prepurchase" onclick="openSub('sub-prepurchase')">
+        <div class="pp-eyebrow">Satın Almadan Önce</div>
+        <div class="pp-title">Bu ürün cildime uyar mı?</div>
+        <div class="pp-sub">Risk analizi + uyumluluk skoru al</div>
+        <div class="pp-arrow">→</div>
+      </div>
+      <div class="section-hdr">
+        <span class="section-title">Takip Ettiklerim</span>
+        <button class="section-add" onclick="openSub('sub-add')">+ Ekle</button>
+      </div>
+      <div class="prod-list" id="prod-list">
+        <div class="empty-state">
+          <div class="empty-icon">◯</div>
+          <div class="empty-txt">Henüz ürün eklemedin.<br>Bir ürün ekle, izlemeye başla.</div>
+        </div>
+      </div>
+      <div style="height:20px;"></div>
+    </div>
+    <div class="bnav">
+      <button class="nav-btn on" id="nav-home" onclick="switchTab('home')"><span class="nav-ic">◇</span><span class="nav-lb">Ana Sayfa</span></button>
+      <button class="nav-btn" id="nav-add" onclick="openSub('sub-add')"><span class="nav-ic">+</span><span class="nav-lb">Ekle</span></button>
+      <button class="nav-btn" id="nav-prepurchase" onclick="openSub('sub-prepurchase')"><span class="nav-ic">◎</span><span class="nav-lb">Sorgula</span></button>
+      <button class="nav-btn" id="nav-profile" onclick="openSub('sub-profile')"><span class="nav-ic">◐</span><span class="nav-lb">Profil</span></button>
+    </div>
+    <div class="sub" id="sub-add">
+      <div class="sub-hdr">
+        <button class="sub-back" onclick="closeSub('sub-add')">←</button>
+        <span class="sub-title">Ürün Ekle</span>
+      </div>
+      <div class="scroll"><div style="padding:0 22px 24px;">
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input class="search-inp" id="add-name" type="text" placeholder="Ürün adı yaz...">
+        </div>
+        <div style="font-size:0.65rem;font-weight:500;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">Kategori</div>
+        <div class="cat-grid" id="cat-grid">
+          <div class="cat-card" data-cat="lip" data-days="3" onclick="selectCat(this)"><div class="cat-ic">💄</div><div class="cat-nm">Dudak Ürünü</div><div class="cat-days">3 günde anlarsın</div></div>
+          <div class="cat-card" data-cat="eye" data-days="3" onclick="selectCat(this)"><div class="cat-ic">👁️</div><div class="cat-nm">Göz Makyajı</div><div class="cat-days">3 günde anlarsın</div></div>
+          <div class="cat-card" data-cat="foundation" data-days="7" onclick="selectCat(this)"><div class="cat-ic">🫧</div><div class="cat-nm">Fondöten</div><div class="cat-days">1 haftada anlarsın</div></div>
+          <div class="cat-card" data-cat="makeup" data-days="7" onclick="selectCat(this)"><div class="cat-ic">✨</div><div class="cat-nm">Makyaj</div><div class="cat-days">1 haftada anlarsın</div></div>
+          <div class="cat-card" data-cat="moisturizer" data-days="14" onclick="selectCat(this)"><div class="cat-ic">💧</div><div class="cat-nm">Nemlendirici</div><div class="cat-days">2 haftada anlarsın</div></div>
+          <div class="cat-card" data-cat="serum" data-days="42" onclick="selectCat(this)"><div class="cat-ic">🧬</div><div class="cat-nm">Serum / Asit</div><div class="cat-days">6 haftada anlarsın</div></div>
+          <div class="cat-card" data-cat="hair" data-days="14" onclick="selectCat(this)"><div class="cat-ic">✦</div><div class="cat-nm">Saç Bakımı</div><div class="cat-days">2 haftada anlarsın</div></div>
+          <div class="cat-card" data-cat="spf" data-days="5" onclick="selectCat(this)"><div class="cat-ic">☀️</div><div class="cat-nm">SPF / Güneş</div><div class="cat-days">5 günde anlarsın</div></div>
+          <div class="cat-card" data-cat="cleanser" data-days="7" onclick="selectCat(this)"><div class="cat-ic">🧼</div><div class="cat-nm">Temizleyici</div><div class="cat-days">1 haftada anlarsın</div></div>
+        </div>
+        <div class="scan-toggle" onclick="toggleScan()">
+          <span>📷</span><span class="scan-toggle-txt">Barkod tara (opsiyonel)</span>
+          <span style="margin-left:auto;font-size:0.7rem;color:#ccc;" id="scan-toggle-ic">›</span>
+        </div>
+        <div id="scan-area" style="display:none;margin-bottom:14px;">
+          <div style="background:#000;border-radius:4px;height:160px;position:relative;overflow:hidden;">
+            <video id="scan-video" style="width:100%;height:100%;object-fit:cover;" autoplay playsinline muted></video>
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="width:160px;height:80px;border:2px solid var(--accent);border-radius:3px;"></div>
+            </div>
+            <div style="position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:0.68rem;color:rgba(255,255,255,0.5);" id="scan-status">Barkodu çerçeve içine getir</div>
+          </div>
+        </div>
+        <button class="add-submit" id="add-submit" onclick="addProduct()" disabled>Takibe Başla</button>
+      </div></div>
+    </div>
+    <div class="sub" id="sub-detail">
+      <div class="sub-hdr">
+        <button class="sub-back" onclick="closeSub('sub-detail')">←</button>
+        <span class="sub-title" id="det-title">Ürün</span>
+      </div>
+      <div class="scroll"><div style="padding:0 22px 30px;" id="det-body"></div></div>
+    </div>
+    <div class="sub" id="sub-prepurchase">
+      <div class="sub-hdr">
+        <button class="sub-back" onclick="closeSub('sub-prepurchase')">←</button>
+        <span class="sub-title">Satın Almadan Önce</span>
+      </div>
+      <div class="scroll"><div style="padding:0 22px 30px;">
+        <div style="font-size:0.75rem;color:var(--mid);margin-bottom:16px;line-height:1.6;">Ürün adını gir — cilt profiline göre uyumluluk analizi yapalım.</div>
+        <div class="search-wrap" style="margin-bottom:16px;">
+          <span class="search-icon">⌕</span>
+          <input class="search-inp" id="pp-inp" type="text" placeholder="Ürün adı veya marka...">
+        </div>
+        <button class="add-submit" onclick="runPrePurchase()">Analiz Et →</button>
+        <div id="pp-result"></div>
+      </div></div>
+    </div>
+    <div class="sub" id="sub-profile">
+      <div class="sub-hdr">
+        <button class="sub-back" onclick="closeSub('sub-profile')">←</button>
+        <span class="sub-title">Profil</span>
+      </div>
+      <div class="scroll"><div style="padding:0 22px 30px;">
+        <div class="prof-top">
+          <div class="prof-av" id="prof-av">?</div>
+          <div class="prof-name" id="prof-name">—</div>
+          <div class="prof-email" id="prof-email"></div>
+        </div>
+        <div class="skin-summary">
+          <div class="ss-label">Cilt Profilin</div>
+          <div class="ss-tags" id="skin-tags"><span class="ss-tag">Profil oluşturuluyor...</span></div>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item"><span class="menu-ic">📦</span><span class="menu-txt">Ürünlerim</span><span class="menu-ar">›</span></div>
+          <div class="menu-item"><span class="menu-ic">📊</span><span class="menu-txt">Geçmişim</span><span class="menu-ar">›</span></div>
+          <div class="menu-item" onclick="handleLogout()"><span class="menu-ic">→</span><span class="menu-txt">Çıkış Yap</span></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div class="load-txt" id="load-txt">Yükleniyor</div>
+  </div>
+</div>
+<script>
+(function() {
+  var currentUser = null;
+  var skinProfile = {};
+  var products = [];
+
+  window.show = function(id) {
+    document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('on'); s.style.display=''; });
+    var el = document.getElementById(id);
+    el.classList.add('on');
+    el.style.display='flex';
+  };
+  window.openSub = function(id){ document.getElementById(id).classList.add('on'); };
+  window.closeSub = function(id){
+    document.getElementById(id).classList.remove('on');
+    if(id==='sub-add') resetAddForm();
+  };
+  function showLoad(txt){ document.getElementById('load-txt').textContent=txt||'Yükleniyor'; document.getElementById('loading').classList.add('on'); }
+  function hideLoad(){ document.getElementById('loading').classList.remove('on'); }
+  function getKey(k){ return currentUser ? k+'_'+(currentUser.uid||'local') : null; }
+  function save(k,v){ var key=getKey(k); if(key) localStorage.setItem(key, JSON.stringify(v)); }
+  function load(k,def){ var key=getKey(k); if(!key) return def; var v=localStorage.getItem(key); return v ? JSON.parse(v) : def; }
+
+  var isReg = true;
+
+  window.showAuth = function(mode){
+    isReg = mode==='register';
+    document.getElementById('auth-h').textContent = isReg ? 'Hesap Oluştur' : 'Giriş Yap';
+    document.getElementById('auth-sub').textContent = isReg ? 'Cildine özel kararlar için birkaç adım.' : 'Tekrar hoş geldin.';
+    document.getElementById('auth-btn').textContent = isReg ? 'Devam Et →' : 'Giriş Yap →';
+    document.getElementById('uname-field').style.display = isReg ? 'block' : 'none';
+    document.getElementById('auth-msg').textContent = '';
+    document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('on'); s.style.display=''; });
+    var el = document.getElementById('s-auth');
+    el.classList.add('on');
+    el.style.display='flex';
+  };
+
+  window.switchTab = function(tab){
+    if(tab==='email'||tab==='phone'){
+      document.querySelectorAll('#s-auth .tab').forEach(function(t,i){ t.classList.toggle('on', i===(tab==='email'?0:1)); });
+      document.getElementById('email-form').style.display = tab==='email' ? 'block' : 'none';
+      document.getElementById('phone-form').style.display = tab==='phone' ? 'block' : 'none';
+      return;
+    }
+    document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('on'); });
+    document.getElementById('nav-'+tab).classList.add('on');
+  };
+
+  window.handleAuth = function(){
+    var btn=document.getElementById('auth-btn');
+    var msg=document.getElementById('auth-msg');
+    btn.disabled=true; msg.className='msg'; msg.textContent='';
+    var email=document.getElementById('inp-email').value.trim();
+    var pass=document.getElementById('inp-pass').value;
+    var uname=document.getElementById('inp-uname').value.trim();
+    if(!email||!pass){ msg.className='msg err'; msg.textContent='E-posta ve şifre gerekli.'; btn.disabled=false; return; }
+    if(isReg&&!uname){ msg.className='msg err'; msg.textContent='Kullanıcı adı gerekli.'; btn.disabled=false; return; }
+    if(isReg){
+      if(localStorage.getItem('lu_'+email)){ msg.className='msg err'; msg.textContent='Bu e-posta zaten kayıtlı.'; btn.disabled=false; return; }
+      localStorage.setItem('lu_'+email, JSON.stringify({email:email,pass:pass,uname:uname}));
+      doLogin(email, uname);
+    } else {
+      var u=localStorage.getItem('lu_'+email);
+      if(!u){ msg.className='msg err'; msg.textContent='Kullanıcı bulunamadı.'; btn.disabled=false; return; }
+      u=JSON.parse(u);
+      if(u.pass!==pass){ msg.className='msg err'; msg.textContent='Şifre hatalı.'; btn.disabled=false; return; }
+      doLogin(email, u.uname);
+    }
+    btn.disabled=false;
+  };
+
+  window.handleGoogle = function(){
+    var name=prompt('Kullanıcı adın nedir?');
+    if(!name) return;
+    doLogin(name+'@g', name);
+  };
+
+  window.handleLogout = function(){
+    if(!confirm('Çıkış yapmak istiyor musun?')) return;
+    localStorage.removeItem('lu_session');
+    currentUser=null; skinProfile={}; products=[];
+    show('s-welcome');
+  };
+
+  function doLogin(email, uname){
+    var id=btoa(unescape(encodeURIComponent(email))).replace(/=/g,'');
+    localStorage.setItem('lu_session', JSON.stringify({email:email,uname:uname,id:id}));
+    currentUser={email:email, uid:id};
+    onLogin(uname);
+  }
+
+  (function(){
+    var s=localStorage.getItem('lu_session');
+    if(s){ try{ var d=JSON.parse(s); currentUser={email:d.email,uid:d.id}; onLogin(d.uname); }catch(e){ localStorage.removeItem('lu_session'); } }
+  })();
+
+  function onLogin(uname){
+    skinProfile=load('skin',{});
+    products=load('products',[]);
+    document.getElementById('home-name').textContent=uname;
+    document.getElementById('home-av').textContent=uname[0].toUpperCase();
+    document.getElementById('prof-av').textContent=uname[0].toUpperCase();
+    document.getElementById('prof-name').textContent=uname;
+    document.getElementById('prof-email').textContent=currentUser.email||'';
+    renderSkinTags();
+    var hasProfile=Object.keys(skinProfile).length>0;
+    if(!hasProfile){ show('s-profile'); startOb(); }
+    else { show('s-app'); renderProducts(); checkDailyCheckin(); }
+  }
+
+  var obSteps=[
+    {icon:'🌿', q:'Cilt tipini seçelim', hint:'Sana en doğru analizi yapabilmek için', multi:false, key:'type', opts:['Normal','Yağlı','Kuru','Karma','Hassas']},
+    {icon:'⚡', q:'En büyük cilt endişen nedir?', hint:'Birden fazla seçebilirsin', multi:true, key:'concerns', opts:['Sivilce & Akne','Leke','Gözenek','Yaşlanma Karşıtı','Nem & Kuruluk','Hassasiyet']},
+    {icon:'🌡️', q:'Alerjin veya tahriş geçmişin var mı?', hint:'', multi:false, key:'allergy', opts:['Evet, var','Hayır, yok','Emin değilim']},
+    {icon:'💊', q:'Aktif olarak cilt bakım ürünü kullanıyor musun?', hint:'', multi:false, key:'routine', opts:['Evet, düzenli','Ara sıra','Hayır, başlangıç yapıyorum']},
+  ];
+  var obIdx=0, obAns={};
+
+  function startOb(){ obIdx=0; obAns={}; renderOb(); }
+
+  function renderOb(){
+    var s=obSteps[obIdx];
+    document.getElementById('ob-fill').style.width=((obIdx+1)/obSteps.length*100)+'%';
+    document.getElementById('ob-n').textContent=(obIdx+1)+' / '+obSteps.length;
+    document.getElementById('ob-icon').textContent=s.icon;
+    document.getElementById('ob-q').textContent=s.q;
+    document.getElementById('ob-hint').textContent=s.hint;
+    document.getElementById('ob-next').disabled=true;
+    var el=document.getElementById('ob-opts');
+    el.innerHTML=s.opts.map(function(o,i){
+      return '<button class="ob-opt" onclick="selOb(this,'+i+','+s.multi+')">'+o+'</button>';
+    }).join('');
+  }
+
+  window.selOb=function(btn,idx,multi){
+    if(multi){
+      btn.classList.toggle('sel');
+      document.getElementById('ob-next').disabled=document.querySelectorAll('#ob-opts .ob-opt.sel').length===0;
+      obAns[obSteps[obIdx].key]=Array.from(document.querySelectorAll('#ob-opts .ob-opt.sel')).map(function(b){ return b.textContent; });
+    } else {
+      document.querySelectorAll('#ob-opts .ob-opt').forEach(function(b){ b.classList.remove('sel'); });
+      btn.classList.add('sel');
+      document.getElementById('ob-next').disabled=false;
+      obAns[obSteps[obIdx].key]=btn.textContent;
+    }
+  };
+
+  window.nextOb=function(){
+    if(obIdx<obSteps.length-1){ obIdx++; renderOb(); }
+    else {
+      skinProfile=obAns;
+      save('skin',skinProfile);
+      renderSkinTags();
+      show('s-app');
+      renderProducts();
+      checkDailyCheckin();
+    }
+  };
+
+  window.skipOb=function(){
+    skinProfile={type:'Bilinmiyor',concerns:[],allergy:'Emin değilim',routine:'Başlangıç yapıyorum'};
+    save('skin',skinProfile);
+    show('s-app');
+    renderProducts();
+  };
+
+  function renderSkinTags(){
+    var tags=document.getElementById('skin-tags');
+    if(!tags) return;
+    var items=[];
+    if(skinProfile.type) items.push(skinProfile.type);
+    if(skinProfile.concerns&&skinProfile.concerns.length) items=items.concat(skinProfile.concerns.slice(0,3));
+    tags.innerHTML=items.length ? items.map(function(t){ return '<span class="ss-tag">'+t+'</span>'; }).join('') : '<span class="ss-tag">Profil yok</span>';
+  }
+
+  var CAT_META={
+    lip:{emoji:'💄',label:'Dudak Ürünü',days:3},
+    eye:{emoji:'👁️',label:'Göz Makyajı',days:3},
+    foundation:{emoji:'🫧',label:'Fondöten',days:7},
+    makeup:{emoji:'✨',label:'Makyaj',days:7},
+    moisturizer:{emoji:'💧',label:'Nemlendirici',days:14},
+    serum:{emoji:'🧬',label:'Serum / Asit',days:42},
+    hair:{emoji:'✦',label:'Saç Bakımı',days:14},
+    spf:{emoji:'☀️',label:'SPF / Güneş',days:5},
+    cleanser:{emoji:'🧼',label:'Temizleyici',days:7},
+  };
+  var selectedCat=null, selectedDays=0;
+
+  window.selectCat=function(el){
+    document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('sel'); });
+    el.classList.add('sel');
+    selectedCat=el.dataset.cat;
+    selectedDays=parseInt(el.dataset.days);
+    checkAddReady();
+  };
+
+  document.getElementById('add-name').addEventListener('input', checkAddReady);
+
+  function checkAddReady(){
+    var name=document.getElementById('add-name').value.trim();
+    document.getElementById('add-submit').disabled=!(name&&selectedCat);
+  }
+
+  function resetAddForm(){
+    document.getElementById('add-name').value='';
+    document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('sel'); });
+    selectedCat=null; selectedDays=0;
+    document.getElementById('add-submit').disabled=true;
+    stopScan();
+    document.getElementById('scan-area').style.display='none';
+    document.getElementById('scan-toggle-ic').textContent='›';
+  }
+
+  window.addProduct=function(){
+    var name=document.getElementById('add-name').value.trim();
+    if(!name||!selectedCat) return;
+    var meta=CAT_META[selectedCat];
+    var prod={id:'p_'+Date.now(),name:name,cat:selectedCat,emoji:meta.emoji,label:meta.label,days:meta.days,done:0,added:new Date().toISOString(),checkins:[],status:'active'};
+    products.unshift(prod);
+    save('products',products);
+    closeSub('sub-add');
+    renderProducts();
+    checkDailyCheckin();
+    openDetail(prod.id);
+  };
+
+  function renderProducts(){
+    var list=document.getElementById('prod-list');
+    if(!products.length){
+      list.innerHTML='<div class="empty-state"><div class="empty-icon">◯</div><div class="empty-txt">Henüz ürün eklemedin.<br>Bir ürün ekle, izlemeye başla.</div></div>';
+      return;
+    }
+    list.innerHTML=products.map(function(p){
+      var pct=Math.min(Math.round((p.done/p.days)*100),100);
+      var risk=getRiskLevel(p);
+      var barColor=pct===100?'#27ae60':risk==='high'?'#e67e22':'#c8a96e';
+      var riskClass=risk==='high'?'risk-high':risk==='mid'?'risk-mid':'risk-low';
+      return '<div class="prod-card" onclick="openDetail(\''+p.id+'\')"><div class="prod-em">'+p.emoji+'</div><div class="prod-info"><div class="prod-name">'+p.name+'</div><div class="prod-cat">'+p.label+'</div><div class="prod-status"><div class="risk-dot '+riskClass+'"></div><div class="prod-bar"><div class="prod-bar-fill" style="width:'+pct+'%;background:'+barColor+'"></div></div><div class="prod-day">'+p.done+'/'+p.days+' gün</div></div></div></div>';
+    }).join('');
+  }
+
+  function getRiskLevel(p){
+    if(!p.checkins||!p.checkins.length) return 'low';
+    var last3=p.checkins.slice(-3);
+    var worse=last3.filter(function(c){ return c.reaction==='worse'; }).length;
+    if(worse>=2) return 'high';
+    if(worse>=1) return 'mid';
+    return 'low';
+  }
+  window.openDetail=function(id){
+    var p=products.find(function(x){ return x.id===id; });
+    if(!p) return;
+    document.getElementById('det-title').textContent=p.name;
+    var pct=Math.min(Math.round((p.done/p.days)*100),100);
+    var decision=getDecision(p);
+    var insights=getInsights(p);
+    var actionBtn=p.done>=p.days
+      ? '<button class="action-btn" onclick="openFinalReview(\''+p.id+'\')">Değerlendirmeyi Yaz →</button>'
+      : '<button class="action-btn" style="background:var(--warm);color:var(--ink);" disabled>⏳ '+(p.days-p.done)+' gün kaldı</button>';
+    document.getElementById('det-body').innerHTML=
+      '<div class="det-top"><div class="det-em">'+p.emoji+'</div><div class="det-name">'+p.name+'</div><div class="det-cat">'+p.label+'</div></div>'
+      +'<div class="decision-card '+decision.cls+'"><div class="dc-label">'+decision.label+'</div><div class="dc-main">'+decision.main+'</div><div class="dc-sub">'+decision.sub+'</div></div>'
+      +'<div class="prog-section"><div class="prog-hdr"><span class="prog-label">Kullanım Süreci</span><span class="prog-days">'+p.done+' / '+p.days+' gün</span></div><div class="prog-track"><div class="prog-fill" style="width:'+pct+'%"></div></div><div class="prog-status">'+(pct===100?'✓ Değerlendirme zamanı':'%'+pct+' tamamlandı')+'</div></div>'
+      +'<div class="insight-section"><div class="ins-label">Gözlemler</div>'+insights+'</div>'
+      +actionBtn
+      +'<button class="action-btn-outline" onclick="closeSub(\'sub-detail\')">Geri</button>';
+    openSub('sub-detail');
+  };
+
+  function getDecision(p){
+    var risk=getRiskLevel(p);
+    if(p.done===0) return {cls:'dc-neutral',label:'BAŞLANGIÇ ANALİZİ',main:'Takip başladı.',sub:'Her gün check-in yap. İlk 3 günde ciddi bir reaksiyon olmadığı sürece devam et.'};
+    if(risk==='high') return {cls:'dc-risk',label:'RİSK TESPİT EDİLDİ',main:'Kullanımı durdurman önerilir.',sub:'Son günlerde cildin olumsuz tepki veriyor. Bu ürün cilt profiliyle uyumsuz olabilir.'};
+    if(risk==='mid') return {cls:'dc-warn',label:'DİKKATLİ DEVAM',main:'Gözlem altında tut.',sub:'Ara sıra olumsuz reaksiyon var. Kullanım sıklığını azaltarak devam et ve gözlemle.'};
+    if(p.done>=p.days) return {cls:'dc-safe',label:'SONUÇ HAZIR',main:'Değerlendirme yazabilirsin.',sub:'Yeterli süre geçti. Deneyimini paylaş — bu diğer kullanıcılara yol gösterecek.'};
+    return {cls:'dc-safe',label:'İYİ GİDİYOR',main:'Devam et.',sub:'Şu ana kadar olumsuz bir sinyal yok. Takibe devam et.'};
+  }
+
+  function getInsights(p){
+    if(!p.checkins||!p.checkins.length) return '<div class="ins-row"><span class="ins-icon">◌</span><div class="ins-txt">Henüz veri yok.<br><span class="ins-prob mid">Her gün check-in yaparak veri topla.</span></div></div>';
+    var worse=p.checkins.filter(function(c){ return c.reaction==='worse'; }).length;
+    var better=p.checkins.filter(function(c){ return c.reaction==='better'; }).length;
+    var total=p.checkins.length;
+    var worseRate=Math.round((worse/total)*100);
+    var betterRate=Math.round((better/total)*100);
+    var rows='';
+    if(worseRate>40) rows+='<div class="ins-row"><span class="ins-icon">⚠</span><div class="ins-txt">Günlerin %'+worseRate+'\'inde cildin kötüleşti.<br><span class="ins-prob high">Yüksek uyumsuzluk sinyali.</span></div></div>';
+    else if(betterRate>50) rows+='<div class="ins-row"><span class="ins-icon">↗</span><div class="ins-txt">Günlerin %'+betterRate+'\'inde iyileşme görüldü.<br><span class="ins-prob low">Ürün cildine uyuyor görünüyor.</span></div></div>';
+    else rows+='<div class="ins-row"><span class="ins-icon">→</span><div class="ins-txt">Nötr tepki. Değişim henüz belirgin değil.<br><span class="ins-prob mid">Takibe devam et.</span></div></div>';
+    if(skinProfile.type==='Hassas'&&worse>0) rows+='<div class="ins-row"><span class="ins-icon">⚡</span><div class="ins-txt">Hassas cilt + reaksiyon kombinasyonu.<br><span class="ins-prob high">Bu ürünü bırakmayı değerlendir.</span></div></div>';
+    if(skinProfile.type==='Yağlı'&&(p.cat==='moisturizer'||p.cat==='serum')) rows+='<div class="ins-row"><span class="ins-icon">◈</span><div class="ins-txt">Yağlı cilt için bu kategori riskli olabilir.<br><span class="ins-prob mid">Non-comedogenic formül olduğundan emin ol.</span></div></div>';
+    return rows;
+  }
+
+  function checkDailyCheckin(){
+    if(!products.length){ document.getElementById('daily-checkin').style.display='none'; return; }
+    var today=new Date().toDateString();
+    var todayKey=getKey('checkin_date');
+    var lastDate=todayKey ? localStorage.getItem(todayKey) : null;
+    if(lastDate===today){ document.getElementById('daily-checkin').style.display='none'; return; }
+    var activeProds=products.filter(function(p){ return p.status==='active'&&p.done<p.days; });
+    if(!activeProds.length){ document.getElementById('daily-checkin').style.display='none'; return; }
+    document.getElementById('daily-checkin').style.display='block';
+    document.getElementById('ci-q').textContent='"'+activeProds[0].name+'" — bugün cildin nasıl hissettirdi?';
+  }
+
+  window.doCheckIn=function(reaction,btn){
+    btn.closest('.ci-opts').querySelectorAll('.ci-btn').forEach(function(b){ b.classList.remove('sel'); });
+    btn.classList.add('sel');
+    var today=new Date().toDateString();
+    var todayKey=getKey('checkin_date');
+    if(todayKey) localStorage.setItem(todayKey, today);
+    var activeProds=products.filter(function(p){ return p.status==='active'&&p.done<p.days; });
+    if(activeProds.length){
+      var prod=activeProds[0];
+      prod.done=Math.min(prod.done+1, prod.days);
+      if(!prod.checkins) prod.checkins=[];
+      prod.checkins.push({date:new Date().toISOString(), reaction:reaction});
+      save('products',products);
+      renderProducts();
+      setTimeout(function(){
+        document.getElementById('daily-checkin').style.display='none';
+        if(reaction==='worse') showInsightToast('⚠️ Olumsuz reaksiyon kaydedildi.');
+        else if(reaction==='better') showInsightToast('✓ İyileşme kaydedildi.');
+      }, 600);
+    }
+  };
+
+  function showInsightToast(msg){
+    var t=document.createElement('div');
+    t.style.cssText='position:absolute;bottom:80px;left:16px;right:16px;background:var(--ink);color:#fff;padding:12px 16px;border-radius:4px;font-size:0.78rem;z-index:200;text-align:center;';
+    t.textContent=msg;
+    document.querySelector('.phone').appendChild(t);
+    setTimeout(function(){ t.remove(); }, 2800);
+  }
+
+  window.runPrePurchase=function(){
+    var name=document.getElementById('pp-inp').value.trim();
+    if(!name) return;
+    var res=document.getElementById('pp-result');
+    var skinType=skinProfile.type||'Bilinmiyor';
+    var concerns=skinProfile.concerns||[];
+    var allergy=skinProfile.allergy||'Emin değilim';
+    var score=75, warnings=[], positives=[];
+    var nameLow=name.toLowerCase();
+    if(skinType==='Hassas'){ if(nameLow.includes('asit')||nameLow.includes('acid')||nameLow.includes('retinol')||nameLow.includes('aha')||nameLow.includes('bha')){ score-=25; warnings.push('Hassas cilt için asit içerikli ürünler tahriş riski taşır.'); } }
+    if(skinType==='Yağlı'){ if(nameLow.includes('oil')||nameLow.includes('yağ')||nameLow.includes('krem')){ score-=15; warnings.push('Yağlı cilt için yoğun kremler gözenek tıkanmasına yol açabilir.'); } if(nameLow.includes('niacinamide')||nameLow.includes('salisilik')||nameLow.includes('salicylic')){ score+=10; positives.push('Yağlı cilt için uygun içerik.'); } }
+    if(skinType==='Kuru'){ if(nameLow.includes('hyaluronic')||nameLow.includes('hyaluronik')||nameLow.includes('nemlendirici')||nameLow.includes('moisturizer')){ score+=10; positives.push('Kuru cilt için iyi bir seçim.'); } if(nameLow.includes('foam')||nameLow.includes('köpük')){ score-=10; warnings.push('Köpük temizleyiciler kuru cildi daha da kurutabilir.'); } }
+    if(allergy==='Evet, var'){ warnings.push('Alerjin olduğunu belirttin — içerikleri dikkatle incele.'); score-=10; }
+    if(concerns.includes('Sivilce & Akne')){ if(nameLow.includes('oil')||nameLow.includes('coconut')){ score-=15; warnings.push('Akne eğilimli cilt için comedogenic olabilir.'); } }
+    score=Math.max(20,Math.min(98,score));
+    var scoreColor=score>=70?'var(--safe)':score>=50?'var(--warn)':'var(--danger)';
+    var verdict=score>=70?'Uyumlu görünüyor':score>=50?'Dikkatli kullan':'Riskli olabilir';
+    var warnHTML=warnings.map(function(w){ return '<div class="ins-row"><span class="ins-icon">⚠</span><div class="ins-txt">'+w+'</div></div>'; }).join('');
+    var posHTML=positives.map(function(p){ return '<div class="ins-row"><span class="ins-icon">✓</span><div class="ins-txt">'+p+'</div></div>'; }).join('');
+    res.innerHTML='<div class="pp-result" style="margin-top:16px;"><div class="pp-score"><svg class="score-ring" viewBox="0 0 56 56"><circle cx="28" cy="28" r="22" fill="none" stroke="var(--br)" stroke-width="4"/><circle cx="28" cy="28" r="22" fill="none" stroke="'+scoreColor+'" stroke-width="4" stroke-dasharray="'+Math.round(score/100*138)+' 138" stroke-linecap="round" transform="rotate(-90 28 28)"/></svg><div><div class="score-val" style="color:'+scoreColor+'">'+score+'</div><div class="score-label">'+verdict+'</div></div></div><div style="font-size:0.65rem;font-weight:500;color:var(--mid);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">CİLT PROFİLİN İÇİN</div>'+(posHTML||'')+(warnHTML||'')+(!warnings.length&&!positives.length?'<div class="ins-row"><span class="ins-icon">◌</span><div class="ins-txt">Cilt profilini doldurursan daha kesin sonuç alırsın.</div></div>':'')+'</div><button class="action-btn" style="margin-top:12px;" onclick="startFromPrePurchase()">Deneyeceğim, takibe al →</button>';
+  };
+
+  window.startFromPrePurchase=function(){ closeSub('sub-prepurchase'); openSub('sub-add'); };
+
+  var scanActive=false, html5Scanner=null;
+  window.toggleScan=function(){
+    var area=document.getElementById('scan-area');
+    var ic=document.getElementById('scan-toggle-ic');
+    if(area.style.display==='none'){ area.style.display='block'; ic.textContent='↓'; startScan(); }
+    else { area.style.display='none'; ic.textContent='›'; stopScan(); }
+  };
+  function startScan(){
+    if(scanActive) return;
+    var statusEl=document.getElementById('scan-status');
+    try {
+      if(typeof Html5Qrcode==='undefined'){ statusEl.textContent='Tarayıcı yüklenemedi'; return; }
+      html5Scanner=new Html5Qrcode('scan-video');
+      html5Scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:200,height:100}},
+        function(decodedText){ scanActive=false; html5Scanner.stop().catch(function(){}); statusEl.textContent='✓ '+decodedText; document.getElementById('scan-area').style.display='none'; document.getElementById('scan-toggle-ic').textContent='›'; fetchBarcode(decodedText); },
+        function(){}
+      );
+      scanActive=true;
+    } catch(e){ statusEl.textContent='Kamera açılamadı'; }
+  }
+  function stopScan(){ if(html5Scanner){ html5Scanner.stop().catch(function(){}); html5Scanner=null; } scanActive=false; }
+  function fetchBarcode(code){
+    showLoad('Ürün aranıyor...');
+    fetch('https://world.openbeautyfacts.org/api/v0/product/'+code+'.json')
+      .then(function(r){ return r.json(); })
+      .then(function(d){ hideLoad(); if(d.status===1&&d.product&&d.product.product_name){ document.getElementById('add-name').value=d.product.product_name; checkAddReady(); } })
+      .catch(function(){ hideLoad(); });
+  }
+
+  window.openFinalReview=function(id){
+    var p=products.find(function(x){ return x.id===id; });
+    if(!p) return;
+    window._finalVerdict=null;
+    document.getElementById('det-body').innerHTML=
+      '<div style="font-family:\'Instrument Serif\',serif;font-size:1.3rem;color:var(--ink);margin-bottom:6px;">Son Değerlendirme</div>'
+      +'<div style="font-size:0.75rem;color:var(--mid);margin-bottom:20px;">'+p.name+' · '+p.done+' gün kullandın</div>'
+      +'<div style="font-size:0.72rem;font-weight:500;color:var(--mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Genel Sonuç</div>'
+      +'<div style="display:flex;gap:8px;margin-bottom:16px;"><button class="ci-btn" style="flex:1;" onclick="setFinalVerdict(\'recommend\',this)">✓ Öneriyorum</button><button class="ci-btn" style="flex:1;" onclick="setFinalVerdict(\'neutral\',this)">— Kararsızım</button><button class="ci-btn" style="flex:1;" onclick="setFinalVerdict(\'avoid\',this)">✗ Önermiyorum</button></div>'
+      +'<div style="font-size:0.72rem;font-weight:500;color:var(--mid);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Neler fark ettin?</div>'
+      +'<textarea id="rv-text" style="width:100%;padding:12px;border:1px solid var(--br);border-radius:3px;font-family:inherit;font-size:0.84rem;height:100px;resize:none;outline:none;color:var(--ink);" placeholder="Cildinde ne değişti?"></textarea>'
+      +'<button class="action-btn" style="margin-top:12px;" id="rv-submit" onclick="submitFinalReview(\''+p.id+'\')" disabled>Paylaş →</button>';
+    document.getElementById('rv-text').addEventListener('input', function(){
+      document.getElementById('rv-submit').disabled=!this.value.trim()||!window._finalVerdict;
+    });
+  };
+
+  window._finalVerdict=null;
+  window.setFinalVerdict=function(v,btn){
+    btn.parentElement.querySelectorAll('.ci-btn').forEach(function(b){ b.classList.remove('sel'); });
+    btn.classList.add('sel');
+    window._finalVerdict=v;
+    var txt=document.getElementById('rv-text');
+    if(txt) document.getElementById('rv-submit').disabled=!txt.value.trim();
+  };
+
+  window.submitFinalReview=function(id){
+    var p=products.find(function(x){ return x.id===id; });
+    if(!p) return;
+    p.status='reviewed';
+    p.review={verdict:window._finalVerdict,text:document.getElementById('rv-text').value.trim(),date:new Date().toISOString()};
+    window._finalVerdict=null;
+    save('products',products);
+    renderProducts();
+    closeSub('sub-detail');
+    showInsightToast('✓ Değerlendirmen kaydedildi.');
+  };
+
+})();
+</script>
+</body>
+</html>
