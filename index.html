@@ -9,387 +9,383 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
---bg:#FAFAF8;--bg2:#F4F1EC;--surface:#FFFFFF;--surface2:rgba(255,255,255,0.7);
+--bg:#FAFAF8;--bg2:#F4F1EC;--surface:#FFFFFF;
 --primary:#2C1F1A;--rose:#C9796A;--rose-light:#E8A99C;--rose-pale:#FAF0EE;--rose-muted:#EDD5D0;
 --gold:#B8935A;--gold-pale:#FAF3E8;--sage:#5A7A65;--sage-pale:#E8F0EA;
---lavender:#7B6FA0;--lav-pale:#EEE9F8;
+--lav:#7B6FA0;--lav-pale:#EEE9F8;
 --t1:#1A1614;--t2:#5C504A;--t3:#9C8F88;--t4:#C4B8B2;
 --border:rgba(44,31,26,0.08);--border2:rgba(44,31,26,0.14);
 --shadow-xs:0 1px 4px rgba(44,31,26,0.06);--shadow-sm:0 2px 12px rgba(44,31,26,0.08);
 --shadow-md:0 8px 32px rgba(44,31,26,0.10);--shadow-lg:0 16px 48px rgba(44,31,26,0.14);
---glow-rose:0 0 0 3px rgba(201,121,106,0.18);
---r-xs:8px;--r-sm:12px;--r-md:18px;--r-lg:24px;--r-xl:32px;--r-full:999px;
---s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s10:40px;--s12:48px;
+--r-xs:8px;--r-sm:12px;--r-md:18px;--r-lg:24px;--r-full:999px;
+--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s12:48px;
 }
-html,body{width:100%;height:100%;overflow:hidden;background:linear-gradient(135deg,#E8E2DA 0%,#D4CCC2 100%);}
+html,body{width:100%;height:100%;overflow:hidden;background:linear-gradient(135deg,#E8E2DA,#D4CCC2);}
 body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-items:center;-webkit-font-smoothing:antialiased;}
-body::before{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
-opacity:0.025;}
 .phone{width:min(390px,100vw);height:min(844px,100vh);background:var(--bg);position:relative;display:flex;flex-direction:column;border-radius:min(48px,5.5vw);box-shadow:0 0 0 1px rgba(255,255,255,0.3),var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,0.9);overflow:hidden;}
 .screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--bg);}
 .screen.on{display:flex;}
 .scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;}
 .scroll::-webkit-scrollbar{display:none;}
-
-#s-splash{background:linear-gradient(160deg,#F9F4EF 0%,#EDE5DC 60%,#E0D4C8 100%);align-items:center;justify-content:center;z-index:100;}
-.splash-inner{display:flex;flex-direction:column;align-items:center;gap:16px;}
-.splash-logo{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:400;color:var(--primary);letter-spacing:4px;text-transform:uppercase;opacity:0;animation:fadeUp 0.8s 0.3s ease-out forwards;}
-.splash-tagline{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--t3);font-weight:400;opacity:0;animation:fadeUp 0.6s 0.7s ease-out forwards;}
-.splash-line{width:40px;height:1px;background:var(--rose-light);opacity:0;animation:fadeUp 0.5s 1s ease-out forwards;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-
-#s-ob{background:linear-gradient(160deg,#FAF6F2 0%,#F0E9E2 100%);overflow:hidden;}
-.ob-top{padding:var(--s12) var(--s6) var(--s4);display:flex;justify-content:space-between;align-items:center;}
-.ob-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;color:var(--primary);letter-spacing:2px;text-transform:uppercase;}
+#s-splash{background:linear-gradient(160deg,#F9F4EF,#EDE5DC,#E0D4C8);align-items:center;justify-content:center;z-index:100;}
+.sp-inner{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.sp-logo{font-family:'Playfair Display',serif;font-size:3rem;font-weight:400;color:var(--primary);letter-spacing:5px;text-transform:uppercase;opacity:0;animation:fu .8s .3s ease-out forwards;}
+.sp-line{width:36px;height:1px;background:var(--rose-light);opacity:0;animation:fu .5s .9s ease-out forwards;}
+.sp-tag{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--t3);opacity:0;animation:fu .5s 1.1s ease-out forwards;}
+@keyframes fu{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+#s-ob{background:linear-gradient(160deg,#FAF6F2,#F0E9E2);}
+.ob-hdr{padding:var(--s12) var(--s6) var(--s4);display:flex;justify-content:space-between;align-items:center;}
+.ob-logo{font-family:'Playfair Display',serif;font-size:1rem;color:var(--primary);letter-spacing:2px;text-transform:uppercase;}
 .ob-skip{font-size:0.68rem;color:var(--t3);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
-.ob-progress{height:2px;background:var(--rose-muted);margin:0 var(--s6);border-radius:2px;}
-.ob-bar{height:100%;background:linear-gradient(90deg,var(--rose),var(--rose-light));border-radius:2px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1);}
-.ob-scroll{flex:1;overflow-y:auto;padding:var(--s6) var(--s6) 0;}
-.ob-scroll::-webkit-scrollbar{display:none;}
-.ob-step-label{font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:var(--s3);}
-.ob-heading{font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:var(--t1);line-height:1.15;margin-bottom:var(--s2);}
-.ob-heading em{font-style:italic;color:var(--rose);}
-.ob-sub{font-size:0.8rem;color:var(--t2);line-height:1.7;margin-bottom:var(--s6);font-weight:300;}
-.ob-options{display:flex;flex-direction:column;gap:var(--s2);}
-.ob-opt{padding:14px var(--s5);border:1.5px solid var(--border2);border-radius:var(--r-sm);background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);font-size:0.84rem;color:var(--t2);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-weight:400;transition:all 0.2s ease;}
-.ob-opt:active{transform:scale(0.99);}
-.ob-opt.sel{border-color:var(--rose);background:linear-gradient(135deg,rgba(201,121,106,0.08) 0%,rgba(232,169,156,0.05) 100%);color:var(--t1);}
-.ob-opt.sel::after{content:'✓';color:var(--rose);font-size:0.8rem;font-weight:600;}
-.ob-opt-sub{font-size:0.6rem;color:var(--t3);margin-top:2px;}
+.ob-prog{height:2px;background:var(--rose-muted);margin:0 var(--s6);border-radius:2px;}
+.ob-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--rose-light));border-radius:2px;transition:width .5s ease;}
+.ob-body{flex:1;overflow-y:auto;padding:var(--s6) var(--s6) 0;}
+.ob-body::-webkit-scrollbar{display:none;}
+.ob-eyebrow{font-size:0.52rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:var(--s3);}
+.ob-title{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--t1);line-height:1.15;margin-bottom:var(--s2);}
+.ob-title em{font-style:italic;color:var(--rose);}
+.ob-sub{font-size:0.78rem;color:var(--t2);line-height:1.7;margin-bottom:var(--s6);font-weight:300;}
+.ob-opts{display:flex;flex-direction:column;gap:var(--s2);}
+.ob-opt{padding:13px var(--s5);border:1.5px solid var(--border2);border-radius:var(--r-sm);background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);font-size:0.82rem;color:var(--t2);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;transition:all .2s ease;}
+.ob-opt.sel{border-color:var(--rose);background:rgba(201,121,106,0.06);color:var(--t1);}
+.ob-opt.sel::after{content:'✓';color:var(--rose);font-weight:600;}
+.ob-opt-note{font-size:0.58rem;color:var(--t3);margin-top:2px;}
 .ob-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);}
-.ob-grid-opt{padding:var(--s4) var(--s3);border:1.5px solid var(--border2);border-radius:var(--r-sm);background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);cursor:pointer;text-align:center;transition:all 0.2s ease;}
-.ob-grid-opt.sel{border-color:var(--rose);background:rgba(201,121,106,0.06);}
-.ob-grid-ic{font-size:1.4rem;margin-bottom:var(--s2);}
-.ob-grid-nm{font-size:0.7rem;font-weight:500;color:var(--t2);}
-.ob-grid-opt.sel .ob-grid-nm{color:var(--rose);}
+.ob-gopt{padding:var(--s4) var(--s3);border:1.5px solid var(--border2);border-radius:var(--r-sm);background:rgba(255,255,255,0.6);cursor:pointer;text-align:center;transition:all .2s ease;}
+.ob-gopt.sel{border-color:var(--rose);background:rgba(201,121,106,0.06);}
+.ob-gopt-ic{font-size:1.3rem;margin-bottom:6px;}
+.ob-gopt-nm{font-size:0.68rem;font-weight:500;color:var(--t2);}
+.ob-gopt.sel .ob-gopt-nm{color:var(--rose);}
 .ob-foot{padding:var(--s4) var(--s6) var(--s8);flex-shrink:0;}
-.btn-primary{width:100%;padding:16px var(--s6);background:var(--primary);color:#FAF8F5;border:none;border-radius:var(--r-md);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.4px;cursor:pointer;box-shadow:0 4px 20px rgba(44,31,26,0.25);transition:all 0.25s ease;}
-.btn-primary:active{transform:scale(0.98);}
+.btn-primary{width:100%;padding:16px;background:var(--primary);color:#FAF8F5;border:none;border-radius:var(--r-md);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:.4px;cursor:pointer;box-shadow:0 4px 20px rgba(44,31,26,.25);transition:all .25s ease;}
+.btn-primary:active{transform:scale(.98);}
 .btn-primary:disabled{background:var(--t4);box-shadow:none;cursor:default;}
-
 #s-app{background:var(--bg);}
-.bnav{position:absolute;bottom:0;left:0;right:0;height:72px;background:rgba(250,250,248,0.92);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding:0 var(--s2) 10px;z-index:50;}
-.nb{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 14px;transition:transform 0.2s ease;}
-.nb:active{transform:scale(0.88);}
-.nb-ic{font-size:1rem;opacity:0.2;transition:all 0.25s ease;}
-.nb-lb{font-size:0.44rem;color:var(--t3);font-weight:600;letter-spacing:0.8px;text-transform:uppercase;transition:color 0.25s ease;}
+.bnav{position:absolute;bottom:0;left:0;right:0;height:72px;background:rgba(250,250,248,.94);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding:0 8px 10px;z-index:50;}
+.nb{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 12px;transition:transform .2s;}
+.nb:active{transform:scale(.88);}
+.nb-ic{font-size:.95rem;opacity:.18;transition:opacity .25s;}
+.nb-lb{font-size:.42rem;color:var(--t3);font-weight:600;letter-spacing:.8px;text-transform:uppercase;transition:color .25s;}
 .nb.on .nb-ic{opacity:1;}
 .nb.on .nb-lb{color:var(--rose);}
-.nb-center{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--rose) 0%,#B5604F 100%);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-top:-20px;box-shadow:0 6px 24px rgba(201,121,106,0.4),0 0 0 4px var(--bg);transition:all 0.25s ease;}
-.nb-center:active{transform:scale(0.92);}
+.nb-cam{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#B5604F);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-top:-18px;box-shadow:0 6px 24px rgba(201,121,106,.4),0 0 0 4px var(--bg);transition:all .25s;}
+.nb-cam:active{transform:scale(.92);}
 .tab-view{position:absolute;inset:0;bottom:72px;display:none;flex-direction:column;overflow-y:auto;}
 .tab-view::-webkit-scrollbar{display:none;}
 .tab-view.on{display:flex;}
-
-.feed-header{padding:var(--s12) var(--s5) var(--s4);display:flex;justify-content:space-between;align-items:center;flex-shrink:0;position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(250,250,248,0.97) 0%,rgba(250,250,248,0) 100%);}
-.feed-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;color:var(--primary);letter-spacing:2px;}
+.feed-hdr{padding:var(--s12) var(--s5) var(--s4);display:flex;justify-content:space-between;align-items:center;flex-shrink:0;position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(250,250,248,.97) 0%,rgba(250,250,248,0) 100%);}
+.feed-logo{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--primary);letter-spacing:2px;}
 .feed-logo em{font-style:italic;color:var(--rose);}
-.feed-actions{display:flex;gap:var(--s2);align-items:center;}
-.icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border2);background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.9rem;}
-.twin-banner{margin:0 var(--s4) var(--s4);background:linear-gradient(135deg,#2C1F1A 0%,#4A3028 100%);border-radius:var(--r-lg);padding:var(--s5);position:relative;overflow:hidden;}
-.twin-banner::before{content:'';position:absolute;top:-30px;right:-20px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(201,121,106,0.3) 0%,transparent 70%);}
-.twin-badge{display:inline-flex;align-items:center;gap:var(--s2);background:rgba(201,121,106,0.2);border:1px solid rgba(201,121,106,0.3);border-radius:var(--r-full);padding:4px 12px;margin-bottom:var(--s3);}
-.twin-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--rose-light);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-.twin-badge-txt{font-size:0.55rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose-light);}
-.twin-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;color:#FAF8F5;margin-bottom:var(--s2);line-height:1.2;}
-.twin-title em{font-style:italic;color:var(--rose-light);}
-.twin-stats{display:flex;gap:var(--s5);}
-.twin-stat{display:flex;flex-direction:column;}
-.twin-stat-n{font-size:1.1rem;font-weight:600;color:#FAF8F5;font-family:'Playfair Display',serif;}
-.twin-stat-l{font-size:0.5rem;color:rgba(250,248,245,0.5);text-transform:uppercase;letter-spacing:1px;margin-top:1px;}
-.chip-row{display:flex;gap:var(--s2);padding:0 var(--s4);margin-bottom:var(--s4);overflow-x:auto;}
+.feed-actions{display:flex;gap:8px;align-items:center;}
+.icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border2);background:rgba(255,255,255,.7);backdrop-filter:blur(8px);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+.twin-banner{margin:0 var(--s4) var(--s4);background:linear-gradient(135deg,#2C1F1A,#4A3028);border-radius:var(--r-lg);padding:var(--s5);position:relative;overflow:hidden;}
+.twin-banner::before{content:'';position:absolute;top:-30px;right:-20px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(201,121,106,.25),transparent 70%);}
+.tw-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,121,106,.18);border:1px solid rgba(201,121,106,.3);border-radius:var(--r-full);padding:4px 12px;margin-bottom:var(--s3);}
+.tw-dot{width:6px;height:6px;border-radius:50%;background:var(--rose-light);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.tw-badge-txt{font-size:.52rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose-light);}
+.tw-match{font-size:.62rem;color:rgba(250,248,245,.55);margin-bottom:4px;font-weight:300;}
+.tw-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:#FAF8F5;line-height:1.2;margin-bottom:var(--s4);}
+.tw-title em{font-style:italic;color:var(--rose-light);}
+.tw-stats{display:flex;gap:var(--s5);}
+.tw-stat-n{font-size:1.1rem;font-weight:600;color:#FAF8F5;font-family:'Playfair Display',serif;}
+.tw-stat-l{font-size:.48rem;color:rgba(250,248,245,.45);text-transform:uppercase;letter-spacing:1px;margin-top:1px;}
+.chip-row{display:flex;gap:8px;padding:0 var(--s4);margin-bottom:var(--s4);overflow-x:auto;}
 .chip-row::-webkit-scrollbar{display:none;}
-.chip{flex-shrink:0;padding:7px 14px;border-radius:var(--r-full);font-size:0.6rem;font-weight:500;letter-spacing:0.3px;cursor:pointer;transition:all 0.2s ease;border:1.5px solid var(--border2);background:rgba(255,255,255,0.5);color:var(--t2);display:flex;align-items:center;gap:var(--s1);}
-.chip-dot{width:5px;height:5px;border-radius:50%;}
-.chip.active{background:var(--primary);color:#FAF8F5;border-color:var(--primary);}
-.chip-rose{border-color:rgba(201,121,106,0.3);background:rgba(201,121,106,0.08);color:var(--rose);}
-.chip-sage{border-color:rgba(90,122,101,0.3);background:rgba(90,122,101,0.08);color:var(--sage);}
-.chip-gold{border-color:rgba(184,147,90,0.3);background:rgba(184,147,90,0.08);color:var(--gold);}
+.chip{flex-shrink:0;padding:6px 13px;border-radius:var(--r-full);font-size:.58rem;font-weight:500;cursor:pointer;transition:all .2s;border:1.5px solid var(--border2);background:rgba(255,255,255,.5);color:var(--t2);}
+.chip.on{background:var(--primary);color:#FAF8F5;border-color:var(--primary);}
+.chip-rose{border-color:rgba(201,121,106,.3);background:rgba(201,121,106,.07);color:var(--rose);}
+.chip-sage{border-color:rgba(90,122,101,.3);background:rgba(90,122,101,.07);color:var(--sage);}
 .sec-hdr{padding:0 var(--s4);display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--s3);}
-.sec-ttl{font-size:0.55rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--t3);}
-.sec-link{font-size:0.62rem;color:var(--rose);font-weight:500;cursor:pointer;}
+.sec-ttl{font-size:.52rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--t3);}
+.sec-lnk{font-size:.6rem;color:var(--rose);font-weight:500;cursor:pointer;}
 .hscroll{display:flex;gap:var(--s3);padding:0 var(--s4) var(--s2);overflow-x:auto;}
 .hscroll::-webkit-scrollbar{display:none;}
-.tcard{flex-shrink:0;width:160px;background:var(--surface);border-radius:var(--r-md);border:1px solid var(--border);box-shadow:var(--shadow-sm);overflow:hidden;cursor:pointer;transition:transform 0.2s ease,box-shadow 0.2s ease;}
-.tcard:active{transform:scale(0.97);box-shadow:var(--shadow-xs);}
-.tcard-img{height:90px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;position:relative;overflow:hidden;}
-.tcard-img-rose{background:linear-gradient(135deg,#FAF0EE 0%,#F0D8D2 100%);}
-.tcard-img-sage{background:linear-gradient(135deg,#EEF5EF 0%,#D5E8D7 100%);}
-.tcard-img-gold{background:linear-gradient(135deg,#FAF6EC 0%,#EEE0C5 100%);}
-.tcard-img-lav{background:linear-gradient(135deg,#F2EEF9 0%,#DDD5F0 100%);}
-.tcard-badge{position:absolute;top:8px;right:8px;font-size:0.48rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:3px 7px;border-radius:var(--r-full);}
-.badge-hot{background:rgba(201,121,106,0.15);color:var(--rose);}
-.badge-safe{background:rgba(90,122,101,0.15);color:var(--sage);}
-.badge-warn{background:rgba(184,147,90,0.15);color:var(--gold);}
-.badge-new{background:rgba(123,111,160,0.15);color:var(--lavender);}
-.tcard-body{padding:var(--s3) var(--s3) var(--s4);}
-.tcard-brand{font-size:0.5rem;color:var(--t3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:2px;}
-.tcard-name{font-size:0.72rem;font-weight:600;color:var(--t1);margin-bottom:var(--s2);line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
-.tcard-meta{display:flex;align-items:center;justify-content:space-between;}
-.tcard-score{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;color:var(--t1);}
-.tcard-pct{font-size:0.52rem;font-weight:600;padding:2px 7px;border-radius:var(--r-full);}
-.pct-good{background:var(--sage-pale);color:var(--sage);}
-.pct-warn{background:var(--gold-pale);color:var(--gold);}
-.pct-bad{background:var(--rose-pale);color:var(--rose);}
-.tcard-twin{font-size:0.5rem;color:var(--rose);font-weight:500;display:flex;align-items:center;gap:3px;margin-top:var(--s2);}
-.feed-card{margin:0 var(--s4) var(--s3);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform 0.2s ease;}
-.feed-card:active{transform:scale(0.99);}
-.fc-insight{padding:var(--s5);background:linear-gradient(135deg,#FAF6EC 0%,#F5EDD8 100%);border:1px solid rgba(184,147,90,0.2);}
-.fc-insight-label{font-size:0.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:var(--s2);}
-.fc-insight-text{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;color:var(--t1);line-height:1.35;margin-bottom:var(--s3);}
-.fc-insight-text em{font-style:italic;color:var(--gold);}
-.fc-insight-meta{display:flex;align-items:center;gap:var(--s3);}
-.fc-insight-count{font-size:0.6rem;color:var(--t2);font-weight:400;}
-.fc-review-top{padding:var(--s4) var(--s5) 0;display:flex;justify-content:space-between;align-items:flex-start;}
-.fc-product-row{display:flex;gap:var(--s3);align-items:center;}
-.fc-product-icon{width:42px;height:42px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
-.fc-product-brand{font-size:0.5rem;color:var(--t3);text-transform:uppercase;letter-spacing:0.8px;}
-.fc-product-name{font-size:0.82rem;font-weight:600;color:var(--t1);line-height:1.2;}
-.fc-product-cat{font-size:0.52rem;color:var(--t3);margin-top:2px;}
-.fc-score-big{font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;line-height:1;flex-shrink:0;}
-.fc-review-body{padding:var(--s3) var(--s5);}
-.fc-review-text{font-size:0.78rem;color:var(--t2);line-height:1.75;font-weight:300;}
-.fc-review-stats{padding:var(--s3) var(--s5);display:flex;gap:var(--s4);border-top:1px solid var(--border);}
-.fc-stat{display:flex;align-items:center;gap:5px;}
-.fc-stat-ic{font-size:0.7rem;opacity:0.6;}
-.fc-stat-txt{font-size:0.58rem;color:var(--t2);font-weight:400;}
+.tc{flex-shrink:0;width:155px;background:var(--surface);border-radius:var(--r-md);border:1px solid var(--border);box-shadow:var(--shadow-sm);overflow:hidden;cursor:pointer;transition:transform .2s;}
+.tc:active{transform:scale(.97);}
+.tc-img{height:86px;display:flex;align-items:center;justify-content:center;font-size:2rem;position:relative;}
+.tc-img-sage{background:linear-gradient(135deg,#EEF5EF,#D5E8D7);}
+.tc-img-rose{background:linear-gradient(135deg,#FAF0EE,#F0D8D2);}
+.tc-img-gold{background:linear-gradient(135deg,#FAF6EC,#EEE0C5);}
+.tc-img-lav{background:linear-gradient(135deg,#F2EEF9,#DDD5F0);}
+.tc-bdg{position:absolute;top:7px;right:7px;font-size:.44rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 6px;border-radius:var(--r-full);}
+.bdg-safe{background:rgba(90,122,101,.15);color:var(--sage);}
+.bdg-hot{background:rgba(201,121,106,.15);color:var(--rose);}
+.bdg-warn{background:rgba(184,147,90,.15);color:var(--gold);}
+.bdg-new{background:rgba(123,111,160,.15);color:var(--lav);}
+.tc-body{padding:10px 10px 12px;}
+.tc-brand{font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px;}
+.tc-name{font-size:.7rem;font-weight:600;color:var(--t1);line-height:1.3;margin-bottom:8px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.tc-meta{display:flex;align-items:center;justify-content:space-between;}
+.tc-score{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--t1);}
+.tc-pct{font-size:.5rem;font-weight:600;padding:2px 6px;border-radius:var(--r-full);}
+.pct-g{background:var(--sage-pale);color:var(--sage);}
+.pct-w{background:var(--gold-pale);color:var(--gold);}
+.pct-b{background:var(--rose-pale);color:var(--rose);}
+.tc-twin{font-size:.46rem;color:var(--rose);font-weight:500;margin-top:5px;}
+.fc{margin:0 var(--s4) 10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .2s;}
+.fc:active{transform:scale(.99);}
+.fc-insight{padding:var(--s5);background:linear-gradient(135deg,#FAF6EC,#F5EDD8);border:1px solid rgba(184,147,90,.2);}
+.fc-ins-lbl{font-size:.48rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.fc-ins-txt{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--t1);line-height:1.35;margin-bottom:10px;}
+.fc-ins-txt em{font-style:italic;color:var(--gold);}
+.fc-ins-meta{font-size:.57rem;color:var(--t2);}
+.fc-rev-top{padding:var(--s4) var(--s5) 0;display:flex;justify-content:space-between;align-items:flex-start;}
+.fc-prod-row{display:flex;gap:10px;align-items:center;}
+.fc-prod-ic{width:40px;height:40px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.fc-prod-brand{font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;}
+.fc-prod-name{font-size:.8rem;font-weight:600;color:var(--t1);line-height:1.2;}
+.fc-prod-cat{font-size:.5rem;color:var(--t3);margin-top:2px;}
+.fc-score-big{font-family:'Playfair Display',serif;font-size:1.9rem;line-height:1;flex-shrink:0;}
+.fc-rev-body{padding:10px var(--s5);}
+.fc-rev-txt{font-size:.75rem;color:var(--t2);line-height:1.75;font-weight:300;}
+.fc-rev-stats{padding:10px var(--s5);display:flex;gap:16px;border-top:1px solid var(--border);}
+.fc-stat{display:flex;align-items:center;gap:4px;}
+.fc-stat-ic{font-size:.65rem;opacity:.6;}
+.fc-stat-txt{font-size:.55rem;color:var(--t2);}
 .fc-stat-txt strong{color:var(--t1);font-weight:600;}
-.fc-review-footer{padding:var(--s3) var(--s5) var(--s4);display:flex;justify-content:space-between;align-items:center;}
-.fc-user{display:flex;align-items:center;gap:var(--s2);}
-.fc-av{width:26px;height:26px;border-radius:50%;background:var(--rose-muted);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:0.7rem;color:var(--rose);}
-.fc-user-name{font-size:0.65rem;font-weight:600;color:var(--t1);}
-.fc-user-type{font-size:0.52rem;color:var(--t3);}
-.fc-tags{display:flex;gap:var(--s2);}
-.fc-tag{font-size:0.48rem;font-weight:600;letter-spacing:0.3px;padding:3px 8px;border-radius:var(--r-full);}
-.mini-bar-wrap{padding:0 var(--s5) var(--s4);}
-.mini-bar-label{display:flex;justify-content:space-between;margin-bottom:4px;}
-.mini-bar-txt{font-size:0.52rem;color:var(--t3);}
-.mini-bar{height:3px;background:rgba(44,31,26,0.08);border-radius:2px;overflow:hidden;}
-.mini-bar-fill{height:100%;border-radius:2px;}
-.twin-top{padding:var(--s12) var(--s5) var(--s4);background:linear-gradient(160deg,#2C1F1A 0%,#3D2820 60%,#2C1F1A 100%);flex-shrink:0;position:relative;overflow:hidden;}
-.twin-top::after{content:'';position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(201,121,106,0.2) 0%,transparent 70%);}
-.twin-top-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;color:rgba(250,248,245,0.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--s5);}
-.twin-group-title{font-size:0.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose-light);margin-bottom:var(--s3);}
-.twin-group-name{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:400;color:#FAF8F5;line-height:1.15;margin-bottom:var(--s4);}
-.twin-group-name em{font-style:italic;color:var(--rose-light);}
-.twin-group-stats{display:flex;gap:var(--s6);}
+.fc-rev-foot{padding:10px var(--s5) var(--s4);display:flex;justify-content:space-between;align-items:center;}
+.fc-user{display:flex;align-items:center;gap:8px;}
+.fc-av{width:24px;height:24px;border-radius:50%;background:var(--rose-muted);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:.65rem;color:var(--rose);}
+.fc-user-name{font-size:.62rem;font-weight:600;color:var(--t1);}
+.fc-user-sub{font-size:.5rem;color:var(--t3);}
+.fc-tags{display:flex;gap:5px;}
+.fc-tag{font-size:.45rem;font-weight:600;padding:2px 7px;border-radius:var(--r-full);}
+.mbar-wrap{padding:0 var(--s5) var(--s4);}
+.mbar-top{display:flex;justify-content:space-between;margin-bottom:3px;}
+.mbar-lbl{font-size:.5rem;color:var(--t3);}
+.mbar{height:3px;background:rgba(44,31,26,.07);border-radius:2px;overflow:hidden;}
+.mbar-fill{height:100%;border-radius:2px;}
+.tw-top{padding:var(--s12) var(--s5) var(--s4);background:linear-gradient(160deg,#2C1F1A,#3D2820,#2C1F1A);flex-shrink:0;position:relative;overflow:hidden;}
+.tw-top::after{content:'';position:absolute;bottom:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(201,121,106,.18),transparent 70%);}
+.tw-top-logo{font-family:'Playfair Display',serif;font-size:.95rem;color:rgba(250,248,245,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--s5);}
+.tw-grp-lbl{font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose-light);margin-bottom:10px;}
+.tw-grp-name{font-family:'Playfair Display',serif;font-size:1.7rem;color:#FAF8F5;line-height:1.15;margin-bottom:var(--s4);}
+.tw-grp-name em{font-style:italic;color:var(--rose-light);}
+.tw-grp-stats{display:flex;gap:var(--s6);}
 .tgs{display:flex;flex-direction:column;}
-.tgs-n{font-size:1.3rem;font-weight:600;color:#FAF8F5;font-family:'Playfair Display',serif;}
-.tgs-l{font-size:0.5rem;color:rgba(250,248,245,0.45);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
-.twin-profile-card{margin:var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s5);box-shadow:var(--shadow-sm);}
-.tpc-label{font-size:0.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);}
-.tpc-traits{display:flex;flex-wrap:wrap;gap:var(--s2);}
-.tpc-trait{padding:6px 14px;border-radius:var(--r-full);font-size:0.62rem;font-weight:500;border:1.5px solid var(--border2);background:var(--bg2);color:var(--t2);}
-.tpc-trait.rose{background:var(--rose-pale);border-color:rgba(201,121,106,0.2);color:var(--rose);}
-.tpc-trait.sage{background:var(--sage-pale);border-color:rgba(90,122,101,0.2);color:var(--sage);}
-.tpc-trait.lav{background:var(--lav-pale);border-color:rgba(123,111,160,0.2);color:var(--lavender);}
-.closet-head{padding:var(--s5) var(--s4) var(--s3);display:flex;justify-content:space-between;align-items:center;}
-.closet-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;color:var(--t1);}
-.closet-subtitle{font-size:0.6rem;color:var(--t3);margin-top:2px;}
-.closet-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s2);padding:0 var(--s4) var(--s4);}
-.cg-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden;cursor:pointer;transition:transform 0.2s ease,box-shadow 0.2s ease;box-shadow:var(--shadow-xs);}
-.cg-item:active{transform:scale(0.96);}
-.cg-img{height:70px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;position:relative;}
-.cg-match{position:absolute;top:4px;right:4px;font-size:0.44rem;font-weight:700;padding:2px 5px;border-radius:4px;background:rgba(90,122,101,0.15);color:var(--sage);}
-.cg-body{padding:var(--s2);}
-.cg-name{font-size:0.58rem;font-weight:600;color:var(--t1);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
-.cg-score{font-size:0.52rem;color:var(--rose);font-weight:500;}
-.risk-section{margin:0 var(--s4) var(--s4);}
-.risk-label{font-size:0.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);}
-.risk-card{background:linear-gradient(135deg,#FEF5F3 0%,#FAE8E5 100%);border:1px solid rgba(201,121,106,0.2);border-radius:var(--r-md);padding:var(--s4);display:flex;gap:var(--s3);align-items:center;margin-bottom:var(--s2);cursor:pointer;}
-.risk-icon{font-size:1.3rem;width:36px;height:36px;background:rgba(201,121,106,0.1);border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tgs-n{font-size:1.2rem;font-weight:600;color:#FAF8F5;font-family:'Playfair Display',serif;}
+.tgs-l{font-size:.46rem;color:rgba(250,248,245,.4);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+.tw-profile-card{margin:var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s5);box-shadow:var(--shadow-sm);}
+.tpc-lbl{font-size:.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);}
+.tpc-traits{display:flex;flex-wrap:wrap;gap:8px;}
+.tpc-t{padding:5px 12px;border-radius:var(--r-full);font-size:.6rem;font-weight:500;border:1.5px solid var(--border2);background:var(--bg2);color:var(--t2);}
+.tpc-t.rose{background:var(--rose-pale);border-color:rgba(201,121,106,.2);color:var(--rose);}
+.tpc-t.sage{background:var(--sage-pale);border-color:rgba(90,122,101,.2);color:var(--sage);}
+.tpc-t.lav{background:var(--lav-pale);border-color:rgba(123,111,160,.2);color:var(--lav);}
+.cl-head{padding:var(--s5) var(--s4) var(--s3);display:flex;justify-content:space-between;align-items:center;}
+.cl-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--t1);}
+.cl-sub{font-size:.58rem;color:var(--t3);margin-top:2px;}
+.cl-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0 var(--s4) var(--s4);}
+.cg{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden;cursor:pointer;transition:transform .2s;box-shadow:var(--shadow-xs);}
+.cg:active{transform:scale(.96);}
+.cg-img{height:66px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;position:relative;}
+.cg-match{position:absolute;top:3px;right:3px;font-size:.42rem;font-weight:700;padding:2px 5px;border-radius:4px;background:rgba(90,122,101,.15);color:var(--sage);}
+.cg-body{padding:7px 7px 8px;}
+.cg-name{font-size:.56rem;font-weight:600;color:var(--t1);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.cg-score{font-size:.5rem;color:var(--rose);font-weight:500;margin-top:2px;}
+.risk-sec{margin:0 var(--s4) var(--s4);}
+.risk-lbl{font-size:.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);}
+.risk-card{background:linear-gradient(135deg,#FEF5F3,#FAE8E5);border:1px solid rgba(201,121,106,.2);border-radius:var(--r-md);padding:var(--s4);display:flex;gap:10px;align-items:center;margin-bottom:8px;cursor:pointer;}
+.risk-ic{font-size:1.2rem;width:34px;height:34px;background:rgba(201,121,106,.1);border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .risk-info{flex:1;min-width:0;}
-.risk-name{font-size:0.76rem;font-weight:600;color:var(--t1);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
-.risk-reason{font-size:0.6rem;color:var(--t2);margin-top:2px;}
-.risk-badge{font-size:0.5rem;font-weight:700;padding:3px 8px;border-radius:var(--r-full);background:rgba(201,121,106,0.15);color:var(--rose);flex-shrink:0;}
+.risk-name{font-size:.73rem;font-weight:600;color:var(--t1);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.risk-why{font-size:.58rem;color:var(--t2);margin-top:2px;}
+.risk-bdg{font-size:.48rem;font-weight:700;padding:3px 7px;border-radius:var(--r-full);background:rgba(201,121,106,.15);color:var(--rose);flex-shrink:0;}
 .disc-top{padding:var(--s12) var(--s5) var(--s4);flex-shrink:0;}
-.disc-eyebrow{font-size:0.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:var(--s2);}
-.disc-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:var(--t1);line-height:1.1;}
-.disc-title em{font-style:italic;color:var(--rose);}
-.disc-subtitle{font-size:0.75rem;color:var(--t2);margin-top:var(--s2);font-weight:300;}
-.prod-row{margin:0 var(--s4) var(--s3);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-xs);cursor:pointer;transition:transform 0.2s ease;}
-.prod-row:active{transform:scale(0.99);}
-.prod-row-main{padding:var(--s4) var(--s4) var(--s3);display:flex;gap:var(--s3);align-items:flex-start;}
-.prod-row-icon{width:48px;height:48px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
-.prod-row-info{flex:1;min-width:0;}
-.prod-row-brand{font-size:0.5rem;color:var(--t3);text-transform:uppercase;letter-spacing:0.8px;}
-.prod-row-name{font-size:0.84rem;font-weight:600;color:var(--t1);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
-.prod-row-reviews{font-size:0.55rem;color:var(--t3);margin-top:2px;}
-.prod-row-right{display:flex;flex-direction:column;align-items:flex-end;gap:var(--s1);}
-.prod-score{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:400;}
-.prod-verdict{font-size:0.48rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:3px 8px;border-radius:var(--r-full);}
-.prod-row-metrics{padding:0 var(--s4) var(--s3);display:flex;gap:var(--s4);}
-.prm{display:flex;align-items:center;gap:4px;}
-.prm-ic{font-size:0.65rem;}
-.prm-txt{font-size:0.57rem;color:var(--t2);}
+.disc-ey{font-size:.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:8px;}
+.disc-h{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--t1);line-height:1.1;}
+.disc-h em{font-style:italic;color:var(--rose);}
+.disc-sub{font-size:.72rem;color:var(--t2);margin-top:8px;font-weight:300;}
+.prod-row{margin:0 var(--s4) 10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-xs);cursor:pointer;transition:transform .2s;}
+.prod-row:active{transform:scale(.99);}
+.pr-main{padding:var(--s4) var(--s4) var(--s3);display:flex;gap:10px;align-items:flex-start;}
+.pr-ic{width:46px;height:46px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.pr-info{flex:1;min-width:0;}
+.pr-brand{font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;}
+.pr-name{font-size:.82rem;font-weight:600;color:var(--t1);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.pr-reviews{font-size:.52rem;color:var(--t3);margin-top:2px;}
+.pr-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.pr-score{font-family:'Playfair Display',serif;font-size:1.7rem;}
+.pr-verdict{font-size:.44rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 7px;border-radius:var(--r-full);}
+.pr-metrics{padding:0 var(--s4) var(--s3);display:flex;gap:16px;}
+.prm{display:flex;align-items:center;gap:3px;}
+.prm-ic{font-size:.6rem;}
+.prm-txt{font-size:.54rem;color:var(--t2);}
 .prm-txt strong{color:var(--t1);font-weight:600;}
-.prod-row-bar{padding:0 var(--s4) var(--s4);}
-.prb{height:3px;background:rgba(44,31,26,0.07);border-radius:2px;overflow:hidden;}
+.pr-bar{padding:0 var(--s4) var(--s4);}
+.prb{height:3px;background:rgba(44,31,26,.07);border-radius:2px;overflow:hidden;}
 .prb-fill{height:100%;border-radius:2px;}
-.prof-header{padding:var(--s12) var(--s5) var(--s5);background:linear-gradient(160deg,var(--rose-pale) 0%,var(--bg) 60%);flex-shrink:0;}
-.prof-av{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--rose-muted) 0%,#D4A08E 100%);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--rose);margin-bottom:var(--s3);border:2px solid rgba(255,255,255,0.8);box-shadow:var(--shadow-sm);}
-.prof-name{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;color:var(--t1);}
-.prof-handle{font-size:0.62rem;color:var(--t3);margin-top:2px;}
-.prof-twin-badge{display:inline-flex;align-items:center;gap:var(--s2);margin-top:var(--s3);padding:6px 14px;background:linear-gradient(135deg,#2C1F1A 0%,#4A3028 100%);border-radius:var(--r-full);}
-.ptb-txt{font-size:0.55rem;font-weight:600;color:rgba(250,248,245,0.7);letter-spacing:0.5px;}
-.ptb-group{font-size:0.62rem;font-weight:600;color:var(--rose-light);}
-.prof-stats-row{display:flex;margin:var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-xs);}
+.prof-hdr{padding:var(--s12) var(--s5) var(--s5);background:linear-gradient(160deg,var(--rose-pale),var(--bg) 60%);flex-shrink:0;}
+.prof-av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--rose-muted),#D4A08E);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--rose);margin-bottom:10px;border:2px solid rgba(255,255,255,.8);box-shadow:var(--shadow-sm);}
+.prof-name{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--t1);}
+.prof-handle{font-size:.6rem;color:var(--t3);margin-top:2px;}
+.prof-twin-bdg{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:5px 12px;background:linear-gradient(135deg,#2C1F1A,#4A3028);border-radius:var(--r-full);}
+.ptb-lbl{font-size:.52rem;color:rgba(250,248,245,.6);}
+.ptb-val{font-size:.58rem;font-weight:600;color:var(--rose-light);}
+.prof-stats{display:flex;margin:var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-xs);}
 .psr{flex:1;padding:var(--s4);text-align:center;border-right:1px solid var(--border);}
 .psr:last-child{border:none;}
-.psr-n{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;color:var(--t1);}
-.psr-l{font-size:0.48rem;color:var(--t3);text-transform:uppercase;letter-spacing:0.8px;margin-top:2px;}
-.streak-card{margin:0 var(--s4) var(--s4);padding:var(--s4);background:linear-gradient(135deg,var(--rose-pale) 0%,rgba(237,213,208,0.4) 100%);border-radius:var(--r-md);border:1px solid rgba(201,121,106,0.15);}
-.sc-label{font-size:0.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:var(--s3);}
-.sc-dots{display:flex;gap:var(--s2);}
-.sc-dot{width:34px;height:34px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:600;}
-.sc-done{background:linear-gradient(135deg,var(--rose) 0%,#B5604F 100%);color:white;}
-.sc-today{background:rgba(255,255,255,0.8);border:2px solid var(--rose);color:var(--rose);}
-.sc-future{background:rgba(44,31,26,0.05);border:1px solid var(--border);color:var(--t4);}
-.skin-profile-card{margin:0 var(--s4) var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s5);box-shadow:var(--shadow-xs);}
-.spc-label{font-size:0.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:var(--s4);}
-.spc-traits{display:flex;flex-wrap:wrap;gap:var(--s2);}
-.spc-chip{background:var(--rose-pale);border:1px solid rgba(201,121,106,0.2);border-radius:var(--r-full);padding:5px 12px;font-size:0.62rem;font-weight:500;color:var(--rose);}
-.menu-list{padding:0 var(--s4) var(--s8);display:flex;flex-direction:column;gap:var(--s2);}
-.mi{display:flex;align-items:center;gap:var(--s3);padding:var(--s4);background:var(--surface);border-radius:var(--r-sm);border:1px solid var(--border);box-shadow:var(--shadow-xs);cursor:pointer;}
+.psr-n{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--t1);}
+.psr-l{font-size:.44rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+.streak-card{margin:0 var(--s4) var(--s4);padding:var(--s4);background:linear-gradient(135deg,var(--rose-pale),rgba(237,213,208,.35));border-radius:var(--r-md);border:1px solid rgba(201,121,106,.12);}
+.sc-lbl{font-size:.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:10px;}
+.sc-dots{display:flex;gap:7px;}
+.sc-dot{width:32px;height:32px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:600;}
+.scd-done{background:linear-gradient(135deg,var(--rose),#B5604F);color:white;}
+.scd-today{background:rgba(255,255,255,.8);border:2px solid var(--rose);color:var(--rose);}
+.scd-future{background:rgba(44,31,26,.04);border:1px solid var(--border);color:var(--t4);}
+.skin-card{margin:0 var(--s4) var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s5);box-shadow:var(--shadow-xs);}
+.skin-lbl{font-size:.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:var(--s4);}
+.skin-chips{display:flex;flex-wrap:wrap;gap:7px;}
+.skin-chip{background:var(--rose-pale);border:1px solid rgba(201,121,106,.2);border-radius:var(--r-full);padding:4px 11px;font-size:.6rem;font-weight:500;color:var(--rose);}
+.menu-list{padding:0 var(--s4) var(--s8);display:flex;flex-direction:column;gap:7px;}
+.mi{display:flex;align-items:center;gap:10px;padding:var(--s4);background:var(--surface);border-radius:var(--r-xs);border:1px solid var(--border);box-shadow:var(--shadow-xs);cursor:pointer;}
 .mi:active{background:var(--bg2);}
-.mi-ic{font-size:0.95rem;opacity:0.4;width:22px;}
-.mi-tx{flex:1;font-size:0.82rem;color:var(--t1);font-weight:400;}
-.mi-ar{font-size:0.8rem;color:var(--t4);}
+.mi-ic{font-size:.9rem;opacity:.4;width:20px;}
+.mi-tx{flex:1;font-size:.8rem;color:var(--t1);}
+.mi-ar{font-size:.75rem;color:var(--t4);}
 .sub{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;z-index:40;}
-.sub.on{display:flex;animation:slideUp 0.35s cubic-bezier(0.16,1,0.3,1);}
+.sub.on{display:flex;animation:slideUp .35s cubic-bezier(.16,1,.3,1);}
 @keyframes slideUp{from{transform:translateY(24px);opacity:0;}to{transform:translateY(0);opacity:1;}}
-.sub-nav{padding:var(--s12) var(--s5) var(--s4);display:flex;align-items:center;gap:var(--s3);flex-shrink:0;border-bottom:1px solid var(--border);background:rgba(250,250,248,0.95);backdrop-filter:blur(12px);}
-.sub-back{width:38px;height:38px;border-radius:50%;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--t1);font-size:0.9rem;display:flex;align-items:center;justify-content:center;}
-.sub-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;color:var(--t1);}
-.scan-viewfinder{margin:var(--s4);border-radius:var(--r-lg);background:var(--primary);aspect-ratio:4/3;position:relative;overflow:hidden;}
-.scan-video{width:100%;height:100%;object-fit:cover;display:block;opacity:0.7;}
+.sub-nav{padding:var(--s12) var(--s5) var(--s4);display:flex;align-items:center;gap:10px;flex-shrink:0;border-bottom:1px solid var(--border);background:rgba(250,250,248,.95);backdrop-filter:blur(12px);}
+.sub-back{width:36px;height:36px;border-radius:50%;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--t1);font-size:.85rem;display:flex;align-items:center;justify-content:center;}
+.sub-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--t1);}
+.scan-vf{margin:var(--s4);border-radius:var(--r-lg);background:var(--primary);aspect-ratio:4/3;position:relative;overflow:hidden;}
+.scan-vid{width:100%;height:100%;object-fit:cover;display:block;opacity:.7;}
 .scan-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
-.scan-frame{width:170px;height:85px;position:relative;}
-.sf-corner{position:absolute;width:20px;height:20px;}
+.scan-frame{width:165px;height:82px;position:relative;}
+.sf{position:absolute;width:18px;height:18px;}
 .sf-tl{top:0;left:0;border-top:2px solid var(--rose-light);border-left:2px solid var(--rose-light);}
 .sf-tr{top:0;right:0;border-top:2px solid var(--rose-light);border-right:2px solid var(--rose-light);}
 .sf-bl{bottom:0;left:0;border-bottom:2px solid var(--rose-light);border-left:2px solid var(--rose-light);}
 .sf-br{bottom:0;right:0;border-bottom:2px solid var(--rose-light);border-right:2px solid var(--rose-light);}
-.scan-line{position:absolute;left:10%;right:10%;height:1.5px;background:linear-gradient(90deg,transparent,var(--rose-light),transparent);animation:scan 2s ease-in-out infinite;}
-@keyframes scan{0%,100%{top:10%;}50%{top:88%;}}
-.scan-hint-txt{text-align:center;font-size:0.58rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;padding:var(--s3) var(--s4);}
-.or-divider{display:flex;align-items:center;gap:var(--s3);margin:var(--s2) var(--s4);}
-.or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--border);}
-.or-divider span{font-size:0.58rem;color:var(--t3);}
-.scan-input{display:block;width:calc(100% - 32px);margin:0 var(--s4);padding:14px var(--s5);background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:0.86rem;color:var(--t1);outline:none;-webkit-appearance:none;box-shadow:var(--shadow-xs);}
-.scan-input:focus{border-color:var(--rose);}
-.scan-input::placeholder{color:var(--t4);}
-.cat-label{font-size:0.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin:var(--s5) var(--s4) var(--s3);}
-.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);padding:0 var(--s4);}
-.cat-btn{background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--r-sm);padding:var(--s3) var(--s2);cursor:pointer;text-align:center;box-shadow:var(--shadow-xs);transition:all 0.2s ease;}
-.cat-btn:active{transform:scale(0.96);}
+.scan-beam{position:absolute;left:10%;right:10%;height:1.5px;background:linear-gradient(90deg,transparent,var(--rose-light),transparent);animation:beam 2s ease-in-out infinite;}
+@keyframes beam{0%,100%{top:10%;}50%{top:86%;}}
+.scan-hint{text-align:center;font-size:.56rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;padding:10px var(--s4);}
+.or-div{display:flex;align-items:center;gap:10px;margin:6px var(--s4);}
+.or-div::before,.or-div::after{content:'';flex:1;height:1px;background:var(--border);}
+.or-div span{font-size:.56rem;color:var(--t3);}
+.scan-inp{display:block;width:calc(100% - 32px);margin:0 var(--s4);padding:13px var(--s5);background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:.84rem;color:var(--t1);outline:none;-webkit-appearance:none;box-shadow:var(--shadow-xs);}
+.scan-inp:focus{border-color:var(--rose);}
+.scan-inp::placeholder{color:var(--t4);}
+.cat-lbl{font-size:.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin:var(--s5) var(--s4) var(--s3);}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:0 var(--s4);}
+.cat-btn{background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--r-xs);padding:10px 6px;cursor:pointer;text-align:center;box-shadow:var(--shadow-xs);transition:all .2s;}
+.cat-btn:active{transform:scale(.96);}
 .cat-btn.sel{border-color:var(--rose);background:var(--rose-pale);}
-.cat-btn-ic{font-size:1.1rem;margin-bottom:3px;}
-.cat-btn-nm{font-size:0.5rem;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:0.3px;}
-.cat-btn-d{font-size:0.46rem;color:var(--t3);margin-top:2px;}
-.cat-btn.sel .cat-btn-nm{color:var(--rose);}
-.scan-cta-wrap{padding:var(--s5) var(--s4) var(--s8);}
-.btn-full{width:100%;padding:16px var(--s6);background:var(--primary);color:#FAF8F5;border:none;border-radius:var(--r-md);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:0.4px;cursor:pointer;box-shadow:0 4px 20px rgba(44,31,26,0.25);transition:all 0.25s ease;}
-.btn-full:active{transform:scale(0.98);}
+.cat-ic{font-size:1rem;margin-bottom:3px;}
+.cat-nm{font-size:.48rem;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.3px;}
+.cat-d{font-size:.44rem;color:var(--t3);margin-top:2px;}
+.cat-btn.sel .cat-nm{color:var(--rose);}
+.scan-cta{padding:var(--s5) var(--s4) var(--s8);}
+.btn-full{width:100%;padding:15px;background:var(--primary);color:#FAF8F5;border:none;border-radius:var(--r-md);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.4px;cursor:pointer;box-shadow:0 4px 20px rgba(44,31,26,.22);transition:all .25s;}
+.btn-full:active{transform:scale(.98);}
 .btn-full:disabled{background:var(--t4);box-shadow:none;cursor:default;}
 .det-hero{padding:var(--s12) var(--s5) var(--s5);position:relative;overflow:hidden;}
-.det-hero-bg{position:absolute;inset:0;opacity:0.4;}
-.det-hero-content{position:relative;z-index:1;}
-.det-emoji{font-size:3.5rem;margin-bottom:var(--s4);display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.1));}
-.det-category{font-size:0.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--s2);}
-.det-name{font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;color:var(--t1);line-height:1.05;margin-bottom:4px;}
-.det-brand{font-size:0.7rem;color:var(--t3);}
+.det-hero-bg{position:absolute;inset:0;opacity:.4;}
+.det-hero-cnt{position:relative;z-index:1;}
+.det-em{font-size:3.2rem;margin-bottom:var(--s4);display:block;}
+.det-cat{font-size:.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px;}
+.det-name{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--t1);line-height:1.05;margin-bottom:3px;}
+.det-brand{font-size:.68rem;color:var(--t3);}
 .det-score-card{margin:0 var(--s4) var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s5);box-shadow:var(--shadow-md);}
 .dsc-top{display:flex;align-items:center;gap:var(--s5);margin-bottom:var(--s5);}
-.dsc-ring{width:64px;height:64px;flex-shrink:0;}
-.dsc-n{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:400;line-height:1;}
-.dsc-verdict{font-size:0.58rem;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-top:3px;}
-.dsc-rows{display:flex;flex-direction:column;gap:8px;}
-.dscr{display:flex;align-items:center;gap:var(--s3);}
-.dscr-lbl{font-size:0.56rem;color:var(--t3);width:96px;flex-shrink:0;font-weight:400;}
-.dscr-bar{flex:1;height:3px;background:rgba(44,31,26,0.07);border-radius:2px;overflow:hidden;}
+.dsc-ring{width:62px;height:62px;flex-shrink:0;}
+.dsc-n{font-family:'Playfair Display',serif;font-size:2.7rem;line-height:1;}
+.dsc-verdict{font-size:.55rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-top:3px;}
+.dsc-rows{display:flex;flex-direction:column;gap:7px;}
+.dscr{display:flex;align-items:center;gap:10px;}
+.dscr-lbl{font-size:.54rem;color:var(--t3);width:94px;flex-shrink:0;}
+.dscr-bar{flex:1;height:3px;background:rgba(44,31,26,.07);border-radius:2px;overflow:hidden;}
 .dscr-fill{height:100%;border-radius:2px;}
-.dscr-val{font-size:0.58rem;color:var(--t2);width:26px;text-align:right;font-weight:600;}
-.det-metrics{margin:0 var(--s4) var(--s4);display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s2);}
-.det-metric{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:var(--s3);text-align:center;box-shadow:var(--shadow-xs);}
-.dm-ic{font-size:1rem;margin-bottom:3px;}
-.dm-n{font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;color:var(--t1);}
-.dm-l{font-size:0.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
-.det-tags{display:flex;gap:var(--s2);flex-wrap:wrap;padding:0 var(--s4);margin-bottom:var(--s4);}
-.det-tag{font-size:0.56rem;font-weight:600;padding:5px 12px;border-radius:var(--r-full);border:1.5px solid var(--border);}
+.dscr-val{font-size:.56rem;color:var(--t2);width:24px;text-align:right;font-weight:600;}
+.det-metrics{margin:0 var(--s4) var(--s4);display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+.det-metric{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xs);padding:10px;text-align:center;box-shadow:var(--shadow-xs);}
+.dm-ic{font-size:.95rem;margin-bottom:2px;}
+.dm-n{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--t1);}
+.dm-l{font-size:.42rem;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.det-tags{display:flex;gap:7px;flex-wrap:wrap;padding:0 var(--s4);margin-bottom:var(--s4);}
+.det-tag{font-size:.54rem;font-weight:600;padding:4px 11px;border-radius:var(--r-full);border:1.5px solid transparent;}
 .ing-block{margin:0 var(--s4) var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-xs);}
-.ib-header{padding:var(--s3) var(--s5);border-bottom:1px solid var(--border);font-size:0.56rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);}
-.ib-row{padding:var(--s3) var(--s5);display:flex;gap:var(--s3);align-items:flex-start;border-bottom:1px solid var(--border);}
+.ib-hdr{padding:10px var(--s5);border-bottom:1px solid var(--border);font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);}
+.ib-row{padding:10px var(--s5);display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--border);}
 .ib-row:last-child{border:none;}
-.ib-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.ib-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px;}
 .dot-safe{background:var(--sage);}
 .dot-warn{background:var(--gold);}
 .dot-risk{background:var(--rose);}
 .dot-mid{background:var(--t4);}
 .ib-body{flex:1;}
-.ib-name{font-size:0.78rem;font-weight:600;color:var(--t1);margin-bottom:2px;}
-.ib-desc{font-size:0.68rem;color:var(--t2);line-height:1.55;}
-.ib-badge{font-size:0.46rem;font-weight:700;padding:3px 7px;border-radius:6px;flex-shrink:0;}
-.rev-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);margin-bottom:var(--s2);box-shadow:var(--shadow-xs);}
-.ri-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--s2);}
-.ri-user{display:flex;align-items:center;gap:var(--s2);}
-.ri-av{width:28px;height:28px;border-radius:50%;background:var(--rose-muted);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:0.72rem;color:var(--rose);}
-.ri-name{font-size:0.7rem;font-weight:600;color:var(--t1);}
-.ri-skin{font-size:0.52rem;color:var(--t3);margin-top:1px;}
-.ri-score{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;}
-.ri-type{display:inline-block;font-size:0.48rem;font-weight:700;padding:3px 8px;border-radius:var(--r-full);margin-bottom:var(--s2);}
-.rt-first{background:var(--rose-pale);color:var(--rose);}
-.rt-ongoing{background:var(--gold-pale);color:var(--gold);}
-.rt-final{background:var(--sage-pale);color:var(--sage);}
-.ri-text{font-size:0.74rem;color:var(--t2);line-height:1.75;font-weight:300;}
-.ri-days{font-size:0.52rem;color:var(--t3);margin-top:var(--s2);}
-.qa-answer{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);box-shadow:var(--shadow-xs);}
-.qa-answer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--s3);}
-.qa-user{display:flex;align-items:center;gap:var(--s2);}
-.qa-av{width:32px;height:32px;border-radius:50%;background:var(--rose-muted);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:0.85rem;color:var(--rose);flex-shrink:0;}
-.qa-user-name{font-size:0.72rem;font-weight:600;color:var(--t1);}
-.qa-user-twin{font-size:0.52rem;color:var(--rose);font-weight:500;margin-top:2px;}
-.qa-verified{font-size:0.48rem;font-weight:700;letter-spacing:0.5px;padding:3px 8px;border-radius:var(--r-full);background:var(--sage-pale);color:var(--sage);}
-.qa-answer-text{font-size:0.78rem;color:var(--t2);line-height:1.75;font-weight:300;margin-bottom:var(--s3);}
-.qa-answer-footer{display:flex;justify-content:space-between;align-items:center;}
-.qa-days{font-size:0.55rem;color:var(--t3);}
-.qa-helpful{font-size:0.58rem;color:var(--t3);cursor:pointer;}
-.qa-outcome{display:inline-flex;align-items:center;gap:4px;font-size:0.55rem;font-weight:600;padding:4px 10px;border-radius:var(--r-full);margin-bottom:var(--s3);}
-.qa-outcome.good{background:var(--sage-pale);color:var(--sage);}
-.qa-outcome.bad{background:var(--rose-pale);color:var(--rose);}
-.qa-outcome.mixed{background:var(--gold-pale);color:var(--gold);}
-.loading{position:absolute;inset:0;background:rgba(250,250,248,0.9);backdrop-filter:blur(12px);z-index:9990;display:none;flex-direction:column;align-items:center;justify-content:center;gap:var(--s4);}
+.ib-name{font-size:.76rem;font-weight:600;color:var(--t1);margin-bottom:2px;}
+.ib-desc{font-size:.66rem;color:var(--t2);line-height:1.55;}
+.ib-bdg{font-size:.44rem;font-weight:700;padding:2px 6px;border-radius:6px;flex-shrink:0;}
+.rev-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);margin-bottom:7px;box-shadow:var(--shadow-xs);}
+.ri-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.ri-user{display:flex;align-items:center;gap:7px;}
+.ri-av{width:26px;height:26px;border-radius:50%;background:var(--rose-muted);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:.68rem;color:var(--rose);}
+.ri-name{font-size:.67rem;font-weight:600;color:var(--t1);}
+.ri-skin{font-size:.5rem;color:var(--t3);margin-top:1px;}
+.ri-score{font-family:'Playfair Display',serif;font-size:1.15rem;}
+.ri-type{display:inline-block;font-size:.44rem;font-weight:700;padding:2px 7px;border-radius:var(--r-full);margin-bottom:7px;}
+.rt-f{background:var(--rose-pale);color:var(--rose);}
+.rt-o{background:var(--gold-pale);color:var(--gold);}
+.rt-v{background:var(--sage-pale);color:var(--sage);}
+.ri-text{font-size:.72rem;color:var(--t2);line-height:1.75;font-weight:300;}
+.ri-days{font-size:.5rem;color:var(--t3);margin-top:7px;}
+.qa-product-bar{margin:0 var(--s4) var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);display:flex;gap:10px;align-items:center;box-shadow:var(--shadow-xs);}
+.qa-prod-ic{width:42px;height:42px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.qa-compose{margin:0 var(--s4) var(--s4);}
+.qa-compose-input{width:100%;padding:12px var(--s4);border:1.5px solid var(--border2);border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--t1);background:var(--surface);outline:none;-webkit-appearance:none;box-shadow:var(--shadow-xs);resize:none;min-height:44px;}
+.qa-compose-input:focus{border-color:var(--rose);}
+.qa-compose-input::placeholder{color:var(--t4);}
+.qa-send-btn{width:100%;padding:12px;background:var(--primary);color:#FAF8F5;border:none;border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:.76rem;font-weight:500;cursor:pointer;margin-top:7px;transition:all .25s;}
+.qa-send-btn:active{transform:scale(.98);}
+.qa-thread{padding:0 var(--s4) var(--s8);display:flex;flex-direction:column;gap:10px;}
+.qa-msg{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);box-shadow:var(--shadow-xs);}
+.qa-msg.own{background:linear-gradient(135deg,rgba(201,121,106,.07),rgba(232,169,156,.04));border-color:rgba(201,121,106,.2);}
+.qa-msg-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.qa-user{display:flex;align-items:center;gap:8px;}
+.qa-av{width:30px;height:30px;border-radius:50%;background:var(--rose-muted);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:.78rem;color:var(--rose);flex-shrink:0;}
+.qa-u-name{font-size:.68rem;font-weight:600;color:var(--t1);}
+.qa-u-twin{font-size:.5rem;color:var(--rose);font-weight:500;margin-top:2px;}
+.qa-ver{font-size:.44rem;font-weight:700;letter-spacing:.5px;padding:2px 7px;border-radius:var(--r-full);background:var(--sage-pale);color:var(--sage);}
+.qa-outcome{display:inline-flex;align-items:center;gap:3px;font-size:.52rem;font-weight:600;padding:3px 9px;border-radius:var(--r-full);margin-bottom:8px;}
+.qa-out-good{background:var(--sage-pale);color:var(--sage);}
+.qa-out-bad{background:var(--rose-pale);color:var(--rose);}
+.qa-out-mixed{background:var(--gold-pale);color:var(--gold);}
+.qa-msg-text{font-size:.75rem;color:var(--t2);line-height:1.75;font-weight:300;}
+.qa-msg-foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+.qa-days{font-size:.52rem;color:var(--t3);}
+.qa-helpful{font-size:.55rem;color:var(--t3);cursor:pointer;}
+.qa-empty{text-align:center;padding:var(--s8) var(--s6);}
+.qa-empty-ic{font-size:2rem;opacity:.3;margin-bottom:10px;}
+.qa-empty-txt{font-size:.76rem;color:var(--t3);line-height:1.75;}
+.loading{position:absolute;inset:0;background:rgba(250,250,248,.92);backdrop-filter:blur(12px);z-index:9990;display:none;flex-direction:column;align-items:center;justify-content:center;gap:var(--s4);}
 .loading.on{display:flex;}
-.spinner{width:30px;height:30px;border:2px solid var(--rose-muted);border-top-color:var(--rose);border-radius:50%;animation:spin 0.8s linear infinite;}
+.spinner{width:28px;height:28px;border:2px solid var(--rose-muted);border-top-color:var(--rose);border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.loading-label{font-size:0.58rem;color:var(--t3);letter-spacing:2px;text-transform:uppercase;}
-.toast{position:absolute;bottom:84px;left:var(--s4);right:var(--s4);background:var(--primary);color:#FAF8F5;padding:14px var(--s5);border-radius:var(--r-sm);font-size:0.76rem;z-index:500;text-align:center;animation:toastIn 0.3s ease-out;pointer-events:none;box-shadow:0 8px 32px rgba(44,31,26,0.3);}
+.load-lbl{font-size:.56rem;color:var(--t3);letter-spacing:2px;text-transform:uppercase;}
+.toast{position:absolute;bottom:82px;left:var(--s4);right:var(--s4);background:var(--primary);color:#FAF8F5;padding:13px var(--s5);border-radius:var(--r-xs);font-size:.74rem;z-index:500;text-align:center;animation:toastIn .3s ease-out;pointer-events:none;box-shadow:0 8px 32px rgba(44,31,26,.3);}
 @keyframes toastIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 <body>
 <div class="phone">
 <div class="screen on" id="s-splash">
-  <div class="splash-inner">
-    <div class="splash-logo">Lumo</div>
-    <div class="splash-line"></div>
-    <div class="splash-tagline">Skin Intelligence Platform</div>
-  </div>
+  <div class="sp-inner"><div class="sp-logo">Lumo</div><div class="sp-line"></div><div class="sp-tag">Skin Intelligence Platform</div></div>
 </div>
 
 <div class="screen" id="s-ob">
-  <div class="ob-top"><div class="ob-logo">Lumo</div><button class="ob-skip" onclick="skipOb()">Geç →</button></div>
-  <div class="ob-progress"><div class="ob-bar" id="ob-bar" style="width:50%"></div></div>
-  <div class="ob-scroll" id="ob-content"></div>
+  <div class="ob-hdr"><div class="ob-logo">Lumo</div><button class="ob-skip" onclick="skipOb()">Geç →</button></div>
+  <div class="ob-prog"><div class="ob-fill" id="ob-fill" style="width:50%"></div></div>
+  <div class="ob-body" id="ob-body"></div>
   <div class="ob-foot"><button class="btn-primary" id="ob-cta" onclick="nextOb()" disabled>Devam Et →</button></div>
 </div>
 
 <div class="screen" id="s-app">
-
   <div class="tab-view on" id="tv-feed">
-    <div class="feed-header">
+    <div class="feed-hdr">
       <div class="feed-logo">L<em>u</em>mo</div>
       <div class="feed-actions">
         <div class="icon-btn" onclick="openSub('sub-scan')">🔍</div>
@@ -397,182 +393,86 @@ opacity:0.025;}
       </div>
     </div>
     <div class="twin-banner">
-      <div class="twin-badge"><div class="twin-badge-dot"></div><span class="twin-badge-txt">Skin Twin</span></div>
-      <div class="twin-title">Senin gibiler <em>ne kullanıyor?</em></div>
-      <div class="twin-stats">
-        <div class="twin-stat"><div class="twin-stat-n">1.240</div><div class="twin-stat-l">Skin Twin</div></div>
-        <div class="twin-stat"><div class="twin-stat-n">847</div><div class="twin-stat-l">Aktif Bu Hafta</div></div>
-        <div class="twin-stat"><div class="twin-stat-n">3.4K</div><div class="twin-stat-l">Doğrulanmış Yorum</div></div>
+      <div class="tw-badge"><div class="tw-dot"></div><span class="tw-badge-txt">Skin Twin</span></div>
+      <div class="tw-match" id="tw-match-txt">Profil yükleniyor...</div>
+      <div class="tw-title" id="tw-banner-title">Senin gibiler <em>ne kullanıyor?</em></div>
+      <div class="tw-stats">
+        <div><div class="tw-stat-n" id="tw-count">—</div><div class="tw-stat-l">Skin Twin</div></div>
+        <div><div class="tw-stat-n" id="tw-active">—</div><div class="tw-stat-l">Aktif Bu Hafta</div></div>
+        <div><div class="tw-stat-n" id="tw-reviews">—</div><div class="tw-stat-l">Doğrulanmış Yorum</div></div>
       </div>
     </div>
     <div class="chip-row">
-      <div class="chip active">Tümü</div>
-      <div class="chip chip-rose"><div class="chip-dot" style="background:var(--rose)"></div>Trending</div>
-      <div class="chip chip-sage"><div class="chip-dot" style="background:var(--sage)"></div>Akne Güvenli</div>
-      <div class="chip chip-gold"><div class="chip-dot" style="background:var(--gold)"></div>Dermatolog Onaylı</div>
-      <div class="chip">Bariyer Onarıcı</div>
+      <div class="chip on" onclick="filterFeed('all',this)">Tümü</div>
+      <div class="chip chip-rose" onclick="filterFeed('trending',this)">🔥 Trending</div>
+      <div class="chip chip-sage" onclick="filterFeed('safe',this)">✅ Güvenli</div>
+      <div class="chip" onclick="filterFeed('risk',this)">⚠️ Riskli</div>
     </div>
-    <div class="sec-hdr"><span class="sec-ttl">🔥 Bu Hafta Trending</span><span class="sec-link" onclick="swTab('discover')">Tümünü Gör</span></div>
-    <div class="hscroll">
-      <div class="tcard" onclick="openProduct('cerave')"><div class="tcard-img tcard-img-sage">💧<div class="tcard-badge badge-safe">Değer</div></div><div class="tcard-body"><div class="tcard-brand">CeraVe</div><div class="tcard-name">Nemlendirici Krem</div><div class="tcard-meta"><div class="tcard-score">9.1</div><div class="tcard-pct pct-good">%91</div></div><div class="tcard-twin">👯 Skin twin favorisi</div></div></div>
-      <div class="tcard" onclick="openProduct('ordinary')"><div class="tcard-img tcard-img-lav">🧬<div class="tcard-badge badge-new">Yeni</div></div><div class="tcard-body"><div class="tcard-brand">The Ordinary</div><div class="tcard-name">Niacinamide 10%</div><div class="tcard-meta"><div class="tcard-score">8.7</div><div class="tcard-pct pct-good">%87</div></div><div class="tcard-twin">👯 %82 uyumluluk</div></div></div>
-      <div class="tcard" onclick="openProduct('charlotte')"><div class="tcard-img tcard-img-rose">🫧<div class="tcard-badge badge-hot">Riskli</div></div><div class="tcard-body"><div class="tcard-brand">Charlotte Tilbury</div><div class="tcard-name">Magic Foundation</div><div class="tcard-meta"><div class="tcard-score">3.1</div><div class="tcard-pct pct-bad">%31</div></div><div class="tcard-twin">⚠️ Hype Tuzağı</div></div></div>
-      <div class="tcard" onclick="openProduct('purito')"><div class="tcard-img tcard-img-gold">☀️<div class="tcard-badge badge-safe">SPF Fav</div></div><div class="tcard-body"><div class="tcard-brand">Purito</div><div class="tcard-name">Daily Soft Touch SPF50</div><div class="tcard-meta"><div class="tcard-score">8.2</div><div class="tcard-pct pct-good">%82</div></div><div class="tcard-twin">👯 Hassas cilt seçimi</div></div></div>
-    </div>
-    <div class="sec-hdr" style="margin-top:8px;"><span class="sec-ttl">📡 Skin Twin Feed</span></div>
-    <div class="feed-card fc-insight">
-      <div class="fc-insight-label">💡 Skin Twin Insight</div>
-      <div class="fc-insight-text">Senin profiline sahip kullanıcıların <em>%78'i</em> CeraVe sonrası bariyer onarımı yaşadı.</div>
-      <div class="fc-insight-meta"><span class="fc-insight-count">📊 1.247 kişi · Son 30 gün</span></div>
-    </div>
-    <div class="feed-card" onclick="openProduct('cerave')">
-      <div class="fc-review-top">
-        <div class="fc-product-row"><div class="fc-product-icon" style="background:var(--sage-pale)">💧</div><div><div class="fc-product-brand">CeraVe</div><div class="fc-product-name">Nemlendirici Krem</div><div class="fc-product-cat">Nemlendirici · 2.841 yorum</div></div></div>
-        <div class="fc-score-big" style="color:var(--sage)">9</div>
-      </div>
-      <div class="fc-review-body"><div class="fc-review-text">"2 haftada cilt bariyerim onarıldı. Akne geçmişim var ama hiç tetiklemedi. Bu fiyata bu etki inanılmaz — skin twin grubumun verisiyle aldım."</div></div>
-      <div class="fc-review-stats">
-        <div class="fc-stat"><span class="fc-stat-ic">👥</span><span class="fc-stat-txt"><strong>2.841</strong> yorum</span></div>
-        <div class="fc-stat"><span class="fc-stat-ic">✅</span><span class="fc-stat-txt"><strong>%91</strong> memnun</span></div>
-        <div class="fc-stat"><span class="fc-stat-ic">🔥</span><span class="fc-stat-txt"><strong>#1</strong> twin'lerde</span></div>
-      </div>
-      <div class="mini-bar-wrap">
-        <div class="mini-bar-label"><span class="mini-bar-txt">Skin Twin Memnuniyeti</span><span class="mini-bar-txt" style="color:var(--sage)">%91</span></div>
-        <div class="mini-bar"><div class="mini-bar-fill" style="width:91%;background:linear-gradient(90deg,var(--sage),#7AB88A)"></div></div>
-      </div>
-      <div class="fc-review-footer">
-        <div class="fc-user"><div class="fc-av">M</div><div><div class="fc-user-name">merve.skin</div><div class="fc-user-type">Akne eğilimli · Karma · 👯 Twin</div></div></div>
-        <div class="fc-tags"><div class="fc-tag" style="background:var(--sage-pale);color:var(--sage)">Doğrulandı</div><div class="fc-tag" style="background:var(--rose-pale);color:var(--rose)">30 gün</div></div>
-      </div>
-    </div>
-    <div class="feed-card fc-insight" style="background:linear-gradient(135deg,#F0EEF8 0%,#E4DFF5 100%);border-color:rgba(123,111,160,0.2);">
-      <div class="fc-insight-label" style="color:var(--lavender)">⚠️ Risk Uyarısı</div>
-      <div class="fc-insight-text" style="color:var(--t1)">Drunk Elephant C-Firma kullanan skin twin'lerin <em style="color:var(--rose)">%67'si</em> akne reaksiyonu bildirdi.</div>
-      <div class="fc-insight-meta"><span class="fc-insight-count" style="color:var(--t2)">📊 389 kişi · Akne eğilimli profil</span></div>
-    </div>
-    <div class="feed-card" onclick="openProduct('drunk')">
-      <div class="fc-review-top">
-        <div class="fc-product-row"><div class="fc-product-icon" style="background:var(--rose-pale)">🍷</div><div><div class="fc-product-brand">Drunk Elephant</div><div class="fc-product-name">C-Firma Day Serum</div><div class="fc-product-cat">Serum · 1.203 yorum</div></div></div>
-        <div class="fc-score-big" style="color:var(--rose)">4</div>
-      </div>
-      <div class="fc-review-body"><div class="fc-review-text">"Purging hiç bitmedi. Marula yağı var — komedojenik. Skin twin verisi olsaydı asla almazdım."</div></div>
-      <div class="fc-review-stats">
-        <div class="fc-stat"><span class="fc-stat-ic">⚠️</span><span class="fc-stat-txt"><strong>%67</strong> akne reaksiyon</span></div>
-        <div class="fc-stat"><span class="fc-stat-ic">❌</span><span class="fc-stat-txt"><strong>%31</strong> memnun</span></div>
-        <div class="fc-stat"><span class="fc-stat-ic">🔻</span><span class="fc-stat-txt">Hype Tuzağı</span></div>
-      </div>
-      <div class="mini-bar-wrap">
-        <div class="mini-bar-label"><span class="mini-bar-txt">Skin Twin Memnuniyeti</span><span class="mini-bar-txt" style="color:var(--rose)">%31</span></div>
-        <div class="mini-bar"><div class="mini-bar-fill" style="width:31%;background:linear-gradient(90deg,var(--rose),#D4706A)"></div></div>
-      </div>
-      <div class="fc-review-footer">
-        <div class="fc-user"><div class="fc-av">A</div><div><div class="fc-user-name">ayse.glow</div><div class="fc-user-type">Hassas · Kuru · 👯 Twin</div></div></div>
-        <div class="fc-tags"><div class="fc-tag" style="background:var(--sage-pale);color:var(--sage)">Doğrulandı</div><div class="fc-tag" style="background:var(--rose-pale);color:var(--rose)">21 gün</div></div>
-      </div>
-    </div>
-    <div class="feed-card fc-insight">
-      <div class="fc-insight-label">🏆 Skin Twin Kararı</div>
-      <div class="fc-insight-text">The Ordinary Niacinamide — yağlı/karma cilt twin grubunun <em>%87'si</em> öneriyor.</div>
-      <div class="fc-insight-meta"><span class="fc-insight-count">📊 4.102 kişi · Verified data</span></div>
-    </div>
+    <div class="sec-hdr"><span class="sec-ttl">🔥 Twin Grubunda Trending</span><span class="sec-lnk" onclick="swTab('discover')">Tümünü Gör</span></div>
+    <div class="hscroll" id="trend-cards"></div>
+    <div class="sec-hdr" style="margin-top:8px;"><span class="sec-ttl" id="feed-section-title">📡 Skin Twin Feed</span></div>
+    <div id="feed-cards"></div>
     <div style="height:20px;"></div>
   </div>
 
   <div class="tab-view" id="tv-twin">
-    <div class="twin-top">
-      <div class="twin-top-logo">Lumo</div>
-      <div class="twin-group-title">Senin Skin Twin Grubun</div>
-      <div class="twin-group-name">Akne <em>Eğilimli</em><br>Karma Cilt</div>
-      <div class="twin-group-stats">
-        <div class="tgs"><div class="tgs-n">1.247</div><div class="tgs-l">Twin</div></div>
-        <div class="tgs"><div class="tgs-n">94</div><div class="tgs-l">Ürün Test</div></div>
-        <div class="tgs"><div class="tgs-n">3.4K</div><div class="tgs-l">Yorum</div></div>
+    <div class="tw-top">
+      <div class="tw-top-logo">Lumo</div>
+      <div class="tw-grp-lbl">Senin Skin Twin Grubun</div>
+      <div class="tw-grp-name" id="twin-group-name">—</div>
+      <div class="tw-grp-stats">
+        <div class="tgs"><div class="tgs-n" id="tgs-count">—</div><div class="tgs-l">Twin</div></div>
+        <div class="tgs"><div class="tgs-n" id="tgs-products">—</div><div class="tgs-l">Ürün Test</div></div>
+        <div class="tgs"><div class="tgs-n" id="tgs-reviews">—</div><div class="tgs-l">Yorum</div></div>
       </div>
     </div>
-    <div class="twin-profile-card">
-      <div class="tpc-label">Profil Eşleşmesi</div>
-      <div class="tpc-traits">
-        <div class="tpc-trait rose">Akne eğilimli</div><div class="tpc-trait">Karma cilt</div>
-        <div class="tpc-trait sage">Bariyer onarım hedefi</div><div class="tpc-trait">20-25 yaş</div>
-        <div class="tpc-trait lav">Hassas reaktif</div><div class="tpc-trait">Gözenek küçültme</div>
-      </div>
-    </div>
-    <div class="closet-head"><div><div class="closet-title">Twin Dolabı</div><div class="closet-subtitle">Senin grubunun en çok kullandıkları</div></div></div>
-    <div class="sec-hdr"><span class="sec-ttl">⭐ En Çok Memnun Olunanlar</span><span class="sec-link">Tümü</span></div>
-    <div class="closet-grid">
-      <div class="cg-item" onclick="openProduct('cerave')"><div class="cg-img" style="background:var(--sage-pale)">💧<div class="cg-match">%91</div></div><div class="cg-body"><div class="cg-name">CeraVe Krem</div><div class="cg-score">★ 9.1</div></div></div>
-      <div class="cg-item" onclick="openProduct('ordinary')"><div class="cg-img" style="background:var(--lav-pale)">🧬<div class="cg-match">%87</div></div><div class="cg-body"><div class="cg-name">TO Niacinamide</div><div class="cg-score">★ 8.7</div></div></div>
-      <div class="cg-item" onclick="openProduct('purito')"><div class="cg-img" style="background:var(--gold-pale)">☀️<div class="cg-match">%82</div></div><div class="cg-body"><div class="cg-name">Purito SPF50</div><div class="cg-score">★ 8.2</div></div></div>
-      <div class="cg-item" onclick="openProduct('cosrx')"><div class="cg-img" style="background:var(--sage-pale)">🌿<div class="cg-match">%76</div></div><div class="cg-body"><div class="cg-name">COSRX Snail</div><div class="cg-score">★ 7.6</div></div></div>
-      <div class="cg-item" onclick="openProduct('tatcha')"><div class="cg-img" style="background:var(--gold-pale)">🍃<div class="cg-match">%54</div></div><div class="cg-body"><div class="cg-name">Tatcha Cream</div><div class="cg-score">★ 5.4</div></div></div>
-      <div class="cg-item" onclick="openSub('sub-scan')" style="border-style:dashed;"><div class="cg-img" style="background:var(--bg2)">＋</div><div class="cg-body"><div class="cg-name" style="color:var(--t3)">Ürün Ekle</div><div class="cg-score" style="color:transparent">-</div></div></div>
-    </div>
-    <div class="risk-section">
-      <div class="risk-label">⚠️ Twin Grubunda Riskli</div>
-      <div class="risk-card" onclick="openProduct('drunk')"><div class="risk-icon">🍷</div><div class="risk-info"><div class="risk-name">Drunk Elephant C-Firma</div><div class="risk-reason">%67 akne reaksiyon · Komedojenik içerik</div></div><div class="risk-badge">KAÇIN</div></div>
-      <div class="risk-card" onclick="openProduct('charlotte')"><div class="risk-icon">🫧</div><div class="risk-info"><div class="risk-name">Charlotte Tilbury Foundation</div><div class="risk-reason">%58 gözenek tıkanması · Isododecane</div></div><div class="risk-badge">RİSKLİ</div></div>
-    </div>
+    <div class="tw-profile-card"><div class="tpc-lbl">Profil Eşleşmesi</div><div class="tpc-traits" id="tpc-traits"></div></div>
+    <div class="cl-head"><div><div class="cl-title">Twin Dolabı</div><div class="cl-sub">Grubunun en beğendikleri</div></div></div>
+    <div class="sec-hdr"><span class="sec-ttl">⭐ En Çok Memnun Olunanlar</span><span class="sec-lnk">Tümü</span></div>
+    <div class="cl-grid" id="closet-grid"></div>
+    <div class="risk-sec"><div class="risk-lbl">⚠️ Twin Grubunda Riskli</div><div id="risk-cards"></div></div>
     <div style="height:20px;"></div>
   </div>
 
   <div class="tab-view" id="tv-discover">
     <div class="disc-top">
-      <div class="disc-eyebrow">Topluluk Kararları</div>
-      <div class="disc-title">Gerçek <em>veriler,</em><br>gerçek kararlar.</div>
-      <div class="disc-subtitle">Sponsorsuz · Doğrulanmış · Skin Twin Tabanlı</div>
+      <div class="disc-ey">Topluluk Kararları</div>
+      <div class="disc-h">Gerçek <em>veriler,</em><br>gerçek kararlar.</div>
+      <div class="disc-sub">Sponsorsuz · Doğrulanmış · Skin Twin Tabanlı</div>
     </div>
-    <div class="chip-row"><div class="chip active">Tümü</div><div class="chip chip-sage">Değer</div><div class="chip chip-rose">Riskli</div><div class="chip chip-gold">Pahalı</div></div>
-    <div class="prod-row" onclick="openProduct('cerave')">
-      <div class="prod-row-main"><div class="prod-row-icon" style="background:var(--sage-pale)">💧</div><div class="prod-row-info"><div class="prod-row-brand">CeraVe</div><div class="prod-row-name">Nemlendirici Krem</div><div class="prod-row-reviews">2.841 doğrulanmış yorum · 1.247 twin</div></div><div class="prod-row-right"><div class="prod-score" style="color:var(--sage)">9.1</div><div class="prod-verdict" style="background:var(--sage-pale);color:var(--sage)">DEĞER</div></div></div>
-      <div class="prod-row-metrics"><div class="prm"><span class="prm-ic">✅</span><span class="prm-txt"><strong>%91</strong> memnun</span></div><div class="prm"><span class="prm-ic">👯</span><span class="prm-txt"><strong>#1</strong> twin</span></div><div class="prm"><span class="prm-ic">🔬</span><span class="prm-txt">Derm onaylı</span></div></div>
-      <div class="prod-row-bar"><div class="prb"><div class="prb-fill" style="width:91%;background:linear-gradient(90deg,var(--sage),#7AB88A)"></div></div></div>
-    </div>
-    <div class="prod-row" onclick="openProduct('ordinary')">
-      <div class="prod-row-main"><div class="prod-row-icon" style="background:var(--lav-pale)">🧬</div><div class="prod-row-info"><div class="prod-row-brand">The Ordinary</div><div class="prod-row-name">Niacinamide 10% + Zinc 1%</div><div class="prod-row-reviews">4.102 doğrulanmış yorum</div></div><div class="prod-row-right"><div class="prod-score" style="color:var(--sage)">8.7</div><div class="prod-verdict" style="background:var(--sage-pale);color:var(--sage)">DEĞER</div></div></div>
-      <div class="prod-row-metrics"><div class="prm"><span class="prm-ic">✅</span><span class="prm-txt"><strong>%87</strong> memnun</span></div><div class="prm"><span class="prm-ic">💰</span><span class="prm-txt">En uygun</span></div><div class="prm"><span class="prm-ic">🎯</span><span class="prm-txt">Gözenek etkili</span></div></div>
-      <div class="prod-row-bar"><div class="prb"><div class="prb-fill" style="width:87%;background:linear-gradient(90deg,var(--sage),#7AB88A)"></div></div></div>
-    </div>
-    <div class="prod-row" onclick="openProduct('purito')">
-      <div class="prod-row-main"><div class="prod-row-icon" style="background:var(--gold-pale)">☀️</div><div class="prod-row-info"><div class="prod-row-brand">Purito</div><div class="prod-row-name">Daily Soft Touch SPF50+</div><div class="prod-row-reviews">623 doğrulanmış yorum</div></div><div class="prod-row-right"><div class="prod-score" style="color:var(--lavender)">8.2</div><div class="prod-verdict" style="background:var(--lav-pale);color:var(--lavender)">BARIYER</div></div></div>
-      <div class="prod-row-metrics"><div class="prm"><span class="prm-ic">✅</span><span class="prm-txt"><strong>%82</strong> memnun</span></div><div class="prm"><span class="prm-ic">🌸</span><span class="prm-txt">Hassas ok</span></div><div class="prm"><span class="prm-ic">⚪</span><span class="prm-txt">Beyaz iz yok</span></div></div>
-      <div class="prod-row-bar"><div class="prb"><div class="prb-fill" style="width:82%;background:linear-gradient(90deg,var(--lavender),#9B8EC4)"></div></div></div>
-    </div>
-    <div class="prod-row" onclick="openProduct('drunk')">
-      <div class="prod-row-main"><div class="prod-row-icon" style="background:var(--rose-pale)">🍷</div><div class="prod-row-info"><div class="prod-row-brand">Drunk Elephant</div><div class="prod-row-name">C-Firma Day Serum</div><div class="prod-row-reviews">1.203 doğrulanmış yorum</div></div><div class="prod-row-right"><div class="prod-score" style="color:var(--rose)">4.2</div><div class="prod-verdict" style="background:var(--rose-pale);color:var(--rose)">KAÇIN</div></div></div>
-      <div class="prod-row-metrics"><div class="prm"><span class="prm-ic">❌</span><span class="prm-txt"><strong>%67</strong> akne</span></div><div class="prm"><span class="prm-ic">⚠️</span><span class="prm-txt">Komedojenik</span></div><div class="prm"><span class="prm-ic">🔻</span><span class="prm-txt">Hype Tuzağı</span></div></div>
-      <div class="prod-row-bar"><div class="prb"><div class="prb-fill" style="width:31%;background:linear-gradient(90deg,var(--rose),#D4706A)"></div></div></div>
-    </div>
+    <div class="chip-row"><div class="chip on">Tümü</div><div class="chip chip-sage">Değer</div><div class="chip chip-rose">Riskli</div><div class="chip" style="border-color:rgba(184,147,90,.3);background:rgba(184,147,90,.07);color:var(--gold)">Pahalı</div></div>
+    <div id="discover-list"></div>
     <div style="height:20px;"></div>
   </div>
 
   <div class="tab-view" id="tv-profile">
-    <div class="prof-header">
+    <div class="prof-hdr">
       <div class="prof-av" id="prof-av-lg">?</div>
       <div class="prof-name" id="prof-name">—</div>
       <div class="prof-handle" id="prof-handle"></div>
-      <div class="prof-twin-badge"><span class="ptb-txt">Skin Twin:</span><span class="ptb-group" id="prof-twin-group">—</span></div>
+      <div class="prof-twin-bdg"><span class="ptb-lbl">Skin Twin:</span><span class="ptb-val" id="prof-twin-val">—</span></div>
     </div>
-    <div class="prof-stats-row">
+    <div class="prof-stats">
       <div class="psr"><div class="psr-n" id="psr-t">0</div><div class="psr-l">Takip</div></div>
       <div class="psr"><div class="psr-n" id="psr-r">0</div><div class="psr-l">Yorum</div></div>
       <div class="psr"><div class="psr-n" id="psr-d">0</div><div class="psr-l">Gün</div></div>
       <div class="psr"><div class="psr-n" id="psr-s">0</div><div class="psr-l">Seri</div></div>
     </div>
-    <div class="streak-card"><div class="sc-label">Bakım Serisi</div><div class="sc-dots" id="sc-dots"></div></div>
-    <div class="skin-profile-card"><div class="spc-label">Cilt Profilim</div><div class="spc-traits" id="spc-traits"><div class="spc-chip">Yükleniyor...</div></div></div>
+    <div class="streak-card"><div class="sc-lbl">Bakım Serisi</div><div class="sc-dots" id="sc-dots"></div></div>
+    <div class="skin-card"><div class="skin-lbl">Cilt Profilim</div><div class="skin-chips" id="skin-chips"></div></div>
     <div class="menu-list">
       <div class="mi"><span class="mi-ic">📦</span><span class="mi-tx">Ürünlerim</span><span class="mi-ar">›</span></div>
       <div class="mi"><span class="mi-ic">⭐</span><span class="mi-tx">Yorumlarım</span><span class="mi-ar">›</span></div>
       <div class="mi" onclick="swTab('twin')"><span class="mi-ic">👯</span><span class="mi-tx">Skin Twin Grubum</span><span class="mi-ar">›</span></div>
       <div class="mi"><span class="mi-ic">🔔</span><span class="mi-tx">Bildirimler</span><span class="mi-ar">›</span></div>
-      <div class="mi" onclick="doLogout()"><span class="mi-ic" style="opacity:0.3">→</span><span class="mi-tx" style="color:var(--t3)">Çıkış Yap</span></div>
+      <div class="mi" onclick="doLogout()"><span class="mi-ic" style="opacity:.3">→</span><span class="mi-tx" style="color:var(--t3)">Çıkış Yap</span></div>
     </div>
   </div>
 
   <div class="bnav">
     <button class="nb on" id="nb-feed" onclick="swTab('feed')"><span class="nb-ic">◇</span><span class="nb-lb">Feed</span></button>
     <button class="nb" id="nb-twin" onclick="swTab('twin')"><span class="nb-ic">👯</span><span class="nb-lb">Twin</span></button>
-    <button class="nb-center" onclick="openSub('sub-scan')">📷</button>
+    <button class="nb-cam" onclick="openSub('sub-scan')">📷</button>
     <button class="nb" id="nb-discover" onclick="swTab('discover')"><span class="nb-ic">◈</span><span class="nb-lb">Keşfet</span></button>
     <button class="nb" id="nb-profile" onclick="swTab('profile')"><span class="nb-ic">◐</span><span class="nb-lb">Profil</span></button>
   </div>
@@ -580,20 +480,20 @@ opacity:0.025;}
   <div class="sub" id="sub-scan">
     <div class="sub-nav"><button class="sub-back" onclick="closeSub('sub-scan')">←</button><span class="sub-title">Ürün Tara / Ekle</span></div>
     <div class="scroll">
-      <div class="scan-viewfinder"><video id="scan-video" autoplay playsinline muted class="scan-video"></video><div class="scan-overlay"><div class="scan-frame"><div class="sf-corner sf-tl"></div><div class="sf-corner sf-tr"></div><div class="sf-corner sf-bl"></div><div class="sf-corner sf-br"></div><div class="scan-line"></div></div></div></div>
-      <div class="scan-hint-txt">Barkodu çerçeve içine getir</div>
-      <div class="or-divider"><span>ya da manuel ekle</span></div>
-      <input class="scan-input" id="scan-name" type="text" placeholder="Ürün adı (örn. CeraVe Nemlendirici)">
-      <div class="cat-label">Kategori Seç</div>
+      <div class="scan-vf"><video id="scan-vid" autoplay playsinline muted class="scan-vid"></video><div class="scan-overlay"><div class="scan-frame"><div class="sf sf-tl"></div><div class="sf sf-tr"></div><div class="sf sf-bl"></div><div class="sf sf-br"></div><div class="scan-beam"></div></div></div></div>
+      <div class="scan-hint">Barkodu çerçeve içine getir</div>
+      <div class="or-div"><span>ya da manuel ekle</span></div>
+      <input class="scan-inp" id="scan-name" type="text" placeholder="Ürün adı (örn. CeraVe Nemlendirici)">
+      <div class="cat-lbl">Kategori Seç</div>
       <div class="cat-grid">
-        <div class="cat-btn" data-cat="cleanser" data-days="7" onclick="selCat(this)"><div class="cat-btn-ic">🧼</div><div class="cat-btn-nm">Temizleyici</div><div class="cat-btn-d">1 hafta</div></div>
-        <div class="cat-btn" data-cat="moisturizer" data-days="14" onclick="selCat(this)"><div class="cat-btn-ic">💧</div><div class="cat-btn-nm">Nemlendirici</div><div class="cat-btn-d">2 hafta</div></div>
-        <div class="cat-btn" data-cat="serum" data-days="42" onclick="selCat(this)"><div class="cat-btn-ic">🧬</div><div class="cat-btn-nm">Serum</div><div class="cat-btn-d">6 hafta</div></div>
-        <div class="cat-btn" data-cat="spf" data-days="5" onclick="selCat(this)"><div class="cat-btn-ic">☀️</div><div class="cat-btn-nm">SPF</div><div class="cat-btn-d">5 gün</div></div>
-        <div class="cat-btn" data-cat="toner" data-days="14" onclick="selCat(this)"><div class="cat-btn-ic">💦</div><div class="cat-btn-nm">Tonik</div><div class="cat-btn-d">2 hafta</div></div>
-        <div class="cat-btn" data-cat="eye" data-days="21" onclick="selCat(this)"><div class="cat-btn-ic">👁️</div><div class="cat-btn-nm">Göz Kremi</div><div class="cat-btn-d">3 hafta</div></div>
+        <div class="cat-btn" data-cat="cleanser" onclick="selCat(this)"><div class="cat-ic">🧼</div><div class="cat-nm">Temizleyici</div><div class="cat-d">7 gün</div></div>
+        <div class="cat-btn" data-cat="moisturizer" onclick="selCat(this)"><div class="cat-ic">💧</div><div class="cat-nm">Nemlendirici</div><div class="cat-d">14 gün</div></div>
+        <div class="cat-btn" data-cat="serum" onclick="selCat(this)"><div class="cat-ic">🧬</div><div class="cat-nm">Serum</div><div class="cat-d">42 gün</div></div>
+        <div class="cat-btn" data-cat="spf" onclick="selCat(this)"><div class="cat-ic">☀️</div><div class="cat-nm">SPF</div><div class="cat-d">5 gün</div></div>
+        <div class="cat-btn" data-cat="toner" onclick="selCat(this)"><div class="cat-ic">💦</div><div class="cat-nm">Tonik</div><div class="cat-d">14 gün</div></div>
+        <div class="cat-btn" data-cat="eye" onclick="selCat(this)"><div class="cat-ic">👁️</div><div class="cat-nm">Göz Kremi</div><div class="cat-d">21 gün</div></div>
       </div>
-      <div class="scan-cta-wrap"><button class="btn-full" id="scan-cta" onclick="addProduct()" disabled>Skin Twin Takibine Ekle →</button></div>
+      <div class="scan-cta"><button class="btn-full" id="scan-cta" onclick="addProduct()" disabled>Skin Twin Takibine Ekle →</button></div>
     </div>
   </div>
 
@@ -603,196 +503,150 @@ opacity:0.025;}
   </div>
 
   <div class="sub" id="sub-qa">
-    <div class="sub-nav"><button class="sub-back" onclick="closeSub('sub-qa')">←</button><span class="sub-title">Skin Twin Soru & Cevap</span></div>
-    <div class="scroll" id="qa-body"></div>
+    <div class="sub-nav"><button class="sub-back" onclick="closeSub('sub-qa')">←</button><span class="sub-title">Skin Twin Q&A</span></div>
+    <div class="scroll" id="qa-scroll">
+      <div id="qa-product-bar"></div>
+      <div class="qa-compose" id="qa-compose">
+        <textarea class="qa-compose-input" id="qa-input" rows="2" placeholder="Bu ürün hakkında skin twin'lere sor..."></textarea>
+        <button class="qa-send-btn" onclick="sendQA()">👯 Skin Twin'lere Sor →</button>
+      </div>
+      <div class="qa-thread" id="qa-thread"></div>
+    </div>
   </div>
-
 </div>
-<div class="loading" id="loading"><div class="spinner"></div><div class="loading-label" id="loading-label">Analiz ediliyor</div></div>
+
+<div class="loading" id="loading"><div class="spinner"></div><div class="load-lbl" id="load-lbl">Analiz ediliyor</div></div>
 </div>
 <script>
 (function(){
 'use strict';
 try{
-var U=null,SP={},prods=[],streak=0;
+
+var PRODUCTS={
+  cerave:{id:'cerave',name:'Nemlendirici Krem',brand:'CeraVe',emoji:'💧',cat:'Nemlendirici',score:9.1,verdict:'Değer',vc:'sage',pct:91,users:2841,twinPct:91,price:'₺280',weeks:'6 hafta',tags:[{t:'Bariyer Onarıcı',c:'sage'},{t:'Akne Güvenli',c:'sage'},{t:'Parfümsüz',c:'lav'},{t:'Derm Onaylı',c:'lav'}],ings:[{n:'Seramidler (1,3,6-II)',d:'Cilt bariyerini onarır. Lumo skorunun temel sebebi.',s:'safe'},{n:'Hyalüronik Asit',d:'Derin nemlendirme, su tutma kapasitesi yüksek.',s:'safe'},{n:'Niacinamide',d:'Gözenek sıkılaştırıcı, leke açıcı, yağ düzenleyici.',s:'safe'},{n:'Gliserin',d:'Humektant. Nemlendirici yardımcı.',s:'mid'}],twin_insight:'Skin twin grubunun %91\'i bu ürünü öneriyor. Bariyer onarım hedefli kullanıcılarda %97 olumlu sonuç bildirildi.',skins:['normal','kuru','karma','hassas'],isRisk:false,reviews:[{u:'merve.skin',skin:'Karma · Akne Eğilimli',twin:true,score:10,txt:'2 haftada cilt bariyerim onarıldı. Skin twin grubumun verisiyle aldım — doğru karar.',days:30,type:'v'},{u:'bariyer.queen',skin:'Hassas · Kuru',twin:true,score:9,txt:'Altın standart. Basit içerik, mükemmel seramid formülü.',days:42,type:'v'}]},
+  ordinary:{id:'ordinary',name:'Niacinamide 10% + Zinc 1%',brand:'The Ordinary',emoji:'🧬',cat:'Serum',score:8.7,verdict:'Değer',vc:'sage',pct:87,users:4102,twinPct:82,price:'₺180',weeks:'6 hafta',tags:[{t:'Gözenek Küçültücü',c:'lav'},{t:'Yağlı Cilt',c:'sage'},{t:'Leke Açıcı',c:'gold'},{t:'Uygun Fiyat',c:'sage'}],ings:[{n:'Niacinamide %10',d:'Kanıtlanmış gözenek daraltıcı, sebum kontrol, akne önleyici.',s:'safe'},{n:'Zinc PCA',d:'Yağ üretimini dengeler, bakteri karşıtı.',s:'safe'},{n:'Aqua + Gliserin',d:'Nemlendirici baz bileşenler.',s:'mid'}],twin_insight:'Yağlı/karma cilt twin grubunun %87\'si öneriyor. 6 haftada görünür fark %78 kullanıcıda doğrulandı.',skins:['yağlı','karma'],isRisk:false,reviews:[{u:'gozenek.expert',skin:'Yağlı · Karma',twin:true,score:9,txt:'6 haftada gözenekler görünür küçüldü. Sebum kontrolü gerçekten işe yarıyor.',days:42,type:'v'},{u:'leke.savascisi',skin:'Karma',twin:true,score:8,txt:'Lekeler yavaş ama emin açılıyor.',days:60,type:'v'}]},
+  purito:{id:'purito',name:'Daily Soft Touch SPF50+',brand:'Purito',emoji:'☀️',cat:'SPF',score:8.2,verdict:'Bariyer Güvenli',vc:'lav',pct:82,users:623,twinPct:80,price:'₺420',weeks:'2 hafta',tags:[{t:'Beyaz İz Yok',c:'lav'},{t:'Hassas Cilt OK',c:'sage'},{t:'Bariyer Güvenli',c:'lav'},{t:'Günlük',c:'sage'}],ings:[{n:'Çinko Oksit %10',d:'Fiziksel UV filtresi. Hassas cilt için nazik ve güvenli.',s:'safe'},{n:'Bisabolol',d:'Sakinleştirici, anti-inflamatuar etki.',s:'safe'},{n:'Hafif Parfüm',d:'Çok az miktarda. Çok hassas ciltlerde dikkat.',s:'warn'}],twin_insight:'Hassas/reaktif twin grubunun %80\'i bu SPF\'i öneriyor. Beyaz iz sorunu yalnızca %3 kullanıcıda görüldü.',skins:['hassas','kuru','normal','karma'],isRisk:false,reviews:[{u:'spf.uzman',skin:'Hassas',twin:true,score:9,txt:'Beyaz iz yok, yanma yok. İlk günlük kullanabildiğim SPF oldu.',days:14,type:'v'}]},
+  drunk:{id:'drunk',name:'C-Firma Day Serum',brand:'Drunk Elephant',emoji:'🍷',cat:'Serum',score:4.2,verdict:'Riskli',vc:'rose',pct:31,users:1203,twinPct:31,price:'₺1.400',weeks:'3 hafta',tags:[{t:'Akne Tetikleyici',c:'rose'},{t:'Hype Tuzağı',c:'rose'},{t:'Komedojenik',c:'rose'},{t:'Çok Pahalı',c:'gold'}],ings:[{n:'Marula Yağı',d:'Komedojenik indeksi 3-4. Akne eğilimli ciltler için yüksek risk.',s:'risk'},{n:'Meyve Asit Özleri',d:'Hassas cildi tahriş edebilir.',s:'warn'},{n:'L-Askorbik Asit %15',d:'Etkili C vitamini ama instabil formül.',s:'mid'}],twin_insight:'Akne eğilimli twin grubunun %67\'si olumsuz reaksiyon bildirdi. Skin twin verisi bu ürünü "kaçın" olarak işaretledi.',skins:['yağlı','normal'],isRisk:true,reviews:[{u:'akne.detective',skin:'Akne Eğilimli',twin:true,score:2,txt:'3 günde sivilce kapladı. Skin twin verim olsaydı asla almazdım.',days:21,type:'v'}]},
+  charlotte:{id:'charlotte',name:'Magic Foundation SPF15',brand:'Charlotte Tilbury',emoji:'🫧',cat:'Fondöten',score:3.1,verdict:'Hype Tuzağı',vc:'rose',pct:31,users:389,twinPct:28,price:'₺2.100',weeks:'2 hafta',tags:[{t:'Hype Tuzağı',c:'rose'},{t:'Komedojenik',c:'rose'},{t:'Gözenek Tıkar',c:'rose'},{t:'Çok Pahalı',c:'gold'}],ings:[{n:'Isododecane',d:'Yüksek komedojenik. Gözenek tıkama riski çok yüksek.',s:'risk'},{n:'Dimethicone',d:'Akne bakterilerini hapsedebilir.',s:'warn'},{n:'Titanyum Dioksit',d:'Fiziksel filtre, güvenli.',s:'safe'}],twin_insight:'Akne eğilimli twin grubunun %72\'si olumsuz reaksiyon bildirdi.',skins:['normal'],isRisk:true,reviews:[{u:'akne.detective',skin:'Akne Eğilimli',twin:true,score:2,txt:'3 günde sivilce kapladı. Komedojenik formül.',days:7,type:'v'}]},
+  tatcha:{id:'tatcha',name:'The Water Cream',brand:'Tatcha',emoji:'🍃',cat:'Nemlendirici',score:5.4,verdict:'Fazla Pahalı',vc:'gold',pct:54,users:892,twinPct:50,price:'₺1.800',weeks:'3 hafta',tags:[{t:'Fazla Pahalı',c:'gold'},{t:'Fiyat/Değer Düşük',c:'gold'},{t:'Sadece Silikon',c:'rose'},{t:'Hype',c:'rose'}],ings:[{n:'Dimethicone',d:'Ana içerik — sadece silikon. Bu fiyata?',s:'warn'},{n:'Gliserin',d:'Etkili nemlendirici.',s:'safe'},{n:'Silica',d:'Mattifying. Standart ve ucuz.',s:'mid'}],twin_insight:'Twin grubunun %64\'ü fiyat/değer oranını yetersiz buldu.',skins:['normal','kuru'],isRisk:false,reviews:[{u:'icerik.realist',skin:'Karma',twin:true,score:4,txt:'Bu fiyata sadece silikon. The Ordinary aynısını 10x ucuza yapıyor.',days:14,type:'v'}]},
+  cosrx:{id:'cosrx',name:'Advanced Snail 96 Mucin',brand:'COSRX',emoji:'🌿',cat:'Serum',score:7.6,verdict:'Değer',vc:'sage',pct:76,users:2100,twinPct:72,price:'₺650',weeks:'4 hafta',tags:[{t:'Onarıcı',c:'sage'},{t:'Sakinleştirici',c:'sage'},{t:'Bariyer',c:'lav'},{t:'Hassas OK',c:'sage'}],ings:[{n:'Snail Secretion Filtrate %96',d:'Onarıcı, nemlendirici, anti-inflamatuar etki.',s:'safe'},{n:'Betaine',d:'Nemlendirici yardımcı.',s:'mid'}],twin_insight:'Hassas/onarım hedefli twin grubunun %72\'si öneriyor. Post-akne izi azaltmada %68 olumlu sonuç.',skins:['hassas','kuru','normal'],isRisk:false,reviews:[{u:'hassas.cilt',skin:'Hassas · Kuru',twin:true,score:8,txt:'Post-akne izleri için inanılmaz. Sakinleştirici etkisi hızlı hissedildi.',days:30,type:'v'}]}
+};
+
+var SKIN_TWIN_DB={
+  'yağlı':{count:3241,active:1872,reviews:8940,topProducts:['ordinary','cerave','purito'],riskProducts:['drunk','charlotte'],twinLabel:'Yağlı Cilt'},
+  'kuru':{count:2187,active:1043,reviews:5820,topProducts:['cerave','cosrx','purito'],riskProducts:['tatcha','drunk'],twinLabel:'Kuru Cilt'},
+  'karma':{count:4102,active:2341,reviews:11200,topProducts:['ordinary','cerave','purito'],riskProducts:['drunk','charlotte'],twinLabel:'Karma Cilt'},
+  'normal':{count:1893,active:987,reviews:4210,topProducts:['cerave','cosrx','tatcha'],riskProducts:['charlotte'],twinLabel:'Normal Cilt'},
+  'hassas':{count:2654,active:1421,reviews:6780,topProducts:['cerave','purito','cosrx'],riskProducts:['drunk','charlotte'],twinLabel:'Hassas Cilt'}
+};
+
+var CONCERNS_MAP={
+  'Sivilce & Akne':{boost:['ordinary','cerave'],penalize:['drunk','charlotte']},
+  'Leke & Hiperpigmentasyon':{boost:['ordinary'],penalize:[]},
+  'Büyük Gözenekler':{boost:['ordinary','cerave'],penalize:['tatcha']},
+  'Yaşlanma Karşıtı':{boost:['cosrx'],penalize:[]},
+  'Kuruluk & Susuzluk':{boost:['cerave','cosrx'],penalize:[]},
+  'Kızarıklık & Hassasiyet':{boost:['cerave','cosrx'],penalize:['drunk']}
+};
+
+var FEED_ITEMS=[
+  {type:'insight',skinTypes:['yağlı','karma'],label:'💡 Skin Twin Insight',style:'gold',text:'Yağlı/karma cilt twin grubunun <em>%87\'si</em> The Ordinary Niacinamide sonrası gözenek küçülmesi yaşadı.',meta:'📊 4.102 kişi · Son 30 gün'},
+  {type:'review',skinTypes:['yağlı','karma','hassas','kuru','normal'],productId:'cerave',user:'merve.skin',userSkin:'Karma · Akne Eğilimli',twin:true,score:9,scoreColor:'var(--sage)',text:'"2 haftada cilt bariyerim onarıldı. Skin twin grubumun verisiyle aldım."',stats:[{ic:'👥',v:'2.841',l:'yorum'},{ic:'✅',v:'%91',l:'memnun'},{ic:'🔥',v:'#1',l:'twin\'lerde'}],bar:{pct:91,color:'var(--sage)'},days:30,tags:[{t:'Doğrulandı',bg:'var(--sage-pale)',c:'var(--sage)'},{t:'30 gün',bg:'var(--rose-pale)',c:'var(--rose)'}]},
+  {type:'insight',skinTypes:['hassas','kuru'],label:'🌸 Hassas Cilt Insight',style:'lav',text:'Hassas cilt twin grubunun <em>%80\'i</em> Purito SPF\'i günlük kullanımda güvenli buldu.',meta:'📊 623 kişi · Hassas cilt profili'},
+  {type:'insight',skinTypes:['yağlı','karma','hassas'],label:'⚠️ Risk Uyarısı',style:'risk',text:'Drunk Elephant C-Firma kullanan twin\'lerin <em>%67\'si</em> akne reaksiyonu bildirdi.',meta:'📊 389 kişi · Akne eğilimli profil'},
+  {type:'review',skinTypes:['yağlı','karma'],productId:'ordinary',user:'gozenek.expert',userSkin:'Yağlı · Karma',twin:true,score:9,scoreColor:'var(--sage)',text:'"6 haftada gözenekler görünür küçüldü. Sebum kontrolü gerçekten işe yarıyor."',stats:[{ic:'👥',v:'4.102',l:'yorum'},{ic:'✅',v:'%87',l:'memnun'},{ic:'💰',v:'₺180',l:'fiyat'}],bar:{pct:87,color:'var(--sage)'},days:42,tags:[{t:'Doğrulandı',bg:'var(--sage-pale)',c:'var(--sage)'},{t:'42 gün',bg:'var(--rose-pale)',c:'var(--rose)'}]},
+  {type:'review',skinTypes:['hassas','kuru'],productId:'cosrx',user:'hassas.skin',userSkin:'Hassas · Kuru',twin:true,score:8,scoreColor:'var(--sage)',text:'"Post-akne izleri için inanılmaz. Sakinleştirici etkisi çok hızlı hissedildi."',stats:[{ic:'👥',v:'2.100',l:'yorum'},{ic:'✅',v:'%76',l:'memnun'},{ic:'🌸',l:'hassas ok'}],bar:{pct:76,color:'var(--sage)'},days:30,tags:[{t:'Doğrulandı',bg:'var(--sage-pale)',c:'var(--sage)'},{t:'30 gün',bg:'var(--rose-pale)',c:'var(--rose)'}]},
+  {type:'review',skinTypes:['yağlı','karma','hassas'],productId:'drunk',user:'akne.detective',userSkin:'Akne Eğilimli',twin:true,score:2,scoreColor:'var(--rose)',text:'"Purging hiç bitmedi. Marula yağı var — komedojenik. Skin twin verisi olsaydı asla almazdım."',stats:[{ic:'⚠️',v:'%67',l:'akne reaksiyon'},{ic:'❌',v:'%31',l:'memnun'},{ic:'🔻',l:'Hype Tuzağı'}],bar:{pct:31,color:'var(--rose)'},days:21,tags:[{t:'Doğrulandı',bg:'var(--sage-pale)',c:'var(--sage)'},{t:'21 gün',bg:'var(--rose-pale)',c:'var(--rose)'}]},
+  {type:'insight',skinTypes:['kuru','hassas'],label:'💧 Kuru Cilt Insight',style:'gold',text:'Kuru cilt twin grubunun <em>%91\'i</em> CeraVe Nemlendirici kullanıyor.',meta:'📊 2.187 kişi · Kuru cilt profili'}
+];
+
+var QA_SEED={
+  cerave:[
+    {id:'qa1',uid:'seed1',user:'merve.skin',skin:'Karma · Akne Eğilimli',twin:true,ver:true,q:'Bu ürün akne eğilimli ciltte nasıl?',a:'Skin twin grubumuzda (akne eğilimli) %91 olumlu. Comedojenik içerik yok — seramid bazlı. Güvenle kullanabilirsin.',days:30,helpful:87,outcome:'good',ol:'Kesinlikle Uyumlu',ts:Date.now()-86400000*3},
+    {id:'qa2',uid:'seed2',user:'bariyer.queen',skin:'Hassas · Kuru',twin:true,ver:true,q:'Hassas cilt için uygun mu?',a:'Parfümsüz formül hassas ciltler için ideal. 14 günlük test — %89 olumlu. Sakinleştirici etki güçlü.',days:42,helpful:54,outcome:'good',ol:'Evet, Uygun',ts:Date.now()-86400000*5}
+  ],
+  ordinary:[
+    {id:'qa3',uid:'seed3',user:'gozenek.expert',skin:'Yağlı · Karma',twin:true,ver:true,q:'Niacinamide ne zaman etki gösterir?',a:'Twin grubumuzda ortalama 4-6 hafta. İlk 2 haftada sebum azalması, 4-6 haftada gözenek küçülmesi görüldü.',days:42,helpful:102,outcome:'mixed',ol:'Sabır Gerekli',ts:Date.now()-86400000*2}
+  ],
+  drunk:[
+    {id:'qa4',uid:'seed4',user:'akne.detective',skin:'Akne Eğilimli',twin:true,ver:true,q:'Akne eğilimli cilt için kullanabilir miyim?',a:'Kesinlikle hayır. Twin grubumuzda %67 olumsuz reaksiyon. Marula yağı komedojenik — gözenekleri tıkıyor.',days:21,helpful:134,outcome:'bad',ol:'Kaçın',ts:Date.now()-86400000*1}
+  ]
+};
+var U=null,SP={},prods=[],streak=0,currentQAProduct=null;
 function $(i){return document.getElementById(i);}
 function showScreen(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');});var el=$(id);if(el)el.classList.add('on');}
 window.openSub=function(id){$(id).classList.add('on');if(id==='sub-scan')setTimeout(startCamera,400);};
 window.closeSub=function(id){$(id).classList.remove('on');if(id==='sub-scan')stopCamera();};
-function showLoading(txt){$('loading-label').textContent=txt||'Yükleniyor';$('loading').classList.add('on');}
-function hideLoading(){$('loading').classList.remove('on');}
+function showLoad(t){$('load-lbl').textContent=t||'Yükleniyor';$('loading').classList.add('on');}
+function hideLoad(){$('loading').classList.remove('on');}
 function gk(k){return U?k+'_'+U.uid:null;}
 function sv(k,v){var key=gk(k);if(key)localStorage.setItem(key,JSON.stringify(v));}
 function lv(k,d){var key=gk(k);if(!key)return d;var v=localStorage.getItem(key);return v?JSON.parse(v):d;}
-function toast(m){var el=document.createElement('div');el.className='toast';el.textContent=m;document.querySelector('.phone').appendChild(el);setTimeout(function(){el.style.opacity='0';el.style.transition='opacity 0.4s';setTimeout(function(){el.remove();},400);},3000);}
+function toast(m){var el=document.createElement('div');el.className='toast';el.textContent=m;document.querySelector('.phone').appendChild(el);setTimeout(function(){el.style.opacity='0';el.style.transition='opacity .4s';setTimeout(function(){el.remove();},400);},3000);}
 
-setTimeout(function(){
-  var s=localStorage.getItem('lu_session');
-  if(s){try{var d=JSON.parse(s);U={email:d.email,uid:d.id};bootApp(d.uname);}
-  catch(e){localStorage.removeItem('lu_session');showScreen('s-ob');startOb();}}
-  else{showScreen('s-ob');startOb();}
-},2000);
+function normalizeSkinType(raw){if(!raw)return 'normal';raw=raw.toLowerCase();if(raw.includes('yağlı'))return 'yağlı';if(raw.includes('kuru'))return 'kuru';if(raw.includes('karma'))return 'karma';if(raw.includes('hassas')||raw.includes('reaktif'))return 'hassas';return 'normal';}
+function getMatchScore(productId,skinType,concerns){var p=PRODUCTS[productId];if(!p)return 0;var score=50;if(p.skins.includes(skinType))score+=40;else score-=30;(concerns||[]).forEach(function(c){var m=CONCERNS_MAP[c];if(m){if(m.boost.includes(productId))score+=10;if(m.penalize.includes(productId))score-=15;}});return Math.max(0,Math.min(100,score));}
+function getTwinData(skinType){return SKIN_TWIN_DB[skinType]||SKIN_TWIN_DB['normal'];}
+
+setTimeout(function(){var s=localStorage.getItem('lu_session');if(s){try{var d=JSON.parse(s);U={email:d.email,uid:d.id};SP=lv('skin',{});bootApp(d.uname);}catch(e){localStorage.removeItem('lu_session');showScreen('s-ob');startOb();}}else{showScreen('s-ob');startOb();}},2000);
 
 var OB=[
-  {step:'1 / 2',eyebrow:'Cilt Profili',heading:'Cilt tipini<br><em>seçelim</em>',sub:'Skin twin grubunu belirleyeceğiz. Sadece 2 adım.',type:'single',key:'type',
-   opts:[{label:'Normal Cilt',sub:'Dengeli, sorunsuz',ic:'💧'},{label:'Yağlı Cilt',sub:'Parlama, gözenek',ic:'✨'},{label:'Kuru Cilt',sub:'Çekilme, gerginlik',ic:'🌵'},{label:'Karma Cilt',sub:'T-bölgesi yağlı',ic:'⚖️'},{label:'Hassas / Reaktif',sub:'Kızarıklık, tahriş',ic:'🌸'}]},
-  {step:'2 / 2',eyebrow:'Cilt Hedefleri',heading:'En büyük<br><em>endişelerin?</em>',sub:'Birden fazla seçebilirsin.',type:'multi',key:'concerns',
-   opts:[{label:'Sivilce & Akne',ic:'🔴'},{label:'Leke & Hiperpigmentasyon',ic:'🟤'},{label:'Büyük Gözenekler',ic:'⭕'},{label:'Yaşlanma Karşıtı',ic:'⏳'},{label:'Kuruluk & Susuzluk',ic:'💦'},{label:'Kızarıklık & Hassasiyet',ic:'🌹'}]}
+  {step:'1/2',ey:'Cilt Profili',title:'Cilt tipini<br><em>seçelim</em>',sub:'Skin twin grubunu belirleyeceğiz. 2 adım yeterli.',type:'single',key:'type',opts:[{ic:'💧',l:'Normal Cilt',sub:'Dengeli, sorunsuz'},{ic:'✨',l:'Yağlı Cilt',sub:'Parlama, gözenek'},{ic:'🌵',l:'Kuru Cilt',sub:'Çekilme, gerginlik'},{ic:'⚖️',l:'Karma Cilt',sub:'T-bölgesi yağlı'},{ic:'🌸',l:'Hassas / Reaktif',sub:'Kızarıklık, tahriş'}]},
+  {step:'2/2',ey:'Cilt Hedefleri',title:'En büyük<br><em>endişelerin?</em>',sub:'Birden fazla seçebilirsin.',type:'multi',key:'concerns',opts:[{ic:'🔴',l:'Sivilce & Akne'},{ic:'🟤',l:'Leke & Hiperpigmentasyon'},{ic:'⭕',l:'Büyük Gözenekler'},{ic:'⏳',l:'Yaşlanma Karşıtı'},{ic:'💦',l:'Kuruluk & Susuzluk'},{ic:'🌹',l:'Kızarıklık & Hassasiyet'}]}
 ];
-var obIdx=0,obAnswers={};
-function startOb(){obIdx=0;obAnswers={};renderOb();}
-function renderOb(){
-  var s=OB[obIdx];
-  $('ob-bar').style.width=((obIdx+1)/OB.length*100)+'%';
-  $('ob-cta').disabled=true;
-  var html='<div class="ob-step-label">Adım '+s.step+'</div><div class="ob-heading">'+s.heading+'</div><div class="ob-sub">'+s.sub+'</div>';
-  if(s.type==='single'){
-    html+='<div class="ob-options">';
-    s.opts.forEach(function(o,i){html+='<div class="ob-opt" onclick="selOb(this,'+i+',\'single\')"><div><div>'+o.ic+' '+o.label+'</div><div class="ob-opt-sub">'+o.sub+'</div></div></div>';});
-    html+='</div>';
-  } else {
-    html+='<div class="ob-grid">';
-    s.opts.forEach(function(o,i){html+='<div class="ob-grid-opt" onclick="selOb(this,'+i+',\'multi\')"><div class="ob-grid-ic">'+o.ic+'</div><div class="ob-grid-nm">'+o.label+'</div></div>';});
-    html+='</div>';
-  }
-  $('ob-content').innerHTML=html;
-}
-window.selOb=function(el,i,type){
-  var s=OB[obIdx];
-  if(type==='single'){document.querySelectorAll('.ob-opt').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');obAnswers[s.key]=s.opts[i].label;$('ob-cta').disabled=false;}
-  else{el.classList.toggle('sel');var sel=Array.from(document.querySelectorAll('.ob-grid-opt.sel')).map(function(b){return b.querySelector('.ob-grid-nm').textContent;});obAnswers[s.key]=sel;$('ob-cta').disabled=sel.length===0;}
-};
+var obIdx=0,obA={};
+function startOb(){obIdx=0;obA={};renderOb();}
+function renderOb(){var s=OB[obIdx];$('ob-fill').style.width=((obIdx+1)/OB.length*100)+'%';$('ob-cta').disabled=true;var h='<div class="ob-eyebrow">Adım '+s.step+'</div><div class="ob-title">'+s.title+'</div><div class="ob-sub">'+s.sub+'</div>';if(s.type==='single'){h+='<div class="ob-opts">';s.opts.forEach(function(o,i){h+='<div class="ob-opt" onclick="selOb(this,'+i+',\'single\')"><div><div>'+o.ic+' '+o.l+'</div>'+(o.sub?'<div class="ob-opt-note">'+o.sub+'</div>':'')+'</div></div>';});h+='</div>';}else{h+='<div class="ob-grid">';s.opts.forEach(function(o,i){h+='<div class="ob-gopt" onclick="selOb(this,'+i+',\'multi\')"><div class="ob-gopt-ic">'+o.ic+'</div><div class="ob-gopt-nm">'+o.l+'</div></div>';});h+='</div>';}$('ob-body').innerHTML=h;}
+window.selOb=function(el,i,type){var s=OB[obIdx];if(type==='single'){document.querySelectorAll('.ob-opt').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');obA[s.key]=s.opts[i].l;$('ob-cta').disabled=false;}else{el.classList.toggle('sel');var sel=Array.from(document.querySelectorAll('.ob-gopt.sel')).map(function(b){return b.querySelector('.ob-gopt-nm').textContent;});obA[s.key]=sel;$('ob-cta').disabled=sel.length===0;}};
 window.nextOb=function(){if(obIdx<OB.length-1){obIdx++;renderOb();}else{finishOb();}};
-window.skipOb=function(){obAnswers={type:'Bilinmiyor',concerns:[]};finishOb();};
-function finishOb(){
-  SP=obAnswers;
-  var uid='guest_'+Date.now();U={email:'guest@lumo',uid:uid};
-  localStorage.setItem('lu_session',JSON.stringify({email:'guest@lumo',uname:'Sen',id:uid}));
-  sv('skin',SP);showLoading('Skin twin grubun oluşturuluyor…');
-  setTimeout(function(){hideLoading();bootApp('Sen');},1800);
-}
+window.skipOb=function(){obA={type:'Normal Cilt',concerns:[]};finishOb();};
+function finishOb(){SP=obA;var uid='u'+Date.now();U={email:'user@lumo',uid:uid};localStorage.setItem('lu_session',JSON.stringify({email:'user@lumo',uname:'Sen',id:uid}));sv('skin',SP);sv('prods',[]);sv('streak',0);showLoad('Skin twin grubun hesaplanıyor…');setTimeout(function(){hideLoad();bootApp('Sen');},2000);}
 
-function bootApp(uname){
-  SP=lv('skin',SP||{});prods=lv('prods',[]);streak=lv('streak',0);
-  var av=(uname||'?')[0].toUpperCase();
-  if($('prof-av-sm'))$('prof-av-sm').textContent=av;
-  if($('prof-av-lg'))$('prof-av-lg').textContent=av;
-  if($('prof-name'))$('prof-name').textContent=uname;
-  if($('prof-handle'))$('prof-handle').textContent='@'+uname.toLowerCase().replace(/\s/g,'');
-  var tg=SP.type&&SP.type!=='Bilinmiyor'?SP.type+' Cilt':'Genel Profil';
-  if($('prof-twin-group'))$('prof-twin-group').textContent=tg;
-  renderSkinProfile();renderStats();renderStreakDots();showScreen('s-app');
-}
+function bootApp(uname){prods=lv('prods',[]);streak=lv('streak',0);var av=(uname||'?')[0].toUpperCase();['prof-av-sm','prof-av-lg'].forEach(function(id){if($(id))$(id).textContent=av;});if($('prof-name'))$('prof-name').textContent=uname;if($('prof-handle'))$('prof-handle').textContent='@'+uname.toLowerCase().replace(/\s/g,'_');var skinType=normalizeSkinType(SP.type);var twinData=getTwinData(skinType);if($('prof-twin-val'))$('prof-twin-val').textContent=twinData.twinLabel;renderTwinBanner(skinType,twinData);renderFeed(skinType,SP.concerns||[],'all');renderTrendCards(skinType,SP.concerns||[]);renderTwinTab(skinType,SP.concerns||[],twinData);renderDiscoverList(skinType,SP.concerns||[]);renderSkinProfile();renderStats();renderStreakDots();showScreen('s-app');}
 
-function renderSkinProfile(){var el=$('spc-traits');if(!el)return;var items=[];if(SP.type&&SP.type!=='Bilinmiyor')items.push(SP.type);if(SP.concerns&&SP.concerns.length)items=items.concat(SP.concerns.slice(0,4));el.innerHTML=items.length?items.map(function(t){return '<div class="spc-chip">'+t+'</div>';}).join(''):'<div class="spc-chip">Profil yok</div>';}
-function renderStats(){var rev=prods.filter(function(p){return p.status==='reviewed';}).length;var days=prods.reduce(function(a,p){return a+(p.done||0);},0);if($('psr-t'))$('psr-t').textContent=prods.length;if($('psr-r'))$('psr-r').textContent=rev;if($('psr-d'))$('psr-d').textContent=days;if($('psr-s'))$('psr-s').textContent=streak;}
-function renderStreakDots(){var el=$('sc-dots');if(!el)return;var h='';for(var i=0;i<7;i++){h+='<div class="sc-dot '+(i<streak?'sc-done':i===streak?'sc-today':'sc-future')+'">'+(i<streak?'✓':i===streak?'•':'')+'</div>';}el.innerHTML=h;}
-window.swTab=function(tab){document.querySelectorAll('.tab-view').forEach(function(t){t.classList.remove('on');});document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});var tv=$('tv-'+tab),nb=$('nb-'+tab);if(tv)tv.classList.add('on');if(nb)nb.classList.add('on');};
-window.doLogout=function(){if(!confirm('Çıkış yapmak istiyor musun?'))return;localStorage.removeItem('lu_session');U=null;SP={};prods=[];showScreen('s-ob');startOb();};
+function renderTwinBanner(skinType,twinData){if($('tw-match-txt'))$('tw-match-txt').textContent=twinData.count.toLocaleString('tr')+' '+twinData.twinLabel+' kullanıcısıyla eşleştin';if($('tw-banner-title'))$('tw-banner-title').innerHTML=twinData.twinLabel+' twin\'lerin <em>ne kullanıyor?</em>';if($('tw-count'))$('tw-count').textContent=twinData.count.toLocaleString('tr');if($('tw-active'))$('tw-active').textContent=twinData.active.toLocaleString('tr');if($('tw-reviews'))$('tw-reviews').textContent=(twinData.reviews/1000).toFixed(1)+'K';}
 
-var PRODUCTS={
-  cerave:{name:'CeraVe Nemlendirici Krem',brand:'CeraVe',emoji:'💧',cat:'Nemlendirici',score:9.1,verdict:'Değer',verdictClass:'sage',pct:91,users:2841,twinPct:91,metrics:{users:'2.8K',weeks:'6 hafta',price:'₺280'},tags:['Bariyer Onarıcı','Akne Güvenli','Parfümsüz','Derm Onaylı'],tagColors:['sage','sage','rose','lav'],ings:[['Seramidler (1,3,6-II)','Cilt bariyerini onarır. Lumo skorunun temel sebebi.','safe','Güvenli'],['Hyalüronik Asit','Derin nemlendirme, su tutma.','safe','Güvenli'],['Niacinamide','Gözenek sıkılaştırıcı, leke açıcı.','safe','Güvenli'],['Gliserin','Humektant. Nemlendirici yardımcı.','mid','']],reviews:[{user:'merve.skin',skin:'Akne eğilimli · 👯 Twin',score:10,text:'2 haftada cilt bariyerim onarıldı. Akne geçmişim var ama hiç tetiklemedi.',days:30,type:'rt-final'},{user:'bariyer.queen',skin:'Hassas · Kuru · 👯 Twin',score:9,text:'Altın standart. Basit içerik, mükemmel seramid formülü.',days:42,type:'rt-final'}],twin_insight:'Skin twin grubunun %91\'i bu ürünü öneriyor. Bariyer onarım hedefli kullanıcılarda %97 olumlu sonuç.'},
-  ordinary:{name:'Niacinamide 10% + Zinc 1%',brand:'The Ordinary',emoji:'🧬',cat:'Serum',score:8.7,verdict:'Değer',verdictClass:'sage',pct:87,users:4102,twinPct:82,metrics:{users:'4.1K',weeks:'6 hafta',price:'₺180'},tags:['Gözenek Küçültücü','Yağlı Cilt','Leke Açıcı','Uygun Fiyat'],tagColors:['lav','sage','gold','sage'],ings:[['Niacinamide %10','Kanıtlanmış gözenek daraltıcı, sebum kontrol.','safe','Güvenli'],['Zinc PCA','Yağ üretimini dengeler, akne koruma.','safe','Güvenli'],['Aqua','Baz.','mid','']],reviews:[{user:'gozenek.expert',skin:'Yağlı · Karma · 👯 Twin',score:9,text:'6 haftada gözenekler görünür küçüldü.',days:42,type:'rt-final'}],twin_insight:'Yağlı/karma cilt twin grubunun %87\'si öneriyor. 6 haftada görünür fark %78 kullanıcıda doğrulandı.'},
-  drunk:{name:'C-Firma Day Serum',brand:'Drunk Elephant',emoji:'🍷',cat:'Serum',score:4.2,verdict:'Riskli',verdictClass:'rose',pct:31,users:1203,twinPct:31,metrics:{users:'1.2K',weeks:'3 hafta',price:'₺1.400'},tags:['Akne Tetikleyici','Hype Tuzağı','Komedojenik','Çok Pahalı'],tagColors:['rose','rose','rose','gold'],ings:[['Marula Yağı','Komedojenik 3-4. Akne eğilimli ciltler için yüksek risk.','risk','Yüksek Risk'],['Meyve Asit Özleri','Hassas cildi tahriş edebilir.','warn','Dikkat'],['L-Askorbik Asit %15','Etkili C vitamini.','mid','']],reviews:[{user:'akne.detective',skin:'Akne eğilimli · 👯 Twin',score:2,text:'3 günde kapasam yeterdi. Komedojenik formül. Skin twin verim olsaydı asla almazdım.',days:21,type:'rt-final'}],twin_insight:'Akne eğilimli twin grubunun %67\'si olumsuz reaksiyon bildirdi.'},
-  charlotte:{name:'Magic Foundation SPF15',brand:'Charlotte Tilbury',emoji:'🫧',cat:'Fondöten',score:3.1,verdict:'Hype Tuzağı',verdictClass:'rose',pct:31,users:389,twinPct:28,metrics:{users:'389',weeks:'2 hafta',price:'₺2.100'},tags:['Hype Tuzağı','Komedojenik','Gözenek Tıkar','Çok Pahalı'],tagColors:['rose','rose','rose','gold'],ings:[['Isododecane','Yüksek komedojenik. Gözenek tıkama riski çok yüksek.','risk','Yüksek Risk'],['Dimethicone','Akne bakterilerini hapsedebilir.','warn','Dikkat'],['Titanyum Dioksit','Fiziksel filtre, güvenli.','safe','Güvenli']],reviews:[{user:'akne.detective',skin:'Akne eğilimli · 👯 Twin',score:2,text:'3 günde sivilce kapladı. Komedojenik formül.',days:7,type:'rt-final'}],twin_insight:'Akne eğilimli twin grubunun %72\'si olumsuz reaksiyon. Fiyat/değer oranı en düşük.'},
-  purito:{name:'Daily Soft Touch SPF50+',brand:'Purito',emoji:'☀️',cat:'SPF',score:8.2,verdict:'Bariyer Güvenli',verdictClass:'lav',pct:82,users:623,twinPct:80,metrics:{users:'623',weeks:'2 hafta',price:'₺420'},tags:['Beyaz İz Yok','Hassas Cilt OK','Bariyer Güvenli','Günlük Kullanım'],tagColors:['lav','sage','lav','sage'],ings:[['Çinko Oksit %10','Fiziksel UV filtresi. Hassas cilt için nazik.','safe','Güvenli'],['Bisabolol','Sakinleştirici, anti-inflamatuar.','safe','Güvenli'],['Hafif Parfüm','Çok hassas ciltlerde dikkat.','warn','Dikkat']],reviews:[{user:'spf.uzman',skin:'Hassas · 👯 Twin',score:9,text:'Beyaz iz yok, yanma yok. İlk günlük SPF\'im.',days:14,type:'rt-final'}],twin_insight:'Hassas/reaktif twin grubunun %80\'i bu SPF\'i öneriyor.'},
-  tatcha:{name:'The Water Cream',brand:'Tatcha',emoji:'🍃',cat:'Nemlendirici',score:5.4,verdict:'Fazla Pahalı',verdictClass:'gold',pct:54,users:892,twinPct:50,metrics:{users:'892',weeks:'3 hafta',price:'₺1.800'},tags:['Fazla Pahalı','Fiyat/Değer Düşük','Sadece Silikon','Hype'],tagColors:['gold','gold','rose','rose'],ings:[['Dimethicone','Ana içerik — silikon.','warn','Dikkat'],['Gliserin','Etkili nemlendirici.','safe','Güvenli']],reviews:[{user:'icerik.realist',skin:'Karma · 👯 Twin',score:4,text:'Bu fiyata sadece silikon. TO aynısını 10x ucuza yapıyor.',days:14,type:'rt-final'}],twin_insight:'Twin grubunun %64\'ü fiyat/değer oranını yetersiz buldu.'},
-  cosrx:{name:'Advanced Snail 96 Mucin',brand:'COSRX',emoji:'🌿',cat:'Serum',score:7.6,verdict:'Değer',verdictClass:'sage',pct:76,users:2100,twinPct:72,metrics:{users:'2.1K',weeks:'4 hafta',price:'₺650'},tags:['Onarıcı','Sakinleştirici','Bariyer','Hassas OK'],tagColors:['sage','sage','lav','sage'],ings:[['Snail Secretion Filtrate %96','Onarıcı, nemlendirici, anti-inflamatuar.','safe','Güvenli'],['Betaine','Nemlendirici.','mid','']],reviews:[{user:'hassas.cilt',skin:'Hassas · Kuru · 👯 Twin',score:8,text:'Post-akne izleri için inanılmaz.',days:30,type:'rt-final'}],twin_insight:'Hassas/onarım hedefli twin grubunun %72\'si öneriyor.'}
-};
+window.filterFeed=function(f,el){document.querySelectorAll('.chip-row .chip').forEach(function(c){c.classList.remove('on');});el.classList.add('on');var skinType=normalizeSkinType(SP.type);renderFeed(skinType,SP.concerns||[],f);};
 
-var verdictBg={sage:'var(--sage-pale)',rose:'var(--rose-pale)',gold:'var(--gold-pale)',lav:'var(--lav-pale)'};
-var verdictColor={sage:'var(--sage)',rose:'var(--rose)',gold:'var(--gold)',lav:'var(--lavender)'};
+function renderFeed(skinType,concerns,filter){var el=$('feed-cards');if(!el)return;var filtered=FEED_ITEMS.filter(function(item){if(!item.skinTypes.includes(skinType))return false;if(filter==='trending'&&item.type!=='review')return false;if(filter==='safe'&&item.type==='review'){var p=PRODUCTS[item.productId];if(!p||p.isRisk)return false;}if(filter==='risk'){if(item.type==='review'){var p=PRODUCTS[item.productId];if(!p||!p.isRisk)return false;}else if(item.type==='insight'&&!item.label.includes('Risk')&&!item.label.includes('Uyarı'))return false;}return true;});if(filtered.length===0){el.innerHTML='<div style="padding:40px 24px;text-align:center;"><div style="font-size:1.8rem;opacity:.3;margin-bottom:12px;">🔍</div><div style="font-size:.78rem;color:var(--t3);line-height:1.75;">Bu filtrede skin twin içeriği bulunamadı.</div></div>';return;}var st=$('feed-section-title');if(st)st.textContent=filter==='all'?'📡 Skin Twin Feed':filter==='trending'?'🔥 Trending':filter==='safe'?'✅ Güvenli Ürünler':'⚠️ Riskli Ürünler';el.innerHTML=filtered.map(function(item){if(item.type==='insight')return renderInsightCard(item);if(item.type==='review')return renderReviewCard(item);return '';}).join('');}
 
-window.openProduct=function(key){
-  var p=PRODUCTS[key];if(!p)return;
-  $('det-title').textContent=p.brand;
-  var sc=verdictColor[p.verdictClass]||'var(--t1)';
-  var sdoff=Math.round((1-(p.score/10))*201);
-  var iH=p.ings.map(function(ing){
-    var dot=ing[2]==='safe'?'dot-safe':ing[2]==='warn'?'dot-warn':ing[2]==='risk'?'dot-risk':'dot-mid';
-    var bs=ing[2]==='safe'?'background:var(--sage-pale);color:var(--sage)':ing[2]==='warn'?'background:var(--gold-pale);color:var(--gold)':ing[2]==='risk'?'background:var(--rose-pale);color:var(--rose)':'display:none';
-    return '<div class="ib-row"><div class="ib-dot '+dot+'"></div><div class="ib-body"><div class="ib-name">'+ing[0]+'</div><div class="ib-desc">'+ing[1]+'</div></div>'+(ing[3]?'<div class="ib-badge" style="'+bs+'">'+ing[3]+'</div>':'')+'</div>';
-  }).join('');
-  var rH=p.reviews.map(function(r){
-    var rs=r.score>=7?'var(--sage)':r.score>=5?'var(--gold)':'var(--rose)';
-    var rt=r.type==='rt-final'?'Doğrulanmış Sonuç':r.type==='rt-ongoing'?'Devam Eden':'İlk İzlenim';
-    var rts=r.type==='rt-final'?'background:var(--sage-pale);color:var(--sage)':r.type==='rt-ongoing'?'background:var(--gold-pale);color:var(--gold)':'background:var(--rose-pale);color:var(--rose)';
-    return '<div class="rev-item"><div class="ri-top"><div class="ri-user"><div class="ri-av">'+r.user[0].toUpperCase()+'</div><div><div class="ri-name">'+r.user+'</div><div class="ri-skin">'+r.skin+'</div></div></div><div class="ri-score" style="color:'+rs+'">'+r.score+'</div></div><div class="ri-type" style="'+rts+'">'+rt+'</div><div class="ri-text">'+r.text+'</div><div class="ri-days">'+r.days+' günlük deneyim</div></div>';
-  }).join('');
-  var tagH=p.tags.map(function(t,i){var c=p.tagColors[i];var bg=verdictBg[c]||'var(--bg2)';var co=verdictColor[c]||'var(--t2)';return '<div class="det-tag" style="background:'+bg+';color:'+co+';border-color:'+co+'22">'+t+'</div>';}).join('');
-  var heroBg=p.verdictClass==='sage'?'linear-gradient(135deg,var(--sage-pale),#C8E4CC)':p.verdictClass==='rose'?'linear-gradient(135deg,var(--rose-pale),#F0D0CA)':p.verdictClass==='gold'?'linear-gradient(135deg,var(--gold-pale),#EDD8B0)':'linear-gradient(135deg,var(--lav-pale),#DDD5F0)';
-  $('det-body').innerHTML=
-    '<div class="det-hero"><div class="det-hero-bg" style="background:'+heroBg+'"></div><div class="det-hero-content"><span class="det-emoji">'+p.emoji+'</span><div class="det-category" style="color:'+sc+'">'+p.cat.toUpperCase()+'</div><div class="det-name">'+p.name+'</div><div class="det-brand">'+p.brand+'</div></div></div>'
-    +'<div class="det-score-card"><div class="dsc-top"><svg class="dsc-ring" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="rgba(44,31,26,0.08)" stroke-width="4"/><circle cx="32" cy="32" r="28" fill="none" stroke="'+sc+'" stroke-width="4" stroke-dasharray="201" stroke-dashoffset="'+sdoff+'" stroke-linecap="round" transform="rotate(-90 32 32)"/></svg><div><div class="dsc-n" style="color:'+sc+'">'+p.score+'</div><div class="dsc-verdict" style="color:'+sc+'">'+p.verdict+'</div></div></div><div class="dsc-rows"><div class="dscr"><span class="dscr-lbl">Twin Memnuniyeti</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+p.twinPct+'%;background:'+sc+'"></div></div><span class="dscr-val">'+p.twinPct+'%</span></div><div class="dscr"><span class="dscr-lbl">Genel Skor</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+(p.score*10)+'%;background:'+sc+'"></div></div><span class="dscr-val">'+p.score+'</span></div><div class="dscr"><span class="dscr-lbl">Kullanıcı</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+(Math.min(p.users/50,100))+'%;background:'+sc+'"></div></div><span class="dscr-val">'+p.users+'</span></div></div></div>'
-    +'<div class="det-metrics"><div class="det-metric"><div class="dm-ic">👥</div><div class="dm-n">'+p.metrics.users+'</div><div class="dm-l">Kullanıcı</div></div><div class="det-metric"><div class="dm-ic">📅</div><div class="dm-n">'+p.metrics.weeks+'</div><div class="dm-l">Test</div></div><div class="det-metric"><div class="dm-ic">💰</div><div class="dm-n">'+p.metrics.price+'</div><div class="dm-l">Fiyat</div></div></div>'
-    +'<div class="det-tags">'+tagH+'</div>'
-    +'<div style="padding:0 16px;margin-bottom:16px;"><div style="background:linear-gradient(135deg,#2C1F1A,#4A3028);border-radius:16px;padding:16px;"><div style="font-size:0.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(232,169,156,0.7);margin-bottom:8px;">👯 SKIN TWIN INSIGHT</div><div style="font-size:0.8rem;color:#FAF8F5;line-height:1.7;font-weight:300;">'+p.twin_insight+'</div></div></div>'
-    +'<div class="ing-block"><div class="ib-header">İçerik Analizi</div>'+iH+'</div>'
-    +'<div style="padding:0 16px;margin-bottom:8px;"><div style="font-size:0.56rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:12px;">Skin Twin Yorumları</div>'+rH+'</div>'
-    +'<div style="padding:0 16px 12px;"><button class="btn-full" onclick="openQA(\''+key+'\')">Soru Sor & Twin Yanıtları →</button></div>'
-    +'<div style="padding:0 16px 8px;"><button class="btn-full" style="background:transparent;color:var(--t2);border:1.5px solid var(--border2);box-shadow:none;" onclick="openSub(\'sub-scan\')">Takibime Ekle →</button></div>'
-    +'<div style="padding:0 16px 32px;"><button style="width:100%;padding:14px;background:transparent;color:var(--t3);border:none;font-size:0.72rem;cursor:pointer;" onclick="closeSub(\'sub-detail\')">← Geri</button></div>';
-  openSub('sub-detail');
-};
+function renderInsightCard(item){var isRisk=item.style==='risk',isLav=item.style==='lav';var bg=isRisk?'linear-gradient(135deg,#F0EEF8,#E4DFF5)':isLav?'linear-gradient(135deg,#EEF2F8,#DEE5F5)':'linear-gradient(135deg,#FAF6EC,#F5EDD8)';var bc=isRisk?'rgba(123,111,160,.2)':isLav?'rgba(100,120,180,.2)':'rgba(184,147,90,.2)';var lc=isRisk?'var(--lav)':isLav?'#5A70A0':'var(--gold)';var ec=isRisk?'var(--rose)':isLav?'var(--lav)':'var(--gold)';return '<div class="fc fc-insight" style="background:'+bg+';border-color:'+bc+'"><div class="fc-ins-lbl" style="color:'+lc+'">'+item.label+'</div><div class="fc-ins-txt">'+item.text.replace(/<em>/g,'<em style="color:'+ec+'">')+'</div><div class="fc-ins-meta">'+item.meta+'</div></div>';}
 
-window.openQA=function(key){
-  var p=PRODUCTS[key];if(!p)return;
-  var qas=[
-    {user:'merak_eden',skin:'Kuru · Hassas',twin:true,verified:true,q:'Bu ürün hassas ciltte nasıl?',a:'Hassas ciltlerde çok iyi tolere edildi. 3 twin grubumuzda 14 günlük test — %89 olumlu sonuç. Parfümsüz formül büyük avantaj.',days:30,helpful:42,outcome:'good',outcomeLabel:'Uyumlu'},
-    {user:'akne_warrior',skin:'Akne eğilimli · Yağlı',twin:true,verified:true,q:'Akne eğilimli ciltte kullanabilir miyim?',a:'Skin twin grubumuzda (akne eğilimli) %91 olumlu. Comedojenik içerik yok. Güvenle kullanabilirsin.',days:42,helpful:87,outcome:'good',outcomeLabel:'Kesinlikle Evet'},
-    {user:'sabahci',skin:'Karma · Normal',twin:false,verified:true,q:'Sabah mı gece mi kullanmak daha iyi?',a:'Twin grubumuzda sabah+gece kullanımı %76 tercih. Sabah kullanımı SPF ile daha etkili.',days:21,helpful:34,outcome:'mixed',outcomeLabel:'İkisi de Olur'}
-  ];
-  var html='<div style="padding:48px 16px 16px;">'
-    +'<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;gap:12px;align-items:center;margin-bottom:16px;box-shadow:var(--shadow-xs);"><div style="width:44px;height:44px;border-radius:10px;background:var(--sage-pale);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">'+p.emoji+'</div><div><div style="font-size:0.5rem;color:var(--t3);text-transform:uppercase;letter-spacing:0.8px;">'+p.brand+'</div><div style="font-size:0.84rem;font-weight:600;color:var(--t1);">'+p.name+'</div></div></div>'
-    +'<input class="scan-input" style="width:100%;margin:0 0 12px;" placeholder="Bu ürün hakkında skin twin\'lere sor...">'
-    +'<button class="btn-full" style="margin-bottom:24px;">Twin\'lere Sor →</button>'
-    +'<div style="font-size:0.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:12px;">'+qas.length+' SKIN TWIN YANITI</div>';
-  qas.forEach(function(qa){
-    html+='<div class="qa-answer" style="margin-bottom:12px;">'
-      +'<div style="font-size:0.75rem;font-weight:600;color:var(--t1);margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border);">💬 '+qa.q+'</div>'
-      +'<div class="qa-answer-top"><div class="qa-user"><div class="qa-av">'+qa.user[0].toUpperCase()+'</div><div><div class="qa-user-name">'+qa.user+'</div><div class="qa-user-twin">'+(qa.twin?'👯 Skin Twin · ':'')+qa.skin+'</div></div></div>'+(qa.verified?'<div class="qa-verified">✓ Doğrulandı</div>':'')+'</div>'
-      +'<div class="qa-outcome '+(qa.outcome)+'">'+qa.outcomeLabel+'</div>'
-      +'<div class="qa-answer-text">'+qa.a+'</div>'
-      +'<div class="qa-answer-footer"><div class="qa-days">'+qa.days+' günlük deneyim</div><div class="qa-helpful">👍 '+qa.helpful+' faydalı</div></div>'
-      +'</div>';
-  });
-  html+='</div>';
-  $('qa-body').innerHTML=html;
-  openSub('sub-qa');
-};
+function renderReviewCard(item){var p=PRODUCTS[item.productId];if(!p)return '';var bgMap={sage:'var(--sage-pale)',rose:'var(--rose-pale)',gold:'var(--gold-pale)',lav:'var(--lav-pale)'};var prodBg=bgMap[p.vc]||'var(--bg2)';var statsH=item.stats.map(function(s){return '<div class="fc-stat"><span class="fc-stat-ic">'+s.ic+'</span><span class="fc-stat-txt">'+(s.v?'<strong>'+s.v+'</strong> ':'')+s.l+'</span></div>';}).join('');var tagsH=item.tags.map(function(t){return '<div class="fc-tag" style="background:'+t.bg+';color:'+t.c+'">'+t.t+'</div>';}).join('');return '<div class="fc" onclick="openProduct(\''+item.productId+'\')">'+'<div class="fc-rev-top"><div class="fc-prod-row"><div class="fc-prod-ic" style="background:'+prodBg+'">'+p.emoji+'</div><div><div class="fc-prod-brand">'+p.brand+'</div><div class="fc-prod-name">'+p.name+'</div><div class="fc-prod-cat">'+p.cat+' · '+p.users.toLocaleString('tr')+' yorum</div></div></div><div class="fc-score-big" style="color:'+item.scoreColor+'">'+item.score+'</div></div>'+'<div class="fc-rev-body"><div class="fc-rev-txt">'+item.text+'</div></div>'+'<div class="fc-rev-stats">'+statsH+'</div>'+'<div class="mbar-wrap"><div class="mbar-top"><span class="mbar-lbl">Skin Twin Memnuniyeti</span><span class="mbar-lbl" style="color:'+item.bar.color+'">%'+item.bar.pct+'</span></div><div class="mbar"><div class="mbar-fill" style="width:'+item.bar.pct+'%;background:'+item.bar.color+'"></div></div></div>'+'<div class="fc-rev-foot"><div class="fc-user"><div class="fc-av">'+item.user[0].toUpperCase()+'</div><div><div class="fc-user-name">'+item.user+'</div><div class="fc-user-sub">'+item.userSkin+(item.twin?' · 👯 Twin':'')+'</div></div></div><div class="fc-tags">'+tagsH+'</div></div>'+'</div>';}
+
+function renderTrendCards(skinType,concerns){var el=$('trend-cards');if(!el)return;var scores={};Object.keys(PRODUCTS).forEach(function(id){scores[id]=getMatchScore(id,skinType,concerns);});var sorted=Object.keys(PRODUCTS).sort(function(a,b){return scores[b]-scores[a];}).slice(0,5);var bgMap={sage:'tc-img-sage',rose:'tc-img-rose',gold:'tc-img-gold',lav:'tc-img-lav'};var bdgMap={sage:'bdg-safe',rose:'bdg-hot',gold:'bdg-warn',lav:'bdg-new'};var pctMap={sage:'pct-g',rose:'pct-b',gold:'pct-w',lav:'pct-g'};el.innerHTML=sorted.map(function(id){var p=PRODUCTS[id];var sc=scores[id];return '<div class="tc" onclick="openProduct(\''+id+'\')">'+'<div class="tc-img '+bgMap[p.vc]+'">'+p.emoji+'<div class="tc-bdg '+bdgMap[p.vc]+'">'+p.verdict+'</div></div>'+'<div class="tc-body"><div class="tc-brand">'+p.brand+'</div><div class="tc-name">'+p.name+'</div><div class="tc-meta"><div class="tc-score">'+p.score+'</div><div class="tc-pct '+pctMap[p.vc]+'">%'+p.pct+'</div></div><div class="tc-twin">👯 '+(sc>=80?'Yüksek':'sc'>=60?'İyi':'Orta')+' uyumluluk · %'+Math.round(sc)+'</div></div></div>';}).join('');}
+
+function renderTwinTab(skinType,concerns,twinData){var skinLabel=SP.type||'Normal Cilt';if($('twin-group-name')){var parts=skinLabel.split(' ');$('twin-group-name').innerHTML=(parts[0]||skinLabel)+' <em>'+(parts[1]||'Cilt')+'</em>';}if($('tgs-count'))$('tgs-count').textContent=twinData.count.toLocaleString('tr');if($('tgs-products'))$('tgs-products').textContent=Math.floor(twinData.count/30);if($('tgs-reviews'))$('tgs-reviews').textContent=(twinData.reviews/1000).toFixed(1)+'K';var el=$('tpc-traits');if(el){var traits=[skinLabel];(concerns||[]).slice(0,4).forEach(function(c){traits.push(c);});var colors=['rose','','sage','lav','','rose'];el.innerHTML=traits.map(function(t,i){return '<div class="tpc-t '+(colors[i]||'')+'">'+t+'</div>';}).join('');}var el2=$('closet-grid');if(el2){var bgMap={sage:'var(--sage-pale)',rose:'var(--rose-pale)',gold:'var(--gold-pale)',lav:'var(--lav-pale)'};var html=twinData.topProducts.slice(0,5).map(function(id){var p=PRODUCTS[id];if(!p)return '';var match=Math.min(Math.round(getMatchScore(id,skinType,concerns)),97);return '<div class="cg" onclick="openProduct(\''+id+'\')">'+'<div class="cg-img" style="background:'+bgMap[p.vc]+'">'+p.emoji+'<div class="cg-match">%'+match+'</div></div>'+'<div class="cg-body"><div class="cg-name">'+p.brand+'</div><div class="cg-score">★ '+p.score+'</div></div></div>';}).join('');html+='<div class="cg" onclick="openSub(\'sub-scan\')" style="border-style:dashed;"><div class="cg-img" style="background:var(--bg2);font-size:1.3rem;color:var(--t3)">＋</div><div class="cg-body"><div class="cg-name" style="color:var(--t3)">Ekle</div><div class="cg-score" style="color:transparent">-</div></div></div>';el2.innerHTML=html;}var el3=$('risk-cards');if(el3){el3.innerHTML=twinData.riskProducts.map(function(id){var p=PRODUCTS[id];if(!p)return '';return '<div class="risk-card" onclick="openProduct(\''+id+'\')">'+'<div class="risk-ic">'+p.emoji+'</div><div class="risk-info"><div class="risk-name">'+p.brand+' '+p.name+'</div><div class="risk-why">'+p.twin_insight.split('.')[0]+'</div></div>'+'<div class="risk-bdg">'+(p.isRisk?'KAÇIN':'RİSKLİ')+'</div></div>';}).join('');}}
+
+function renderDiscoverList(skinType,concerns){var el=$('discover-list');if(!el)return;var cMap={sage:'var(--sage)',rose:'var(--rose)',gold:'var(--gold)',lav:'var(--lav)'};var bgMap={sage:'var(--sage-pale)',rose:'var(--rose-pale)',gold:'var(--gold-pale)',lav:'var(--lav-pale)'};var sorted=Object.keys(PRODUCTS).sort(function(a,b){return PRODUCTS[b].score-PRODUCTS[a].score;});el.innerHTML=sorted.map(function(id){var p=PRODUCTS[id];var sc=cMap[p.vc];var bg=bgMap[p.vc];var match=Math.round(getMatchScore(id,skinType,concerns));var matchTxt=match>=80?'💚 Yüksek':match>=55?'💛 Orta':'🔴 Düşük';return '<div class="prod-row" onclick="openProduct(\''+id+'\')">'+'<div class="pr-main"><div class="pr-ic" style="background:'+bg+'">'+p.emoji+'</div><div class="pr-info"><div class="pr-brand">'+p.brand+'</div><div class="pr-name">'+p.name+'</div><div class="pr-reviews">'+p.users.toLocaleString('tr')+' yorum · '+matchTxt+' uyumluluk</div></div><div class="pr-right"><div class="pr-score" style="color:'+sc+'">'+p.score+'</div><div class="pr-verdict" style="background:'+bg+';color:'+sc+'">'+p.verdict.toUpperCase().slice(0,7)+'</div></div></div>'+'<div class="pr-metrics"><div class="prm"><span class="prm-ic">'+(p.score>=7?'✅':'⚠️')+'</span><span class="prm-txt"><strong>%'+p.pct+'</strong> memnun</span></div><div class="prm"><span class="prm-ic">👯</span><span class="prm-txt">%'+p.twinPct+' twin</span></div><div class="prm"><span class="prm-ic">💰</span><span class="prm-txt">'+p.price+'</span></div></div>'+'<div class="pr-bar"><div class="prb"><div class="prb-fill" style="width:'+p.pct+'%;background:'+sc+'"></div></div></div></div>';}).join('');}
+
+var cMap={sage:'var(--sage)',rose:'var(--rose)',gold:'var(--gold)',lav:'var(--lav)'};
+var bgMap={sage:'var(--sage-pale)',rose:'var(--rose-pale)',gold:'var(--gold-pale)',lav:'var(--lav-pale)'};
+var heroBgMap={sage:'linear-gradient(135deg,var(--sage-pale),#C8E4CC)',rose:'linear-gradient(135deg,var(--rose-pale),#F0D0CA)',gold:'linear-gradient(135deg,var(--gold-pale),#EDD8B0)',lav:'linear-gradient(135deg,var(--lav-pale),#DDD5F0)'};
+
+window.openProduct=function(id){var p=PRODUCTS[id];if(!p)return;$('det-title').textContent=p.brand;var sc=cMap[p.vc],sbg=bgMap[p.vc],sdoff=Math.round((1-(p.score/10))*201);var skinType=normalizeSkinType(SP.type);var matchScore=getMatchScore(id,skinType,SP.concerns||[]);var ingH=p.ings.map(function(ing){var dot=ing.s==='safe'?'dot-safe':ing.s==='warn'?'dot-warn':ing.s==='risk'?'dot-risk':'dot-mid';var bs=ing.s==='safe'?'background:var(--sage-pale);color:var(--sage)':ing.s==='warn'?'background:var(--gold-pale);color:var(--gold)':ing.s==='risk'?'background:var(--rose-pale);color:var(--rose)':'display:none';var bl=ing.s==='safe'?'Güvenli':ing.s==='warn'?'Dikkat':ing.s==='risk'?'Yüksek Risk':'';return '<div class="ib-row"><div class="ib-dot '+dot+'"></div><div class="ib-body"><div class="ib-name">'+ing.n+'</div><div class="ib-desc">'+ing.d+'</div></div>'+(bl?'<div class="ib-bdg" style="'+bs+'">'+bl+'</div>':'')+'</div>';}).join('');var revH=p.reviews.map(function(r){var rs=r.score>=7?'var(--sage)':r.score>=5?'var(--gold)':'var(--rose)';var rtcls=r.type==='v'?'rt-v':r.type==='o'?'rt-o':'rt-f';var rtl=r.type==='v'?'Doğrulanmış Sonuç':r.type==='o'?'Devam Eden':'İlk İzlenim';return '<div class="rev-item"><div class="ri-top"><div class="ri-user"><div class="ri-av">'+r.u[0].toUpperCase()+'</div><div><div class="ri-name">'+r.u+'</div><div class="ri-skin">'+r.skin+(r.twin?' · 👯 Twin':'')+'</div></div></div><div class="ri-score" style="color:'+rs+'">'+r.score+'</div></div><div class="ri-type '+rtcls+'">'+rtl+'</div><div class="ri-text">'+r.txt+'</div><div class="ri-days">'+r.days+' günlük deneyim</div></div>';}).join('');var tagH=p.tags.map(function(t){var tc=cMap[t.c]||'var(--t2)';var tbg=bgMap[t.c]||'var(--bg2)';return '<div class="det-tag" style="background:'+tbg+';color:'+tc+';border-color:'+tc+'22">'+t.t+'</div>';}).join('');$('det-body').innerHTML='<div class="det-hero"><div class="det-hero-bg" style="background:'+heroBgMap[p.vc]+'"></div><div class="det-hero-cnt"><span class="det-em">'+p.emoji+'</span><div class="det-cat" style="color:'+sc+'">'+p.cat.toUpperCase()+'</div><div class="det-name">'+p.name+'</div><div class="det-brand">'+p.brand+'</div></div></div>'+'<div class="det-score-card"><div class="dsc-top"><svg class="dsc-ring" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="rgba(44,31,26,.08)" stroke-width="4"/><circle cx="32" cy="32" r="28" fill="none" stroke="'+sc+'" stroke-width="4" stroke-dasharray="201" stroke-dashoffset="'+sdoff+'" stroke-linecap="round" transform="rotate(-90 32 32)"/></svg><div><div class="dsc-n" style="color:'+sc+'">'+p.score+'</div><div class="dsc-verdict" style="color:'+sc+'">'+p.verdict+'</div></div></div><div class="dsc-rows"><div class="dscr"><span class="dscr-lbl">Twin Memnuniyeti</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+p.twinPct+'%;background:'+sc+'"></div></div><span class="dscr-val">%'+p.twinPct+'</span></div><div class="dscr"><span class="dscr-lbl">Senin Uyumluluk</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+matchScore+'%;background:'+(matchScore>=70?'var(--sage)':matchScore>=50?'var(--gold)':'var(--rose)')+'"></div></div><span class="dscr-val">%'+Math.round(matchScore)+'</span></div><div class="dscr"><span class="dscr-lbl">Genel Skor</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+(p.score*10)+'%;background:'+sc+'"></div></div><span class="dscr-val">'+p.score+'</span></div></div></div>'+'<div class="det-metrics"><div class="det-metric"><div class="dm-ic">👥</div><div class="dm-n">'+p.users.toLocaleString('tr')+'</div><div class="dm-l">Kullanıcı</div></div><div class="det-metric"><div class="dm-ic">📅</div><div class="dm-n">'+p.weeks+'</div><div class="dm-l">Test</div></div><div class="det-metric"><div class="dm-ic">💰</div><div class="dm-n">'+p.price+'</div><div class="dm-l">Fiyat</div></div></div>'+'<div class="det-tags">'+tagH+'</div>'+'<div style="padding:0 16px;margin-bottom:16px;"><div style="background:linear-gradient(135deg,#2C1F1A,#4A3028);border-radius:16px;padding:16px;"><div style="font-size:.48rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(232,169,156,.65);margin-bottom:8px;">👯 SKIN TWIN INSIGHT</div><div style="font-size:.78rem;color:#FAF8F5;line-height:1.75;font-weight:300;">'+p.twin_insight+'</div></div></div>'+'<div class="ing-block"><div class="ib-hdr">İçerik Analizi</div>'+ingH+'</div>'+'<div style="padding:0 16px;margin-bottom:16px;"><div style="font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px;">Skin Twin Yorumları</div>'+revH+'</div>'+'<div style="padding:0 16px 10px;"><button class="btn-full" onclick="openQA(\''+id+'\')">💬 Q&A — Twin\'lere Sor →</button></div>'+'<div style="padding:0 16px 8px;"><button class="btn-full" style="background:transparent;color:var(--t2);border:1.5px solid var(--border2);box-shadow:none;" onclick="openSub(\'sub-scan\')">+ Takibime Ekle</button></div>'+'<div style="padding:0 16px 32px;"><button style="width:100%;padding:13px;background:transparent;color:var(--t3);border:none;font-size:.7rem;cursor:pointer;" onclick="closeSub(\'sub-detail\')">← Geri</button></div>';openSub('sub-detail');};
+
+window.openQA=function(productId){var p=PRODUCTS[productId];if(!p)return;currentQAProduct=productId;var pbg=bgMap[p.vc]||'var(--bg2)';if($('qa-product-bar'))$('qa-product-bar').innerHTML='<div class="qa-product-bar"><div class="qa-prod-ic" style="background:'+pbg+'">'+p.emoji+'</div><div><div style="font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;">'+p.brand+'</div><div style="font-size:.8rem;font-weight:600;color:var(--t1);">'+p.name+'</div></div></div>';renderQAThread(productId);openSub('sub-qa');};
+
+function renderQAThread(productId){var el=$('qa-thread');if(!el)return;var stored=[];try{var raw=localStorage.getItem('lumo_qa_'+productId);if(raw)stored=JSON.parse(raw);}catch(e){}var seed=QA_SEED[productId]||[];var all=seed.concat(stored).sort(function(a,b){return (a.ts||0)-(b.ts||0);});if(all.length===0){el.innerHTML='<div class="qa-empty"><div class="qa-empty-ic">💬</div><div class="qa-empty-txt">Henüz soru yok.<br>İlk soruyu soran sen ol!</div></div>';return;}el.innerHTML=all.map(function(qa){var isOwn=qa.uid&&U&&qa.uid===U.uid;var oc=qa.outcome==='good'?'qa-out-good':qa.outcome==='bad'?'qa-out-bad':'qa-out-mixed';return '<div class="qa-msg'+(isOwn?' own':'')+'">'+'<div style="font-size:.72rem;font-weight:600;color:var(--t1);margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border);">💬 '+qa.q+'</div>'+'<div class="qa-msg-top"><div class="qa-user"><div class="qa-av">'+qa.user[0].toUpperCase()+'</div><div><div class="qa-u-name">'+qa.user+'</div><div class="qa-u-twin">'+(qa.twin?'👯 Skin Twin · ':'')+qa.skin+'</div></div></div>'+(qa.ver?'<div class="qa-ver">✓ Doğrulandı</div>':'')+'</div>'+(qa.outcome?'<div class="qa-outcome '+oc+'">'+qa.ol+'</div>':'')+'<div class="qa-msg-text">'+qa.a+'</div>'+'<div class="qa-msg-foot"><div class="qa-days">'+qa.days+' günlük deneyim</div><div class="qa-helpful">👍 '+(qa.helpful||0)+' faydalı</div></div></div>';}).join('');setTimeout(function(){if($('qa-scroll'))$('qa-scroll').scrollTop=99999;},100);}
+
+window.sendQA=function(){var inp=$('qa-input');if(!inp)return;var q=inp.value.trim();if(!q)return;var productId=currentQAProduct;if(!productId)return;var p=PRODUCTS[productId];if(!p)return;var skinType=normalizeSkinType(SP.type);var matchScore=getMatchScore(productId,skinType,SP.concerns||[]);var autoResp=matchScore>=70?'Skin twin grubun bu ürünü %'+p.twinPct+' oranında olumlu değerlendiriyor. '+p.twin_insight:matchScore>=50?'Bu ürün senin cilt profilinle orta düzeyde uyumlu (%'+Math.round(matchScore)+'). '+p.twin_insight:'Bu ürün senin cilt profilin için önerilmiyor (%'+Math.round(matchScore)+' uyumluluk). '+p.twin_insight;var newMsg={id:'u'+Date.now(),uid:U?U.uid:'guest',user:'Sen',skin:(SP.type||'Bilinmiyor'),twin:true,ver:false,q:q,a:autoResp,days:0,helpful:0,outcome:matchScore>=70?'good':matchScore>=50?'mixed':'bad',ol:matchScore>=70?'Uyumlu':matchScore>=50?'Karma':'Dikkatli Ol',ts:Date.now()};try{var raw=localStorage.getItem('lumo_qa_'+productId);var stored=raw?JSON.parse(raw):[];stored.push(newMsg);localStorage.setItem('lumo_qa_'+productId,JSON.stringify(stored));}catch(e){}inp.value='';renderQAThread(productId);toast('✓ Sorun gönderildi — skin twin yanıtı hazırlandı');};
 
 var sCat=null,camStream=null;
-window.selCat=function(el){document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');sCat=el.dataset.cat;checkScanReady();};
-function checkScanReady(){if($('scan-cta'))$('scan-cta').disabled=!($('scan-name')&&$('scan-name').value.trim()&&sCat);}
-var scanInput=$('scan-name');if(scanInput)scanInput.addEventListener('input',checkScanReady);
-
-function startCamera(){
-  var hint=document.querySelector('.scan-hint-txt');
-  if(!navigator.mediaDevices){if(hint)hint.textContent='Manuel giriş yapın';return;}
-  navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(function(stream){
-    camStream=stream;var v=$('scan-video');if(v)v.srcObject=stream;
-  }).catch(function(){if(hint)hint.textContent='Kamera erişimi yok — manuel girin';});
-}
+window.selCat=function(el){document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');sCat=el.dataset.cat;chkScan();};
+function chkScan(){if($('scan-cta'))$('scan-cta').disabled=!($('scan-name')&&$('scan-name').value.trim()&&sCat);}
+var si=$('scan-name');if(si)si.addEventListener('input',chkScan);
+function startCamera(){var hint=document.querySelector('.scan-hint');if(!navigator.mediaDevices){if(hint)hint.textContent='Manuel giriş yapın';return;}navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(function(s){camStream=s;var v=$('scan-vid');if(v)v.srcObject=s;}).catch(function(){if(hint)hint.textContent='Kamera yok — manuel girin';});}
 function stopCamera(){if(camStream){camStream.getTracks().forEach(function(t){t.stop();});camStream=null;}}
+window.addProduct=function(){var name=$('scan-name').value.trim();if(!name||!sCat)return;var cm={cleanser:{e:'🧼',l:'Temizleyici',d:7},moisturizer:{e:'💧',l:'Nemlendirici',d:14},serum:{e:'🧬',l:'Serum',d:42},spf:{e:'☀️',l:'SPF',d:5},toner:{e:'💦',l:'Tonik',d:14},eye:{e:'👁️',l:'Göz Kremi',d:21}};var m=cm[sCat]||{e:'📦',l:'Ürün',d:14};var prod={id:'p'+Date.now(),name:name,cat:sCat,e:m.e,l:m.l,days:m.d,done:0,added:new Date().toISOString(),ci:[],status:'active'};prods.unshift(prod);sv('prods',prods);$('scan-name').value='';document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});sCat=null;if($('scan-cta'))$('scan-cta').disabled=true;stopCamera();closeSub('sub-scan');streak=Math.min(streak+1,7);sv('streak',streak);renderStats();renderStreakDots();toast('✓ '+name+' skin twin takibine eklendi 🌸');};
 
-window.addProduct=function(){
-  var name=$('scan-name').value.trim();if(!name||!sCat)return;
-  var catMap={cleanser:{e:'🧼',l:'Temizleyici',d:7},moisturizer:{e:'💧',l:'Nemlendirici',d:14},serum:{e:'🧬',l:'Serum',d:42},spf:{e:'☀️',l:'SPF',d:5},toner:{e:'💦',l:'Tonik',d:14},eye:{e:'👁️',l:'Göz Kremi',d:21}};
-  var m=catMap[sCat]||{e:'📦',l:'Ürün',d:14};
-  var prod={id:'p'+Date.now(),name:name,cat:sCat,e:m.e,l:m.l,days:m.d,done:0,added:new Date().toISOString(),ci:[],status:'active'};
-  prods.unshift(prod);sv('prods',prods);renderStats();
-  $('scan-name').value='';document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});
-  sCat=null;if($('scan-cta'))$('scan-cta').disabled=true;
-  stopCamera();closeSub('sub-scan');
-  toast('✓ '+name+' skin twin takibine eklendi 🌸');
-  streak=Math.min(streak+1,7);sv('streak',streak);renderStreakDots();renderStats();
-};
+function renderSkinProfile(){var el=$('skin-chips');if(!el)return;var items=[];if(SP.type)items.push(SP.type);(SP.concerns||[]).slice(0,4).forEach(function(c){items.push(c);});el.innerHTML=items.length?items.map(function(t){return '<div class="skin-chip">'+t+'</div>';}).join(''):'<div class="skin-chip">Profil yok</div>';}
+function renderStats(){var rev=prods.filter(function(p){return p.status==='reviewed';}).length;var days=prods.reduce(function(a,p){return a+(p.done||0);},0);if($('psr-t'))$('psr-t').textContent=prods.length;if($('psr-r'))$('psr-r').textContent=rev;if($('psr-d'))$('psr-d').textContent=days;if($('psr-s'))$('psr-s').textContent=streak;}
+function renderStreakDots(){var el=$('sc-dots');if(!el)return;var h='';for(var i=0;i<7;i++){h+='<div class="sc-dot '+(i<streak?'scd-done':i===streak?'scd-today':'scd-future')+'">'+(i<streak?'✓':i===streak?'•':'')+'</div>';}el.innerHTML=h;}
+window.swTab=function(tab){document.querySelectorAll('.tab-view').forEach(function(t){t.classList.remove('on');});document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});var tv=$('tv-'+tab),nb=$('nb-'+tab);if(tv)tv.classList.add('on');if(nb)nb.classList.add('on');};
+window.doLogout=function(){if(!confirm('Çıkış yapmak istiyor musun?'))return;localStorage.removeItem('lu_session');U=null;SP={};prods=[];streak=0;showScreen('s-ob');startOb();};
 
-}catch(e){
-  console.error('Lumo V2:',e);
-  var ob=document.getElementById('s-ob');
-  if(ob)ob.classList.add('on');
-}
+}catch(e){console.error('Lumo V3:',e);var ob=document.getElementById('s-ob');if(ob)ob.classList.add('on');}
 })();
 </script>
 </body>
