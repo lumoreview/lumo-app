@@ -3,425 +3,428 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Lumo — Güzellik Zekası</title>
+<title>Lumo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --void:#040406;--deep:#080810;--surface:#0f0f18;--card:#161622;--lift:#1e1e2e;
-  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);
-  --white:#ede9e1;--gold:#b8965a;--gold2:#d4a96a;--gold3:#e8c080;
-  --red:#c94f4f;--green:#4caf7d;--orange:#c4784a;--blue:#4a7ec4;
-  --muted:rgba(237,233,225,0.35);--faint:rgba(237,233,225,0.08);
+  --cream:#faf8f5;--cream2:#f5f1eb;--cream3:#ede8df;
+  --blush:#f9ede8;--blush2:#f0ddd6;--lavender:#f0edf6;--sage:#edf3ee;
+  --white:#ffffff;--ink:#1a1714;--ink2:#3d3730;--ink3:#6b6259;
+  --muted:#9e9089;--border:#e8e2d9;--border2:#d8d0c5;
+  --rose:#c4756a;--rose2:#e8958a;--green:#5a9e7a;--green2:#7ab894;
+  --amber:#c49a5a;--amber2:#e8c080;--red-soft:#d4756a;--blue-soft:#7a9ec4;
+  --shadow:rgba(26,23,20,0.06);--shadow2:rgba(26,23,20,0.12);
 }
-html,body{width:100%;height:100%;overflow:hidden;background:#000;}
-body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-items:center;-webkit-font-smoothing:antialiased;}
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:0.25;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");}
-.phone{width:min(390px,100vw);height:min(844px,100vh);background:var(--void);overflow:hidden;position:relative;display:flex;flex-direction:column;border-radius:min(44px,5vw);box-shadow:0 0 0 1px rgba(255,255,255,0.05),0 50px 150px rgba(0,0,0,0.95),inset 0 1px 0 rgba(255,255,255,0.04);}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--cream3);}
+body{font-family:'Instrument Sans',sans-serif;display:flex;justify-content:center;align-items:center;-webkit-font-smoothing:antialiased;}
+.phone{width:min(390px,100vw);height:min(844px,100vh);background:var(--cream);overflow:hidden;position:relative;display:flex;flex-direction:column;border-radius:min(44px,5vw);box-shadow:0 0 0 1px var(--border),0 32px 80px rgba(26,23,20,0.18),0 8px 24px rgba(26,23,20,0.08);}
 .screen{position:absolute;inset:0;display:none;flex-direction:column;}
 .screen.on{display:flex;}
 .scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .scroll::-webkit-scrollbar{display:none;}
-#s-splash{background:var(--void);align-items:center;justify-content:center;z-index:100;animation:splashAuto 0.5s 2s ease-out forwards;}
-@keyframes splashAuto{to{opacity:0;pointer-events:none;visibility:hidden;}}
-.splash-inner{display:flex;flex-direction:column;align-items:center;}
-.splash-mark{width:1px;height:48px;background:linear-gradient(180deg,transparent,var(--gold),transparent);margin-bottom:24px;animation:markIn 1.2s ease-out forwards;}
-@keyframes markIn{from{height:0;opacity:0;}to{height:48px;opacity:1;}}
-.splash-logo{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:300;color:var(--white);letter-spacing:8px;text-transform:uppercase;opacity:0;animation:fadeUp 0.8s 0.5s ease-out forwards;}
-.splash-rule{width:40px;height:1px;background:var(--gold);margin:12px auto;opacity:0;animation:fadeUp 0.6s 0.9s ease-out forwards;}
-.splash-sub{font-family:'Syne',sans-serif;font-size:0.46rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:0;animation:fadeUp 0.6s 1.1s ease-out forwards;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
-#s-welcome{background:var(--void);z-index:50;}
-.wl-ambient{position:absolute;bottom:0;left:0;right:0;height:60%;background:radial-gradient(ellipse 100% 60% at 50% 100%,rgba(184,150,90,0.06) 0%,transparent 70%);pointer-events:none;}
+#s-splash{background:var(--cream);align-items:center;justify-content:center;z-index:100;animation:splashOut 0.5s 1.8s ease-out forwards;}
+@keyframes splashOut{to{opacity:0;pointer-events:none;visibility:hidden;}}
+.sp-petal{font-size:2.8rem;margin-bottom:16px;animation:petalIn 1s ease-out forwards;}
+@keyframes petalIn{from{opacity:0;transform:scale(0.7) rotate(-10deg);}to{opacity:1;transform:scale(1) rotate(0deg);}}
+.sp-logo{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:400;color:var(--ink);letter-spacing:2px;opacity:0;animation:riseUp 0.7s 0.4s ease-out forwards;}
+@keyframes riseUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.sp-tagline{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:6px;opacity:0;animation:riseUp 0.7s 0.7s ease-out forwards;font-weight:500;}
+#s-welcome{background:var(--cream);z-index:50;}
+.wl-bg{position:absolute;top:0;left:0;right:0;height:55%;background:linear-gradient(160deg,var(--blush) 0%,var(--cream) 70%);pointer-events:none;}
 .wl-wrap{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;}
 .wl-top{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 28px 0;}
-.wl-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
-.wl-line{flex:1;height:1px;background:var(--border2);}
-.wl-eyebrow-txt{font-family:'Syne',sans-serif;font-size:0.46rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
-.wl-h1{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:300;line-height:0.9;letter-spacing:-1px;color:var(--white);margin-bottom:6px;}
-.wl-h1 em{font-style:italic;color:var(--gold3);}
-.wl-h1 strong{font-weight:600;}
-.wl-body{font-size:0.78rem;color:var(--muted);line-height:1.75;max-width:270px;margin-bottom:28px;font-weight:300;}
-.wl-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px;}
-.wl-tag{font-family:'Syne',sans-serif;font-size:0.48rem;letter-spacing:1.5px;text-transform:uppercase;padding:5px 10px;border:1px solid var(--border2);border-radius:1px;color:var(--muted);}
-.wl-tag.hot{border-color:rgba(201,79,79,0.3);color:var(--red);}
-.wl-tag.safe{border-color:rgba(76,175,125,0.3);color:var(--green);}
-.wl-proof{display:flex;align-items:center;gap:10px;margin-bottom:32px;}
-.wl-avatars{display:flex;}
-.wl-av{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--void);background:var(--lift);font-size:0.55rem;display:flex;align-items:center;justify-content:center;margin-left:-7px;}
+.wl-logo-row{display:flex;align-items:center;gap:8px;margin-bottom:32px;}
+.wl-logo-mark{width:28px;height:28px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;}
+.wl-logo-txt{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ink);letter-spacing:1px;}
+.wl-h1{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:400;line-height:1.0;color:var(--ink);margin-bottom:10px;letter-spacing:-0.5px;}
+.wl-h1 em{font-style:italic;color:var(--rose);}
+.wl-body{font-size:0.8rem;color:var(--ink3);line-height:1.75;max-width:280px;margin-bottom:24px;font-weight:400;}
+.wl-trust-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px;}
+.wl-chip{font-size:0.6rem;letter-spacing:0.5px;padding:5px 11px;border-radius:20px;font-weight:500;}
+.chip-blush{background:var(--blush2);color:var(--rose);}
+.chip-sage{background:var(--sage);color:var(--green);}
+.chip-lavender{background:var(--lavender);color:#7a72c4;}
+.chip-cream{background:var(--cream2);color:var(--ink3);border:1px solid var(--border);}
+.wl-proof{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
+.wl-avs{display:flex;}
+.wl-av{width:26px;height:26px;border-radius:50%;border:2px solid var(--cream);background:var(--blush2);font-size:0.6rem;display:flex;align-items:center;justify-content:center;margin-left:-8px;font-weight:600;color:var(--rose);}
 .wl-av:first-child{margin-left:0;}
-.wl-proof-copy{font-size:0.68rem;color:var(--muted);line-height:1.4;}
-.wl-proof-copy strong{color:var(--white);}
-.wl-actions{padding:0 24px 40px;}
-.cta-primary{width:100%;padding:17px;background:var(--white);color:var(--void);border:none;border-radius:1px;font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
-.cta-primary:active{opacity:0.9;}
-.cta-secondary{width:100%;padding:15px;background:transparent;color:var(--muted);border:1px solid var(--border2);border-radius:1px;font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;margin-top:8px;transition:all 0.2s;}
-.cta-secondary:active{border-color:var(--gold);color:var(--gold);}
-.wl-fine{font-size:0.55rem;color:rgba(237,233,225,0.12);text-align:center;margin-top:12px;letter-spacing:0.5px;}
-#s-auth{background:var(--deep);}
-.auth-bar{padding:50px 22px 0;display:flex;align-items:center;gap:12px;}
-.icon-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border2);background:transparent;color:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all 0.15s;flex-shrink:0;}
-.icon-btn:active{background:var(--faint);}
-.auth-mark{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--white);letter-spacing:3px;text-transform:uppercase;}
-.auth-body{flex:1;overflow-y:auto;padding:24px 24px 32px;}
-.auth-body::-webkit-scrollbar{display:none;}
-.auth-kicker{font-family:'Syne',sans-serif;font-size:0.46rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-.auth-h{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--white);line-height:1.05;margin-bottom:3px;}
-.auth-h em{font-style:italic;color:var(--gold3);}
-.auth-hint{font-size:0.74rem;color:var(--muted);margin-bottom:24px;font-weight:300;}
-.tabs{display:flex;border:1px solid var(--border);border-radius:1px;overflow:hidden;margin-bottom:20px;}
-.tab{flex:1;padding:10px;text-align:center;font-family:'Syne',sans-serif;font-size:0.6rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;color:var(--muted);transition:all 0.2s;background:transparent;}
-.tab.on{background:var(--surface);color:var(--white);}
-.field{margin-bottom:14px;}
-.field-label{font-family:'Syne',sans-serif;font-size:0.48rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(237,233,225,0.3);display:block;margin-bottom:6px;}
-.field-inp{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:1px;font-family:'DM Sans',sans-serif;font-size:0.86rem;color:var(--white);background:var(--surface);outline:none;-webkit-appearance:none;transition:border-color 0.2s;}
-.field-inp:focus{border-color:var(--gold);}
-.field-inp::placeholder{color:rgba(237,233,225,0.15);}
-.auth-submit{width:100%;padding:15px;background:var(--white);color:var(--void);border:none;border-radius:1px;font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:6px;}
-.auth-submit:disabled{background:var(--surface);color:rgba(237,233,225,0.2);cursor:default;}
-.or-line{display:flex;align-items:center;gap:10px;margin:16px 0;}
-.or-line::before,.or-line::after{content:'';flex:1;height:1px;background:var(--border);}
-.or-line span{font-family:'Syne',sans-serif;font-size:0.5rem;color:rgba(237,233,225,0.15);letter-spacing:2px;text-transform:uppercase;}
-.g-btn{width:100%;padding:13px;border:1px solid var(--border2);border-radius:1px;background:transparent;font-family:'Syne',sans-serif;font-size:0.64rem;font-weight:600;letter-spacing:1px;color:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;}
-.g-btn:active{background:var(--faint);}
-.auth-err{font-size:0.7rem;min-height:16px;text-align:center;margin-top:8px;color:var(--red);}
-#s-ob{background:var(--void);}
-.ob-prog{height:1px;background:var(--border);flex-shrink:0;}
-.ob-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold3));transition:width 0.4s ease;}
-.ob-top{padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
-.ob-counter{font-family:'Syne',sans-serif;font-size:0.5rem;letter-spacing:2px;color:rgba(237,233,225,0.2);text-transform:uppercase;}
-.ob-skip{background:none;border:none;font-family:'Syne',sans-serif;font-size:0.58rem;color:rgba(237,233,225,0.15);cursor:pointer;}
-.ob-content{flex:1;padding:12px 24px 0;overflow-y:auto;}
+.wl-proof-txt{font-size:0.7rem;color:var(--ink3);line-height:1.45;}
+.wl-proof-txt strong{color:var(--ink);font-weight:600;}
+.wl-actions{padding:0 24px 36px;}
+.btn-primary{width:100%;padding:16px;background:var(--ink);color:var(--cream);border:none;border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s;}
+.btn-primary:active{opacity:0.9;transform:scale(0.99);}
+.btn-secondary{width:100%;padding:15px;background:transparent;color:var(--ink2);border:1.5px solid var(--border2);border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:0.76rem;font-weight:500;cursor:pointer;margin-top:8px;}
+.btn-secondary:active{background:var(--cream2);}
+.wl-fine{font-size:0.56rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.6;}
+#s-auth{background:var(--cream);}
+.auth-nav{padding:50px 22px 0;display:flex;align-items:center;gap:14px;}
+.back-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border2);background:transparent;cursor:pointer;color:var(--ink2);font-size:1rem;display:flex;align-items:center;justify-content:center;}
+.back-btn:active{background:var(--cream2);}
+.auth-wordmark{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ink);}
+.auth-scroll{flex:1;overflow-y:auto;padding:24px 24px 32px;}
+.auth-scroll::-webkit-scrollbar{display:none;}
+.auth-eyebrow{font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose);margin-bottom:8px;font-weight:600;}
+.auth-h{font-family:'Playfair Display',serif;font-size:2rem;color:var(--ink);line-height:1.08;margin-bottom:3px;}
+.auth-h em{font-style:italic;color:var(--rose);}
+.auth-sub{font-size:0.76rem;color:var(--ink3);margin-bottom:24px;line-height:1.5;}
+.seg{display:flex;background:var(--cream2);border-radius:10px;padding:3px;margin-bottom:20px;}
+.seg-btn{flex:1;padding:9px;text-align:center;font-size:0.68rem;font-weight:600;border-radius:8px;cursor:pointer;color:var(--muted);}
+.seg-btn.on{background:var(--white);color:var(--ink);box-shadow:0 1px 6px var(--shadow2);}
+.fld{margin-bottom:14px;}
+.fld-label{font-size:0.6rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:6px;}
+.fld-inp{width:100%;padding:13px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Instrument Sans',sans-serif;font-size:0.86rem;color:var(--ink);outline:none;background:var(--white);-webkit-appearance:none;transition:border-color 0.2s;}
+.fld-inp:focus{border-color:var(--rose2);}
+.fld-inp::placeholder{color:var(--muted);}
+.auth-btn{width:100%;padding:15px;background:var(--ink);color:var(--cream);border:none;border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;margin-top:6px;}
+.auth-btn:disabled{background:var(--border2);color:var(--muted);cursor:default;}
+.or-sep{display:flex;align-items:center;gap:10px;margin:16px 0;}
+.or-sep::before,.or-sep::after{content:'';flex:1;height:1px;background:var(--border);}
+.or-sep span{font-size:0.6rem;color:var(--muted);letter-spacing:1px;}
+.g-btn{width:100%;padding:13px;border:1.5px solid var(--border);border-radius:12px;background:var(--white);font-family:'Instrument Sans',sans-serif;font-size:0.74rem;font-weight:500;color:var(--ink2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;}
+.g-btn:active{background:var(--cream2);}
+.auth-err{font-size:0.72rem;min-height:16px;text-align:center;margin-top:8px;color:var(--red-soft);}
+#s-ob{background:var(--cream);}
+.ob-prog{height:2px;background:var(--border);flex-shrink:0;}
+.ob-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--rose2));transition:width 0.4s ease;}
+.ob-top{padding:20px 24px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.ob-step{font-size:0.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:500;}
+.ob-skip{background:none;border:none;font-size:0.68rem;color:var(--muted);cursor:pointer;}
+.ob-content{flex:1;padding:8px 24px 0;overflow-y:auto;}
 .ob-content::-webkit-scrollbar{display:none;}
-.ob-glyph{font-size:2.2rem;margin-bottom:14px;display:block;}
-.ob-q{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:400;color:var(--white);line-height:1.1;margin-bottom:6px;}
-.ob-sub{font-size:0.72rem;color:var(--muted);margin-bottom:20px;font-weight:300;line-height:1.6;}
-.ob-choices{display:flex;flex-direction:column;gap:7px;}
-.ob-choice{padding:13px 16px;border:1px solid var(--border);border-radius:1px;font-size:0.82rem;color:rgba(237,233,225,0.55);cursor:pointer;background:var(--surface);font-family:'DM Sans',sans-serif;display:flex;justify-content:space-between;align-items:center;transition:all 0.18s;}
-.ob-choice.sel{border-color:var(--gold);background:rgba(184,150,90,0.07);color:var(--white);}
-.ob-choice.sel::after{content:'✓';color:var(--gold);font-size:0.75rem;}
-.ob-foot{padding:14px 24px 30px;flex-shrink:0;}
-.ob-cta{width:100%;padding:15px;background:var(--white);color:var(--void);border:none;border-radius:1px;font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
-.ob-cta:disabled{background:var(--surface);color:rgba(237,233,225,0.15);cursor:default;}
-#s-app{background:var(--void);}
+.ob-icon{font-size:2.4rem;margin-bottom:14px;display:block;}
+.ob-q{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:400;color:var(--ink);line-height:1.15;margin-bottom:6px;}
+.ob-hint{font-size:0.74rem;color:var(--ink3);margin-bottom:20px;line-height:1.55;}
+.ob-choices{display:flex;flex-direction:column;gap:8px;}
+.ob-choice{padding:14px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:0.84rem;color:var(--ink2);cursor:pointer;background:var(--white);font-family:'Instrument Sans',sans-serif;display:flex;justify-content:space-between;align-items:center;transition:all 0.18s;}
+.ob-choice.sel{border-color:var(--rose);background:var(--blush);color:var(--ink);}
+.ob-choice.sel::after{content:'✓';color:var(--rose);font-size:0.8rem;font-weight:600;}
+.ob-foot{padding:16px 24px 32px;flex-shrink:0;}
+.ob-cta{width:100%;padding:16px;background:var(--ink);color:var(--cream);border:none;border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;}
+.ob-cta:disabled{background:var(--border);color:var(--muted);cursor:default;}
+#s-app{background:var(--cream);}
 .tab-view{position:absolute;inset:0;bottom:64px;display:none;flex-direction:column;overflow-y:auto;}
 .tab-view::-webkit-scrollbar{display:none;}
 .tab-view.on{display:flex;}
-.bnav{position:absolute;bottom:0;left:0;right:0;height:64px;background:var(--deep);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding-bottom:6px;}
-.bnav::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(184,150,90,0.25),transparent);}
-.nb{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;background:none;border:none;padding:5px 14px;}
-.nb-ic{font-size:1rem;opacity:0.25;transition:opacity 0.2s;}
-.nb-lb{font-family:'Syne',sans-serif;font-size:0.44rem;color:rgba(237,233,225,0.2);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:color 0.2s;}
-.nb.on .nb-ic{opacity:0.9;}
-.nb.on .nb-lb{color:var(--gold);}
-.nb-scan{width:46px;height:46px;border-radius:50%;background:var(--white);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-top:-12px;box-shadow:0 0 0 1px rgba(255,255,255,0.1),0 8px 24px rgba(0,0,0,0.6);}
-.nb-scan:active{transform:scale(0.94);}
-.home-header{padding:52px 20px 0;display:flex;justify-content:space-between;align-items:flex-end;flex-shrink:0;margin-bottom:20px;}
-.home-wordmark{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--white);letter-spacing:4px;text-transform:uppercase;}
-.home-wordmark span{color:var(--gold);}
-.home-av{width:32px;height:32px;border-radius:50%;background:var(--lift);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:0.85rem;color:var(--gold);cursor:pointer;font-weight:600;}
-.search-box{margin:0 16px 20px;position:relative;}
-.search-ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:rgba(237,233,225,0.2);font-size:0.9rem;}
-.search-inp{width:100%;padding:13px 14px 13px 38px;background:var(--surface);border:1px solid var(--border);border-radius:1px;font-family:'DM Sans',sans-serif;font-size:0.84rem;color:var(--white);outline:none;-webkit-appearance:none;}
-.search-inp::placeholder{color:rgba(237,233,225,0.2);}
-.verdict-strip{display:flex;gap:8px;padding:0 16px;margin-bottom:22px;overflow-x:auto;}
-.verdict-strip::-webkit-scrollbar{display:none;}
-.vs-pill{flex-shrink:0;display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:1px;border:1px solid;cursor:pointer;}
-.vs-pill-overhyped{border-color:rgba(201,79,79,0.3);background:rgba(201,79,79,0.06);}
-.vs-pill-worth{border-color:rgba(76,175,125,0.3);background:rgba(76,175,125,0.06);}
-.vs-pill-trigger{border-color:rgba(196,120,74,0.3);background:rgba(196,120,74,0.06);}
-.vs-pill-safe{border-color:rgba(74,126,196,0.3);background:rgba(74,126,196,0.06);}
-.vs-dot{width:5px;height:5px;border-radius:50%;}
-.vs-txt{font-family:'Syne',sans-serif;font-size:0.5rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;}
-.vs-pill-overhyped .vs-dot{background:var(--red);}
-.vs-pill-overhyped .vs-txt{color:var(--red);}
-.vs-pill-worth .vs-dot{background:var(--green);}
-.vs-pill-worth .vs-txt{color:var(--green);}
-.vs-pill-trigger .vs-dot{background:var(--orange);}
-.vs-pill-trigger .vs-txt{color:var(--orange);}
-.vs-pill-safe .vs-dot{background:var(--blue);}
-.vs-pill-safe .vs-txt{color:var(--blue);}
-.sec{margin-bottom:24px;}
+.bnav{position:absolute;bottom:0;left:0;right:0;height:64px;background:var(--white);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding-bottom:6px;}
+.nb{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;background:none;border:none;padding:5px 12px;}
+.nb-ic{font-size:1.1rem;opacity:0.3;transition:opacity 0.2s;}
+.nb-lb{font-size:0.46rem;color:var(--muted);font-weight:600;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.2s;}
+.nb.on .nb-ic{opacity:1;}
+.nb.on .nb-lb{color:var(--rose);}
+.nb-scan{width:48px;height:48px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-top:-14px;box-shadow:0 4px 16px var(--shadow2),0 0 0 3px var(--cream);}
+.nb-scan:active{transform:scale(0.93);}
+.home-hdr{padding:52px 20px 16px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.home-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--ink);letter-spacing:0.5px;}
+.home-logo em{font-style:italic;color:var(--rose);}
+.home-av{width:34px;height:34px;border-radius:50%;background:var(--blush2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--rose);cursor:pointer;font-weight:500;border:1.5px solid var(--border2);}
+.search-wrap{margin:0 16px 18px;position:relative;}
+.search-ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:0.9rem;}
+.search-inp{width:100%;padding:12px 14px 12px 38px;background:var(--white);border:1.5px solid var(--border);border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:0.84rem;color:var(--ink);outline:none;-webkit-appearance:none;box-shadow:0 1px 4px var(--shadow);}
+.search-inp::placeholder{color:var(--muted);}
+.pill-row{display:flex;gap:7px;padding:0 16px;margin-bottom:20px;overflow-x:auto;}
+.pill-row::-webkit-scrollbar{display:none;}
+.vpill{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:7px 13px;border-radius:20px;cursor:pointer;font-size:0.58rem;font-weight:600;letter-spacing:0.3px;}
+.vpill-hype{background:var(--blush);color:var(--rose);}
+.vpill-worth{background:var(--sage);color:var(--green);}
+.vpill-acne{background:#fef3e8;color:#b8763a;}
+.vpill-barrier{background:var(--lavender);color:#7a72c4;}
+.vpill-dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
+.sec{margin-bottom:22px;}
 .sec-hdr{padding:0 20px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
-.sec-title{font-family:'Syne',sans-serif;font-size:0.5rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(237,233,225,0.25);}
-.sec-more{font-family:'Syne',sans-serif;font-size:0.5rem;color:var(--gold);cursor:pointer;}
-.prod-list{padding:0 16px;display:flex;flex-direction:column;gap:8px;}
-.pcard{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:14px;display:flex;gap:12px;align-items:center;cursor:pointer;position:relative;overflow:hidden;transition:background 0.15s;}
-.pcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;}
-.pcard.tag-overhyped::before{background:var(--red);}
-.pcard.tag-worth::before{background:var(--green);}
-.pcard.tag-trigger::before{background:var(--orange);}
-.pcard.tag-safe::before{background:var(--blue);}
-.pcard:active{background:var(--lift);}
-.pcard-icon{width:42px;height:42px;background:var(--surface);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
-.pcard-body{flex:1;min-width:0;}
-.pcard-name{font-size:0.84rem;font-weight:500;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.pcard-meta{font-family:'Syne',sans-serif;font-size:0.48rem;color:rgba(237,233,225,0.25);letter-spacing:1px;text-transform:uppercase;margin:2px 0 6px;}
-.pcard-score-row{display:flex;align-items:center;gap:6px;}
-.pcard-bar{flex:1;height:2px;background:var(--border);border-radius:1px;overflow:hidden;}
-.pcard-bar-fill{height:100%;border-radius:1px;}
-.pcard-num{font-family:'Syne',sans-serif;font-size:0.58rem;font-weight:700;}
-.pcard-badge{font-family:'Syne',sans-serif;font-size:0.44rem;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border-radius:1px;flex-shrink:0;}
-.badge-overhyped{background:rgba(201,79,79,0.1);color:var(--red);border:1px solid rgba(201,79,79,0.2);}
-.badge-worth{background:rgba(76,175,125,0.1);color:var(--green);border:1px solid rgba(76,175,125,0.2);}
-.badge-trigger{background:rgba(196,120,74,0.1);color:var(--orange);border:1px solid rgba(196,120,74,0.2);}
-.badge-safe{background:rgba(74,126,196,0.1);color:var(--blue);border:1px solid rgba(74,126,196,0.2);}
-.badge-tracking{background:rgba(237,233,225,0.05);color:rgba(237,233,225,0.3);border:1px solid var(--border);}
+.sec-label{font-size:0.6rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+.sec-link{font-size:0.62rem;color:var(--rose);cursor:pointer;font-weight:500;}
 .hscroll{display:flex;gap:10px;padding:0 16px;overflow-x:auto;}
 .hscroll::-webkit-scrollbar{display:none;}
-.hcard{flex-shrink:0;width:140px;background:var(--card);border:1px solid var(--border);border-radius:2px;padding:14px;cursor:pointer;}
-.hcard-emoji{font-size:1.5rem;margin-bottom:8px;}
-.hcard-name{font-size:0.76rem;font-weight:500;color:var(--white);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.hcard-cat{font-family:'Syne',sans-serif;font-size:0.46rem;color:rgba(237,233,225,0.2);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
-.hcard-score{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;line-height:1;}
-.hcard-verdict{font-family:'Syne',sans-serif;font-size:0.44rem;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
-.ci-card{margin:0 16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:16px;display:none;}
-.ci-eyebrow{font-family:'Syne',sans-serif;font-size:0.46rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-.ci-q{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white);margin-bottom:14px;line-height:1.25;}
+.hcard{flex-shrink:0;width:148px;background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:14px;cursor:pointer;box-shadow:0 1px 4px var(--shadow);}
+.hcard-emoji{font-size:1.6rem;margin-bottom:8px;}
+.hcard-name{font-size:0.76rem;font-weight:500;color:var(--ink);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hcard-cat{font-size:0.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-weight:500;}
+.hcard-score{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:500;line-height:1;}
+.hcard-tag{font-size:0.52rem;font-weight:600;letter-spacing:0.3px;margin-top:3px;}
+.plist{padding:0 16px;display:flex;flex-direction:column;gap:9px;}
+.pcard{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:all 0.15s;box-shadow:0 1px 4px var(--shadow);}
+.pcard:active{background:var(--cream2);transform:scale(0.99);}
+.pcard-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.pcard-icon-blush{background:var(--blush);}
+.pcard-icon-sage{background:var(--sage);}
+.pcard-icon-lavender{background:var(--lavender);}
+.pcard-icon-cream{background:var(--cream2);}
+.pcard-body{flex:1;min-width:0;}
+.pcard-name{font-size:0.84rem;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pcard-meta{font-size:0.58rem;color:var(--muted);letter-spacing:0.3px;text-transform:uppercase;margin:2px 0 6px;font-weight:500;}
+.pcard-bar-row{display:flex;align-items:center;gap:7px;}
+.pcard-bar{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
+.pcard-bar-fill{height:100%;border-radius:2px;}
+.pcard-score{font-size:0.62rem;font-weight:700;color:var(--ink2);}
+.pcard-badge{font-size:0.5rem;font-weight:600;letter-spacing:0.3px;padding:3px 8px;border-radius:8px;flex-shrink:0;}
+.badge-hype{background:var(--blush);color:var(--rose);}
+.badge-worth{background:var(--sage);color:var(--green);}
+.badge-acne{background:#fef3e8;color:#b8763a;}
+.badge-barrier{background:var(--lavender);color:#7a72c4;}
+.badge-tracking{background:var(--cream2);color:var(--muted);border:1px solid var(--border);}
+.ci-wrap{padding:0 16px;margin-bottom:20px;}
+.ci-card{background:linear-gradient(135deg,var(--blush) 0%,var(--cream) 100%);border:1.5px solid var(--blush2);border-radius:16px;padding:18px;}
+.ci-eyebrow{font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:7px;font-weight:600;}
+.ci-q{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--ink);margin-bottom:14px;line-height:1.3;}
 .ci-row{display:flex;gap:7px;}
-.ci-opt{flex:1;padding:10px 4px;border:1px solid var(--border);border-radius:1px;background:transparent;font-family:'Syne',sans-serif;font-size:0.52rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:rgba(237,233,225,0.3);cursor:pointer;text-align:center;transition:all 0.18s;}
-.ci-opt.sel-bad{background:rgba(201,79,79,0.1);border-color:var(--red);color:var(--red);}
-.ci-opt.sel-mid{background:rgba(237,233,225,0.05);border-color:rgba(237,233,225,0.2);color:var(--white);}
-.ci-opt.sel-good{background:rgba(76,175,125,0.1);border-color:var(--green);color:var(--green);}
-.empty-state{padding:48px 24px;text-align:center;}
-.empty-icon{font-size:2rem;opacity:0.15;margin-bottom:10px;}
-.empty-txt{font-size:0.78rem;color:rgba(237,233,225,0.2);line-height:1.7;font-weight:300;}
-.sub{position:absolute;inset:0;background:var(--void);display:none;flex-direction:column;z-index:30;}
-.sub.on{display:flex;animation:subSlide 0.3s cubic-bezier(0.16,1,0.3,1);}
-@keyframes subSlide{from{transform:translateY(18px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.ci-btn{flex:1;padding:11px 6px;border:1.5px solid var(--border2);border-radius:10px;background:var(--white);font-family:'Instrument Sans',sans-serif;font-size:0.62rem;font-weight:600;color:var(--ink2);cursor:pointer;text-align:center;transition:all 0.18s;}
+.ci-btn.sel-worse{background:var(--blush);border-color:var(--rose2);color:var(--rose);}
+.ci-btn.sel-same{background:var(--cream2);border-color:var(--border2);color:var(--ink2);}
+.ci-btn.sel-better{background:var(--sage);border-color:var(--green2);color:var(--green);}
+.feed-item{margin:0 16px 10px;background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 1px 4px var(--shadow);}
+.fi-top{display:flex;align-items:center;gap:9px;margin-bottom:10px;}
+.fi-av{width:32px;height:32px;border-radius:50%;background:var(--blush2);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;color:var(--rose);flex-shrink:0;font-family:'Playfair Display',serif;}
+.fi-user{flex:1;}
+.fi-name{font-size:0.78rem;font-weight:600;color:var(--ink);}
+.fi-skin{font-size:0.58rem;color:var(--muted);margin-top:1px;}
+.fi-badge{font-size:0.48rem;font-weight:600;letter-spacing:0.5px;padding:3px 7px;border-radius:8px;}
+.fi-score{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;}
+.fi-product{font-size:0.7rem;font-weight:600;color:var(--ink);margin-bottom:5px;}
+.fi-text{font-size:0.76rem;color:var(--ink3);line-height:1.65;}
+.fi-footer{display:flex;align-items:center;gap:10px;margin-top:10px;}
+.fi-days{font-size:0.58rem;color:var(--muted);font-weight:500;}
+.fi-tag{font-size:0.52rem;font-weight:600;padding:3px 8px;border-radius:8px;}
+.empty{padding:40px 24px;text-align:center;}
+.empty-icon{font-size:2.4rem;margin-bottom:10px;opacity:0.4;}
+.empty-txt{font-size:0.8rem;color:var(--muted);line-height:1.7;}
+.sub{position:absolute;inset:0;background:var(--cream);display:none;flex-direction:column;z-index:30;}
+.sub.on{display:flex;animation:subUp 0.28s cubic-bezier(0.16,1,0.3,1);}
+@keyframes subUp{from{transform:translateY(16px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 .sub-nav{padding:50px 20px 14px;display:flex;align-items:center;gap:12px;flex-shrink:0;border-bottom:1px solid var(--border);}
-.sub-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--white);letter-spacing:1px;}
-#sub-scan{background:#000;}
+.sub-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;color:var(--ink);}
+#sub-scan{background:var(--cream);}
 .scan-top{padding:50px 20px 16px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
-.scan-heading{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);font-weight:300;letter-spacing:2px;text-transform:uppercase;}
-.scan-x{width:30px;height:30px;border-radius:50%;border:1px solid var(--border2);background:transparent;color:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.85rem;}
-.vf{margin:0 20px;border-radius:2px;overflow:hidden;background:#000;aspect-ratio:4/3;position:relative;}
+.scan-heading{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--ink);}
+.scan-x{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border2);background:transparent;color:var(--ink2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.9rem;}
+.vf{margin:0 20px;border-radius:16px;overflow:hidden;background:var(--ink);aspect-ratio:4/3;position:relative;}
 .vf video{width:100%;height:100%;object-fit:cover;display:block;}
-.vf-frame{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
-.vf-box{width:180px;height:90px;position:relative;}
-.vf-box::before{content:'';position:absolute;top:0;left:0;width:18px;height:18px;border-top:1.5px solid var(--gold);border-left:1.5px solid var(--gold);}
-.vf-box::after{content:'';position:absolute;bottom:0;right:0;width:18px;height:18px;border-bottom:1.5px solid var(--gold);border-right:1.5px solid var(--gold);}
-.vf-tl{position:absolute;top:0;right:0;width:18px;height:18px;border-top:1.5px solid var(--gold);border-right:1.5px solid var(--gold);}
-.vf-br{position:absolute;bottom:0;left:0;width:18px;height:18px;border-bottom:1.5px solid var(--gold);border-left:1.5px solid var(--gold);}
-.vf-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:vfLine 2.5s ease-in-out infinite;top:20%;}
-@keyframes vfLine{0%,100%{top:10%;}50%{top:90%;}}
-.scan-hint{text-align:center;padding:12px 20px;font-family:'Syne',sans-serif;font-size:0.56rem;color:rgba(237,233,225,0.25);letter-spacing:2px;text-transform:uppercase;}
-.scan-divider{margin:6px 20px;display:flex;align-items:center;gap:10px;}
-.scan-divider::before,.scan-divider::after{content:'';flex:1;height:1px;background:var(--border);}
-.scan-divider span{font-family:'Syne',sans-serif;font-size:0.48rem;color:rgba(237,233,225,0.15);letter-spacing:2px;text-transform:uppercase;}
-.scan-manual-inp{display:block;width:calc(100% - 40px);margin:0 20px;padding:13px 14px;background:var(--surface);border:1px solid var(--border);border-radius:1px;font-family:'DM Sans',sans-serif;font-size:0.86rem;color:var(--white);outline:none;-webkit-appearance:none;}
-.scan-manual-inp::placeholder{color:rgba(237,233,225,0.15);}
-.scan-manual-inp:focus{border-color:var(--gold);}
-.scan-section-title{font-family:'Syne',sans-serif;font-size:0.5rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(237,233,225,0.2);margin:16px 20px 10px;}
-.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:0 20px;}
-.cat-tile{background:var(--surface);border:1px solid var(--border);border-radius:1px;padding:11px 8px;cursor:pointer;text-align:center;transition:all 0.15s;}
-.cat-tile.sel{border-color:var(--gold);background:rgba(184,150,90,0.06);}
-.cat-tile-ic{font-size:1.2rem;margin-bottom:4px;}
-.cat-tile-nm{font-family:'Syne',sans-serif;font-size:0.48rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:rgba(237,233,225,0.45);}
-.cat-tile-d{font-size:0.46rem;color:rgba(237,233,225,0.2);margin-top:2px;}
-.cat-tile.sel .cat-tile-nm{color:var(--gold);}
+.vf-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.vf-frame{width:180px;height:90px;position:relative;}
+.vf-frame::before{content:'';position:absolute;top:0;left:0;width:20px;height:20px;border-top:2px solid var(--rose2);border-left:2px solid var(--rose2);}
+.vf-frame::after{content:'';position:absolute;bottom:0;right:0;width:20px;height:20px;border-bottom:2px solid var(--rose2);border-right:2px solid var(--rose2);}
+.vf-tr{position:absolute;top:0;right:0;width:20px;height:20px;border-top:2px solid var(--rose2);border-right:2px solid var(--rose2);}
+.vf-bl{position:absolute;bottom:0;left:0;width:20px;height:20px;border-bottom:2px solid var(--rose2);border-left:2px solid var(--rose2);}
+.vf-line{position:absolute;left:10%;right:10%;height:1.5px;background:linear-gradient(90deg,transparent,var(--rose2),transparent);animation:scanMove 2s ease-in-out infinite;}
+@keyframes scanMove{0%,100%{top:15%;}50%{top:80%;}}
+.scan-hint-txt{text-align:center;padding:10px 20px;font-size:0.62rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-weight:500;}
+.scan-sep{margin:8px 20px;display:flex;align-items:center;gap:10px;}
+.scan-sep::before,.scan-sep::after{content:'';flex:1;height:1px;background:var(--border);}
+.scan-sep span{font-size:0.6rem;color:var(--muted);}
+.scan-inp{display:block;width:calc(100% - 40px);margin:0 20px;padding:13px 14px;background:var(--white);border:1.5px solid var(--border);border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:0.86rem;color:var(--ink);outline:none;-webkit-appearance:none;box-shadow:0 1px 4px var(--shadow);}
+.scan-inp::placeholder{color:var(--muted);}
+.scan-inp:focus{border-color:var(--rose2);}
+.cat-section-title{font-size:0.6rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:16px 20px 10px;}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 20px;}
+.cat-tile{background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:12px 8px;cursor:pointer;text-align:center;box-shadow:0 1px 3px var(--shadow);}
+.cat-tile:active{transform:scale(0.97);}
+.cat-tile.sel{border-color:var(--rose);background:var(--blush);}
+.cat-tile-ic{font-size:1.3rem;margin-bottom:4px;}
+.cat-tile-nm{font-size:0.55rem;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:0.3px;}
+.cat-tile-d{font-size:0.5rem;color:var(--muted);margin-top:2px;}
+.cat-tile.sel .cat-tile-nm{color:var(--rose);}
 .scan-submit-wrap{padding:14px 20px 32px;}
-.primary-btn{width:100%;padding:15px;background:var(--white);color:var(--void);border:none;border-radius:1px;font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
-.primary-btn:disabled{background:var(--surface);color:rgba(237,233,225,0.15);cursor:default;}
-.outline-btn{width:100%;padding:13px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:1px;font-family:'Syne',sans-serif;font-size:0.64rem;cursor:pointer;letter-spacing:0.5px;margin-top:8px;}
+.primary-full{width:100%;padding:15px;background:var(--ink);color:var(--cream);border:none;border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;}
+.primary-full:disabled{background:var(--border);color:var(--muted);cursor:default;}
+.outline-full{width:100%;padding:14px;background:transparent;color:var(--ink2);border:1.5px solid var(--border2);border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:0.76rem;font-weight:500;cursor:pointer;margin-top:8px;}
 #sub-detail .scroll{padding-bottom:32px;}
-.det-top{padding:50px 20px 18px;}
-.det-emoji{font-size:2.8rem;display:block;margin-bottom:10px;}
-.det-kicker{font-family:'Syne',sans-serif;font-size:0.48rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
-.det-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--white);letter-spacing:-0.5px;line-height:1.05;margin-bottom:3px;}
-.det-sub{font-size:0.7rem;color:var(--muted);font-weight:300;}
-.score-block{margin:0 16px 12px;background:var(--card);border:1px solid var(--border);border-radius:2px;padding:18px;}
-.sb-top{display:flex;align-items:center;gap:16px;margin-bottom:14px;}
-.sb-ring{width:60px;height:60px;flex-shrink:0;}
-.sb-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;line-height:1;}
-.sb-verdict{font-family:'Syne',sans-serif;font-size:0.5rem;letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;}
-.sb-breakdown{display:flex;flex-direction:column;gap:6px;}
-.sbd-row{display:flex;align-items:center;gap:8px;}
-.sbd-label{font-family:'Syne',sans-serif;font-size:0.5rem;color:rgba(237,233,225,0.35);letter-spacing:0.5px;width:80px;flex-shrink:0;}
-.sbd-bar{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
-.sbd-fill{height:100%;border-radius:2px;}
-.sbd-val{font-family:'Syne',sans-serif;font-size:0.5rem;color:var(--muted);width:22px;text-align:right;}
+.det-hero{padding:50px 20px 16px;}
+.det-emoji{font-size:3rem;margin-bottom:10px;display:block;}
+.det-eyebrow{font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:4px;font-weight:600;}
+.det-name{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:400;color:var(--ink);line-height:1.05;margin-bottom:3px;}
+.det-sub{font-size:0.72rem;color:var(--muted);}
+.score-card{margin:0 16px 12px;background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 2px 8px var(--shadow);}
+.sc-top{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.sc-ring{width:62px;height:62px;flex-shrink:0;}
+.sc-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:500;line-height:1;}
+.sc-tag{font-size:0.58rem;font-weight:600;letter-spacing:0.5px;margin-top:3px;}
+.sc-breakdown{display:flex;flex-direction:column;gap:7px;}
+.scb-row{display:flex;align-items:center;gap:8px;}
+.scb-label{font-size:0.58rem;color:var(--muted);width:90px;flex-shrink:0;font-weight:500;}
+.scb-bar{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.scb-fill{height:100%;border-radius:2px;}
+.scb-val{font-size:0.58rem;color:var(--ink2);width:22px;text-align:right;font-weight:600;}
 .tag-row{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px;margin-bottom:12px;}
-.vtag{font-family:'Syne',sans-serif;font-size:0.46rem;letter-spacing:1.5px;text-transform:uppercase;padding:4px 8px;border-radius:1px;border:1px solid;}
-.vtag-overhyped{color:var(--red);border-color:rgba(201,79,79,0.3);background:rgba(201,79,79,0.07);}
-.vtag-worth{color:var(--green);border-color:rgba(76,175,125,0.3);background:rgba(76,175,125,0.07);}
-.vtag-trigger{color:var(--orange);border-color:rgba(196,120,74,0.3);background:rgba(196,120,74,0.07);}
-.vtag-safe{color:var(--blue);border-color:rgba(74,126,196,0.3);background:rgba(74,126,196,0.07);}
-.ing-block{margin:0 16px 12px;background:var(--card);border:1px solid var(--border);border-radius:2px;overflow:hidden;}
-.ing-header{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
-.ing-title{font-family:'Syne',sans-serif;font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:rgba(237,233,225,0.3);}
-.ing-item{padding:11px 14px;display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--border);}
-.ing-item:last-child{border:none;}
-.ing-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.vtag{font-size:0.56rem;font-weight:600;letter-spacing:0.3px;padding:5px 10px;border-radius:10px;}
+.vtag-hype{background:var(--blush);color:var(--rose);}
+.vtag-worth{background:var(--sage);color:var(--green);}
+.vtag-acne{background:#fef3e8;color:#b8763a;}
+.vtag-barrier{background:var(--lavender);color:#7a72c4;}
+.ing-card{margin:0 16px 12px;background:var(--white);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 1px 4px var(--shadow);}
+.ing-card-hdr{padding:13px 16px;border-bottom:1px solid var(--border);}
+.ing-card-title{font-size:0.62rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--ink2);}
+.ing-row{padding:12px 16px;display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--border);}
+.ing-row:last-child{border:none;}
+.ing-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;}
 .ing-dot-safe{background:var(--green);}
-.ing-dot-warn{background:var(--orange);}
-.ing-dot-risk{background:var(--red);}
-.ing-dot-mid{background:rgba(237,233,225,0.2);}
-.ing-content{flex:1;}
-.ing-name{font-size:0.78rem;color:var(--white);font-weight:500;margin-bottom:2px;}
-.ing-desc{font-size:0.68rem;color:var(--muted);line-height:1.5;font-weight:300;}
-.ing-badge{font-family:'Syne',sans-serif;font-size:0.42rem;letter-spacing:1px;text-transform:uppercase;padding:2px 5px;border-radius:1px;flex-shrink:0;}
-.ing-badge-risk{background:rgba(201,79,79,0.1);color:var(--red);border:1px solid rgba(201,79,79,0.2);}
-.ing-badge-warn{background:rgba(196,120,74,0.1);color:var(--orange);border:1px solid rgba(196,120,74,0.2);}
-.ing-badge-good{background:rgba(76,175,125,0.1);color:var(--green);border:1px solid rgba(76,175,125,0.2);}
-.review-block{margin:0 16px 12px;}
-.rev-title{font-family:'Syne',sans-serif;font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:rgba(237,233,225,0.3);margin-bottom:10px;}
-.rev-item{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:14px;margin-bottom:8px;}
-.rev-top{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
-.rev-av{width:26px;height:26px;border-radius:50%;background:var(--lift);display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--gold);font-family:'Cormorant Garamond',serif;font-weight:600;flex-shrink:0;}
-.rev-user{flex:1;}
-.rev-name{font-size:0.76rem;font-weight:500;color:var(--white);}
-.rev-skin{font-family:'Syne',sans-serif;font-size:0.44rem;color:rgba(237,233,225,0.25);margin-top:1px;}
-.rev-verified{font-family:'Syne',sans-serif;font-size:0.42rem;letter-spacing:1px;color:var(--green);border:1px solid rgba(76,175,125,0.3);padding:2px 5px;border-radius:1px;}
-.rev-score{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;}
-.rev-text{font-size:0.76rem;color:var(--muted);line-height:1.65;font-weight:300;}
-.rev-days{font-family:'Syne',sans-serif;font-size:0.44rem;color:rgba(237,233,225,0.2);margin-top:6px;}
-.prog-block{margin:0 16px 12px;background:var(--card);border:1px solid var(--border);border-radius:2px;padding:14px;}
-.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
-.prog-label{font-family:'Syne',sans-serif;font-size:0.5rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(237,233,225,0.25);}
-.prog-val{font-family:'Syne',sans-serif;font-size:0.62rem;color:var(--white);font-weight:700;}
-.prog-track{height:2px;background:var(--border);border-radius:1px;overflow:hidden;margin-bottom:8px;}
-.prog-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--gold),var(--gold3));transition:width 0.8s ease;}
-.prog-status{font-size:0.68rem;color:var(--muted);font-weight:300;}
-.verdict-card{margin:0 16px 12px;border-radius:2px;padding:18px;}
-.vc-safe{background:linear-gradient(135deg,rgba(76,175,125,0.1),rgba(76,175,125,0.03));border:1px solid rgba(76,175,125,0.18);}
-.vc-warn{background:linear-gradient(135deg,rgba(196,120,74,0.1),rgba(196,120,74,0.03));border:1px solid rgba(196,120,74,0.18);}
-.vc-risk{background:linear-gradient(135deg,rgba(201,79,79,0.12),rgba(201,79,79,0.03));border:1px solid rgba(201,79,79,0.2);}
-.vc-neutral{background:linear-gradient(135deg,rgba(184,150,90,0.08),rgba(184,150,90,0.02));border:1px solid rgba(184,150,90,0.15);}
-.vc-tag{font-family:'Syne',sans-serif;font-size:0.46rem;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:8px;font-weight:700;}
-.vc-safe .vc-tag{color:var(--green);}
-.vc-warn .vc-tag{color:var(--orange);}
-.vc-risk .vc-tag{color:var(--red);}
-.vc-neutral .vc-tag{color:var(--gold);}
-.vc-main{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:5px;line-height:1.15;}
-.vc-sub{font-size:0.72rem;color:var(--muted);line-height:1.6;font-weight:300;}
+.ing-dot-warn{background:#e8a030;}
+.ing-dot-risk{background:var(--rose);}
+.ing-dot-mid{background:var(--border2);}
+.ing-txt{flex:1;}
+.ing-name{font-size:0.8rem;color:var(--ink);font-weight:500;margin-bottom:2px;}
+.ing-desc{font-size:0.7rem;color:var(--ink3);line-height:1.5;}
+.ing-badge{font-size:0.48rem;font-weight:600;letter-spacing:0.5px;padding:3px 7px;border-radius:7px;flex-shrink:0;}
+.ib-risk{background:var(--blush);color:var(--rose);}
+.ib-warn{background:#fef3e8;color:#b8763a;}
+.ib-safe{background:var(--sage);color:var(--green);}
+.rev-section{margin:0 16px 12px;}
+.rev-hdr{font-size:0.62rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.rev-card{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:14px;margin-bottom:8px;box-shadow:0 1px 4px var(--shadow);}
+.rc-top{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+.rc-av{width:28px;height:28px;border-radius:50%;background:var(--blush2);display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--rose);font-family:'Playfair Display',serif;font-weight:600;flex-shrink:0;}
+.rc-user{flex:1;}
+.rc-name{font-size:0.78rem;font-weight:600;color:var(--ink);}
+.rc-skin{font-size:0.56rem;color:var(--muted);margin-top:1px;}
+.rc-verified{font-size:0.48rem;font-weight:600;letter-spacing:0.5px;color:var(--green);background:var(--sage);padding:3px 7px;border-radius:7px;}
+.rc-score{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:500;}
+.rc-text{font-size:0.76rem;color:var(--ink3);line-height:1.65;}
+.rc-days{font-size:0.56rem;color:var(--muted);margin-top:7px;font-weight:500;}
+.prog-card{margin:0 16px 12px;background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 1px 4px var(--shadow);}
+.pc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.pc-label{font-size:0.6rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+.pc-val{font-size:0.72rem;font-weight:700;color:var(--ink2);}
+.pc-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:8px;}
+.pc-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--rose),var(--rose2));transition:width 0.8s ease;}
+.pc-status{font-size:0.7rem;color:var(--muted);}
+.vc{margin:0 16px 12px;border-radius:14px;padding:18px;}
+.vc-good{background:var(--sage);border:1.5px solid var(--green2);}
+.vc-warn{background:#fef3e8;border:1.5px solid #e8c080;}
+.vc-risk{background:var(--blush);border:1.5px solid var(--blush2);}
+.vc-neutral{background:var(--cream2);border:1.5px solid var(--border);}
+.vc-tag{font-size:0.55rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px;}
+.vc-good .vc-tag{color:var(--green);}
+.vc-warn .vc-tag{color:#b8763a;}
+.vc-risk .vc-tag{color:var(--rose);}
+.vc-neutral .vc-tag{color:var(--amber);}
+.vc-main{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--ink);margin-bottom:5px;line-height:1.2;}
+.vc-sub{font-size:0.72rem;color:var(--ink3);line-height:1.6;}
 .pp-wrap{padding:0 20px 32px;}
-.pp-hero{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:18px;margin-bottom:18px;position:relative;overflow:hidden;}
-.pp-hero::after{content:'';position:absolute;top:-30px;right:-20px;width:100px;height:100px;background:radial-gradient(circle,rgba(184,150,90,0.08),transparent 70%);}
-.pp-kicker{font-family:'Syne',sans-serif;font-size:0.46rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
-.pp-h{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);font-weight:400;margin-bottom:4px;line-height:1.15;}
-.pp-body-txt{font-size:0.7rem;color:var(--muted);font-weight:300;line-height:1.6;}
-.pp-inp-wrap{position:relative;margin-bottom:14px;}
-.pp-search-ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:rgba(237,233,225,0.2);}
-.pp-inp{width:100%;padding:13px 14px 13px 38px;background:var(--surface);border:1px solid var(--border);border-radius:1px;font-family:'DM Sans',sans-serif;font-size:0.86rem;color:var(--white);outline:none;-webkit-appearance:none;}
-.pp-inp::placeholder{color:rgba(237,233,225,0.15);}
-.pp-inp:focus{border-color:var(--gold);}
-.disc-header{padding:52px 20px 18px;flex-shrink:0;}
-.disc-kicker{font-family:'Syne',sans-serif;font-size:0.46rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
-.disc-h{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--white);line-height:1.05;letter-spacing:-0.5px;}
-.disc-h em{font-style:italic;color:var(--gold3);}
-.prof-header{padding:52px 20px 20px;flex-shrink:0;}
-.prof-av-lg{width:60px;height:60px;border-radius:50%;background:var(--lift);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);font-weight:600;margin-bottom:12px;}
-.prof-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--white);}
-.prof-handle{font-family:'Syne',sans-serif;font-size:0.52rem;color:rgba(237,233,225,0.25);margin-top:2px;}
-.prof-badge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 10px;background:rgba(184,150,90,0.08);border:1px solid rgba(184,150,90,0.2);border-radius:1px;}
-.prof-badge-txt{font-family:'Syne',sans-serif;font-size:0.46rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);}
-.prof-stats-row{display:flex;margin:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:2px;overflow:hidden;}
-.ps{flex:1;padding:14px;text-align:center;border-right:1px solid var(--border);}
-.ps:last-child{border:none;}
-.ps-n{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--white);}
-.ps-l{font-family:'Syne',sans-serif;font-size:0.44rem;letter-spacing:1px;text-transform:uppercase;color:rgba(237,233,225,0.2);margin-top:2px;}
-.skin-prof-card{margin:0 20px 16px;background:var(--surface);border:1px solid var(--border);border-radius:2px;padding:14px;}
-.spc-label{font-family:'Syne',sans-serif;font-size:0.46rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.spc-tags{display:flex;flex-wrap:wrap;gap:5px;}
-.spc-tag{background:var(--card);border:1px solid var(--border);border-radius:1px;padding:4px 9px;font-family:'Syne',sans-serif;font-size:0.52rem;color:rgba(237,233,225,0.5);}
-.menu-rows{padding:0 20px;display:flex;flex-direction:column;gap:2px;}
-.menu-r{display:flex;align-items:center;gap:10px;padding:13px 14px;background:var(--surface);border-radius:1px;cursor:pointer;transition:background 0.15s;margin-bottom:2px;}
-.menu-r:active{background:var(--card);}
-.menu-r-ic{font-size:0.9rem;opacity:0.4;width:18px;}
-.menu-r-txt{flex:1;font-size:0.8rem;color:var(--white);}
-.menu-r-ar{color:rgba(237,233,225,0.15);font-size:0.75rem;}
-.rv-textarea{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:1px;font-family:'DM Sans',sans-serif;font-size:0.84rem;color:var(--white);background:var(--surface);height:100px;resize:none;outline:none;-webkit-appearance:none;line-height:1.6;margin-bottom:14px;}
-.rv-textarea::placeholder{color:rgba(237,233,225,0.15);}
-.rv-textarea:focus{border-color:var(--gold);}
-.rv-choices{display:flex;gap:7px;margin-bottom:16px;}
-.rv-choice{flex:1;padding:12px 4px;border:1px solid var(--border);border-radius:1px;background:transparent;font-family:'Syne',sans-serif;font-size:0.5rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:rgba(237,233,225,0.3);cursor:pointer;text-align:center;}
-.rv-choice.sel-rec{background:rgba(76,175,125,0.1);border-color:var(--green);color:var(--green);}
-.rv-choice.sel-neu{background:rgba(237,233,225,0.04);border-color:rgba(237,233,225,0.2);color:var(--white);}
-.rv-choice.sel-av{background:rgba(201,79,79,0.1);border-color:var(--red);color:var(--red);}
-.loading{position:absolute;inset:0;background:rgba(4,4,6,0.92);z-index:9990;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;backdrop-filter:blur(6px);}
+.pp-hero-card{background:linear-gradient(135deg,var(--blush),var(--lavender));border-radius:16px;padding:20px;margin-bottom:18px;}
+.pp-hero-eyebrow{font-size:0.55rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:8px;}
+.pp-hero-h{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--ink);margin-bottom:5px;line-height:1.2;}
+.pp-hero-body{font-size:0.72rem;color:var(--ink3);line-height:1.6;}
+.pp-inp-wrap{position:relative;margin-bottom:12px;}
+.pp-ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);}
+.pp-inp{width:100%;padding:13px 14px 13px 38px;background:var(--white);border:1.5px solid var(--border);border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:0.86rem;color:var(--ink);outline:none;-webkit-appearance:none;box-shadow:0 1px 4px var(--shadow);}
+.pp-inp::placeholder{color:var(--muted);}
+.pp-inp:focus{border-color:var(--rose2);}
+.disc-hdr{padding:50px 20px 18px;flex-shrink:0;}
+.disc-eyebrow{font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:7px;font-weight:600;}
+.disc-h{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--ink);line-height:1.05;}
+.disc-h em{font-style:italic;color:var(--rose);}
+.prof-hdr{padding:50px 20px 18px;flex-shrink:0;}
+.prof-av-lg{width:64px;height:64px;border-radius:50%;background:var(--blush2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--rose);font-weight:500;margin-bottom:12px;border:2px solid var(--border2);}
+.prof-name-lg{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--ink);}
+.prof-handle{font-size:0.62rem;color:var(--muted);margin-top:2px;}
+.prof-badge{display:inline-flex;align-items:center;gap:5px;margin-top:10px;padding:6px 12px;background:var(--blush);border-radius:20px;}
+.prof-badge-txt{font-size:0.56rem;font-weight:600;color:var(--rose);}
+.prof-stats{display:flex;margin:16px 20px;background:var(--white);border:1.5px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 1px 4px var(--shadow);}
+.ps-item{flex:1;padding:14px;text-align:center;border-right:1px solid var(--border);}
+.ps-item:last-child{border:none;}
+.ps-n{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--ink);}
+.ps-l{font-size:0.52rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+.skin-card{margin:0 20px 16px;background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:14px;box-shadow:0 1px 4px var(--shadow);}
+.skin-card-label{font-size:0.58rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose);margin-bottom:10px;}
+.skin-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.skin-tag{background:var(--blush);color:var(--rose);border-radius:10px;padding:5px 11px;font-size:0.62rem;font-weight:500;}
+.menu-list{padding:0 20px;display:flex;flex-direction:column;gap:6px;}
+.menu-item{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--white);border-radius:12px;cursor:pointer;transition:background 0.15s;border:1.5px solid var(--border);box-shadow:0 1px 3px var(--shadow);}
+.menu-item:active{background:var(--cream2);}
+.mi-ic{font-size:0.9rem;opacity:0.6;width:20px;}
+.mi-txt{flex:1;font-size:0.82rem;color:var(--ink);}
+.mi-ar{color:var(--muted);font-size:0.8rem;}
+.rv-choices{display:flex;gap:8px;margin-bottom:16px;}
+.rv-choice{flex:1;padding:13px 4px;border:1.5px solid var(--border);border-radius:12px;background:var(--white);font-family:'Instrument Sans',sans-serif;font-size:0.62rem;font-weight:600;color:var(--muted);cursor:pointer;text-align:center;}
+.rv-c-rec.sel{background:var(--sage);border-color:var(--green2);color:var(--green);}
+.rv-c-neu.sel{background:var(--cream2);border-color:var(--border2);color:var(--ink2);}
+.rv-c-av.sel{background:var(--blush);border-color:var(--rose2);color:var(--rose);}
+.rv-textarea{width:100%;padding:14px;border:1.5px solid var(--border);border-radius:12px;font-family:'Instrument Sans',sans-serif;font-size:0.84rem;color:var(--ink);background:var(--white);height:100px;resize:none;outline:none;-webkit-appearance:none;line-height:1.6;margin-bottom:14px;}
+.rv-textarea::placeholder{color:var(--muted);}
+.rv-textarea:focus{border-color:var(--rose2);}
+.loading{position:absolute;inset:0;background:rgba(250,248,245,0.88);z-index:9990;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;backdrop-filter:blur(4px);}
 .loading.on{display:flex;}
-.spinner{width:28px;height:28px;border:1.5px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
+.spinner{width:28px;height:28px;border:2px solid var(--border2);border-top-color:var(--rose);border-radius:50%;animation:spin 0.8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.load-txt{font-family:'Syne',sans-serif;font-size:0.52rem;color:rgba(237,233,225,0.3);letter-spacing:3px;text-transform:uppercase;}
-.toast{position:absolute;bottom:78px;left:14px;right:14px;background:var(--card);border:1px solid var(--border2);color:var(--white);padding:13px 16px;border-radius:2px;font-size:0.76rem;z-index:400;text-align:center;animation:toastIn 0.3s ease-out;pointer-events:none;font-weight:300;}
+.load-txt{font-size:0.6rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+.toast{position:absolute;bottom:80px;left:14px;right:14px;background:var(--ink);color:var(--cream);padding:13px 16px;border-radius:12px;font-size:0.76rem;z-index:400;text-align:center;animation:toastIn 0.3s ease-out;pointer-events:none;}
 @keyframes toastIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 <body>
 <div class="phone">
 <div class="screen on" id="s-splash">
-  <div class="splash-inner">
-    <div class="splash-mark"></div>
-    <div class="splash-logo">Lumo</div>
-    <div class="splash-rule"></div>
-    <div class="splash-sub">Güzellik Zekası</div>
-  </div>
+  <div class="sp-petal">🌸</div>
+  <div class="sp-logo">Lumo</div>
+  <div class="sp-tagline">Güvenilir Cilt Bakımı</div>
 </div>
 <div class="screen on" id="s-welcome" style="z-index:50;">
-  <div class="wl-ambient"></div>
+  <div class="wl-bg"></div>
   <div class="wl-wrap">
     <div class="wl-top">
-      <div class="wl-eyebrow"><div class="wl-line"></div><div class="wl-eyebrow-txt">Hype'a karşı gerçek güzellik platformu</div><div class="wl-line"></div></div>
-      <h1 class="wl-h1"><strong>Körü körüne</strong><br>ürün <em>satın alma.</em></h1>
-      <p class="wl-body">Gerçek kullanıcı deneyimi. Doğrulanmış satın alma. Cilt tipi analizi. Para harcamadan önce.</p>
-      <div class="wl-tags">
-        <div class="wl-tag hot">Hype Tuzağı</div>
-        <div class="wl-tag safe">Akne Güvenli</div>
-        <div class="wl-tag">Topluluk Kararları</div>
-        <div class="wl-tag">Cilt Tipi Eşleşme</div>
+      <div class="wl-logo-row">
+        <div class="wl-logo-mark">🌸</div>
+        <div class="wl-logo-txt">Lumo</div>
+      </div>
+      <h1 class="wl-h1">Cildine <em>iyi</em><br>gelen ürünleri<br>bul.</h1>
+      <p class="wl-body">Influencer reklamlarına gerek yok. Gerçek kullanıcı yorumları, cilt tipine göre kişisel analiz.</p>
+      <div class="wl-trust-chips">
+        <div class="wl-chip chip-blush">Akne Güvenli</div>
+        <div class="wl-chip chip-sage">Bariyer Onarıcı</div>
+        <div class="wl-chip chip-lavender">Hassas Cilt</div>
+        <div class="wl-chip chip-cream">Topluluk Kararları</div>
       </div>
       <div class="wl-proof">
-        <div class="wl-avatars">
-          <div class="wl-av">🌸</div><div class="wl-av">✨</div><div class="wl-av">🌿</div><div class="wl-av">💫</div>
+        <div class="wl-avs">
+          <div class="wl-av">M</div><div class="wl-av">A</div><div class="wl-av">S</div><div class="wl-av">E</div>
         </div>
-        <div class="wl-proof-copy"><strong>18.400+</strong> doğrulanmış cilt deneyimi<br>Hiçbir ücretli iş birliği yok.</div>
+        <div class="wl-proof-txt"><strong>18.400+</strong> doğrulanmış cilt deneyimi<br>Hiçbir sponsorlu içerik yok.</div>
       </div>
     </div>
     <div class="wl-actions">
-      <button class="cta-primary" onclick="showAuth('register')">Lumo'ya Katıl — Ücretsiz</button>
-      <button class="cta-secondary" onclick="showAuth('login')">Giriş Yap</button>
-      <div class="wl-fine">Reklam yok. Influencer anlaşması yok. Sadece gerçek.</div>
+      <button class="btn-primary" onclick="showAuth('register')">Hesap Oluştur — Ücretsiz</button>
+      <button class="btn-secondary" onclick="showAuth('login')">Giriş Yap</button>
+      <div class="wl-fine">Reklam yok · Sponsorlu içerik yok · Sadece gerçek deneyimler</div>
     </div>
   </div>
 </div>
 <div class="screen" id="s-auth">
-  <div class="auth-bar">
-    <button class="icon-btn" onclick="show('s-welcome')">←</button>
-    <span class="auth-mark">Lumo</span>
+  <div class="auth-nav">
+    <button class="back-btn" onclick="show('s-welcome')">←</button>
+    <span class="auth-wordmark">Lumo</span>
   </div>
-  <div class="auth-body">
-    <div class="auth-kicker">Cildin, verilerin</div>
+  <div class="auth-scroll">
+    <div class="auth-eyebrow">Cilt Profilin</div>
     <div class="auth-h" id="auth-h">Hesabını<br><em>oluştur</em></div>
-    <div class="auth-hint" id="auth-hint">18.400 kişiyle daha akıllı güzellik kararları al.</div>
-    <div class="tabs">
-      <div class="tab on" onclick="switchAuthTab('email')">E-posta</div>
-      <div class="tab" onclick="switchAuthTab('phone')">Telefon</div>
+    <div class="auth-sub" id="auth-sub">18.400 kişiyle daha akıllı cilt bakımı kararları al.</div>
+    <div class="seg">
+      <div class="seg-btn on" onclick="switchAuthTab('email')">E-posta</div>
+      <div class="seg-btn" onclick="switchAuthTab('phone')">Telefon</div>
     </div>
     <div id="email-form">
-      <div class="field" id="uname-fld">
-        <label class="field-label">Kullanıcı Adı</label>
-        <input class="field-inp" id="inp-uname" type="text" placeholder="örn. ciltbakimseveri">
+      <div class="fld" id="uname-fld">
+        <label class="fld-label">Kullanıcı Adı</label>
+        <input class="fld-inp" id="inp-uname" type="text" placeholder="örn. ciltbakimseveri">
       </div>
-      <div class="field">
-        <label class="field-label">E-posta</label>
-        <input class="field-inp" id="inp-email" type="email" placeholder="sen@ornek.com">
+      <div class="fld">
+        <label class="fld-label">E-posta</label>
+        <input class="fld-inp" id="inp-email" type="email" placeholder="sen@ornek.com">
       </div>
-      <div class="field">
-        <label class="field-label">Şifre</label>
-        <input class="field-inp" id="inp-pass" type="password" placeholder="En az 6 karakter">
+      <div class="fld">
+        <label class="fld-label">Şifre</label>
+        <input class="fld-inp" id="inp-pass" type="password" placeholder="En az 6 karakter">
       </div>
     </div>
     <div id="phone-form" style="display:none;">
-      <div class="field">
-        <label class="field-label">Telefon</label>
-        <input class="field-inp" id="inp-phone" type="tel" placeholder="+90 5xx xxx xx xx">
+      <div class="fld">
+        <label class="fld-label">Telefon</label>
+        <input class="fld-inp" id="inp-phone" type="tel" placeholder="+90 5xx xxx xx xx">
       </div>
     </div>
     <div class="auth-err" id="auth-err"></div>
-    <button class="auth-submit" id="auth-btn" onclick="handleAuth()">Devam Et →</button>
-    <div class="or-line"><span>veya</span></div>
+    <button class="auth-btn" id="auth-btn" onclick="handleAuth()">Devam Et →</button>
+    <div class="or-sep"><span>veya</span></div>
     <button class="g-btn" onclick="handleGoogle()">
       <svg width="15" height="15" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
       Google ile devam et
@@ -431,13 +434,13 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;o
 <div class="screen" id="s-ob">
   <div class="ob-prog"><div class="ob-fill" id="ob-fill" style="width:25%"></div></div>
   <div class="ob-top">
-    <span class="ob-counter" id="ob-counter">Adım 1 / 4</span>
+    <span class="ob-step" id="ob-step">Adım 1 / 4</span>
     <button class="ob-skip" onclick="skipOb()">Geç</button>
   </div>
   <div class="ob-content">
-    <span class="ob-glyph" id="ob-glyph">🌿</span>
+    <span class="ob-icon" id="ob-icon">🌿</span>
     <div class="ob-q" id="ob-q"></div>
-    <div class="ob-sub" id="ob-sub"></div>
+    <div class="ob-hint" id="ob-hint"></div>
     <div class="ob-choices" id="ob-choices"></div>
   </div>
   <div class="ob-foot">
@@ -446,90 +449,113 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;o
 </div>
 <div class="screen" id="s-app">
   <div class="tab-view on" id="tv-home">
-    <div class="home-header">
-      <div class="home-wordmark">L<span>·</span>umo</div>
+    <div class="home-hdr">
+      <div class="home-logo">L<em>u</em>mo</div>
       <div class="home-av" id="home-av" onclick="switchTab('profile')">?</div>
     </div>
-    <div class="search-box">
+    <div class="search-wrap">
       <span class="search-ic">⌕</span>
       <input class="search-inp" placeholder="Ürün veya marka ara..." readonly onclick="openSub('sub-scan')">
     </div>
-    <div class="verdict-strip">
-      <div class="vs-pill vs-pill-overhyped" onclick="switchTab('discover')"><div class="vs-dot"></div><span class="vs-txt">Hype Tuzağı</span></div>
-      <div class="vs-pill vs-pill-worth" onclick="switchTab('discover')"><div class="vs-dot"></div><span class="vs-txt">Değer</span></div>
-      <div class="vs-pill vs-pill-trigger" onclick="switchTab('discover')"><div class="vs-dot"></div><span class="vs-txt">Akne Tetikleyici</span></div>
-      <div class="vs-pill vs-pill-safe" onclick="switchTab('discover')"><div class="vs-dot"></div><span class="vs-txt">Bariyer Güvenli</span></div>
+    <div class="pill-row">
+      <div class="vpill vpill-hype" onclick="switchTab('discover')"><div class="vpill-dot"></div>Hype Tuzağı</div>
+      <div class="vpill vpill-worth" onclick="switchTab('discover')"><div class="vpill-dot"></div>Gerçekten Değer</div>
+      <div class="vpill vpill-acne" onclick="switchTab('discover')"><div class="vpill-dot"></div>Akne Güvenli</div>
+      <div class="vpill vpill-barrier" onclick="switchTab('discover')"><div class="vpill-dot"></div>Bariyer Onarıcı</div>
     </div>
-    <div class="ci-card" id="ci-card">
-      <div class="ci-eyebrow">Günlük Check-in</div>
-      <div class="ci-q" id="ci-q">Bugün cildin nasıl tepki verdi?</div>
-      <div class="ci-row">
-        <button class="ci-opt" onclick="doCI('worse',this)">Kötüleşti</button>
-        <button class="ci-opt" onclick="doCI('same',this)">Aynı</button>
-        <button class="ci-opt" onclick="doCI('better',this)">İyileşti</button>
+    <div class="ci-wrap" id="ci-wrap" style="display:none;">
+      <div class="ci-card">
+        <div class="ci-eyebrow">Günlük Check-in</div>
+        <div class="ci-q" id="ci-q">Bugün cildin nasıl hissettirdi?</div>
+        <div class="ci-row">
+          <button class="ci-btn" onclick="doCI('worse',this)">Kötüleşti</button>
+          <button class="ci-btn" onclick="doCI('same',this)">Aynı</button>
+          <button class="ci-btn" onclick="doCI('better',this)">İyileşti</button>
+        </div>
       </div>
     </div>
     <div class="sec">
-      <div class="sec-hdr"><span class="sec-title">Bu Haftanın En Hype'lıları</span></div>
+      <div class="sec-hdr"><span class="sec-label">Bu Haftanın En Hype'lıları</span></div>
       <div class="hscroll">
-        <div class="hcard" onclick="openMock('charlotte')"><div class="hcard-emoji">🫧</div><div class="hcard-name">Charlotte Tilbury Foundation</div><div class="hcard-cat">Fondöten</div><div class="hcard-score" style="color:var(--red)">3.1</div><div class="hcard-verdict" style="color:var(--red)">Hype Tuzağı</div></div>
-        <div class="hcard" onclick="openMock('tatcha')"><div class="hcard-emoji">🍃</div><div class="hcard-name">Tatcha The Water Cream</div><div class="hcard-cat">Nemlendirici</div><div class="hcard-score" style="color:var(--orange)">5.4</div><div class="hcard-verdict" style="color:var(--orange)">Fazla Pahalı</div></div>
-        <div class="hcard" onclick="openMock('drunk')"><div class="hcard-emoji">🍷</div><div class="hcard-name">Drunk Elephant C-Firma</div><div class="hcard-cat">Serum</div><div class="hcard-score" style="color:var(--red)">4.2</div><div class="hcard-verdict" style="color:var(--red)">Akne Tetikleyici</div></div>
+        <div class="hcard" onclick="openMock('charlotte')"><div class="hcard-emoji">🫧</div><div class="hcard-name">Charlotte Tilbury Foundation</div><div class="hcard-cat">Fondöten</div><div class="hcard-score" style="color:var(--red-soft)">3.1</div><div class="hcard-tag" style="color:var(--red-soft)">Hype Tuzağı</div></div>
+        <div class="hcard" onclick="openMock('tatcha')"><div class="hcard-emoji">🍃</div><div class="hcard-name">Tatcha The Water Cream</div><div class="hcard-cat">Nemlendirici</div><div class="hcard-score" style="color:var(--amber)">5.4</div><div class="hcard-tag" style="color:var(--amber)">Fazla Pahalı</div></div>
+        <div class="hcard" onclick="openMock('drunk')"><div class="hcard-emoji">🍷</div><div class="hcard-name">Drunk Elephant C-Firma</div><div class="hcard-cat">Serum</div><div class="hcard-score" style="color:var(--red-soft)">4.2</div><div class="hcard-tag" style="color:var(--red-soft)">Akne Tetikleyici</div></div>
       </div>
     </div>
     <div class="sec">
-      <div class="sec-hdr"><span class="sec-title">Gerçekten Değer</span></div>
+      <div class="sec-hdr"><span class="sec-label">Gerçekten Değer</span></div>
       <div class="hscroll">
-        <div class="hcard" onclick="openMock('cerave')"><div class="hcard-emoji">💧</div><div class="hcard-name">CeraVe Nemlendirici Krem</div><div class="hcard-cat">Nemlendirici</div><div class="hcard-score" style="color:var(--green)">9.1</div><div class="hcard-verdict" style="color:var(--green)">Değer</div></div>
-        <div class="hcard" onclick="openMock('ordinary')"><div class="hcard-emoji">🧬</div><div class="hcard-name">The Ordinary Niacinamide</div><div class="hcard-cat">Serum</div><div class="hcard-score" style="color:var(--green)">8.7</div><div class="hcard-verdict" style="color:var(--green)">Değer</div></div>
-        <div class="hcard" onclick="openMock('purito')"><div class="hcard-emoji">☀️</div><div class="hcard-name">Purito SPF50</div><div class="hcard-cat">SPF</div><div class="hcard-score" style="color:var(--green)">8.2</div><div class="hcard-verdict" style="color:var(--green)">Bariyer Güvenli</div></div>
+        <div class="hcard" onclick="openMock('cerave')"><div class="hcard-emoji">💧</div><div class="hcard-name">CeraVe Nemlendirici Krem</div><div class="hcard-cat">Nemlendirici</div><div class="hcard-score" style="color:var(--green)">9.1</div><div class="hcard-tag" style="color:var(--green)">Değer</div></div>
+        <div class="hcard" onclick="openMock('ordinary')"><div class="hcard-emoji">🧬</div><div class="hcard-name">The Ordinary Niacinamide</div><div class="hcard-cat">Serum</div><div class="hcard-score" style="color:var(--green)">8.7</div><div class="hcard-tag" style="color:var(--green)">Değer</div></div>
+        <div class="hcard" onclick="openMock('purito')"><div class="hcard-emoji">☀️</div><div class="hcard-name">Purito SPF50</div><div class="hcard-cat">SPF</div><div class="hcard-score" style="color:var(--blue-soft)">8.2</div><div class="hcard-tag" style="color:var(--blue-soft)">Bariyer Güvenli</div></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-hdr"><span class="sec-label">Topluluktan Son Yorumlar</span></div>
+      <div class="feed-item">
+        <div class="fi-top"><div class="fi-av">M</div><div class="fi-user"><div class="fi-name">merve.skin</div><div class="fi-skin">Akne eğilimli · Karma</div></div><div class="fi-badge badge-worth">Doğrulandı</div><div class="fi-score" style="color:var(--green)">9</div></div>
+        <div class="fi-product">CeraVe Nemlendirici Krem</div>
+        <div class="fi-text">"2 haftada cilt bariyerim onarıldı. Akne geçmişim var ama hiç tetiklemedi. Gerçekten işe yarıyor ve çok uygun fiyatlı."</div>
+        <div class="fi-footer"><div class="fi-days">30 gün deneyimi</div><div class="fi-tag badge-worth">Değer</div></div>
+      </div>
+      <div class="feed-item">
+        <div class="fi-top"><div class="fi-av">A</div><div class="fi-user"><div class="fi-name">ayse.glow</div><div class="fi-skin">Hassas · Kuru</div></div><div class="fi-badge badge-hype">Doğrulandı</div><div class="fi-score" style="color:var(--red-soft)">2</div></div>
+        <div class="fi-product">Drunk Elephant C-Firma Serum</div>
+        <div class="fi-text">"Purging hiç bitmedi. İçeriklere baktım — marula yağı var. Influencer'lar bu ürünü çok abartıyor, kaçının."</div>
+        <div class="fi-footer"><div class="fi-days">21 gün deneyimi</div><div class="fi-tag badge-hype">Akne Tetikleyici</div></div>
+      </div>
+      <div class="feed-item">
+        <div class="fi-top"><div class="fi-av">S</div><div class="fi-user"><div class="fi-name">selin.routine</div><div class="fi-skin">Yağlı · Normal</div></div><div class="fi-badge badge-worth">Doğrulandı</div><div class="fi-score" style="color:var(--green)">9</div></div>
+        <div class="fi-product">The Ordinary Niacinamide 10%</div>
+        <div class="fi-text">"6 haftada gözeneklerim görünür küçüldü. Sebum kontrolü gerçekten işe yarıyor. Bu fiyata bu kalite inanılmaz."</div>
+        <div class="fi-footer"><div class="fi-days">42 gün deneyimi</div><div class="fi-tag badge-worth">Değer</div></div>
       </div>
     </div>
     <div class="sec" style="padding-bottom:24px;">
       <div class="sec-hdr">
-        <span class="sec-title">Takip Ettiğim Ürünler</span>
-        <span class="sec-more" onclick="openSub('sub-scan')">+ Ekle</span>
+        <span class="sec-label">Takip Ettiğim Ürünler</span>
+        <span class="sec-link" onclick="openSub('sub-scan')">+ Ekle</span>
       </div>
-      <div class="prod-list" id="prod-list">
-        <div class="empty-state"><div class="empty-icon">◎</div><div class="empty-txt">Henüz ürün eklenmedi.<br>Cilt günlüğüne başlamak için bir ürün tara.</div></div>
+      <div class="plist" id="prod-list">
+        <div class="empty"><div class="empty-icon">🌿</div><div class="empty-txt">Henüz ürün eklemedin.<br>Bir ürün tara veya ara, takibine başla.</div></div>
       </div>
     </div>
   </div>
   <div class="tab-view" id="tv-discover">
-    <div class="disc-header">
-      <div class="disc-kicker">Topluluk Zekası</div>
+    <div class="disc-hdr">
+      <div class="disc-eyebrow">Topluluk Zekası</div>
       <div class="disc-h">Gerçek <em>kararlar,</em><br>gerçek ciltler.</div>
     </div>
-    <div class="prod-list" style="padding-bottom:24px;">
-      <div class="pcard tag-overhyped" onclick="openMock('charlotte')"><div class="pcard-icon">🫧</div><div class="pcard-body"><div class="pcard-name">Charlotte Tilbury Foundation</div><div class="pcard-meta">Fondöten · 389 yorum</div><div class="pcard-score-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:31%;background:var(--red)"></div></div><div class="pcard-num" style="color:var(--red)">3.1</div></div></div><div class="pcard-badge badge-overhyped">Hype Tuzağı</div></div>
-      <div class="pcard tag-worth" onclick="openMock('cerave')"><div class="pcard-icon">💧</div><div class="pcard-body"><div class="pcard-name">CeraVe Nemlendirici Krem</div><div class="pcard-meta">Nemlendirici · 2.841 yorum</div><div class="pcard-score-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:91%;background:var(--green)"></div></div><div class="pcard-num" style="color:var(--green)">9.1</div></div></div><div class="pcard-badge badge-worth">Değer</div></div>
-      <div class="pcard tag-trigger" onclick="openMock('drunk')"><div class="pcard-icon">🍷</div><div class="pcard-body"><div class="pcard-name">Drunk Elephant C-Firma</div><div class="pcard-meta">Serum · 1.203 yorum</div><div class="pcard-score-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:42%;background:var(--orange)"></div></div><div class="pcard-num" style="color:var(--orange)">4.2</div></div></div><div class="pcard-badge badge-trigger">Akne Tetikleyici</div></div>
-      <div class="pcard tag-worth" onclick="openMock('ordinary')"><div class="pcard-icon">🧬</div><div class="pcard-body"><div class="pcard-name">The Ordinary Niacinamide 10%</div><div class="pcard-meta">Serum · 4.102 yorum</div><div class="pcard-score-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:87%;background:var(--green)"></div></div><div class="pcard-num" style="color:var(--green)">8.7</div></div></div><div class="pcard-badge badge-worth">Değer</div></div>
-      <div class="pcard tag-safe" onclick="openMock('purito')"><div class="pcard-icon">☀️</div><div class="pcard-body"><div class="pcard-name">Purito Daily Soft Touch SPF50</div><div class="pcard-meta">SPF · 623 yorum</div><div class="pcard-score-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:82%;background:var(--blue)"></div></div><div class="pcard-num" style="color:var(--blue)">8.2</div></div></div><div class="pcard-badge badge-safe">Bariyer Güvenli</div></div>
-      <div class="pcard tag-overhyped" onclick="openMock('tatcha')"><div class="pcard-icon">🍃</div><div class="pcard-body"><div class="pcard-name">Tatcha The Water Cream</div><div class="pcard-meta">Nemlendirici · 892 yorum</div><div class="pcard-score-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:54%;background:var(--orange)"></div></div><div class="pcard-num" style="color:var(--orange)">5.4</div></div></div><div class="pcard-badge badge-trigger">Fazla Pahalı</div></div>
+    <div class="plist" style="padding-bottom:24px;">
+      <div class="pcard" onclick="openMock('cerave')"><div class="pcard-icon pcard-icon-sage">💧</div><div class="pcard-body"><div class="pcard-name">CeraVe Nemlendirici Krem</div><div class="pcard-meta">Nemlendirici · 2.841 yorum</div><div class="pcard-bar-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:91%;background:var(--green)"></div></div><div class="pcard-score" style="color:var(--green)">9.1</div></div></div><div class="pcard-badge badge-worth">Değer</div></div>
+      <div class="pcard" onclick="openMock('ordinary')"><div class="pcard-icon pcard-icon-lavender">🧬</div><div class="pcard-body"><div class="pcard-name">The Ordinary Niacinamide 10%</div><div class="pcard-meta">Serum · 4.102 yorum</div><div class="pcard-bar-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:87%;background:var(--green)"></div></div><div class="pcard-score" style="color:var(--green)">8.7</div></div></div><div class="pcard-badge badge-worth">Değer</div></div>
+      <div class="pcard" onclick="openMock('purito')"><div class="pcard-icon pcard-icon-blush">☀️</div><div class="pcard-body"><div class="pcard-name">Purito Daily Soft Touch SPF50</div><div class="pcard-meta">SPF · 623 yorum</div><div class="pcard-bar-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:82%;background:var(--blue-soft)"></div></div><div class="pcard-score" style="color:var(--blue-soft)">8.2</div></div></div><div class="pcard-badge badge-barrier">Bariyer Güvenli</div></div>
+      <div class="pcard" onclick="openMock('charlotte')"><div class="pcard-icon pcard-icon-blush">🫧</div><div class="pcard-body"><div class="pcard-name">Charlotte Tilbury Foundation</div><div class="pcard-meta">Fondöten · 389 yorum</div><div class="pcard-bar-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:31%;background:var(--red-soft)"></div></div><div class="pcard-score" style="color:var(--red-soft)">3.1</div></div></div><div class="pcard-badge badge-hype">Hype Tuzağı</div></div>
+      <div class="pcard" onclick="openMock('drunk')"><div class="pcard-icon pcard-icon-blush">🍷</div><div class="pcard-body"><div class="pcard-name">Drunk Elephant C-Firma</div><div class="pcard-meta">Serum · 1.203 yorum</div><div class="pcard-bar-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:42%;background:var(--red-soft)"></div></div><div class="pcard-score" style="color:var(--red-soft)">4.2</div></div></div><div class="pcard-badge badge-hype">Akne Tetikleyici</div></div>
+      <div class="pcard" onclick="openMock('tatcha')"><div class="pcard-icon pcard-icon-cream">🍃</div><div class="pcard-body"><div class="pcard-name">Tatcha The Water Cream</div><div class="pcard-meta">Nemlendirici · 892 yorum</div><div class="pcard-bar-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:54%;background:var(--amber)"></div></div><div class="pcard-score" style="color:var(--amber)">5.4</div></div></div><div class="pcard-badge badge-acne">Fazla Pahalı</div></div>
     </div>
   </div>
   <div class="tab-view" id="tv-profile">
-    <div class="prof-header">
+    <div class="prof-hdr">
       <div class="prof-av-lg" id="prof-av-lg">?</div>
-      <div class="prof-name" id="prof-name">—</div>
+      <div class="prof-name-lg" id="prof-name-lg">—</div>
       <div class="prof-handle" id="prof-handle"></div>
-      <div class="prof-badge"><span>🔬</span><span class="prof-badge-txt">Doğrulanmış İnceleyici</span></div>
+      <div class="prof-badge"><span>🌸</span><span class="prof-badge-txt">Doğrulanmış İnceleyici</span></div>
     </div>
-    <div class="prof-stats-row">
-      <div class="ps"><div class="ps-n" id="ps-tracked">0</div><div class="ps-l">Takip</div></div>
-      <div class="ps"><div class="ps-n" id="ps-reviewed">0</div><div class="ps-l">Yorum</div></div>
-      <div class="ps"><div class="ps-n" id="ps-days">0</div><div class="ps-l">Gün</div></div>
+    <div class="prof-stats">
+      <div class="ps-item"><div class="ps-n" id="ps-tracked">0</div><div class="ps-l">Takip</div></div>
+      <div class="ps-item"><div class="ps-n" id="ps-reviewed">0</div><div class="ps-l">Yorum</div></div>
+      <div class="ps-item"><div class="ps-n" id="ps-days">0</div><div class="ps-l">Gün</div></div>
     </div>
-    <div class="skin-prof-card">
-      <div class="spc-label">Cilt Profilim</div>
-      <div class="spc-tags" id="spc-tags"><span class="spc-tag">Yükleniyor...</span></div>
+    <div class="skin-card">
+      <div class="skin-card-label">Cilt Profilim</div>
+      <div class="skin-tags" id="skin-tags"><span class="skin-tag">Yükleniyor...</span></div>
     </div>
-    <div class="menu-rows">
-      <div class="menu-r"><span class="menu-r-ic">📦</span><span class="menu-r-txt">Ürünlerim</span><span class="menu-r-ar">›</span></div>
-      <div class="menu-r"><span class="menu-r-ic">⭐</span><span class="menu-r-txt">Değerlendirmelerim</span><span class="menu-r-ar">›</span></div>
-      <div class="menu-r"><span class="menu-r-ic">🔔</span><span class="menu-r-txt">Bildirimler</span><span class="menu-r-ar">›</span></div>
-      <div class="menu-r" onclick="handleLogout()"><span class="menu-r-ic" style="opacity:0.3;">→</span><span class="menu-r-txt" style="color:var(--muted);">Çıkış Yap</span></div>
+    <div class="menu-list">
+      <div class="menu-item"><span class="mi-ic">📦</span><span class="mi-txt">Ürünlerim</span><span class="mi-ar">›</span></div>
+      <div class="menu-item"><span class="mi-ic">⭐</span><span class="mi-txt">Değerlendirmelerim</span><span class="mi-ar">›</span></div>
+      <div class="menu-item"><span class="mi-ic">🔔</span><span class="mi-txt">Bildirimler</span><span class="mi-ar">›</span></div>
+      <div class="menu-item" onclick="handleLogout()"><span class="mi-ic" style="opacity:0.4;">→</span><span class="mi-txt" style="color:var(--muted);">Çıkış Yap</span></div>
     </div>
   </div>
   <div class="bnav">
@@ -546,53 +572,53 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;o
     </div>
     <div class="scroll">
       <div class="vf">
-        <video id="scan-video" autoplay playsinline muted style="width:100%;height:100%;object-fit:cover;display:block;"></video>
-        <div class="vf-frame"><div class="vf-box"><div class="vf-tl"></div><div class="vf-br"></div><div class="vf-line"></div></div></div>
+        <video id="scan-video" autoplay playsinline muted></video>
+        <div class="vf-overlay"><div class="vf-frame"><div class="vf-tr"></div><div class="vf-bl"></div><div class="vf-line"></div></div></div>
       </div>
-      <div class="scan-hint" id="scan-hint">Barkodu çerçeve içine getir</div>
-      <div class="scan-divider"><span>ya da manuel ara</span></div>
-      <input class="scan-manual-inp" id="scan-name" type="text" placeholder="Ürün adı (örn. CeraVe Nemlendirici)">
-      <div class="scan-section-title">Kategori</div>
+      <div class="scan-hint-txt" id="scan-hint">Barkodu çerçeve içine getir</div>
+      <div class="scan-sep"><span>ya da manuel ara</span></div>
+      <input class="scan-inp" id="scan-name" type="text" placeholder="Ürün adı (örn. CeraVe Nemlendirici)">
+      <div class="cat-section-title">Kategori</div>
       <div class="cat-grid">
-        <div class="cat-tile" data-cat="lip" data-days="3" onclick="selectCat(this)"><div class="cat-tile-ic">💄</div><div class="cat-tile-nm">Dudak</div><div class="cat-tile-d">3 gün</div></div>
-        <div class="cat-tile" data-cat="eye" data-days="3" onclick="selectCat(this)"><div class="cat-tile-ic">👁️</div><div class="cat-tile-nm">Göz</div><div class="cat-tile-d">3 gün</div></div>
-        <div class="cat-tile" data-cat="foundation" data-days="7" onclick="selectCat(this)"><div class="cat-tile-ic">🫧</div><div class="cat-tile-nm">Fondöten</div><div class="cat-tile-d">1 hafta</div></div>
+        <div class="cat-tile" data-cat="cleanser" data-days="7" onclick="selectCat(this)"><div class="cat-tile-ic">🧼</div><div class="cat-tile-nm">Temizleyici</div><div class="cat-tile-d">1 hafta</div></div>
         <div class="cat-tile" data-cat="moisturizer" data-days="14" onclick="selectCat(this)"><div class="cat-tile-ic">💧</div><div class="cat-tile-nm">Nemlendirici</div><div class="cat-tile-d">2 hafta</div></div>
         <div class="cat-tile" data-cat="serum" data-days="42" onclick="selectCat(this)"><div class="cat-tile-ic">🧬</div><div class="cat-tile-nm">Serum</div><div class="cat-tile-d">6 hafta</div></div>
         <div class="cat-tile" data-cat="spf" data-days="5" onclick="selectCat(this)"><div class="cat-tile-ic">☀️</div><div class="cat-tile-nm">SPF</div><div class="cat-tile-d">5 gün</div></div>
-        <div class="cat-tile" data-cat="cleanser" data-days="7" onclick="selectCat(this)"><div class="cat-tile-ic">🧼</div><div class="cat-tile-nm">Temizleyici</div><div class="cat-tile-d">1 hafta</div></div>
-        <div class="cat-tile" data-cat="makeup" data-days="7" onclick="selectCat(this)"><div class="cat-tile-ic">✨</div><div class="cat-tile-nm">Makyaj</div><div class="cat-tile-d">1 hafta</div></div>
-        <div class="cat-tile" data-cat="hair" data-days="14" onclick="selectCat(this)"><div class="cat-tile-ic">✦</div><div class="cat-tile-nm">Saç</div><div class="cat-tile-d">2 hafta</div></div>
+        <div class="cat-tile" data-cat="toner" data-days="14" onclick="selectCat(this)"><div class="cat-tile-ic">💦</div><div class="cat-tile-nm">Tonik</div><div class="cat-tile-d">2 hafta</div></div>
+        <div class="cat-tile" data-cat="mask" data-days="7" onclick="selectCat(this)"><div class="cat-tile-ic">🎭</div><div class="cat-tile-nm">Maske</div><div class="cat-tile-d">1 hafta</div></div>
+        <div class="cat-tile" data-cat="eye" data-days="21" onclick="selectCat(this)"><div class="cat-tile-ic">👁️</div><div class="cat-tile-nm">Göz Kremi</div><div class="cat-tile-d">3 hafta</div></div>
+        <div class="cat-tile" data-cat="lip" data-days="3" onclick="selectCat(this)"><div class="cat-tile-ic">💄</div><div class="cat-tile-nm">Dudak</div><div class="cat-tile-d">3 gün</div></div>
+        <div class="cat-tile" data-cat="treatment" data-days="30" onclick="selectCat(this)"><div class="cat-tile-ic">⚗️</div><div class="cat-tile-nm">Tedavi</div><div class="cat-tile-d">1 ay</div></div>
       </div>
       <div class="scan-submit-wrap">
-        <button class="primary-btn" id="scan-submit" onclick="addProduct()" disabled>Takibe Başla →</button>
+        <button class="primary-full" id="scan-submit" onclick="addProduct()" disabled>Takibe Başla →</button>
       </div>
     </div>
   </div>
   <div class="sub" id="sub-detail">
     <div class="sub-nav">
-      <button class="icon-btn" onclick="closeSub('sub-detail')">←</button>
+      <button class="back-btn" onclick="closeSub('sub-detail')">←</button>
       <span class="sub-title" id="det-title">Ürün</span>
     </div>
     <div class="scroll" id="det-body"></div>
   </div>
   <div class="sub" id="sub-prepurchase">
     <div class="sub-nav">
-      <button class="icon-btn" onclick="closeSub('sub-prepurchase')">←</button>
+      <button class="back-btn" onclick="closeSub('sub-prepurchase')">←</button>
       <span class="sub-title">Satın Almadan Önce</span>
     </div>
     <div class="scroll">
       <div class="pp-wrap">
-        <div class="pp-hero">
-          <div class="pp-kicker">Cilt Zekası</div>
-          <div class="pp-h">Bu ürün cildime<br>uyar mı?</div>
-          <div class="pp-body-txt">Ürün adını gir — cilt profiliyle ve topluluk verileriyle karşılaştıralım.</div>
+        <div class="pp-hero-card">
+          <div class="pp-hero-eyebrow">Cilt Zekası</div>
+          <div class="pp-hero-h">Bu ürün cildime<br>uyar mı?</div>
+          <div class="pp-hero-body">Ürün adını gir — cilt profiliyle ve topluluk verileriyle karşılaştıralım.</div>
         </div>
         <div class="pp-inp-wrap">
-          <span class="pp-search-ic">⌕</span>
+          <span class="pp-ic">⌕</span>
           <input class="pp-inp" id="pp-inp" type="text" placeholder="Ürün adı veya marka...">
         </div>
-        <button class="primary-btn" onclick="runAnalysis()">Cildim İçin Analiz Et →</button>
+        <button class="primary-full" onclick="runAnalysis()">Cildim İçin Analiz Et →</button>
         <div id="pp-result"></div>
       </div>
     </div>
@@ -605,14 +631,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;o
 try{
 var U=null,SP={},prods=[];
 function $(id){return document.getElementById(id);}
-window.show=function(id){
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');s.style.display='';});
-  var el=$(id);el.classList.add('on');el.style.display='flex';
-};
-window.openSub=function(id){
-  $(id).classList.add('on');
-  if(id==='sub-scan')setTimeout(startScan,300);
-};
+window.show=function(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');s.style.display='';});var el=$(id);el.classList.add('on');el.style.display='flex';};
+window.openSub=function(id){$(id).classList.add('on');if(id==='sub-scan')setTimeout(startScan,300);};
 window.closeSub=function(id){$(id).classList.remove('on');if(id==='sub-scan')resetScan();};
 function ld(t){$('load-txt').textContent=t||'Yükleniyor';$('loading').classList.add('on');}
 function hld(){$('loading').classList.remove('on');}
@@ -620,144 +640,70 @@ function gk(k){return U?k+'_'+U.uid:null;}
 function sv(k,v){var key=gk(k);if(key)localStorage.setItem(key,JSON.stringify(v));}
 function lv(k,d){var key=gk(k);if(!key)return d;var v=localStorage.getItem(key);return v?JSON.parse(v):d;}
 function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;document.querySelector('.phone').appendChild(t);setTimeout(function(){t.style.opacity='0';t.style.transition='opacity 0.3s';setTimeout(function(){t.remove();},300);},2800);}
-
-try{
-  $('s-welcome').classList.remove('on');$('s-welcome').style.display='';
-  var sp=$('s-splash');
-  sp.style.transition='opacity 0.6s';sp.style.opacity='0';
-  setTimeout(function(){
-    try{sp.classList.remove('on');sp.style.display='none';var wl=$('s-welcome');wl.classList.add('on');wl.style.display='flex';}
-    catch(e){document.getElementById('s-welcome').style.cssText='display:flex!important';}
-  },600);
-}catch(e){document.getElementById('s-welcome').style.cssText='display:flex!important';}
-
+try{$('s-welcome').classList.remove('on');$('s-welcome').style.display='';var sp=$('s-splash');sp.style.transition='opacity 0.5s';sp.style.opacity='0';setTimeout(function(){try{sp.classList.remove('on');sp.style.display='none';var wl=$('s-welcome');wl.classList.add('on');wl.style.display='flex';}catch(e){document.getElementById('s-welcome').style.cssText='display:flex!important';}},500);}catch(e){document.getElementById('s-welcome').style.cssText='display:flex!important';}
 var isReg=true;
-window.showAuth=function(mode){
-  isReg=mode==='register';
-  $('auth-h').innerHTML=isReg?'Hesabını<br><em>oluştur</em>':'Tekrar<br><em>hoş geldin</em>';
-  $('auth-hint').textContent=isReg?'18.400 kişiyle daha akıllı güzellik kararları al.':'Seni yeniden görmek güzel.';
-  $('auth-btn').textContent=isReg?'Hesap Oluştur →':'Giriş Yap →';
-  $('uname-fld').style.display=isReg?'block':'none';
-  $('auth-err').textContent='';
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');s.style.display='';});
-  var el=$('s-auth');el.classList.add('on');el.style.display='flex';
-};
-window.switchAuthTab=function(tab){
-  document.querySelectorAll('.tab').forEach(function(b,i){b.classList.toggle('on',i===(tab==='email'?0:1));});
-  $('email-form').style.display=tab==='email'?'block':'none';
-  $('phone-form').style.display=tab==='phone'?'block':'none';
-};
-window.handleAuth=function(){
-  var btn=$('auth-btn'),err=$('auth-err');
-  btn.disabled=true;err.textContent='';
-  var email=$('inp-email').value.trim(),pass=$('inp-pass').value,uname=$('inp-uname').value.trim();
-  if(!email||!pass){err.textContent='E-posta ve şifre gerekli.';btn.disabled=false;return;}
-  if(isReg&&!uname){err.textContent='Kullanıcı adı gerekli.';btn.disabled=false;return;}
-  if(isReg){
-    if(localStorage.getItem('lu_'+email)){err.textContent='Bu e-posta zaten kayıtlı.';btn.disabled=false;return;}
-    localStorage.setItem('lu_'+email,JSON.stringify({email:email,pass:pass,uname:uname}));
-    login(email,uname);
-  }else{
-    var u=localStorage.getItem('lu_'+email);
-    if(!u){err.textContent='Hesap bulunamadı.';btn.disabled=false;return;}
-    u=JSON.parse(u);
-    if(u.pass!==pass){err.textContent='Şifre hatalı.';btn.disabled=false;return;}
-    login(email,u.uname);
-  }
-  btn.disabled=false;
-};
+window.showAuth=function(mode){isReg=mode==='register';$('auth-h').innerHTML=isReg?'Hesabını<br><em>oluştur</em>':'Tekrar<br><em>hoş geldin</em>';$('auth-sub').textContent=isReg?'18.400 kişiyle daha akıllı cilt bakımı kararları al.':'Seni yeniden görmek güzel.';$('auth-btn').textContent=isReg?'Hesap Oluştur →':'Giriş Yap →';$('uname-fld').style.display=isReg?'block':'none';$('auth-err').textContent='';document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');s.style.display='';});var el=$('s-auth');el.classList.add('on');el.style.display='flex';};
+window.switchAuthTab=function(tab){document.querySelectorAll('.seg-btn').forEach(function(b,i){b.classList.toggle('on',i===(tab==='email'?0:1));});$('email-form').style.display=tab==='email'?'block':'none';$('phone-form').style.display=tab==='phone'?'block':'none';};
+window.handleAuth=function(){var btn=$('auth-btn'),err=$('auth-err');btn.disabled=true;err.textContent='';var email=$('inp-email').value.trim(),pass=$('inp-pass').value,uname=$('inp-uname').value.trim();if(!email||!pass){err.textContent='E-posta ve şifre gerekli.';btn.disabled=false;return;}if(isReg&&!uname){err.textContent='Kullanıcı adı gerekli.';btn.disabled=false;return;}if(isReg){if(localStorage.getItem('lu_'+email)){err.textContent='Bu e-posta zaten kayıtlı.';btn.disabled=false;return;}localStorage.setItem('lu_'+email,JSON.stringify({email:email,pass:pass,uname:uname}));login(email,uname);}else{var u=localStorage.getItem('lu_'+email);if(!u){err.textContent='Hesap bulunamadı.';btn.disabled=false;return;}u=JSON.parse(u);if(u.pass!==pass){err.textContent='Şifre hatalı.';btn.disabled=false;return;}login(email,u.uname);}btn.disabled=false;};
 window.handleGoogle=function(){var n=prompt('Kullanıcı adını seç:');if(!n)return;login(n+'@g',n);};
 window.handleLogout=function(){if(!confirm('Çıkış yapmak istiyor musun?'))return;localStorage.removeItem('lu_session');U=null;SP={};prods=[];show('s-welcome');};
-function login(email,uname){
-  var id=btoa(unescape(encodeURIComponent(email))).replace(/=/g,'');
-  localStorage.setItem('lu_session',JSON.stringify({email:email,uname:uname,id:id}));
-  U={email:email,uid:id};onLogin(uname);
-}
+function login(email,uname){var id=btoa(unescape(encodeURIComponent(email))).replace(/=/g,'');localStorage.setItem('lu_session',JSON.stringify({email:email,uname:uname,id:id}));U={email:email,uid:id};onLogin(uname);}
 (function(){var s=localStorage.getItem('lu_session');if(s){try{var d=JSON.parse(s);U={email:d.email,uid:d.id};onLogin(d.uname);}catch(e){localStorage.removeItem('lu_session');}}})();
-function onLogin(uname){
-  SP=lv('skin',{});prods=lv('prods',[]);
-  var av=uname[0].toUpperCase();
-  $('home-av').textContent=av;$('prof-av-lg').textContent=av;
-  $('prof-name').textContent=uname;$('prof-handle').textContent='@'+uname.toLowerCase().replace(/\s/g,'');
-  renderSkinTags();renderStats();
-  if(!Object.keys(SP).length){show('s-ob');startOb();}
-  else{show('s-app');renderProds();checkCI();}
-}
+function onLogin(uname){SP=lv('skin',{});prods=lv('prods',[]);var av=uname[0].toUpperCase();$('home-av').textContent=av;$('prof-av-lg').textContent=av;$('prof-name-lg').textContent=uname;$('prof-handle').textContent='@'+uname.toLowerCase().replace(/\s/g,'');renderSkinTags();renderStats();if(!Object.keys(SP).length){show('s-ob');startOb();}else{show('s-app');renderProds();checkCI();}}
 var OB=[
-  {g:'🌿',q:'Cilt tipini seçelim',s:'Her öneri buna dayanır.',multi:false,k:'type',opts:['Normal','Yağlı','Kuru','Karma','Hassas / Reaktif']},
-  {g:'⚡',q:'En büyük cilt endişen nedir?',s:'Birden fazla seçebilirsin — kendinle dürüst ol.',multi:true,k:'concerns',opts:['Sivilce & Akne','Leke & Hiperpigmentasyon','Büyük Gözenekler','Yaşlanma Karşıtı','Kuruluk & Susuzluk','Kızarıklık & Hassasiyet']},
-  {g:'🌡️',q:'Bilinen alerjin veya tahriş geçmişin var mı?',s:'',multi:false,k:'allergy',opts:['Evet — birkaç tane','Evet — az','Bildiğim kadarıyla hayır','Henüz anlıyorum']},
-  {g:'💊',q:'Şu anki bakım rutinin nedir?',s:'',multi:false,k:'level',opts:['Başlangıç — yeni başlıyorum','Orta — biraz rutinim var','İleri — tam rutine sahibim','Uzman — içerik listesi okuyorum']},
+  {i:'🌿',q:'Cilt tipini seçelim',h:'Her öneri buna göre şekillenecek.',multi:false,k:'type',opts:['Normal','Yağlı','Kuru','Karma','Hassas / Reaktif']},
+  {i:'✨',q:'En büyük cilt endişen nedir?',h:'Birden fazla seçebilirsin.',multi:true,k:'concerns',opts:['Sivilce & Akne','Leke & Hiperpigmentasyon','Büyük Gözenekler','Yaşlanma Karşıtı','Kuruluk & Susuzluk','Kızarıklık & Hassasiyet']},
+  {i:'🌡️',q:'Bilinen alerjin var mı?',h:'',multi:false,k:'allergy',opts:['Evet — birkaç var','Evet — az','Bilmiyorum','Hayır, yok']},
+  {i:'💊',q:'Şu anki cilt bakım rutinin?',h:'',multi:false,k:'level',opts:['Başlangıç — yeni başlıyorum','Orta — temel rutine sahibim','İleri — tam rutine sahibim','Uzman — içerik listesi okuyorum']},
 ];
 var oI=0,oA={};
 function startOb(){oI=0;oA={};renderOb();}
-function renderOb(){
-  var s=OB[oI];
-  $('ob-fill').style.width=((oI+1)/OB.length*100)+'%';
-  $('ob-counter').textContent='Adım '+(oI+1)+' / '+OB.length;
-  $('ob-glyph').textContent=s.g;$('ob-q').textContent=s.q;$('ob-sub').textContent=s.s;
-  $('ob-cta').disabled=true;
-  $('ob-choices').innerHTML=s.opts.map(function(o,i){return '<button class="ob-choice" onclick="selOb(this,'+i+','+s.multi+')">'+o+'</button>';}).join('');
-}
-window.selOb=function(btn,i,multi){
-  if(multi){btn.classList.toggle('sel');$('ob-cta').disabled=document.querySelectorAll('#ob-choices .ob-choice.sel').length===0;oA[OB[oI].k]=Array.from(document.querySelectorAll('#ob-choices .ob-choice.sel')).map(function(b){return b.textContent;});}
-  else{document.querySelectorAll('#ob-choices .ob-choice').forEach(function(b){b.classList.remove('sel');});btn.classList.add('sel');$('ob-cta').disabled=false;oA[OB[oI].k]=btn.textContent;}
-};
-window.nextOb=function(){
-  if(oI<OB.length-1){oI++;renderOb();}
-  else{SP=oA;sv('skin',SP);renderSkinTags();show('s-app');renderProds();checkCI();}
-};
+function renderOb(){var s=OB[oI];$('ob-fill').style.width=((oI+1)/OB.length*100)+'%';$('ob-step').textContent='Adım '+(oI+1)+' / '+OB.length;$('ob-icon').textContent=s.i;$('ob-q').textContent=s.q;$('ob-hint').textContent=s.h;$('ob-cta').disabled=true;$('ob-choices').innerHTML=s.opts.map(function(o,i){return '<button class="ob-choice" onclick="selOb(this,'+i+','+s.multi+')">'+o+'</button>';}).join('');}
+window.selOb=function(btn,i,multi){if(multi){btn.classList.toggle('sel');$('ob-cta').disabled=document.querySelectorAll('#ob-choices .ob-choice.sel').length===0;oA[OB[oI].k]=Array.from(document.querySelectorAll('#ob-choices .ob-choice.sel')).map(function(b){return b.textContent;});}else{document.querySelectorAll('#ob-choices .ob-choice').forEach(function(b){b.classList.remove('sel');});btn.classList.add('sel');$('ob-cta').disabled=false;oA[OB[oI].k]=btn.textContent;}};
+window.nextOb=function(){if(oI<OB.length-1){oI++;renderOb();}else{SP=oA;sv('skin',SP);renderSkinTags();show('s-app');renderProds();checkCI();}};
 window.skipOb=function(){SP={type:'Bilinmiyor',concerns:[],allergy:'Emin değilim',level:'Başlangıç'};sv('skin',SP);show('s-app');renderProds();};
-function renderSkinTags(){var el=$('spc-tags');if(!el)return;var items=[];if(SP.type)items.push(SP.type);if(SP.concerns&&SP.concerns.length)items=items.concat(SP.concerns.slice(0,3));el.innerHTML=items.length?items.map(function(t){return '<span class="spc-tag">'+t+'</span>';}).join(''):'<span class="spc-tag">Profil yok</span>';}
+function renderSkinTags(){var el=$('skin-tags');if(!el)return;var items=[];if(SP.type)items.push(SP.type);if(SP.concerns&&SP.concerns.length)items=items.concat(SP.concerns.slice(0,3));el.innerHTML=items.length?items.map(function(t){return '<span class="skin-tag">'+t+'</span>';}).join(''):'<span class="skin-tag">Profil yok</span>';}
 function renderStats(){var rev=prods.filter(function(p){return p.status==='reviewed';}).length;var days=prods.reduce(function(a,p){return a+p.done;},0);$('ps-tracked').textContent=prods.length;$('ps-reviewed').textContent=rev;$('ps-days').textContent=days;}
 window.switchTab=function(tab){document.querySelectorAll('.tab-view').forEach(function(t){t.classList.remove('on');});document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});var tv=$('tv-'+tab),nb=$('nb-'+tab);if(tv)tv.classList.add('on');if(nb)nb.classList.add('on');};
 var MOCKS={
-  charlotte:{name:'Charlotte Tilbury Magic Foundation',emoji:'🫧',cat:'Fondöten',score:3.1,tag:'Hype Tuzağı',tagCls:'vtag-overhyped',color:'var(--red)',
-    reviews:[{user:'akne_dedektifi',skin:'Akne Eğilimli',score:2,text:'3 günde sivilce çıkardı. Ağır formül, açıkça komedojenik. Influencer\'lar yalan söyledi.',days:7,verified:true},{user:'yagliCilt.uzman',skin:'Yağlı',score:3,text:'4 saat harika görünüyor sonra kayıyor. Fiyatına değmez.',days:14,verified:true}],
-    ings:[['risk','Isododecane','Yüksek oranda komedojenik, gözenek tıkama riski','risk'],['warn','Dimethicone','Akneye neden olan bakterileri hapsedeebilir','warn'],['mid','Titanyum Dioksit','Fiziksel filtre, genellikle güvenli','mid']]},
+  charlotte:{name:'Charlotte Tilbury Magic Foundation',emoji:'🫧',cat:'Fondöten',score:3.1,tag:'Hype Tuzağı',tagCls:'vtag-hype',color:'var(--red-soft)',
+    reviews:[{user:'akne_dedektifi',skin:'Akne Eğilimli',score:2,text:'3 günde sivilce çıkardı. Ağır formül, komedojenik. Influencer\'lar yalan söyledi.',days:7,ok:true},{user:'yagliCilt',skin:'Yağlı',score:3,text:'4 saat sonra kayıyor. Fiyatına kesinlikle değmez.',days:14,ok:true}],
+    ings:[['risk','Isododecane','Yüksek komedojenik, gözenek tıkama riski','risk'],['warn','Dimethicone','Bakteri hapsedeebilir','warn'],['mid','Titanyum Dioksit','Fiziksel filtre, genellikle güvenli','mid']]},
   cerave:{name:'CeraVe Nemlendirici Krem',emoji:'💧',cat:'Nemlendirici',score:9.1,tag:'Değer',tagCls:'vtag-worth',color:'var(--green)',
-    reviews:[{user:'bariyer.koruyucu',skin:'Kuru / Hassas',score:10,text:'2 haftada cilt bariyerimi dönüştürdü. Parfümsüz, uygun fiyatlı, gerçekten işe yarıyor.',days:30,verified:true},{user:'ciltminimalist',skin:'Normal',score:9,text:'Altın standart bir sebepten. Basit içerik listesi, mükemmel seramid içeriği.',days:42,verified:true}],
-    ings:[['good','Seramidler','Cilt bariyerini onarır ve korur — temel içerik','good'],['good','Hyalüronik Asit','Nemi cilde çeker','good'],['good','Niacinamide','Kızarıklığı giderir ve gözenekleri sıkılaştırır','good']]},
+    reviews:[{user:'bariyer.koruyucu',skin:'Kuru / Hassas',score:10,text:'2 haftada cilt bariyerim onarıldı. Parfümsüz, uygun fiyatlı, gerçekten işe yarıyor.',days:30,ok:true},{user:'ciltminimalist',skin:'Normal',score:9,text:'Altın standart. Basit içerik, mükemmel seramid.',days:42,ok:true}],
+    ings:[['good','Seramidler','Cilt bariyerini onarır — temel içerik','good'],['good','Hyalüronik Asit','Derin nemlendirme','good'],['good','Niacinamide','Gözenek sıkılaştırıcı','good']]},
   ordinary:{name:'The Ordinary Niacinamide 10%',emoji:'🧬',cat:'Serum',score:8.7,tag:'Değer',tagCls:'vtag-worth',color:'var(--green)',
-    reviews:[{user:'gozenek.kucultme',skin:'Yağlı / Karma',score:9,text:'6 haftada gözenekler görünür şekilde küçüldü. Sebum kontrolü gerçek. Bütçe dostu.',days:42,verified:true},{user:'leke.savaşçısı',skin:'Normal',score:8,text:'Lekelerimi yavaş ama emin şekilde açıyor. Sabır istiyor, değer.',days:60,verified:false}],
-    ings:[['good','Niacinamide %10','Kanıtlanmış gözenek daraltıcı ve sebum kontrol içeriği','good'],['good','Zinc PCA','Aşırı yağ üretimini düzenler','good'],['mid','Pentylene Glycol','Nemlendirici ve koruyucu yardımcı','mid']]},
-  purito:{name:'Purito Daily Soft Touch SPF50',emoji:'☀️',cat:'SPF',score:8.2,tag:'Bariyer Güvenli',tagCls:'vtag-safe',color:'var(--blue)',
-    reviews:[{user:'gunes_kremi.uzman',skin:'Hassas',score:9,text:'Beyaz iz yok, yanma yok. Sorunsuzca her gün kullanabildiğim ilk SPF.',days:14,verified:true},{user:'yagliCilt.uzman',skin:'Yağlı',score:7,text:'Harika formül ama makyaj altında biraz topaklanıyor. Yine de günlük ürünüm.',days:30,verified:true}],
-    ings:[['good','Çinko Oksit','Fiziksel UV filtresi, hassas cilde nazik','good'],['good','Bisabolol','Sakinleştirici ve anti-enflamatuar','good'],['warn','Hafif Parfüm','Çok hassas cildi tahriş edebilir','warn']]},
-  tatcha:{name:'Tatcha The Water Cream',emoji:'🍃',cat:'Nemlendirici',score:5.4,tag:'Fazla Pahalı',tagCls:'vtag-overhyped',color:'var(--orange)',
-    reviews:[{user:'icerik.gercekci',skin:'Karma',score:4,text:'68 dolar için silikon ve gliserin. The Ordinary aynısını çok daha ucuza yapıyor.',days:14,verified:true},{user:'luxa.guzellik',skin:'Kuru',score:6,text:'Güzel doku ama iddialara rağmen kuru cilt için yeterince nemlendirmiyor.',days:21,verified:false}],
-    ings:[['warn','Dimethicone','Ana içerik — silikon dolgu','warn'],['good','Gliserin','Etkili nemlendirici, her yerde çok daha ucuz bulunur','good'],['warn','Yüksek Fiyat','Benzer ürünler çok daha uygun fiyata mevcut','warn']]},
-  drunk:{name:'Drunk Elephant C-Firma',emoji:'🍷',cat:'Serum',score:4.2,tag:'Akne Tetikleyici',tagCls:'vtag-trigger',color:'var(--orange)',
-    reviews:[{user:'akne_dedektifi',skin:'Akne Eğilimli',score:2,text:'Hiç bitmeyen purging. İçeriklere baktım — birden fazla komedojenik yağ. Kaçın.',days:21,verified:true},{user:'olgun.cilt.uzman',skin:'Normal / Olgun',score:6,text:'C vitamini etkili ama formül bende de sivilceye yol açtı.',days:14,verified:false}],
-    ings:[['risk','Marula Yağı','Komedojenik derecelendirme 3-4, yüksek sivilce riski','risk'],['warn','Çoklu Meyve Özleri','Hassas/akne eğilimli cildi tahriş edebilir','warn'],['good','C Vitamini (L-Askorbik)','Etkili antioksidan, iyi potens','good']]},
+    reviews:[{user:'gozenek.uzman',skin:'Yağlı / Karma',score:9,text:'6 haftada gözenekler görünür küçüldü. Sebum kontrolü gerçek.',days:42,ok:true},{user:'leke.savascisi',skin:'Normal',score:8,text:'Lekeler yavaş ama emin adımlarla açılıyor.',days:60,ok:false}],
+    ings:[['good','Niacinamide %10','Kanıtlanmış gözenek daraltıcı','good'],['good','Zinc PCA','Yağ üretimini düzenler','good'],['mid','Pentylene Glycol','Nemlendirici yardımcı','mid']]},
+  purito:{name:'Purito Daily Soft Touch SPF50',emoji:'☀️',cat:'SPF',score:8.2,tag:'Bariyer Güvenli',tagCls:'vtag-barrier',color:'var(--blue-soft)',
+    reviews:[{user:'spf.uzman',skin:'Hassas',score:9,text:'Beyaz iz yok, yanma yok. Günlük kullanabildiğim ilk SPF.',days:14,ok:true},{user:'yagliCilt',skin:'Yağlı',score:7,text:'Makyaj altında biraz topaklanıyor ama yine de günlük kullanıyorum.',days:30,ok:true}],
+    ings:[['good','Çinko Oksit','Fiziksel UV filtresi, nazik','good'],['good','Bisabolol','Sakinleştirici','good'],['warn','Hafif Parfüm','Çok hassas cildi tahriş edebilir','warn']]},
+  tatcha:{name:'Tatcha The Water Cream',emoji:'🍃',cat:'Nemlendirici',score:5.4,tag:'Fazla Pahalı',tagCls:'vtag-hype',color:'var(--amber)',
+    reviews:[{user:'icerik.gercekci',skin:'Karma',score:4,text:'68 dolar için sadece silikon ve gliserin. The Ordinary aynısını çok daha ucuza yapıyor.',days:14,ok:true},{user:'luxa',skin:'Kuru',score:6,text:'Güzel doku ama kuru cilt için yeterince nemlendirmiyor.',days:21,ok:false}],
+    ings:[['warn','Dimethicone','Ana içerik — silikon dolgu','warn'],['good','Gliserin','Etkili nemlendirici','good'],['warn','Yüksek Fiyat','Benzer ürünler çok daha uygun','warn']]},
+  drunk:{name:'Drunk Elephant C-Firma',emoji:'🍷',cat:'Serum',score:4.2,tag:'Akne Tetikleyici',tagCls:'vtag-hype',color:'var(--red-soft)',
+    reviews:[{user:'akne_dedektifi',skin:'Akne Eğilimli',score:2,text:'Hiç bitmeyen purging. Marula yağı var — komedojenik. Kaçın.',days:21,ok:true},{user:'olgun.cilt',skin:'Normal',score:6,text:'C vitamini etkili ama bende de sivilce yaptı.',days:14,ok:false}],
+    ings:[['risk','Marula Yağı','Komedojenik 3-4, sivilce riski yüksek','risk'],['warn','Meyve Özleri','Hassas cildi tahriş edebilir','warn'],['good','L-Askorbik Asit','Etkili C vitamini','good']]},
 };
 window.openMock=function(key){
   var m=MOCKS[key];if(!m)return;
   $('det-title').textContent=m.name;
   var sc=m.color;
-  var ingsHTML=m.ings.map(function(i){
-    var dot='ing-dot-'+(i[3]==='risk'?'risk':i[3]==='warn'?'warn':i[3]==='good'?'safe':'mid');
-    var bc=i[3]==='risk'?'ing-badge ing-badge-risk':i[3]==='warn'?'ing-badge ing-badge-warn':i[3]==='good'?'ing-badge ing-badge-good':'';
-    var bl=i[3]==='risk'?'YÜKSEK RİSK':i[3]==='warn'?'DİKKAT':i[3]==='good'?'GÜVENLİ':'';
-    return '<div class="ing-item"><div class="ing-dot '+dot+'"></div><div class="ing-content"><div class="ing-name">'+i[0]+'</div><div class="ing-desc">'+i[1]+'</div></div>'+(bc?'<div class="'+bc+'">'+bl+'</div>':'')+'</div>';
-  }).join('');
-  var revsHTML=m.reviews.map(function(r){
-    var scoreC=r.score>=7?'var(--green)':r.score>=5?'var(--orange)':'var(--red)';
-    return '<div class="rev-item"><div class="rev-top"><div class="rev-av">'+r.user[0].toUpperCase()+'</div><div class="rev-user"><div class="rev-name">'+r.user+'</div><div class="rev-skin">'+r.skin+'</div></div>'+(r.verified?'<div class="rev-verified">Doğrulandı</div>':'')+'<div class="rev-score" style="color:'+scoreC+'">'+r.score+'</div></div><div class="rev-text">'+r.text+'</div><div class="rev-days">'+r.days+' günlük deneyim</div></div>';
-  }).join('');
+  var ingsHTML=m.ings.map(function(i){var dc='ing-dot-'+(i[3]==='risk'?'risk':i[3]==='warn'?'warn':i[3]==='good'?'safe':'mid');var bc=i[3]==='risk'?'ib-risk':i[3]==='warn'?'ib-warn':i[3]==='good'?'ib-safe':'';var bl=i[3]==='risk'?'Yüksek Risk':i[3]==='warn'?'Dikkat':i[3]==='good'?'Güvenli':'';return '<div class="ing-row"><div class="ing-dot '+dc+'"></div><div class="ing-txt"><div class="ing-name">'+i[0]+'</div><div class="ing-desc">'+i[1]+'</div></div>'+(bc?'<div class="ing-badge '+bc+'">'+bl+'</div>':'')+'</div>';}).join('');
+  var revsHTML=m.reviews.map(function(r){var sc2=r.score>=7?'var(--green)':r.score>=5?'var(--amber)':'var(--red-soft)';return '<div class="rev-card"><div class="rc-top"><div class="rc-av">'+r.user[0].toUpperCase()+'</div><div class="rc-user"><div class="rc-name">'+r.user+'</div><div class="rc-skin">'+r.skin+'</div></div>'+(r.ok?'<div class="rc-verified">Doğrulandı</div>':'')+'<div class="rc-score" style="color:'+sc2+'">'+r.score+'</div></div><div class="rc-text">'+r.text+'</div><div class="rc-days">'+r.days+' günlük deneyim</div></div>';}).join('');
   $('det-body').innerHTML=
-    '<div class="det-top"><span class="det-emoji">'+m.emoji+'</span><div class="det-kicker">'+m.cat.toUpperCase()+'</div><div class="det-name">'+m.name+'</div></div>'
-    +'<div class="score-block"><div class="sb-top"><svg class="sb-ring" viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="none" stroke="var(--border)" stroke-width="3"/><circle cx="30" cy="30" r="26" fill="none" stroke="'+sc+'" stroke-width="3" stroke-dasharray="163" stroke-dashoffset="'+Math.round((1-(m.score/10))*163)+'" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg><div><div class="sb-num" style="color:'+sc+'">'+m.score+'</div><div class="sb-verdict" style="color:'+sc+'">'+m.tag+'</div></div></div>'
-    +'<div class="sb-breakdown"><div class="sbd-row"><span class="sbd-label">Yağlı cilt</span><div class="sbd-bar"><div class="sbd-fill" style="width:'+(m.score*8)+'%;background:'+sc+'"></div></div><span class="sbd-val">'+(m.score*0.9).toFixed(1)+'</span></div><div class="sbd-row"><span class="sbd-label">Kuru cilt</span><div class="sbd-bar"><div class="sbd-fill" style="width:'+(m.score*9)+'%;background:'+sc+'"></div></div><span class="sbd-val">'+(m.score*1.05).toFixed(1)+'</span></div><div class="sbd-row"><span class="sbd-label">Akne eğilimli</span><div class="sbd-bar"><div class="sbd-fill" style="width:'+(m.score*7)+'%;background:'+sc+'"></div></div><span class="sbd-val">'+(m.score*0.7).toFixed(1)+'</span></div></div></div>'
+    '<div class="det-hero"><span class="det-emoji">'+m.emoji+'</span><div class="det-eyebrow">'+m.cat.toUpperCase()+'</div><div class="det-name">'+m.name+'</div></div>'
+    +'<div class="score-card"><div class="sc-top"><svg class="sc-ring" viewBox="0 0 62 62"><circle cx="31" cy="31" r="26" fill="none" stroke="var(--border)" stroke-width="3"/><circle cx="31" cy="31" r="26" fill="none" stroke="'+sc+'" stroke-width="3" stroke-dasharray="163" stroke-dashoffset="'+Math.round((1-(m.score/10))*163)+'" stroke-linecap="round" transform="rotate(-90 31 31)"/></svg><div><div class="sc-num" style="color:'+sc+'">'+m.score+'</div><div class="sc-tag" style="color:'+sc+'">'+m.tag+'</div></div></div>'
+    +'<div class="sc-breakdown"><div class="scb-row"><span class="scb-label">Yağlı cilt</span><div class="scb-bar"><div class="scb-fill" style="width:'+(m.score*8)+'%;background:'+sc+'"></div></div><span class="scb-val">'+(m.score*0.9).toFixed(1)+'</span></div><div class="scb-row"><span class="scb-label">Kuru cilt</span><div class="scb-bar"><div class="scb-fill" style="width:'+(m.score*9)+'%;background:'+sc+'"></div></div><span class="scb-val">'+(m.score*1.0).toFixed(1)+'</span></div><div class="scb-row"><span class="scb-label">Akne eğilimli</span><div class="scb-bar"><div class="scb-fill" style="width:'+(m.score*7)+'%;background:'+sc+'"></div></div><span class="scb-val">'+(m.score*0.7).toFixed(1)+'</span></div></div></div>'
     +'<div class="tag-row"><div class="vtag '+m.tagCls+'">'+m.tag+'</div></div>'
-    +'<div class="ing-block"><div class="ing-header"><span class="ing-title">İçerik Analizi</span></div>'+ingsHTML+'</div>'
-    +'<div class="review-block"><div class="rev-title">Topluluk Yorumları</div>'+revsHTML+'</div>'
-    +'<div style="padding:0 16px 8px;"><button class="primary-btn" onclick="startTrackFrom(\''+key+'\')">Bu Ürünü Takip Et →</button></div>'
-    +'<div style="padding:0 16px 32px;"><button class="outline-btn" onclick="closeSub(\'sub-detail\')">← Geri</button></div>';
+    +'<div class="ing-card"><div class="ing-card-hdr"><span class="ing-card-title">İçerik Analizi</span></div>'+ingsHTML+'</div>'
+    +'<div class="rev-section"><div class="rev-hdr">Topluluk Yorumları</div>'+revsHTML+'</div>'
+    +'<div style="padding:0 16px 8px;"><button class="primary-full" onclick="startTrackFrom(\''+key+'\')">Bu Ürünü Takip Et →</button></div>'
+    +'<div style="padding:0 16px 32px;"><button class="outline-full" onclick="closeSub(\'sub-detail\')">← Geri</button></div>';
   openSub('sub-detail');
 };
 window.startTrackFrom=function(key){closeSub('sub-detail');setTimeout(function(){var m=MOCKS[key];if(m)$('scan-name').value=m.name;openSub('sub-scan');},200);};
-var CATS={lip:{e:'💄',l:'Dudak',d:3},eye:{e:'👁️',l:'Göz',d:3},foundation:{e:'🫧',l:'Fondöten',d:7},moisturizer:{e:'💧',l:'Nemlendirici',d:14},serum:{e:'🧬',l:'Serum',d:42},spf:{e:'☀️',l:'SPF',d:5},cleanser:{e:'🧼',l:'Temizleyici',d:7},makeup:{e:'✨',l:'Makyaj',d:7},hair:{e:'✦',l:'Saç',d:14}};
+var CATS={cleanser:{e:'🧼',l:'Temizleyici',d:7},moisturizer:{e:'💧',l:'Nemlendirici',d:14},serum:{e:'🧬',l:'Serum',d:42},spf:{e:'☀️',l:'SPF',d:5},toner:{e:'💦',l:'Tonik',d:14},mask:{e:'🎭',l:'Maske',d:7},eye:{e:'👁️',l:'Göz Kremi',d:21},lip:{e:'💄',l:'Dudak',d:3},treatment:{e:'⚗️',l:'Tedavi',d:30}};
 var selCat=null;
 window.selectCat=function(el){document.querySelectorAll('.cat-tile').forEach(function(c){c.classList.remove('sel');});el.classList.add('sel');selCat=el.dataset.cat;chkScan();};
 $('scan-name').addEventListener('input',chkScan);
@@ -773,19 +719,15 @@ window.addProduct=function(){
 function getRisk(p){if(!p.ci||!p.ci.length)return 'none';var last=p.ci.slice(-3);var w=last.filter(function(c){return c.r==='worse';}).length;if(w>=2)return 'high';if(w>=1)return 'mid';return 'low';}
 function renderProds(){
   var list=$('prod-list');
-  if(!prods.length){list.innerHTML='<div class="empty-state"><div class="empty-icon">◎</div><div class="empty-txt">Henüz ürün eklenmedi.<br>Cilt günlüğüne başlamak için bir ürün tara.</div></div>';return;}
+  if(!prods.length){list.innerHTML='<div class="empty"><div class="empty-icon">🌿</div><div class="empty-txt">Henüz ürün eklemedin.<br>Bir ürün tara veya ara, takibine başla.</div></div>';return;}
   list.innerHTML=prods.map(function(p){
     var pct=Math.min(Math.round((p.done/p.days)*100),100);
     var risk=getRisk(p);
-    var tc=risk==='high'?'tag-overhyped':risk==='mid'?'tag-trigger':p.done>0?'tag-worth':'';
-    var bc=pct===100?'var(--green)':risk==='high'?'var(--red)':risk==='mid'?'var(--orange)':'var(--gold)';
+    var bc=pct===100?'var(--green)':risk==='high'?'var(--red-soft)':risk==='mid'?'var(--amber)':'var(--rose)';
     var bl=pct===100?'Tamamlandı':risk==='high'?'Risk Var':risk==='mid'?'İzle':'Takipte';
-    var bcls=pct===100?'badge-worth':risk==='high'?'badge-overhyped':risk==='mid'?'badge-trigger':'badge-tracking';
-    return '<div class="pcard '+tc+'" onclick="openUserDetail(\''+p.id+'\')">'
-      +'<div class="pcard-icon">'+p.e+'</div>'
-      +'<div class="pcard-body"><div class="pcard-name">'+p.name+'</div><div class="pcard-meta">'+p.l.toUpperCase()+'</div>'
-      +'<div class="pcard-score-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:'+pct+'%;background:'+bc+'"></div></div><div class="pcard-num" style="color:'+bc+'">'+p.done+'/'+p.days+'g</div></div></div>'
-      +'<div class="pcard-badge '+bcls+'">'+bl+'</div></div>';
+    var bcls=pct===100?'badge-worth':risk==='high'?'badge-hype':risk==='mid'?'badge-acne':'badge-tracking';
+    var iconBg=p.cat==='serum'?'pcard-icon-lavender':p.cat==='spf'?'pcard-icon-blush':p.cat==='moisturizer'?'pcard-icon-sage':'pcard-icon-cream';
+    return '<div class="pcard" onclick="openUserDetail(\''+p.id+'\')"><div class="pcard-icon '+iconBg+'">'+p.e+'</div><div class="pcard-body"><div class="pcard-name">'+p.name+'</div><div class="pcard-meta">'+p.l.toUpperCase()+'</div><div class="pcard-bar-row"><div class="pcard-bar"><div class="pcard-bar-fill" style="width:'+pct+'%;background:'+bc+'"></div></div><div class="pcard-score" style="color:'+bc+'">'+p.done+'/'+p.days+'g</div></div></div><div class="pcard-badge '+bcls+'">'+bl+'</div></div>';
   }).join('');
 }
 window.openUserDetail=function(id){
@@ -795,121 +737,76 @@ window.openUserDetail=function(id){
   var risk=getRisk(p);var vc=getVC(p,risk);
   var today=new Date().toDateString();var ciKey=gk('ci_date');var lastCI=ciKey?localStorage.getItem(ciKey):null;
   var showCI=p.status==='active'&&p.done<p.days&&lastCI!==today;
-  var ciHTML=showCI?'<div class="verdict-card vc-neutral" style="margin:0 16px 12px;"><div class="vc-tag">Günlük Check-in</div><div class="vc-main" style="font-size:1rem;">"'+p.name+'" — bugün cildin nasıl?</div><div style="display:flex;gap:7px;margin-top:12px;"><button class="ci-opt" onclick="doDetailCI(\'worse\',this,\''+p.id+'\')">Kötüleşti</button><button class="ci-opt" onclick="doDetailCI(\'same\',this,\''+p.id+'\')">Aynı</button><button class="ci-opt" onclick="doDetailCI(\'better\',this,\''+p.id+'\')">İyileşti</button></div></div>':'';
-  var actHTML=p.done>=p.days&&p.status!=='reviewed'
-    ?'<div style="padding:0 16px 8px;"><button class="primary-btn" onclick="openReview(\''+p.id+'\')">Değerlendirmeni Yaz →</button></div>'
-    :p.status==='reviewed'
-    ?'<div style="padding:0 16px 8px;"><div style="padding:14px;background:rgba(76,175,125,0.08);border:1px solid rgba(76,175,125,0.2);border-radius:1px;text-align:center;font-family:Syne,sans-serif;font-size:0.6rem;letter-spacing:1px;color:var(--green);">✓ DEĞERLENDİRME YAYINLANDI</div></div>'
-    :'<div style="padding:0 16px 8px;"><button class="primary-btn" disabled>⏳ '+(p.days-p.done)+' gün kaldı</button></div>';
+  var ciHTML=showCI?'<div class="ci-wrap"><div class="ci-card"><div class="ci-eyebrow">Günlük Check-in</div><div class="ci-q">"'+p.name+'" bugün nasıl?</div><div class="ci-row"><button class="ci-btn" onclick="doDetailCI(\'worse\',this,\''+p.id+'\')">Kötüleşti</button><button class="ci-btn" onclick="doDetailCI(\'same\',this,\''+p.id+'\')">Aynı</button><button class="ci-btn" onclick="doDetailCI(\'better\',this,\''+p.id+'\')">İyileşti</button></div></div></div>':'';
+  var actHTML=p.done>=p.days&&p.status!=='reviewed'?'<div style="padding:0 16px 8px;"><button class="primary-full" onclick="openReview(\''+p.id+'\')">Değerlendirmeni Yaz →</button></div>':p.status==='reviewed'?'<div style="padding:0 16px 8px;"><div style="padding:14px;background:var(--sage);border-radius:12px;text-align:center;font-size:0.7rem;font-weight:600;color:var(--green);">✓ Değerlendirme yayınlandı</div></div>':'<div style="padding:0 16px 8px;"><button class="primary-full" disabled>⏳ '+(p.days-p.done)+' gün kaldı</button></div>';
   $('det-body').innerHTML=
-    '<div class="det-top"><span class="det-emoji">'+p.e+'</span><div class="det-kicker">'+p.l.toUpperCase()+' · KİŞİSEL TAKİP</div><div class="det-name">'+p.name+'</div><div class="det-sub">Başlangıç: '+new Date(p.added).toLocaleDateString('tr',{month:'long',day:'numeric'})+'</div></div>'
-    +'<div class="verdict-card '+vc.cls+'"><div class="vc-tag">'+vc.tag+'</div><div class="vc-main">'+vc.main+'</div><div class="vc-sub">'+vc.sub+'</div></div>'
-    +'<div class="prog-block"><div class="prog-top"><span class="prog-label">Takip Süreci</span><span class="prog-val">'+p.done+' / '+p.days+' gün</span></div><div class="prog-track"><div class="prog-fill" style="width:'+pct+'%"></div></div><div class="prog-status">'+(pct===100?'✓ Değerlendirmeye hazır':pct+'% tamamlandı — devam et')+'</div></div>'
+    '<div class="det-hero"><span class="det-emoji">'+p.e+'</span><div class="det-eyebrow">'+p.l.toUpperCase()+' · KİŞİSEL TAKİP</div><div class="det-name">'+p.name+'</div><div class="det-sub">Başlangıç: '+new Date(p.added).toLocaleDateString('tr',{month:'long',day:'numeric'})+'</div></div>'
+    +'<div class="vc '+vc.cls+'"><div class="vc-tag">'+vc.tag+'</div><div class="vc-main">'+vc.main+'</div><div class="vc-sub">'+vc.sub+'</div></div>'
+    +'<div class="prog-card"><div class="pc-top"><span class="pc-label">Takip Süreci</span><span class="pc-val">'+p.done+' / '+p.days+' gün</span></div><div class="pc-track"><div class="pc-fill" style="width:'+pct+'%"></div></div><div class="pc-status">'+(pct===100?'✓ Değerlendirmeye hazır':pct+'% tamamlandı — devam et')+'</div></div>'
     +ciHTML+getInsightHTML(p,risk)+actHTML
-    +'<div style="padding:0 16px 32px;"><button class="outline-btn" onclick="closeSub(\'sub-detail\')">← Geri</button></div>';
+    +'<div style="padding:0 16px 32px;"><button class="outline-full" onclick="closeSub(\'sub-detail\')">← Geri</button></div>';
   openSub('sub-detail');
 };
 function getVC(p,risk){
-  if(p.done===0)return{cls:'vc-neutral',tag:'TAKİP BAŞLADI',main:'Cilt günlüğün başlıyor.',sub:'Her gün check-in yap. Erken veri çok önemli. Ne kadar tutarlı olursan karar o kadar doğru olur.'};
-  if(risk==='high')return{cls:'vc-risk',tag:'YÜKSEK RİSK',main:'Bu ürünü bırakmayı düşün.',sub:'Tutarlı olumsuz reaksiyonlar tespit edildi. Ürün cilt profiline uyumsuz olabilir.'};
-  if(risk==='mid')return{cls:'vc-warn',tag:'KARMA SİNYALLER',main:'Dikkatli devam et.',sub:'Bazı olumsuz reaksiyonlar var. Sıklığı azalt ve karar vermeden önce izlemeye devam et.'};
-  if(p.done>=p.days)return{cls:'vc-safe',tag:'KARAR HAZIR',main:'Takip süresi tamamlandı.',sub:'Anlamlı bir değerlendirme yazmak için yeterli verin var. Deneyimin binlerce kişiye yardımcı olur.'};
-  return{cls:'vc-safe',tag:'İYİ GİDİYOR',main:'Şu ana kadar sorun yok.',sub:'Cildin bu ürüne iyi adapte oluyor. Onaylamak için izlemeye devam et.'};
+  if(p.done===0)return{cls:'vc-neutral',tag:'TAKİP BAŞLADI',main:'Cilt günlüğün başlıyor.',sub:'Her gün check-in yap. Veri biriktikçe daha doğru bir karar ortaya çıkacak.'};
+  if(risk==='high')return{cls:'vc-risk',tag:'YÜKSEK RİSK',main:'Bu ürünü bırakmayı düşün.',sub:'Tutarlı olumsuz reaksiyonlar var. Ürün cilt profilinle uyumsuz olabilir.'};
+  if(risk==='mid')return{cls:'vc-warn',tag:'KARMA SİNYALLER',main:'Dikkatli devam et.',sub:'Bazı olumsuz tepkiler var. Sıklığı azalt ve izlemeye devam et.'};
+  if(p.done>=p.days)return{cls:'vc-good',tag:'KARAR HAZIR',main:'Takip süresi tamamlandı.',sub:'Deneyimini yazarak topluluğa yardım edebilirsin.'};
+  return{cls:'vc-good',tag:'İYİ GİDİYOR',main:'Şu ana kadar sorun yok.',sub:'Cildin bu ürüne iyi adapte oluyor. Onaylamak için izlemeye devam et.'};
 }
-function getInsightHTML(p,risk){
-  if(!p.ci||!p.ci.length)return '';
-  var w=p.ci.filter(function(c){return c.r==='worse';}).length;
-  var b=p.ci.filter(function(c){return c.r==='better';}).length;
-  var t=p.ci.length;
-  var wr=Math.round((w/t)*100),br=Math.round((b/t)*100);
-  var rows='';
-  if(wr>40)rows+='<div class="rev-item" style="margin-bottom:8px;"><div class="rev-text">⚠ Check-in\'lerin %'+wr+'\'inde cilt kötüleşmesi görüldü. Güçlü uyumsuzluk sinyali.</div></div>';
-  else if(br>50)rows+='<div class="rev-item" style="margin-bottom:8px;"><div class="rev-text">✓ Check-in\'lerin %'+br+'\'inde iyileşme görüldü. Ürün uyumlu görünüyor.</div></div>';
-  else rows+='<div class="rev-item" style="margin-bottom:8px;"><div class="rev-text">→ Şimdiye kadar nötr tepki. Daha net bir tablo için takibe devam et.</div></div>';
-  return '<div class="review-block"><div class="rev-title">Verilerim ('+t+' check-in)</div>'+rows+'</div>';
-}
-function checkCI(){
-  if(!prods.length){$('ci-card').style.display='none';return;}
-  var today=new Date().toDateString();var ciKey=gk('ci_date');
-  if(ciKey&&localStorage.getItem(ciKey)===today){$('ci-card').style.display='none';return;}
-  var active=prods.filter(function(p){return p.status==='active'&&p.done<p.days;});
-  if(!active.length){$('ci-card').style.display='none';return;}
-  $('ci-card').style.display='block';$('ci-q').textContent='"'+active[0].name+'" — bugün cildin nasıl tepki verdi?';
-}
-window.doCI=function(r,btn){
-  btn.closest('.ci-row').querySelectorAll('.ci-opt').forEach(function(b){b.classList.remove('sel-bad','sel-mid','sel-good');});
-  btn.classList.add(r==='worse'?'sel-bad':r==='better'?'sel-good':'sel-mid');
-  var today=new Date().toDateString();var ciKey=gk('ci_date');if(ciKey)localStorage.setItem(ciKey,today);
-  var active=prods.filter(function(p){return p.status==='active'&&p.done<p.days;});
-  if(active.length){var p=active[0];p.done=Math.min(p.done+1,p.days);if(!p.ci)p.ci=[];p.ci.push({d:new Date().toISOString(),r:r});sv('prods',prods);renderProds();renderStats();setTimeout(function(){$('ci-card').style.display='none';if(r==='worse')toast('⚠ Reaksiyon kaydedildi. Ürün detayına bak.');else if(r==='better')toast('✓ İyileşme kaydedildi.');},700);}
-};
-window.doDetailCI=function(r,btn,id){
-  btn.parentElement.querySelectorAll('.ci-opt').forEach(function(b){b.classList.remove('sel-bad','sel-mid','sel-good');});
-  btn.classList.add(r==='worse'?'sel-bad':r==='better'?'sel-good':'sel-mid');
-  var today=new Date().toDateString();var ciKey=gk('ci_date');if(ciKey)localStorage.setItem(ciKey,today);
-  var p=prods.find(function(x){return x.id===id;});
-  if(p){p.done=Math.min(p.done+1,p.days);if(!p.ci)p.ci=[];p.ci.push({d:new Date().toISOString(),r:r});sv('prods',prods);renderProds();renderStats();setTimeout(function(){openUserDetail(id);},500);}
-};
+function getInsightHTML(p,risk){if(!p.ci||!p.ci.length)return '';var w=p.ci.filter(function(c){return c.r==='worse';}).length;var b=p.ci.filter(function(c){return c.r==='better';}).length;var t=p.ci.length;var wr=Math.round((w/t)*100),br=Math.round((b/t)*100);var rows='';if(wr>40)rows+='<div class="rev-card" style="margin-bottom:8px;"><div class="rc-text">⚠ Check-in\'lerin %'+wr+'\'inde cilt kötüleşmesi görüldü.</div></div>';else if(br>50)rows+='<div class="rev-card" style="margin-bottom:8px;"><div class="rc-text">✓ Check-in\'lerin %'+br+'\'inde iyileşme görüldü.</div></div>';else rows+='<div class="rev-card" style="margin-bottom:8px;"><div class="rc-text">Henüz nötr tepki. Takibe devam et.</div></div>';return '<div class="rev-section"><div class="rev-hdr">Verilerim ('+t+' check-in)</div>'+rows+'</div>';}
+function checkCI(){if(!prods.length){$('ci-wrap').style.display='none';return;}var today=new Date().toDateString();var ciKey=gk('ci_date');if(ciKey&&localStorage.getItem(ciKey)===today){$('ci-wrap').style.display='none';return;}var active=prods.filter(function(p){return p.status==='active'&&p.done<p.days;});if(!active.length){$('ci-wrap').style.display='none';return;}$('ci-wrap').style.display='block';$('ci-q').textContent='"'+active[0].name+'" — bugün cildin nasıl hissettirdi?';}
+window.doCI=function(r,btn){btn.closest('.ci-row').querySelectorAll('.ci-btn').forEach(function(b){b.classList.remove('sel-worse','sel-same','sel-better');});btn.classList.add(r==='worse'?'sel-worse':r==='better'?'sel-better':'sel-same');var today=new Date().toDateString();var ciKey=gk('ci_date');if(ciKey)localStorage.setItem(ciKey,today);var active=prods.filter(function(p){return p.status==='active'&&p.done<p.days;});if(active.length){var p=active[0];p.done=Math.min(p.done+1,p.days);if(!p.ci)p.ci=[];p.ci.push({d:new Date().toISOString(),r:r});sv('prods',prods);renderProds();renderStats();setTimeout(function(){$('ci-wrap').style.display='none';if(r==='worse')toast('⚠ Olumsuz reaksiyon kaydedildi.');else if(r==='better')toast('✓ İyileşme kaydedildi.');},700);}};
+window.doDetailCI=function(r,btn,id){btn.parentElement.querySelectorAll('.ci-btn').forEach(function(b){b.classList.remove('sel-worse','sel-same','sel-better');});btn.classList.add(r==='worse'?'sel-worse':r==='better'?'sel-better':'sel-same');var today=new Date().toDateString();var ciKey=gk('ci_date');if(ciKey)localStorage.setItem(ciKey,today);var p=prods.find(function(x){return x.id===id;});if(p){p.done=Math.min(p.done+1,p.days);if(!p.ci)p.ci=[];p.ci.push({d:new Date().toISOString(),r:r});sv('prods',prods);renderProds();renderStats();setTimeout(function(){openUserDetail(id);},500);}};
 window.runAnalysis=function(){
   var name=$('pp-inp').value.trim();if(!name)return;
   var st=SP.type||'Bilinmiyor',concerns=SP.concerns||[],allergy=SP.allergy||'Emin değilim';
   var score=75,warnings=[],positives=[];var nl=name.toLowerCase();
-  if(st.match(/hassas/i)){if(nl.match(/asit|acid|retinol|aha|bha/)){score-=25;warnings.push('Kimyasal asitler hassas cilt için önemli tahriş riski taşır.');}if(nl.match(/parfüm|fragrance/)){score-=10;warnings.push('Parfüm, hassas cilt tipleri için en büyük tahriş edici maddedir.');}}
-  if(st.match(/yağlı/i)){if(nl.match(/oil|yağ|butter|balm|coconut/)){score-=15;warnings.push('Yağ bazlı formüller yağlı ciltte gözenek tıkanmasına yol açabilir.');}if(nl.match(/niacinamide|salisilik|salicylic|bha|zinc/)){score+=12;positives.push('Bu içerikler yağlı cilt tiplerine aktif olarak fayda sağlar.');}}
-  if(st.match(/kuru/i)){if(nl.match(/hyaluronic|hyalüronik|seramid|ceramide|nemlendirici|moisturizer/)){score+=10;positives.push('Nemlendirici formüller kuru cilt için uygundur.');}if(nl.match(/foam|köpük/)){score-=12;warnings.push('Köpük temizleyiciler kuru cildin nem bariyerini daha da bozabilir.');}}
-  if(allergy.match(/evet/i)){warnings.push('Alerji belirttin — her zaman patch test yap ve tam içerik listesini oku.');score-=10;}
-  if(concerns.includes('Sivilce & Akne')){if(nl.match(/coconut|hindistan cevizi|isododecane/)){score-=18;warnings.push('Yüksek komedojenik içerikler tespit edildi — önemli sivilce riski.');}}
-  if(concerns.includes('Leke & Hiperpigmentasyon')){if(nl.match(/vitamin c|niacinamide|kojic|arbutin/)){score+=8;positives.push('Hiperpigmentasyonu hedef alan aktif aydınlatıcı içerikler.');}}
+  if(st.match(/hassas/i)){if(nl.match(/asit|acid|retinol|aha|bha/)){score-=25;warnings.push('Kimyasal asitler hassas cilt için tahriş riski taşır.');}if(nl.match(/parfüm|fragrance/)){score-=10;warnings.push('Parfüm hassas cilt için sık görülen bir tahriş edicidir.');}}
+  if(st.match(/yağlı/i)){if(nl.match(/oil|yağ|butter|balm|coconut/)){score-=15;warnings.push('Yağ bazlı formüller yağlı ciltte gözenek tıkayabilir.');}if(nl.match(/niacinamide|salisilik|salicylic|bha|zinc/)){score+=12;positives.push('Bu içerikler yağlı cilt için idealdir.');}}
+  if(st.match(/kuru/i)){if(nl.match(/hyaluronic|seramid|ceramide|nemlendirici|moisturizer/)){score+=10;positives.push('Nemlendirici içerikler kuru cilt için çok uygun.');}if(nl.match(/foam|köpük/)){score-=12;warnings.push('Köpük temizleyiciler kuru cildi daha da kurutabilir.');}}
+  if(allergy&&allergy.match(/evet/i)){warnings.push('Alerji belirttin — her zaman patch test uygula.');score-=10;}
+  if(concerns&&concerns.includes&&concerns.includes('Sivilce & Akne')){if(nl.match(/coconut|hindistan|isododecane/)){score-=18;warnings.push('Komedojenik içerikler tespit edildi — sivilce riski yüksek.');}}
+  if(concerns&&concerns.includes&&concerns.includes('Leke & Hiperpigmentasyon')){if(nl.match(/vitamin c|niacinamide|kojic|arbutin/)){score+=8;positives.push('Leke hedefleyen aydınlatıcı içerikler var.');}}
   score=Math.max(15,Math.min(97,score));
-  var sc=score>=70?'var(--green)':score>=50?'var(--orange)':'var(--red)';
+  var sc=score>=70?'var(--green)':score>=50?'var(--amber)':'var(--red-soft)';
   var vl=score>=70?'Uyumlu':score>=50?'Dikkatli Kullan':'Yüksek Risk';
   var doff=Math.round((1-(score/100))*163);
-  var wHTML=warnings.map(function(w){return '<div class="ing-item"><div class="ing-dot ing-dot-risk"></div><div class="ing-content"><div class="ing-desc">'+w+'</div></div></div>';}).join('');
-  var pHTML=positives.map(function(p){return '<div class="ing-item"><div class="ing-dot ing-dot-safe"></div><div class="ing-content"><div class="ing-desc">'+p+'</div></div></div>';}).join('');
+  var wHTML=warnings.map(function(w){return '<div class="ing-row"><div class="ing-dot ing-dot-risk"></div><div class="ing-txt"><div class="ing-desc">'+w+'</div></div></div>';}).join('');
+  var pHTML=positives.map(function(p){return '<div class="ing-row"><div class="ing-dot ing-dot-safe"></div><div class="ing-txt"><div class="ing-desc">'+p+'</div></div></div>';}).join('');
   $('pp-result').innerHTML=
-    '<div style="margin-top:16px;background:var(--card);border:1px solid var(--border);border-radius:2px;padding:18px;">'
-    +'<div class="sb-top"><svg class="sb-ring" viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="none" stroke="var(--border)" stroke-width="3"/><circle cx="30" cy="30" r="26" fill="none" stroke="'+sc+'" stroke-width="3" stroke-dasharray="163" stroke-dashoffset="'+doff+'" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg>'
-    +'<div><div class="sb-num" style="color:'+sc+'">'+score+'</div><div class="sb-verdict" style="color:'+sc+'">'+vl+'</div></div></div>'
-    +'<div style="font-family:Syne,sans-serif;font-size:0.48rem;letter-spacing:2px;text-transform:uppercase;color:rgba(237,233,225,0.25);margin:10px 0;">'+st+' cilt için</div>'
+    '<div style="margin-top:16px;background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 2px 8px var(--shadow);">'
+    +'<div class="sc-top"><svg class="sc-ring" viewBox="0 0 62 62"><circle cx="31" cy="31" r="26" fill="none" stroke="var(--border)" stroke-width="3"/><circle cx="31" cy="31" r="26" fill="none" stroke="'+sc+'" stroke-width="3" stroke-dasharray="163" stroke-dashoffset="'+doff+'" stroke-linecap="round" transform="rotate(-90 31 31)"/></svg><div><div class="sc-num" style="color:'+sc+'">'+score+'</div><div class="sc-tag" style="color:'+sc+'">'+vl+'</div></div></div>'
+    +'<div style="font-size:0.62rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:10px 0 8px;">'+st+' cilt için</div>'
     +(pHTML||'')+(wHTML||'')
-    +(!warnings.length&&!positives.length?'<div class="ing-item"><div class="ing-dot ing-dot-mid"></div><div class="ing-content"><div class="ing-desc">Daha kesin bir analiz için cilt profilini tamamla.</div></div></div>':'')
-    +'</div><button class="primary-btn" style="margin-top:12px;" onclick="closeSub(\'sub-prepurchase\');openSub(\'sub-scan\');">Yine de Takip Et →</button>';
+    +(!warnings.length&&!positives.length?'<div class="ing-row"><div class="ing-dot ing-dot-mid"></div><div class="ing-txt"><div class="ing-desc">Daha doğru analiz için cilt profilini tamamla.</div></div></div>':'')
+    +'</div><button class="primary-full" style="margin-top:12px;" onclick="closeSub(\'sub-prepurchase\');openSub(\'sub-scan\');">Yine de Takip Et →</button>';
 };
 window.openReview=function(id){
   var p=prods.find(function(x){return x.id===id;});if(!p)return;
   window._rv=null;
   $('det-body').innerHTML=
-    '<div style="padding:50px 20px 20px;">'
-    +'<div style="font-family:Syne,sans-serif;font-size:0.46rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Senin Kararın</div>'
-    +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:1.7rem;font-weight:400;color:var(--white);line-height:1.1;margin-bottom:3px;"><em style="color:var(--gold3);">'+p.name+'</em> hakkında</div>'
-    +'<div style="font-size:0.7rem;color:var(--muted);margin-bottom:20px;font-weight:300;">'+p.done+' gün takip edildi — dürüst deneyimin.</div>'
-    +'<div style="font-family:Syne,sans-serif;font-size:0.48rem;letter-spacing:2px;text-transform:uppercase;color:rgba(237,233,225,0.25);margin-bottom:8px;">Genel karar</div>'
-    +'<div class="rv-choices"><button class="rv-choice" onclick="setRV(\'rec\',this,\'sel-rec\')">✓ Öneririm</button><button class="rv-choice" onclick="setRV(\'neu\',this,\'sel-neu\')">— Kararsızım</button><button class="rv-choice" onclick="setRV(\'av\',this,\'sel-av\')">✗ Önermem</button></div>'
-    +'<div style="font-family:Syne,sans-serif;font-size:0.48rem;letter-spacing:2px;text-transform:uppercase;color:rgba(237,233,225,0.25);margin-bottom:8px;">Cildinle gerçekte ne oldu?</div>'
-    +'<textarea class="rv-textarea" id="rv-text" placeholder="Spesifik ol. Bu, benzer cilt tipine sahip yüzlerce kişinin daha akıllı karar almasına yardımcı olacak."></textarea>'
-    +'<button class="primary-btn" id="rv-sub" onclick="submitReview(\''+p.id+'\')" disabled>Kararı Yayınla →</button>'
-    +'<button class="outline-btn" onclick="openUserDetail(\''+p.id+'\')">← Geri</button>'
+    '<div style="padding:50px 20px 18px;"><div style="font-size:0.58rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:8px;">Değerlendirmen</div><div style="font-family:\'Playfair Display\',serif;font-size:1.7rem;color:var(--ink);line-height:1.1;margin-bottom:3px;"><em style="color:var(--rose);">'+p.name+'</em> hakkında</div><div style="font-size:0.72rem;color:var(--muted);margin-bottom:20px;">'+p.done+' gün takip edildi</div></div>'
+    +'<div style="padding:0 20px 32px;">'
+    +'<div style="font-size:0.6rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Genel karar</div>'
+    +'<div class="rv-choices"><button class="rv-choice rv-c-rec" onclick="setRV(\'rec\',this)">✓ Öneririm</button><button class="rv-choice rv-c-neu" onclick="setRV(\'neu\',this)">— Kararsızım</button><button class="rv-choice rv-c-av" onclick="setRV(\'av\',this)">✗ Önermem</button></div>'
+    +'<div style="font-size:0.6rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Deneyimin</div>'
+    +'<textarea class="rv-textarea" id="rv-text" placeholder="Cildinle ne oldu? Spesifik ol — bu benzer cilt tipindeki kullanıcılara çok yardımcı olacak."></textarea>'
+    +'<button class="primary-full" id="rv-sub" onclick="submitReview(\''+p.id+'\')" disabled>Kararı Yayınla →</button>'
+    +'<button class="outline-full" onclick="openUserDetail(\''+p.id+'\')">← Geri</button>'
     +'</div>';
   $('rv-text').addEventListener('input',function(){$('rv-sub').disabled=!this.value.trim()||!window._rv;});
 };
 window._rv=null;
-window.setRV=function(v,btn,cls){btn.parentElement.querySelectorAll('.rv-choice').forEach(function(b){b.className='rv-choice';});btn.classList.add(cls);window._rv=v;var t=$('rv-text');if(t)$('rv-sub').disabled=!t.value.trim();};
-window.submitReview=function(id){
-  var p=prods.find(function(x){return x.id===id;});if(!p)return;
-  p.status='reviewed';p.review={v:window._rv,t:$('rv-text').value.trim(),d:new Date().toISOString()};
-  window._rv=null;sv('prods',prods);renderProds();renderStats();closeSub('sub-detail');
-  toast('✓ Karar yayınlandı. Topluluğa yardım ediyorsun.');
+window.setRV=function(v,btn){
+  var par=btn.parentElement;
+  par.querySelectorAll('.rv-choice').forEach(function(b){b.classList.remove('sel');});
+  btn.classList.add('sel');window._rv=v;
+  var t=$('rv-text');if(t)$('rv-sub').disabled=!t.value.trim();
 };
+window.submitReview=function(id){var p=prods.find(function(x){return x.id===id;});if(!p)return;p.status='reviewed';p.review={v:window._rv,t:$('rv-text').value.trim(),d:new Date().toISOString()};window._rv=null;sv('prods',prods);renderProds();renderStats();closeSub('sub-detail');toast('✓ Değerlendirmen yayınlandı. Topluluğa yardım ettin!');};
 var scanActive=false,scanner=null;
-function startScan(){
-  if(scanActive)return;var hint=$('scan-hint');
-  try{if(typeof Html5Qrcode==='undefined'){hint.textContent='Aşağıya ürün adını yaz';return;}
-    scanner=new Html5Qrcode('scan-video');
-    scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:190,height:90}},
-      function(code){scanActive=false;scanner.stop().catch(function(){});hint.textContent='✓ Tarandı';fetchProduct(code);},function(){});
-    scanActive=true;
-  }catch(e){hint.textContent='Aşağıya ürün adını yaz';}
-}
+function startScan(){if(scanActive)return;var hint=$('scan-hint');try{if(typeof Html5Qrcode==='undefined'){hint.textContent='Aşağıya ürün adını yaz';return;}scanner=new Html5Qrcode('scan-video');scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:190,height:90}},function(code){scanActive=false;scanner.stop().catch(function(){});hint.textContent='✓ Tarandı';fetchProduct(code);},function(){});scanActive=true;}catch(e){hint.textContent='Aşağıya ürün adını yaz';}}
 function stopScan(){if(scanner){scanner.stop().catch(function(){});scanner=null;}scanActive=false;}
 function fetchProduct(code){ld('Ürün aranıyor...');fetch('https://world.openbeautyfacts.org/api/v0/product/'+code+'.json').then(function(r){return r.json();}).then(function(d){hld();if(d.status===1&&d.product&&d.product.product_name){$('scan-name').value=d.product.product_name;chkScan();}}).catch(function(){hld();});}
 }catch(e){console.error('Lumo hata:',e);var wl=document.getElementById('s-welcome');if(wl){wl.style.cssText='display:flex!important;z-index:200!important';}}
