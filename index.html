@@ -130,6 +130,51 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .pct-g{background:var(--sage-pale);color:var(--sage);}
 .pct-b{background:var(--rose-pale);color:var(--rose);}
 .tc-twin{font-size:.46rem;color:var(--rose);font-weight:500;margin-top:5px;}
+/* TİKTOK FEED */
+.tiktok-feed{display:flex;flex-direction:column;gap:0;}
+.tk-card{min-height:420px;background:var(--surface);border-bottom:6px solid var(--bg2);position:relative;cursor:pointer;display:flex;flex-direction:column;}
+.tk-card-hero{height:200px;position:relative;display:flex;align-items:center;justify-content:center;font-size:4rem;flex-shrink:0;}
+.tk-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,22,20,.7) 100%);}
+.tk-card-badges{position:absolute;top:12px;left:12px;display:flex;gap:6px;}
+.tk-badge{font-size:.48rem;font-weight:700;padding:3px 8px;border-radius:var(--r-full);backdrop-filter:blur(8px);}
+.tk-badge-hype{background:rgba(201,121,106,.85);color:white;}
+.tk-badge-trust{background:rgba(90,122,101,.85);color:white;}
+.tk-badge-risk{background:rgba(184,147,90,.85);color:white;}
+.tk-card-bottom{position:absolute;bottom:12px;left:12px;right:12px;}
+.tk-brand{font-size:.5rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.8px;}
+.tk-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:white;line-height:1.2;}
+.tk-body{padding:var(--s4);}
+.tk-scores{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:var(--s3);}
+.tk-score-item{background:var(--bg2);border-radius:var(--r-xs);padding:6px;text-align:center;}
+.tk-score-ic{font-size:.8rem;}
+.tk-score-val{font-size:.72rem;font-weight:700;color:var(--t1);font-family:'Playfair Display',serif;}
+.tk-score-lbl{font-size:.42rem;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-top:1px;}
+.tk-insight{font-size:.72rem;color:var(--t2);line-height:1.65;margin-bottom:var(--s3);font-weight:300;}
+.tk-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:var(--s3);}
+.tk-tag{font-size:.5rem;font-weight:600;padding:3px 9px;border-radius:var(--r-full);}
+.tk-actions{display:flex;gap:8px;}
+.tk-btn{flex:1;padding:10px;border:none;border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:500;cursor:pointer;transition:all .2s;}
+.tk-btn-primary{background:var(--primary);color:white;}
+.tk-btn-secondary{background:var(--bg2);color:var(--t2);border:1px solid var(--border2);}
+/* SEARCH */
+.search-wrap{padding:var(--s12) var(--s4) 0;flex-shrink:0;}
+.search-bar{display:flex;gap:8px;align-items:center;background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--r-full);padding:10px var(--s4);box-shadow:var(--shadow-xs);}
+.search-ic{font-size:.9rem;opacity:.4;}
+.search-inp{flex:1;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--t1);background:transparent;}
+.search-inp::placeholder{color:var(--t4);}
+.search-clear{font-size:.75rem;color:var(--t3);cursor:pointer;padding:2px 6px;}
+.search-results{padding:var(--s3) var(--s4);display:flex;flex-direction:column;gap:8px;}
+.search-empty{text-align:center;padding:var(--s8);color:var(--t3);font-size:.76rem;}
+.sr-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);display:flex;gap:12px;align-items:center;cursor:pointer;box-shadow:var(--shadow-xs);}
+.sr-card:active{background:var(--bg2);}
+.sr-ic{width:44px;height:44px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.sr-info{flex:1;min-width:0;}
+.sr-brand{font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;}
+.sr-name{font-size:.8rem;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sr-meta{font-size:.54rem;color:var(--t3);margin-top:3px;}
+.sr-score{font-family:'Playfair Display',serif;font-size:1.4rem;flex-shrink:0;}
+.sr-hype{font-size:.48rem;font-weight:700;padding:2px 6px;border-radius:var(--r-full);background:rgba(201,121,106,.12);color:var(--rose);flex-shrink:0;}
+/* FC */
 .fc{margin:0 var(--s4) 10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);cursor:pointer;}
 .fc-insight{padding:var(--s5);background:linear-gradient(135deg,#FAF6EC,#F5EDD8);border:1px solid rgba(184,147,90,.2);}
 .fc-ins-lbl{font-size:.48rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
@@ -263,9 +308,9 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 @keyframes beam{0%,100%{top:5%;}50%{top:90%;}}
 .scan-result{margin:0 var(--s4);padding:var(--s4);background:linear-gradient(135deg,var(--sage-pale),#D5E8D7);border:1px solid rgba(90,122,101,.2);border-radius:var(--r-md);display:none;}
 .scan-result.on{display:block;}
-.sr-badge{font-size:.48rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:6px;}
-.sr-name{font-size:.9rem;font-weight:600;color:var(--t1);margin-bottom:4px;}
-.sr-compat{font-size:.7rem;color:var(--t2);}
+.sr-badge-scan{font-size:.48rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:6px;}
+.sr-name-scan{font-size:.9rem;font-weight:600;color:var(--t1);margin-bottom:4px;}
+.sr-compat-scan{font-size:.7rem;color:var(--t2);}
 .scan-hint{text-align:center;font-size:.56rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;padding:10px var(--s4);}
 .or-div{display:flex;align-items:center;gap:10px;margin:6px var(--s4);}
 .or-div::before,.or-div::after{content:'';flex:1;height:1px;background:var(--border);}
@@ -285,7 +330,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .btn-full{width:100%;padding:15px;background:var(--primary);color:#FAF8F5;border:none;border-radius:var(--r-md);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;box-shadow:0 4px 20px rgba(44,31,26,.22);transition:all .25s;}
 .btn-full:active{transform:scale(.98);}
 .btn-full:disabled{background:var(--t4);box-shadow:none;cursor:default;}
-/* VERIFIED REVIEW */
 .rev-compose{margin:0 var(--s4) var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);}
 .rc-hdr{padding:var(--s4) var(--s5);background:linear-gradient(135deg,#2C1F1A,#4A3028);display:flex;align-items:center;gap:10px;}
 .rc-hdr-ic{font-size:1rem;}
@@ -317,7 +361,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .rc-days-lbl{font-size:.6rem;color:var(--t2);flex:1;}
 .rc-days-inp{width:60px;padding:6px 10px;border:1.5px solid var(--border2);border-radius:var(--r-xs);font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--t1);text-align:center;outline:none;background:var(--surface);}
 .rc-submit{padding:var(--s4) var(--s5);}
-/* Q&A */
 .qa-prod-bar{margin:0 var(--s4) var(--s3);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);display:flex;gap:10px;align-items:center;box-shadow:var(--shadow-xs);}
 .qa-prod-ic{width:42px;height:42px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
 .qa-activity{margin:0 var(--s4) var(--s3);padding:10px var(--s4);background:var(--sage-pale);border-radius:var(--r-sm);font-size:.58rem;color:var(--sage);font-weight:500;display:flex;align-items:center;gap:6px;}
@@ -453,6 +496,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 
 <div class="screen" id="s-app">
 
+  <!-- FEED -->
   <div class="tab-view on" id="tv-feed">
     <div class="feed-hdr">
       <div class="feed-logo">L<em>u</em>mo</div>
@@ -476,14 +520,38 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
       <div class="chip chip-rose" onclick="filterFeed('trending',this)">🔥 Trending</div>
       <div class="chip chip-sage" onclick="filterFeed('safe',this)">✅ Güvenli</div>
       <div class="chip" onclick="filterFeed('risk',this)">⚠️ Riskli</div>
+      <div class="chip" style="border-color:rgba(123,111,160,.3);background:rgba(123,111,160,.07);color:var(--lav)" onclick="filterFeed('tiktok',this)">📱 TikTok Viral</div>
     </div>
     <div class="sec-hdr"><span class="sec-ttl">🔥 Twin Grubunda Trending</span><span class="sec-lnk" onclick="swTab('discover')">Tümünü Gör</span></div>
     <div class="hscroll" id="trend-cards"></div>
     <div class="sec-hdr" style="margin-top:8px;"><span class="sec-ttl" id="feed-ttl">📡 Skin Twin Feed</span></div>
-    <div id="feed-cards"></div>
+    <div id="feed-cards" class="tiktok-feed"></div>
     <div style="height:20px;"></div>
   </div>
 
+  <!-- SEARCH TAB -->
+  <div class="tab-view" id="tv-search">
+    <div class="search-wrap">
+      <div class="search-bar">
+        <span class="search-ic">🔍</span>
+        <input class="search-inp" id="search-inp" type="text" placeholder="Ürün veya marka ara..." oninput="doSearch(this.value)">
+        <span class="search-clear" onclick="clearSearch()">✕</span>
+      </div>
+    </div>
+    <div style="padding:var(--s3) var(--s4) 0;">
+      <div class="chip-row" style="padding:0;margin-bottom:var(--s3);">
+        <div class="chip on" onclick="filterSearch('all',this)">Tümü</div>
+        <div class="chip" onclick="filterSearch('cleanser',this)">🧼 Temizleyici</div>
+        <div class="chip" onclick="filterSearch('serum',this)">🧬 Serum</div>
+        <div class="chip" onclick="filterSearch('moisturizer',this)">💧 Nemlendirici</div>
+        <div class="chip" onclick="filterSearch('spf',this)">☀️ SPF</div>
+        <div class="chip" onclick="filterSearch('mask',this)">🎭 Maske</div>
+      </div>
+    </div>
+    <div id="search-results" class="search-results"></div>
+  </div>
+
+  <!-- TWIN TAB -->
   <div class="tab-view" id="tv-twin">
     <div class="tw-top">
       <div style="font-family:'Playfair Display',serif;font-size:.95rem;color:rgba(250,248,245,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--s5);">Lumo</div>
@@ -503,6 +571,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     <div style="height:20px;"></div>
   </div>
 
+  <!-- DISCOVER -->
   <div class="tab-view" id="tv-discover">
     <div class="disc-top">
       <div class="disc-ey">Topluluk Kararları</div>
@@ -514,6 +583,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     <div style="height:20px;"></div>
   </div>
 
+  <!-- PROFILE -->
   <div class="tab-view" id="tv-profile">
     <div class="prof-hdr">
       <div class="prof-av" id="prof-av-lg">?</div>
@@ -537,27 +607,25 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     </div>
   </div>
 
+  <!-- BOTTOM NAV -->
   <div class="bnav">
     <button class="nb on" id="nb-feed" onclick="swTab('feed')"><span class="nb-ic">◇</span><span class="nb-lb">Feed</span></button>
-    <button class="nb" id="nb-twin" onclick="swTab('twin')"><span class="nb-ic">👯</span><span class="nb-lb">Twin</span></button>
+    <button class="nb" id="nb-search" onclick="swTab('search')"><span class="nb-ic">🔍</span><span class="nb-lb">Ara</span></button>
     <button class="nb-cam" onclick="openSub('sub-scan')">📷</button>
     <button class="nb" id="nb-discover" onclick="swTab('discover')"><span class="nb-ic">◈</span><span class="nb-lb">Keşfet</span></button>
     <button class="nb" id="nb-profile" onclick="swTab('profile')"><span class="nb-ic">◐</span><span class="nb-lb">Profil</span></button>
   </div>
 
-  <!-- SUB: SCAN + BARCODE -->
+  <!-- SUB: SCAN -->
   <div class="sub" id="sub-scan">
     <div class="sub-nav"><button class="sub-back" onclick="closeSub('sub-scan')">←</button><span class="sub-title">Ürün Tara</span></div>
     <div class="scroll">
-      <div class="scan-vf">
-        <video id="scan-vid" autoplay playsinline muted class="scan-vid"></video>
-        <div class="scan-overlay"><div class="scan-frame"><div class="sf sf-tl"></div><div class="sf sf-tr"></div><div class="sf sf-bl"></div><div class="sf sf-br"></div><div class="scan-beam"></div></div></div>
-      </div>
+      <div class="scan-vf"><video id="scan-vid" autoplay playsinline muted class="scan-vid"></video><div class="scan-overlay"><div class="scan-frame"><div class="sf sf-tl"></div><div class="sf sf-tr"></div><div class="sf sf-bl"></div><div class="sf sf-br"></div><div class="scan-beam"></div></div></div></div>
       <div class="scan-hint" id="scan-hint">Barkodu çerçeve içine getir · Otomatik tanır</div>
       <div class="scan-result" id="scan-result">
-        <div class="sr-badge">✓ Ürün Tanındı</div>
-        <div class="sr-name" id="sr-name">—</div>
-        <div class="sr-compat" id="sr-compat">—</div>
+        <div class="sr-badge-scan">✓ Ürün Tanındı</div>
+        <div class="sr-name-scan" id="sr-name"></div>
+        <div class="sr-compat-scan" id="sr-compat"></div>
       </div>
       <div class="or-div"><span>ya da manuel ekle</span></div>
       <input class="scan-inp" id="scan-name" type="text" placeholder="Ürün adı (örn. CeraVe Nemlendirici)">
@@ -568,7 +636,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
         <div class="cat-btn" data-cat="serum" onclick="selCat(this)"><div class="cat-ic">🧬</div><div class="cat-nm">Serum</div><div class="cat-d">42 gün</div></div>
         <div class="cat-btn" data-cat="spf" onclick="selCat(this)"><div class="cat-ic">☀️</div><div class="cat-nm">SPF</div><div class="cat-d">5 gün</div></div>
         <div class="cat-btn" data-cat="toner" onclick="selCat(this)"><div class="cat-ic">💦</div><div class="cat-nm">Tonik</div><div class="cat-d">14 gün</div></div>
-        <div class="cat-btn" data-cat="eye" onclick="selCat(this)"><div class="cat-ic">👁️</div><div class="cat-nm">Göz Kremi</div><div class="cat-d">21 gün</div></div>
+        <div class="cat-btn" data-cat="mask" onclick="selCat(this)"><div class="cat-ic">🎭</div><div class="cat-nm">Maske</div><div class="cat-d">1 kullanım</div></div>
       </div>
       <div class="scan-cta"><button class="btn-full" id="scan-cta" onclick="addProduct()" disabled>Takibime Ekle →</button></div>
     </div>
@@ -587,48 +655,13 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
       <div id="rev-prod-info" style="padding:var(--s4) var(--s4) 0;"></div>
       <div style="height:var(--s4);"></div>
       <div class="rev-compose">
-        <div class="rc-hdr">
-          <div class="rc-hdr-ic">🛡️</div>
-          <div><div class="rc-hdr-txt">Doğrulanmış Yorum Sistemi</div><div class="rc-hdr-sub">Trust Score otomatik hesaplanır</div></div>
-        </div>
-        <div class="trust-meter">
-          <div class="tm-bar-wrap">
-            <div class="tm-lbl">Trust Score</div>
-            <div class="tm-bar"><div class="tm-fill" id="trust-fill" style="width:30%;background:var(--gold)"></div></div>
-          </div>
-          <div class="tm-score" id="trust-score-txt" style="color:var(--gold)">30</div>
-        </div>
-        <div class="rc-confirm">
-          <div class="rc-confirm-row" onclick="toggleUsageConfirm()">
-            <div class="rc-check" id="usage-check"></div>
-            <div><div class="rc-confirm-txt">Bu ürünü gerçekten kullandım</div><div class="rc-confirm-sub">+40 Trust puan · Yorumun ön plana çıkar</div></div>
-          </div>
-        </div>
-        <div class="rc-score-row">
-          <div class="rc-score-lbl">Skor (1-10)</div>
-          <div class="score-btns" id="score-btns">
-            <div class="score-btn" onclick="selScore(1)">1</div>
-            <div class="score-btn" onclick="selScore(2)">2</div>
-            <div class="score-btn" onclick="selScore(3)">3</div>
-            <div class="score-btn" onclick="selScore(4)">4</div>
-            <div class="score-btn" onclick="selScore(5)">5</div>
-            <div class="score-btn" onclick="selScore(6)">6</div>
-            <div class="score-btn" onclick="selScore(7)">7</div>
-            <div class="score-btn" onclick="selScore(8)">8</div>
-            <div class="score-btn" onclick="selScore(9)">9</div>
-            <div class="score-btn" onclick="selScore(10)">10</div>
-          </div>
-        </div>
-        <div class="rc-text-row">
-          <textarea class="rc-inp" id="rev-text" rows="3" placeholder="Deneyimini yaz... (ne hissettirdi, ne değişti, kaç günde etki gördün?)"></textarea>
-        </div>
-        <div class="rc-days-row">
-          <div class="rc-days-lbl">Kaç gündür kullanıyorsun?</div>
-          <input class="rc-days-inp" id="rev-days" type="number" min="1" max="365" placeholder="14" oninput="updateTrustScore()">
-        </div>
-        <div class="rc-submit">
-          <button class="btn-full" id="rev-submit-btn" onclick="submitReview()" disabled>Doğrulanmış Yorum Gönder →</button>
-        </div>
+        <div class="rc-hdr"><div class="rc-hdr-ic">🛡️</div><div><div class="rc-hdr-txt">Doğrulanmış Yorum Sistemi</div><div class="rc-hdr-sub">Trust Score otomatik hesaplanır</div></div></div>
+        <div class="trust-meter"><div class="tm-bar-wrap"><div class="tm-lbl">Trust Score</div><div class="tm-bar"><div class="tm-fill" id="trust-fill" style="width:30%;background:var(--gold)"></div></div></div><div class="tm-score" id="trust-score-txt" style="color:var(--gold)">30</div></div>
+        <div class="rc-confirm"><div class="rc-confirm-row" onclick="toggleUsageConfirm()"><div class="rc-check" id="usage-check"></div><div><div class="rc-confirm-txt">Bu ürünü gerçekten kullandım</div><div class="rc-confirm-sub">+40 Trust puan · Yorumun ön plana çıkar</div></div></div></div>
+        <div class="rc-score-row"><div class="rc-score-lbl">Skor (1-10)</div><div class="score-btns" id="score-btns"><div class="score-btn" onclick="selScore(1)">1</div><div class="score-btn" onclick="selScore(2)">2</div><div class="score-btn" onclick="selScore(3)">3</div><div class="score-btn" onclick="selScore(4)">4</div><div class="score-btn" onclick="selScore(5)">5</div><div class="score-btn" onclick="selScore(6)">6</div><div class="score-btn" onclick="selScore(7)">7</div><div class="score-btn" onclick="selScore(8)">8</div><div class="score-btn" onclick="selScore(9)">9</div><div class="score-btn" onclick="selScore(10)">10</div></div></div>
+        <div class="rc-text-row"><textarea class="rc-inp" id="rev-text" rows="3" placeholder="Deneyimini yaz..." oninput="updateTrustScore()"></textarea></div>
+        <div class="rc-days-row"><div class="rc-days-lbl">Kaç gündür kullanıyorsun?</div><input class="rc-days-inp" id="rev-days" type="number" min="1" max="365" placeholder="14" oninput="updateTrustScore()"></div>
+        <div class="rc-submit"><button class="btn-full" id="rev-submit-btn" onclick="submitReview()" disabled>Doğrulanmış Yorum Gönder →</button></div>
       </div>
       <div style="height:var(--s8);"></div>
     </div>
@@ -662,45 +695,77 @@ var SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
 var sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
 var PMETA={
-  cerave:{vc:'sage',score:9.1,verdict:'Değer',pct:91,twinPct:91,price:'₺280',weeks:'6 hafta',isRisk:false,skins:['normal','kuru','karma','hassas'],twin_insight:'Skin twin grubunun %91\'i öneriyor. Bariyer onarım hedefli kullanıcılarda %97 olumlu.',tags:[{t:'Bariyer Onarıcı',c:'sage'},{t:'Akne Güvenli',c:'sage'},{t:'Parfümsüz',c:'lav'}],ings:[{n:'Seramidler',d:'Cilt bariyerini onarır.',s:'safe'},{n:'Hyalüronik Asit',d:'Derin nemlendirme.',s:'safe'},{n:'Niacinamide',d:'Gözenek sıkılaştırıcı.',s:'safe'}]},
-  ordinary:{vc:'sage',score:8.7,verdict:'Değer',pct:87,twinPct:82,price:'₺180',weeks:'6 hafta',isRisk:false,skins:['yağlı','karma'],twin_insight:'Yağlı/karma twin grubunun %87\'si öneriyor.',tags:[{t:'Gözenek Küçültücü',c:'lav'},{t:'Yağlı Cilt',c:'sage'},{t:'Uygun Fiyat',c:'sage'}],ings:[{n:'Niacinamide %10',d:'Gözenek daraltıcı, sebum kontrol.',s:'safe'},{n:'Zinc PCA',d:'Yağ üretimini dengeler.',s:'safe'}]},
-  purito:{vc:'lav',score:8.2,verdict:'Bariyer Güvenli',pct:82,twinPct:80,price:'₺420',weeks:'2 hafta',isRisk:false,skins:['hassas','kuru','normal','karma'],twin_insight:'Hassas twin grubunun %80\'i öneriyor.',tags:[{t:'Beyaz İz Yok',c:'lav'},{t:'Hassas OK',c:'sage'}],ings:[{n:'Çinko Oksit %10',d:'Fiziksel UV filtresi.',s:'safe'},{n:'Bisabolol',d:'Sakinleştirici.',s:'safe'},{n:'Hafif Parfüm',d:'Çok hassas ciltlerde dikkat.',s:'warn'}]},
-  drunk:{vc:'rose',score:4.2,verdict:'Riskli',pct:31,twinPct:31,price:'₺1.400',weeks:'3 hafta',isRisk:true,skins:['yağlı','normal'],twin_insight:'Akne eğilimli twin grubunun %67\'si olumsuz reaksiyon bildirdi.',tags:[{t:'Akne Tetikleyici',c:'rose'},{t:'Komedojenik',c:'rose'}],ings:[{n:'Marula Yağı',d:'Komedojenik 3-4. Yüksek risk.',s:'risk'},{n:'Meyve Özleri',d:'Hassas cildi tahriş edebilir.',s:'warn'}]},
-  charlotte:{vc:'rose',score:3.1,verdict:'Hype Tuzağı',pct:31,twinPct:28,price:'₺2.100',weeks:'2 hafta',isRisk:true,skins:['normal'],twin_insight:'Akne eğilimli twin grubunun %72\'si olumsuz reaksiyon bildirdi.',tags:[{t:'Hype Tuzağı',c:'rose'},{t:'Komedojenik',c:'rose'}],ings:[{n:'Isododecane',d:'Gözenek tıkama riski yüksek.',s:'risk'},{n:'Dimethicone',d:'Akne bakterilerini hapsedebilir.',s:'warn'}]},
-  cosrx:{vc:'sage',score:7.6,verdict:'Değer',pct:76,twinPct:72,price:'₺650',weeks:'4 hafta',isRisk:false,skins:['hassas','kuru','normal'],twin_insight:'Hassas/onarım twin grubunun %72\'si öneriyor.',tags:[{t:'Onarıcı',c:'sage'},{t:'Sakinleştirici',c:'sage'}],ings:[{n:'Snail Filtrate %96',d:'Onarıcı, nemlendirici.',s:'safe'}]},
-  tatcha:{vc:'gold',score:5.4,verdict:'Fazla Pahalı',pct:54,twinPct:50,price:'₺1.800',weeks:'3 hafta',isRisk:false,skins:['normal','kuru'],twin_insight:'Twin grubunun %64\'ü fiyat/değer oranını yetersiz buldu.',tags:[{t:'Fazla Pahalı',c:'gold'},{t:'Sadece Silikon',c:'rose'}],ings:[{n:'Dimethicone',d:'Ana içerik — silikon.',s:'warn'},{n:'Gliserin',d:'Etkili nemlendirici.',s:'safe'}]}
+  cerave_hydrating_cleanser:{vc:'sage',score:9.2,verdict:'Deger',pct:93,twinPct:93,price:'380',weeks:'2 hafta',isRisk:false,skins:['normal','kuru','hassas','karma'],tiktokHype:85,trustScore:94,overhypeRisk:8,twin_insight:'Kuru ve hassas cilt twin grubunun #1 temizleyicisi.',tags:[{t:'Parfumsuz',c:'sage'},{t:'Hassas OK',c:'sage'},{t:'Bariyer Guvenli',c:'lav'}],ings:[{n:'Hyaluronik Asit',d:'Temizlerken nemlendirir.',s:'safe'},{n:'Seramidler',d:'Bariyer korur.',s:'safe'}]},
+  cerave_foaming_cleanser:{vc:'sage',score:8.8,verdict:'Deger',pct:88,twinPct:85,price:'380',weeks:'2 hafta',isRisk:false,skins:['yagli','karma'],tiktokHype:82,trustScore:89,overhypeRisk:10,twin_insight:'Yagli cilt twin grubunun favori temizleyicisi.',tags:[{t:'Kopuklu',c:'sage'},{t:'Yagli Cilt',c:'sage'}],ings:[{n:'Niacinamide',d:'Yag kontrolu.',s:'safe'},{n:'Seramidler',d:'Bariyer korur.',s:'safe'}]},
+  lrp_effaclar_gel:{vc:'sage',score:8.5,verdict:'Deger',pct:86,twinPct:82,price:'450',weeks:'2 hafta',isRisk:false,skins:['yagli','karma'],tiktokHype:78,trustScore:87,overhypeRisk:12,twin_insight:'Akne egilimli twin grubunun yuzde 82si oneriyor.',tags:[{t:'Akne Karsiti',c:'sage'},{t:'Yag Kontrol',c:'lav'}],ings:[{n:'Salisilik Asit',d:'Goz enek acar.',s:'safe'},{n:'Cink',d:'Yag dengeler.',s:'safe'}]},
+  bioderma_sensibio_gel:{vc:'lav',score:8.7,verdict:'Hassas Cilt Favorisi',pct:89,twinPct:87,price:'520',weeks:'2 hafta',isRisk:false,skins:['hassas','normal','kuru'],tiktokHype:71,trustScore:92,overhypeRisk:6,twin_insight:'Hassas cilt twin grubunun yuzde 87si guvenle kullaniyor.',tags:[{t:'Ultra Nazik',c:'sage'},{t:'Hassas OK',c:'sage'}],ings:[{n:'Sukroz',d:'Nazik temizler.',s:'safe'},{n:'Gliserin',d:'Nem korur.',s:'safe'}]},
+  cetaphil_gentle:{vc:'sage',score:8.9,verdict:'Deger',pct:91,twinPct:90,price:'280',weeks:'2 hafta',isRisk:false,skins:['hassas','kuru','normal','karma'],tiktokHype:75,trustScore:93,overhypeRisk:7,twin_insight:'Derm onerisi 1. yuzde 91 memnuniyet.',tags:[{t:'Derm Onerisi',c:'sage'},{t:'Tum Ciltler',c:'lav'}],ings:[{n:'Panthenol',d:'Onarici.',s:'safe'},{n:'Niacinamide',d:'Yatistirici.',s:'safe'}]},
+  neutrogena_hydro_cleanser:{vc:'sage',score:8.1,verdict:'Deger',pct:82,twinPct:79,price:'320',weeks:'2 hafta',isRisk:false,skins:['normal','karma','kuru'],tiktokHype:70,trustScore:83,overhypeRisk:15,twin_insight:'Hyalurik asit bazli nazik temizleyici.',tags:[{t:'Nemlendirici',c:'lav'},{t:'Jel Formul',c:'sage'}],ings:[{n:'Hyalurik Asit',d:'Temizlerken nemlendirir.',s:'safe'}]},
+  garnier_micellar:{vc:'rose',score:7.8,verdict:'Pratik',pct:78,twinPct:72,price:'180',weeks:'1 hafta',isRisk:false,skins:['normal','karma','hassas'],tiktokHype:88,trustScore:74,overhypeRisk:35,twin_insight:'TikTokta cok populer ama tek basina yeterli degil.',tags:[{t:'Makyaj Temizler',c:'rose'},{t:'Pratik',c:'gold'},{t:'Hype Var',c:'rose'}],ings:[{n:'Misel Teknolojisi',d:'Makyaji soker.',s:'safe'},{n:'Gliserin',d:'Nem verir.',s:'safe'}]},
+  simple_cleanser:{vc:'sage',score:8.3,verdict:'Deger',pct:84,twinPct:80,price:'220',weeks:'2 hafta',isRisk:false,skins:['hassas','normal','kuru'],tiktokHype:65,trustScore:86,overhypeRisk:10,twin_insight:'Minimal icerik, maksimum guvenilirlik.',tags:[{t:'Minimal Icerik',c:'sage'},{t:'Hassas OK',c:'sage'}],ings:[{n:'Provitamin B5',d:'Onarici.',s:'safe'},{n:'Bisabolol',d:'Sakinlestirici.',s:'safe'}]},
+  isana_oil_cleanser:{vc:'gold',score:7.5,verdict:'Uygun Fiyat',pct:75,twinPct:68,price:'120',weeks:'2 hafta',isRisk:false,skins:['normal','kuru','karma'],tiktokHype:72,trustScore:71,overhypeRisk:20,twin_insight:'Butce dostu yag bazli temizleyici. Double cleanse icin ideal.',tags:[{t:'Double Cleanse',c:'gold'},{t:'Butce Dostu',c:'sage'}],ings:[{n:'Mineral Yag',d:'Makyaji cozer.',s:'mid'},{n:'Vitamin E',d:'Antioksidan.',s:'safe'}]},
+  ordinary_niacinamide:{vc:'sage',score:8.7,verdict:'Deger',pct:87,twinPct:82,price:'180',weeks:'6 hafta',isRisk:false,skins:['yagli','karma'],tiktokHype:95,trustScore:86,overhypeRisk:22,twin_insight:'TikTokun en viral serumu. Gercekten calisiyor ama 6 hafta sabir gerek.',tags:[{t:'Gozenek Kucultme',c:'lav'},{t:'Uygun Fiyat',c:'sage'},{t:'TikTok Viral',c:'rose'}],ings:[{n:'Niacinamide %10',d:'Gozenek daraltir, sebum kontrol.',s:'safe'},{n:'Zinc PCA',d:'Yag dengeler.',s:'safe'}]},
+  tps_niacinamide:{vc:'sage',score:8.4,verdict:'Deger',pct:84,twinPct:80,price:'220',weeks:'6 hafta',isRisk:false,skins:['yagli','karma','hassas'],tiktokHype:82,trustScore:84,overhypeRisk:15,twin_insight:'Turk markasi, kaliteli formul. The Ordinary alternatifi.',tags:[{t:'Yerli Marka',c:'gold'},{t:'Gozenek',c:'lav'}],ings:[{n:'Niacinamide %10',d:'Gozenek daraltir.',s:'safe'},{n:'Hyalurik Asit',d:'Nemlendirir.',s:'safe'}]},
+  tps_aha_bha:{vc:'gold',score:8.1,verdict:'Etkili',pct:81,twinPct:76,price:'240',weeks:'4 hafta',isRisk:false,skins:['yagli','karma'],tiktokHype:78,trustScore:80,overhypeRisk:25,twin_insight:'Kimyasal eksfoliant. Yeni baslayanlar dikkatli kullanmali.',tags:[{t:'Eksfolian',c:'gold'},{t:'Yeni Baslayan Dikkat',c:'rose'}],ings:[{n:'AHA Glikolik',d:'Yuzey soyar, aydinlatir.',s:'warn'},{n:'BHA Salisilik',d:'Gozenek temizler.',s:'safe'}]},
+  ordinary_azelaic:{vc:'lav',score:8.3,verdict:'Underrated',pct:83,twinPct:78,price:'190',weeks:'8 hafta',isRisk:false,skins:['hassas','karma','yagli'],tiktokHype:65,trustScore:88,overhypeRisk:8,twin_insight:'TikTokta az bilinen ama dermatologlarin favorisi.',tags:[{t:'Leke Karsiti',c:'lav'},{t:'Akne OK',c:'sage'},{t:'Underrated',c:'lav'}],ings:[{n:'Azelaik Asit %10',d:'Leke acar, anti-inflamatuar.',s:'safe'}]},
+  garnier_vit_c:{vc:'gold',score:7.6,verdict:'Uygun Fiyat',pct:76,twinPct:70,price:'200',weeks:'8 hafta',isRisk:false,skins:['normal','karma','yagli'],tiktokHype:85,trustScore:70,overhypeRisk:40,twin_insight:'TikTokta cok gorunur ama gercek sonuc daha yavas geliyor.',tags:[{t:'Aydinlatici',c:'gold'},{t:'Hype Riski',c:'rose'}],ings:[{n:'Vitamin C %3.5',d:'Dusuk konsantrasyon.',s:'safe'},{n:'Niacinamide',d:'Leke acar.',s:'safe'}]},
+  loreal_revitalift_c:{vc:'gold',score:7.9,verdict:'Orta',pct:79,twinPct:73,price:'480',weeks:'8 hafta',isRisk:false,skins:['normal','kuru'],tiktokHype:80,trustScore:75,overhypeRisk:38,twin_insight:'Iyi ama fiyatina gore daha iyi alternatifler var.',tags:[{t:'Aydinlatici',c:'gold'},{t:'Pahali Alternatif',c:'rose'}],ings:[{n:'Vitamin C %12',d:'Yuksek konsantrasyon.',s:'safe'},{n:'Hyalurik Asit',d:'Nemlendirir.',s:'safe'}]},
+  lrp_effaclar_duo:{vc:'sage',score:8.6,verdict:'Deger',pct:86,twinPct:83,price:'420',weeks:'4 hafta',isRisk:false,skins:['yagli','karma'],tiktokHype:76,trustScore:89,overhypeRisk:12,twin_insight:'Akne egilimli twin grubunun yuzde 83u oneriyor.',tags:[{t:'Akne Karsiti',c:'sage'},{t:'Derm Onaylı',c:'sage'}],ings:[{n:'Niacinamide',d:'Sebum kontrol.',s:'safe'},{n:'Linoleik Asit',d:'Bariyer onarir.',s:'safe'}]},
+  ordinary_caffeine:{vc:'lav',score:7.8,verdict:'Denemeye Deger',pct:78,twinPct:72,price:'180',weeks:'4 hafta',isRisk:false,skins:['normal','kuru','karma'],tiktokHype:88,trustScore:74,overhypeRisk:42,twin_insight:'Goz alti icin TikTokta viral. Sonuclar kisiden kisiye degisiyor.',tags:[{t:'Goz Alti',c:'lav'},{t:'TikTok Viral',c:'rose'}],ings:[{n:'Kafein %5',d:'Odemi azaltir.',s:'safe'},{n:'EGCG',d:'Antioksidan.',s:'safe'}]},
+  tps_arbutin:{vc:'lav',score:8.2,verdict:'Deger',pct:82,twinPct:77,price:'230',weeks:'8 hafta',isRisk:false,skins:['normal','karma','hassas'],tiktokHype:74,trustScore:83,overhypeRisk:14,twin_insight:'Leke karsiti underrated serum.',tags:[{t:'Leke Karsiti',c:'lav'},{t:'Nazik',c:'sage'},{t:'Yerli Marka',c:'gold'}],ings:[{n:'Alpha Arbutin %2',d:'Leke acar.',s:'safe'},{n:'Niacinamide',d:'Ton esitler.',s:'safe'}]},
+  garnier_salicylic_toner:{vc:'gold',score:7.7,verdict:'Pratik',pct:77,twinPct:71,price:'160',weeks:'4 hafta',isRisk:false,skins:['yagli','karma'],tiktokHype:83,trustScore:73,overhypeRisk:30,twin_insight:'TikTokta populer. Hafif eksfolian toner.',tags:[{t:'Eksfolian',c:'gold'},{t:'Yagli Cilt',c:'sage'}],ings:[{n:'Salisilik Asit',d:'Gozenek temizler.',s:'safe'},{n:'Aloe Vera',d:'Yatistir.',s:'safe'}]},
+  cerave_moisturizing_cream:{vc:'sage',score:9.1,verdict:'Deger',pct:91,twinPct:91,price:'280',weeks:'2 hafta',isRisk:false,skins:['kuru','normal','hassas'],tiktokHype:88,trustScore:95,overhypeRisk:5,twin_insight:'Dunyanin en guvenilir nemlendiricisi.',tags:[{t:'Bariyer Onarici',c:'sage'},{t:'Derm Onaylı',c:'sage'},{t:'Parfumsuz',c:'lav'}],ings:[{n:'Seramidler',d:'Bariyer onarir.',s:'safe'},{n:'Hyalurik Asit',d:'Derin nemlendirme.',s:'safe'},{n:'Niacinamide',d:'Yatistirici.',s:'safe'}]},
+  cerave_moisturizing_lotion:{vc:'sage',score:8.9,verdict:'Deger',pct:89,twinPct:87,price:'260',weeks:'2 hafta',isRisk:false,skins:['normal','karma','yagli'],tiktokHype:82,trustScore:91,overhypeRisk:6,twin_insight:'Krem versiyonundan hafif. Yagli ciltler icin daha iyi.',tags:[{t:'Hafif Formul',c:'sage'},{t:'Yagli Cilt OK',c:'sage'}],ings:[{n:'Seramidler',d:'Bariyer korur.',s:'safe'},{n:'Niacinamide',d:'Sebum dengeler.',s:'safe'}]},
+  lrp_cicaplast:{vc:'sage',score:9.0,verdict:'Kurtarici',pct:92,twinPct:90,price:'380',weeks:'1 hafta',isRisk:false,skins:['hassas','kuru','normal'],tiktokHype:86,trustScore:93,overhypeRisk:7,twin_insight:'Tahris sonrasi, laser sonrasi, kisin kuru cilt icin 1 numara.',tags:[{t:'Onarici',c:'sage'},{t:'Tahris Sonrasi',c:'lav'},{t:'Bebek OK',c:'sage'}],ings:[{n:'Panthenol',d:'Onarici, yatistirici.',s:'safe'},{n:'Madecassoside',d:'Anti-inflamatuar.',s:'safe'}]},
+  lrp_toleriane:{vc:'lav',score:8.8,verdict:'Hassas Cilt 1',pct:90,twinPct:88,price:'420',weeks:'2 hafta',isRisk:false,skins:['hassas','kuru'],tiktokHype:72,trustScore:92,overhypeRisk:6,twin_insight:'Hassas cilt twin grubunun yuzde 88i oneriyor.',tags:[{t:'Hassas Cilt',c:'lav'},{t:'Parfumsuz',c:'sage'}],ings:[{n:'Niacinamide',d:'Yatistirici.',s:'safe'},{n:'Panthenol',d:'Onarici.',s:'safe'}]},
+  bioderma_atoderm:{vc:'lav',score:8.6,verdict:'Deger',pct:87,twinPct:84,price:'480',weeks:'2 hafta',isRisk:false,skins:['hassas','kuru'],tiktokHype:65,trustScore:90,overhypeRisk:8,twin_insight:'Cok kuru ve atopik cilt icin guclu nemlendirici.',tags:[{t:'Cok Kuru Cilt',c:'lav'},{t:'Atopik',c:'sage'}],ings:[{n:'Gliserin',d:'Derin nemlendirme.',s:'safe'},{n:'Yulaf Ozu',d:'Yatistirici.',s:'safe'}]},
+  neutrogena_hydro_gel:{vc:'sage',score:8.2,verdict:'Deger',pct:82,twinPct:78,price:'340',weeks:'2 hafta',isRisk:false,skins:['karma','yagli','normal'],tiktokHype:80,trustScore:81,overhypeRisk:18,twin_insight:'Jel formulu yaglu ciltler icin ideal.',tags:[{t:'Jel Formul',c:'sage'},{t:'Yagli Cilt OK',c:'sage'}],ings:[{n:'Hyalurik Asit',d:'Derin nemlendirme.',s:'safe'}]},
+  clinique_surge:{vc:'gold',score:7.8,verdict:'Pahali Ama Iyi',pct:80,twinPct:74,price:'1200',weeks:'4 hafta',isRisk:false,skins:['normal','karma','kuru'],tiktokHype:75,trustScore:79,overhypeRisk:35,twin_insight:'Iyi urun ama fiyatina deger mi? Alternatifleri duşun.',tags:[{t:'Prestij',c:'gold'},{t:'Pahali',c:'rose'}],ings:[{n:'Hyalurik Asit',d:'Nemlendirir.',s:'safe'},{n:'Aloe',d:'Yatistirici.',s:'safe'}]},
+  nivea_soft:{vc:'gold',score:7.2,verdict:'Uygun Fiyat',pct:72,twinPct:65,price:'80',weeks:'2 hafta',isRisk:false,skins:['normal','karma'],tiktokHype:60,trustScore:70,overhypeRisk:15,twin_insight:'Butce dostu. Ciddi cilt sorunlari icin yeterli olmayabilir.',tags:[{t:'Butce Dostu',c:'gold'},{t:'Gunluk',c:'sage'}],ings:[{n:'Jojoba Yagi',d:'Hafif nemlendirici.',s:'safe'},{n:'Vitamin E',d:'Antioksidan.',s:'safe'}]},
+  maruderm_moisturizer:{vc:'gold',score:7.9,verdict:'Yerli Deger',pct:79,twinPct:74,price:'220',weeks:'2 hafta',isRisk:false,skins:['normal','hassas','kuru'],tiktokHype:68,trustScore:78,overhypeRisk:12,twin_insight:'Turk markasi, eczane urunu. Guvenilir formul.',tags:[{t:'Yerli Marka',c:'gold'},{t:'Eczane',c:'sage'}],ings:[{n:'Gliserin',d:'Nemlendirir.',s:'safe'},{n:'Ure',d:'Derin nemlendirme.',s:'safe'}]},
+  theceel_hydragel:{vc:'gold',score:8.0,verdict:'Yerli Deger',pct:80,twinPct:75,price:'280',weeks:'2 hafta',isRisk:false,skins:['karma','yagli','normal'],tiktokHype:72,trustScore:79,overhypeRisk:14,twin_insight:'Yerli K-beauty alternatifi. Hafif jel formul.',tags:[{t:'Yerli Marka',c:'gold'},{t:'K-beauty Tarz',c:'lav'}],ings:[{n:'Hyalurik Asit',d:'Nemlendirir.',s:'safe'},{n:'Niacinamide',d:'Ton esitler.',s:'safe'}]},
+  lrp_anthelios:{vc:'sage',score:9.3,verdict:'En Iyi SPF',pct:94,twinPct:93,price:'580',weeks:'2 hafta',isRisk:false,skins:['hassas','normal','kuru','karma','yagli'],tiktokHype:90,trustScore:95,overhypeRisk:4,twin_insight:'SPF kategorisinin tartismasiz lideri. Beyaz iz yok.',tags:[{t:'SPF 50+',c:'sage'},{t:'Beyaz Iz Yok',c:'sage'},{t:'Tum Ciltler',c:'lav'}],ings:[{n:'Mexoryl SX',d:'UVA korumasi.',s:'safe'},{n:'Tinosorb S',d:'Genis spektrum.',s:'safe'}]},
+  lrp_oil_control_spf:{vc:'sage',score:9.0,verdict:'Yaglu Cilt 1',pct:91,twinPct:90,price:'580',weeks:'2 hafta',isRisk:false,skins:['yagli','karma'],tiktokHype:88,trustScore:92,overhypeRisk:6,twin_insight:'Yaglu cilt twin grubunun SPF favorisi. Mat birakir.',tags:[{t:'Mat Birakir',c:'sage'},{t:'Yaglu Cilt',c:'sage'},{t:'SPF 50+',c:'lav'}],ings:[{n:'Mexoryl XL',d:'Fotokararli filtre.',s:'safe'},{n:'Silika',d:'Mattlastirir.',s:'safe'}]},
+  bioderma_photoderm:{vc:'sage',score:8.8,verdict:'Deger',pct:89,twinPct:86,price:'520',weeks:'2 hafta',isRisk:false,skins:['hassas','normal','kuru'],tiktokHype:75,trustScore:91,overhypeRisk:7,twin_insight:'Hassas cilt icin nazik SPF.',tags:[{t:'Hassas Cilt',c:'sage'},{t:'SPF 50+',c:'lav'}],ings:[{n:'Mexoplex',d:'Guclu filtrasyon.',s:'safe'},{n:'Glycerin',d:'Nemlendirici.',s:'safe'}]},
+  cerave_spf:{vc:'sage',score:8.7,verdict:'Deger',pct:87,twinPct:84,price:'420',weeks:'2 hafta',isRisk:false,skins:['kuru','normal','hassas'],tiktokHype:82,trustScore:88,overhypeRisk:9,twin_insight:'Seramid bazli SPF. Nemlendirici ve gunes koruyucu tek urunde.',tags:[{t:'2si 1 Arada',c:'sage'},{t:'Seramid',c:'lav'},{t:'SPF 50',c:'sage'}],ings:[{n:'Seramidler',d:'Bariyer korur.',s:'safe'},{n:'Hyalurik Asit',d:'Nemlendirir.',s:'safe'}]},
+  loreal_uv_glassy:{vc:'gold',score:7.8,verdict:'TikTok Trendi',pct:78,twinPct:72,price:'280',weeks:'2 hafta',isRisk:false,skins:['normal','karma'],tiktokHype:92,trustScore:72,overhypeRisk:45,twin_insight:'TikTokta glass skin icin viral. Gercek koruma var ama hype abartili.',tags:[{t:'TikTok Viral',c:'rose'},{t:'Glass Skin',c:'gold'},{t:'Hype Riski',c:'rose'}],ings:[{n:'Mexoryl SX',d:'UV korumasi.',s:'safe'},{n:'Hyalurik Asit',d:'Parlak birakir.',s:'safe'}]},
+  cosmed_sunscreen:{vc:'gold',score:7.9,verdict:'Yerli Deger',pct:79,twinPct:73,price:'180',weeks:'2 hafta',isRisk:false,skins:['normal','karma','yagli'],tiktokHype:65,trustScore:80,overhypeRisk:12,twin_insight:'Uygun fiyatli Turk SPF. Gunluk kullanim icin yeterli.',tags:[{t:'Yerli Marka',c:'gold'},{t:'Uygun Fiyat',c:'sage'}],ings:[{n:'Filtreler',d:'UV koruma.',s:'safe'},{n:'Glycerin',d:'Nemlendirir.',s:'safe'}]},
+  ordinary_aha_bha_mask:{vc:'rose',score:7.2,verdict:'Deneyimliler Icin',pct:72,twinPct:65,price:'190',weeks:'1 kullanim',isRisk:true,skins:['yagli','karma'],tiktokHype:96,trustScore:65,overhypeRisk:70,twin_insight:'TikTokun en viral maskesi ama yakma riski YUKSEK. Yeni baslayanlar denemesin.',tags:[{t:'DENEYIMLI',c:'rose'},{t:'Yakma Riski',c:'rose'},{t:'TikTok Viral',c:'rose'}],ings:[{n:'AHA %30',d:'COK guclu. Yanlis kullanımda yakar.',s:'risk'},{n:'BHA %2',d:'Gozenek temizler.',s:'warn'}]},
+  garnier_hydra_bomb:{vc:'lav',score:7.5,verdict:'Aninda Nem',pct:75,twinPct:70,price:'60',weeks:'1 kullanim',isRisk:false,skins:['kuru','normal','hassas'],tiktokHype:80,trustScore:73,overhypeRisk:25,twin_insight:'Anlik nemlendirme icin guzel. Kalici etki bekleme.',tags:[{t:'Sheet Mask',c:'lav'},{t:'Aninda Nem',c:'sage'}],ings:[{n:'Hyalurik Asit',d:'Anlik nem.',s:'safe'},{n:'Aloe Vera',d:'Serinletir.',s:'safe'}]},
+  mediheal_sheet:{vc:'lav',score:8.0,verdict:'K-beauty Klasigi',pct:80,twinPct:76,price:'80',weeks:'1 kullanim',isRisk:false,skins:['normal','kuru','hassas'],tiktokHype:85,trustScore:81,overhypeRisk:18,twin_insight:'K-beauty sheet mask standardi.',tags:[{t:'K-beauty',c:'lav'},{t:'Sheet Mask',c:'lav'}],ings:[{n:'NMF Kompleks',d:'Dogal nem faktoru.',s:'safe'},{n:'Hyalurik Asit',d:'Derin nem.',s:'safe'}]},
+  loreal_clay_mask:{vc:'gold',score:7.6,verdict:'Gozenek Temizler',pct:76,twinPct:70,price:'280',weeks:'1 kullanim',isRisk:false,skins:['yagli','karma'],tiktokHype:76,trustScore:74,overhypeRisk:22,twin_insight:'Kil maskesi klasigi. Haftalik rutin icin iyi.',tags:[{t:'Kil Maskesi',c:'gold'},{t:'Gozenek',c:'sage'}],ings:[{n:'Kaolin Kil',d:'Gozenek temizler.',s:'safe'},{n:'Charcoal',d:'Derin temizlik.',s:'safe'}]},
+  frudia_pads:{vc:'lav',score:7.9,verdict:'K-beauty Deger',pct:79,twinPct:74,price:'320',weeks:'4 hafta',isRisk:false,skins:['normal','karma','kuru'],tiktokHype:78,trustScore:78,overhypeRisk:16,twin_insight:'Toner pad formati pratik. K-beauty rutini icin iyi giris.',tags:[{t:'Toner Pad',c:'lav'},{t:'K-beauty',c:'lav'},{t:'Pratik',c:'sage'}],ings:[{n:'Blueberry Ozu',d:'Antioksidan.',s:'safe'},{n:'Hyalurik Asit',d:'Nemlendirir.',s:'safe'}]},
+  theceel_collagen_mask:{vc:'gold',score:7.7,verdict:'Yerli K-beauty',pct:77,twinPct:72,price:'180',weeks:'1 kullanim',isRisk:false,skins:['kuru','normal','hassas'],tiktokHype:70,trustScore:76,overhypeRisk:14,twin_insight:'Yerli kollajen maskesi. Anlik dolgunluk etkisi.',tags:[{t:'Kollajen',c:'gold'},{t:'Yerli Marka',c:'gold'}],ings:[{n:'Hidrolize Kollajen',d:'Anlik dolgunluk.',s:'safe'},{n:'Hyalurik Asit',d:'Nem.',s:'safe'}]},
+  cerave:{vc:'sage',score:9.1,verdict:'Deger',pct:91,twinPct:91,price:'280',weeks:'6 hafta',isRisk:false,skins:['normal','kuru','karma','hassas'],tiktokHype:88,trustScore:95,overhypeRisk:5,twin_insight:'Skin twin grubunun yuzde 91i oneriyor.',tags:[{t:'Bariyer Onarici',c:'sage'},{t:'Akne Guvenli',c:'sage'}],ings:[{n:'Seramidler',d:'Bariyer onarir.',s:'safe'},{n:'Hyalurik Asit',d:'Nemlendirir.',s:'safe'}]},
+  ordinary:{vc:'sage',score:8.7,verdict:'Deger',pct:87,twinPct:82,price:'180',weeks:'6 hafta',isRisk:false,skins:['yagli','karma'],tiktokHype:95,trustScore:86,overhypeRisk:22,twin_insight:'Yaglu/karma twin grubunun yuzde 87si oneriyor.',tags:[{t:'Gozenek Kucultme',c:'lav'},{t:'Uygun Fiyat',c:'sage'}],ings:[{n:'Niacinamide %10',d:'Gozenek daraltir.',s:'safe'},{n:'Zinc PCA',d:'Yag dengeler.',s:'safe'}]},
+  purito:{vc:'lav',score:8.2,verdict:'Bariyer Guvenli',pct:82,twinPct:80,price:'420',weeks:'2 hafta',isRisk:false,skins:['hassas','kuru','normal','karma'],tiktokHype:78,trustScore:88,overhypeRisk:8,twin_insight:'Hassas twin grubunun yuzde 80i oneriyor.',tags:[{t:'Beyaz Iz Yok',c:'lav'},{t:'Hassas OK',c:'sage'}],ings:[{n:'Cink Oksit %10',d:'Fiziksel filtre.',s:'safe'}]},
+  drunk:{vc:'rose',score:4.2,verdict:'Riskli',pct:31,twinPct:31,price:'1400',weeks:'3 hafta',isRisk:true,skins:['yagli','normal'],tiktokHype:88,trustScore:35,overhypeRisk:82,twin_insight:'Akne egilimli twin grubunun yuzde 67si olumsuz reaksiyon bildirdi.',tags:[{t:'Akne Tetikleyici',c:'rose'},{t:'Komedojenik',c:'rose'}],ings:[{n:'Marula Yagi',d:'Komedojenik 3-4.',s:'risk'}]},
+  charlotte:{vc:'rose',score:3.1,verdict:'Hype Tuzagi',pct:31,twinPct:28,price:'2100',weeks:'2 hafta',isRisk:true,skins:['normal'],tiktokHype:90,trustScore:28,overhypeRisk:88,twin_insight:'Akne egilimli twin grubunun yuzde 72si olumsuz reaksiyon bildirdi.',tags:[{t:'Hype Tuzagi',c:'rose'},{t:'Komedojenik',c:'rose'}],ings:[{n:'Isododecane',d:'Gozenek tikar.',s:'risk'}]},
+  cosrx:{vc:'sage',score:7.6,verdict:'Deger',pct:76,twinPct:72,price:'650',weeks:'4 hafta',isRisk:false,skins:['hassas','kuru','normal'],tiktokHype:85,trustScore:82,overhypeRisk:15,twin_insight:'Hassas/onarim twin grubunun yuzde 72si oneriyor.',tags:[{t:'Onarici',c:'sage'},{t:'K-beauty',c:'lav'}],ings:[{n:'Snail Filtrate %96',d:'Onarici.',s:'safe'}]},
+  tatcha:{vc:'gold',score:5.4,verdict:'Fazla Pahali',pct:54,twinPct:50,price:'1800',weeks:'3 hafta',isRisk:false,skins:['normal','kuru'],tiktokHype:82,trustScore:52,overhypeRisk:65,twin_insight:'Twin grubunun yuzde 64u fiyat/deger oranini yetersiz buldu.',tags:[{t:'Fazla Pahali',c:'gold'},{t:'Sadece Silikon',c:'rose'}],ings:[{n:'Dimethicone',d:'Ana icerik silikon.',s:'warn'}]}
 };
 
 var SKIN_TWIN_DB={
-  'yağlı':{count:3241,active:1872,reviews:8940,topProducts:['ordinary','cerave','purito'],riskProducts:['drunk','charlotte'],twinLabel:'Yağlı Cilt'},
-  'kuru':{count:2187,active:1043,reviews:5820,topProducts:['cerave','cosrx','purito'],riskProducts:['tatcha','drunk'],twinLabel:'Kuru Cilt'},
-  'karma':{count:4102,active:2341,reviews:11200,topProducts:['ordinary','cerave','purito'],riskProducts:['drunk','charlotte'],twinLabel:'Karma Cilt'},
-  'normal':{count:1893,active:987,reviews:4210,topProducts:['cerave','cosrx','tatcha'],riskProducts:['charlotte'],twinLabel:'Normal Cilt'},
-  'hassas':{count:2654,active:1421,reviews:6780,topProducts:['cerave','purito','cosrx'],riskProducts:['drunk','charlotte'],twinLabel:'Hassas Cilt'}
+  'yagli':{count:3241,active:1872,reviews:8940,topProducts:['ordinary_niacinamide','lrp_oil_control_spf','lrp_effaclar_gel','tps_niacinamide','cerave_foaming_cleanser'],riskProducts:['drunk','charlotte','ordinary_aha_bha_mask'],twinLabel:'Yaglu Cilt'},
+  'kuru':{count:2187,active:1043,reviews:5820,topProducts:['cerave_moisturizing_cream','lrp_cicaplast','lrp_anthelios','cerave_hydrating_cleanser','bioderma_atoderm'],riskProducts:['tatcha','ordinary_aha_bha_mask'],twinLabel:'Kuru Cilt'},
+  'karma':{count:4102,active:2341,reviews:11200,topProducts:['ordinary_niacinamide','cerave_moisturizing_lotion','lrp_oil_control_spf','tps_aha_bha','garnier_salicylic_toner'],riskProducts:['drunk','charlotte'],twinLabel:'Karma Cilt'},
+  'normal':{count:1893,active:987,reviews:4210,topProducts:['cerave_moisturizing_cream','lrp_anthelios','cetaphil_gentle','cerave_spf','cosrx'],riskProducts:['charlotte','ordinary_aha_bha_mask'],twinLabel:'Normal Cilt'},
+  'hassas':{count:2654,active:1421,reviews:6780,topProducts:['lrp_cicaplast','bioderma_sensibio_gel','lrp_toleriane','bioderma_photoderm','cetaphil_gentle'],riskProducts:['drunk','ordinary_aha_bha_mask','garnier_vit_c'],twinLabel:'Hassas Cilt'}
 };
 
 var CONCERNS_MAP={
-  'Sivilce & Akne':{boost:['ordinary','cerave'],penalize:['drunk','charlotte']},
-  'Leke & Hiperpigmentasyon':{boost:['ordinary'],penalize:[]},
-  'Büyük Gözenekler':{boost:['ordinary','cerave'],penalize:['tatcha']},
-  'Kuruluk & Susuzluk':{boost:['cerave','cosrx'],penalize:[]},
-  'Kızarıklık & Hassasiyet':{boost:['cerave','cosrx'],penalize:['drunk']}
+  'Sivilce & Akne':{boost:['ordinary_niacinamide','tps_niacinamide','lrp_effaclar_duo','lrp_effaclar_gel'],penalize:['drunk','charlotte','garnier_micellar']},
+  'Leke & Hiperpigmentasyon':{boost:['tps_arbutin','ordinary_azelaic','garnier_vit_c','loreal_revitalift_c'],penalize:[]},
+  'Buyuk Gozenekler':{boost:['ordinary_niacinamide','tps_niacinamide','garnier_salicylic_toner','tps_aha_bha'],penalize:['tatcha','clinique_surge']},
+  'Yaslanma Karsiti':{boost:['ordinary_azelaic','lrp_anthelios','cerave_moisturizing_cream'],penalize:[]},
+  'Kuruluk & Susuzluk':{boost:['cerave_moisturizing_cream','lrp_cicaplast','bioderma_atoderm','neutrogena_hydro_gel'],penalize:[]},
+  'Kizariklik & Hassasiyet':{boost:['lrp_toleriane','bioderma_sensibio_gel','cetaphil_gentle','simple_cleanser'],penalize:['ordinary_aha_bha_mask','tps_aha_bha','drunk']}
 };
-
-var FEED_ITEMS=[
-  {type:'insight',skinTypes:['yağlı','karma'],label:'💡 Skin Twin Insight',style:'gold',text:'Yağlı/karma twin grubunun <em>%87\'si</em> The Ordinary Niacinamide sonrası gözenek küçülmesi yaşadı.',meta:'📊 4.102 kişi · Son 30 gün'},
-  {type:'review',skinTypes:['yağlı','karma','hassas','kuru','normal'],productId:'cerave',user:'merve.skin',userSkin:'Karma · Akne Eğilimli',twin:true,score:9,scoreColor:'var(--sage)',text:'"2 haftada cilt bariyerim onarıldı. Skin twin grubumun verisiyle aldım."',stats:[{ic:'👥',v:'2.841',l:'yorum'},{ic:'✅',v:'%91',l:'memnun'},{ic:'🔥',v:'#1',l:'twin\'lerde'}],bar:{pct:91,color:'var(--sage)'},days:30,tags:[{t:'Doğrulandı',bg:'var(--sage-pale)',c:'var(--sage)'},{t:'30 gün',bg:'var(--rose-pale)',c:'var(--rose)'}]},
-  {type:'insight',skinTypes:['hassas','kuru'],label:'🌸 Hassas Cilt Insight',style:'lav',text:'Hassas cilt twin grubunun <em>%80\'i</em> Purito SPF\'i günlük kullanımda güvenli buldu.',meta:'📊 623 kişi · Hassas cilt profili'},
-  {type:'insight',skinTypes:['yağlı','karma','hassas'],label:'⚠️ Risk Uyarısı',style:'risk',text:'Drunk Elephant C-Firma kullanan twin\'lerin <em>%67\'si</em> akne reaksiyonu bildirdi.',meta:'📊 389 kişi · Akne eğilimli profil'},
-  {type:'review',skinTypes:['yağlı','karma'],productId:'ordinary',user:'gozenek.expert',userSkin:'Yağlı · Karma',twin:true,score:9,scoreColor:'var(--sage)',text:'"6 haftada gözenekler görünür küçüldü. Sebum kontrolü gerçekten işe yarıyor."',stats:[{ic:'👥',v:'4.102',l:'yorum'},{ic:'✅',v:'%87',l:'memnun'},{ic:'💰',v:'₺180',l:'fiyat'}],bar:{pct:87,color:'var(--sage)'},days:42,tags:[{t:'Doğrulandı',bg:'var(--sage-pale)',c:'var(--sage)'},{t:'42 gün',bg:'var(--rose-pale)',c:'var(--rose)'}]},
-  {type:'review',skinTypes:['hassas','kuru'],productId:'cosrx',user:'hassas.skin',userSkin:'Hassas · Kuru',twin:true,score:8,scoreColor:'var(--sage)',text:'"Post-akne izleri için inanılmaz."',stats:[{ic:'👥',v:'2.100',l:'yorum'},{ic:'✅',v:'%76',l:'memnun'}],bar:{pct:76,color:'var(--sage)'},days:30,tags:[{t:'Doğrulandı',bg:'var(--sage-pale)',c:'var(--sage)'}]},
-  {type:'review',skinTypes:['yağlı','karma','hassas'],productId:'drunk',user:'akne.detective',userSkin:'Akne Eğilimli',twin:true,score:2,scoreColor:'var(--rose)',text:'"Purging hiç bitmedi. Marula yağı var — komedojenik."',stats:[{ic:'⚠️',v:'%67',l:'akne reaksiyon'},{ic:'❌',v:'%31',l:'memnun'}],bar:{pct:31,color:'var(--rose)'},days:21,tags:[{t:'Riskli',bg:'var(--rose-pale)',c:'var(--rose)'}]},
-  {type:'insight',skinTypes:['kuru','hassas'],label:'💧 Kuru Cilt Insight',style:'gold',text:'Kuru cilt twin grubunun <em>%91\'i</em> CeraVe Nemlendirici kullanıyor.',meta:'📊 2.187 kişi · Kuru cilt profili'}
-];
 
 var currentUser=null,userProfile=null,SP={},streak=0;
 var currentQAProduct=null,currentReviewProduct=null,dbProducts=[];
 var reviewScore=0,usageConfirmed=false;
+var searchFilter='all',searchQuery='';
 var bgMap={sage:'var(--sage-pale)',rose:'var(--rose-pale)',gold:'var(--gold-pale)',lav:'var(--lav-pale)'};
 var cMap={sage:'var(--sage)',rose:'var(--rose)',gold:'var(--gold)',lav:'var(--lav)'};
 
@@ -708,14 +773,13 @@ function $(i){return document.getElementById(i);}
 function showScreen(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');});var el=$(id);if(el)el.classList.add('on');}
 window.openSub=function(id){$(id).classList.add('on');if(id==='sub-scan')setTimeout(startCamera,400);};
 window.closeSub=function(id){$(id).classList.remove('on');if(id==='sub-scan')stopCamera();};
-function showLoad(t){$('load-lbl').textContent=t||'Yükleniyor';$('loading').classList.add('on');}
+function showLoad(t){$('load-lbl').textContent=t||'Yukleniyor';$('loading').classList.add('on');}
 function hideLoad(){$('loading').classList.remove('on');}
 function toast(m){var el=document.createElement('div');el.className='toast';el.textContent=m;document.querySelector('.phone').appendChild(el);setTimeout(function(){el.style.opacity='0';el.style.transition='opacity .4s';setTimeout(function(){el.remove();},400);},3000);}
-function normalizeSkinType(raw){if(!raw)return 'normal';raw=raw.toLowerCase();if(raw.includes('yağlı'))return 'yağlı';if(raw.includes('kuru'))return 'kuru';if(raw.includes('karma'))return 'karma';if(raw.includes('hassas')||raw.includes('reaktif'))return 'hassas';return 'normal';}
-function getMatchScore(pid,st,concerns){var m=PMETA[pid];if(!m)return 50;var s=50;if(m.skins.includes(st))s+=40;else s-=30;(concerns||[]).forEach(function(c){var cm=CONCERNS_MAP[c];if(cm){if(cm.boost.includes(pid))s+=10;if(cm.penalize.includes(pid))s-=15;}});return Math.max(0,Math.min(100,s));}
-function timeAgo(dateStr){var d=new Date(dateStr),now=new Date(),diff=Math.floor((now-d)/1000);if(diff<60)return 'Az önce';if(diff<3600)return Math.floor(diff/60)+' dk önce';if(diff<86400)return Math.floor(diff/3600)+' sa önce';return Math.floor(diff/86400)+' gün önce';}
+function normalizeSkinType(raw){if(!raw)return 'normal';raw=raw.toLowerCase();if(raw.includes('yag'))return 'yagli';if(raw.includes('kuru'))return 'kuru';if(raw.includes('karma'))return 'karma';if(raw.includes('hassas')||raw.includes('reaktif'))return 'hassas';return 'normal';}
+function getMatchScore(pid,st,concerns){var m=PMETA[pid];if(!m)return 50;var s=50;if(m.skins.includes(st))s+=40;else s-=30;(concerns||[]).forEach(function(c){var cm=CONCERNS_MAP[c];if(cm){if(cm.boost&&cm.boost.includes(pid))s+=10;if(cm.penalize&&cm.penalize.includes(pid))s-=15;}});return Math.max(0,Math.min(100,s));}
+function timeAgo(dateStr){var d=new Date(dateStr),now=new Date(),diff=Math.floor((now-d)/1000);if(diff<60)return 'Az once';if(diff<3600)return Math.floor(diff/60)+' dk once';if(diff<86400)return Math.floor(diff/3600)+' sa once';return Math.floor(diff/86400)+' gun once';}
 
-/* TRUST SCORE ENGINE */
 function calcTrustScore(){
   var score=30;
   if(usageConfirmed)score+=40;
@@ -734,20 +798,11 @@ window.updateTrustScore=function(){
   var canSubmit=usageConfirmed&&reviewScore>0&&($('rev-text')&&$('rev-text').value.trim().length>10);
   if($('rev-submit-btn'))$('rev-submit-btn').disabled=!canSubmit;
 };
-window.toggleUsageConfirm=function(){
-  usageConfirmed=!usageConfirmed;
-  var el=$('usage-check');if(el){if(usageConfirmed)el.classList.add('on');else el.classList.remove('on');}
-  updateTrustScore();
-};
-window.selScore=function(n){
-  reviewScore=n;
-  document.querySelectorAll('.score-btn').forEach(function(b,i){if(i+1===n)b.classList.add('sel');else b.classList.remove('sel');});
-  updateTrustScore();
-};
+window.toggleUsageConfirm=function(){usageConfirmed=!usageConfirmed;var el=$('usage-check');if(el){if(usageConfirmed)el.classList.add('on');else el.classList.remove('on');}updateTrustScore();};
+window.selScore=function(n){reviewScore=n;document.querySelectorAll('.score-btn').forEach(function(b,i){if(i+1===n)b.classList.add('sel');else b.classList.remove('sel');});updateTrustScore();};
 
-/* BOOT */
 setTimeout(function(){
-  showLoad('Oturum kontrol ediliyor…');
+  showLoad('Oturum kontrol ediliyor...');
   sb.auth.getSession().then(function(res){
     hideLoad();
     if(res.data&&res.data.session&&res.data.session.user){currentUser=res.data.session.user;loadUserProfile();}
@@ -756,54 +811,36 @@ setTimeout(function(){
 },1800);
 
 var authMode='login';
-window.switchAuth=function(mode){
-  authMode=mode;
-  document.querySelectorAll('.auth-tab').forEach(function(t){t.classList.remove('on');});
-  $('tab-'+mode).classList.add('on');
-  $('field-username').style.display=mode==='register'?'block':'none';
-  $('auth-err').textContent='';
-  $('auth-btn').textContent=mode==='register'?'Hesap Oluştur →':'Giriş Yap →';
-};
+window.switchAuth=function(mode){authMode=mode;document.querySelectorAll('.auth-tab').forEach(function(t){t.classList.remove('on');});$('tab-'+mode).classList.add('on');$('field-username').style.display=mode==='register'?'block':'none';$('auth-err').textContent='';$('auth-btn').textContent=mode==='register'?'Hesap Olustur →':'Giris Yap →';};
 window.doAuth=function(){
   var email=$('inp-email').value.trim(),pass=$('inp-pass').value;
   var err=$('auth-err');err.textContent='';
-  if(!email||!pass){err.textContent='E-posta ve şifre gerekli.';return;}
+  if(!email||!pass){err.textContent='E-posta ve sifre gerekli.';return;}
   $('auth-btn').disabled=true;
-  showLoad(authMode==='login'?'Giriş yapılıyor…':'Hesap oluşturuluyor…');
+  showLoad(authMode==='login'?'Giris yapiliyor...':'Hesap olusturuluyor...');
   var p=authMode==='register'?sb.auth.signUp({email:email,password:pass}):sb.auth.signInWithPassword({email:email,password:pass});
-  p.then(function(res){
-    hideLoad();$('auth-btn').disabled=false;
-    if(res.error){err.textContent=res.error.message;return;}
-    currentUser=res.data.user;
-    if(authMode==='register'){showScreen('s-ob');startOb();}
-    else{loadUserProfile();}
-  }).catch(function(){hideLoad();$('auth-btn').disabled=false;err.textContent='Bağlantı hatası.';});
+  p.then(function(res){hideLoad();$('auth-btn').disabled=false;if(res.error){err.textContent=res.error.message;return;}currentUser=res.data.user;if(authMode==='register'){showScreen('s-ob');startOb();}else{loadUserProfile();}}).catch(function(){hideLoad();$('auth-btn').disabled=false;err.textContent='Baglanti hatasi.';});
 };
 
 function loadUserProfile(){
-  showLoad('Profil yükleniyor…');
-  sb.from('users').select('*').eq('id',currentUser.id).single().then(function(res){
-    hideLoad();
-    if(res.data){userProfile=res.data;SP={type:res.data.skin_type,concerns:res.data.concerns||[]};bootApp();}
-    else{showScreen('s-ob');startOb();}
-  }).catch(function(){hideLoad();showScreen('s-ob');startOb();});
+  showLoad('Profil yukleniyor...');
+  sb.from('users').select('*').eq('id',currentUser.id).single().then(function(res){hideLoad();if(res.data){userProfile=res.data;SP={type:res.data.skin_type,concerns:res.data.concerns||[]};bootApp();}else{showScreen('s-ob');startOb();}}).catch(function(){hideLoad();showScreen('s-ob');startOb();});
 }
 
 var OB=[
-  {step:'1/2',title:'Cilt tipini<br><em>seçelim</em>',sub:'Skin twin grubunu belirleyeceğiz.',type:'single',key:'type',opts:[{ic:'💧',l:'Normal Cilt',sub:'Dengeli, sorunsuz'},{ic:'✨',l:'Yağlı Cilt',sub:'Parlama, gözenek'},{ic:'🌵',l:'Kuru Cilt',sub:'Çekilme, gerginlik'},{ic:'⚖️',l:'Karma Cilt',sub:'T-bölgesi yağlı'},{ic:'🌸',l:'Hassas / Reaktif',sub:'Kızarıklık, tahriş'}]},
-  {step:'2/2',title:'En büyük<br><em>endişelerin?</em>',sub:'Birden fazla seçebilirsin.',type:'multi',key:'concerns',opts:[{ic:'🔴',l:'Sivilce & Akne'},{ic:'🟤',l:'Leke & Hiperpigmentasyon'},{ic:'⭕',l:'Büyük Gözenekler'},{ic:'⏳',l:'Yaşlanma Karşıtı'},{ic:'💦',l:'Kuruluk & Susuzluk'},{ic:'🌹',l:'Kızarıklık & Hassasiyet'}]}
+  {step:'1/2',title:'Cilt tipini<br><em>secelim</em>',sub:'Skin twin grubunu belirleyecegiz.',type:'single',key:'type',opts:[{ic:'💧',l:'Normal Cilt',sub:'Dengeli, sorunsuz'},{ic:'✨',l:'Yaglu Cilt',sub:'Parlama, gozenek'},{ic:'🌵',l:'Kuru Cilt',sub:'Cekilme, gerginlik'},{ic:'⚖️',l:'Karma Cilt',sub:'T-bolgesi yaglu'},{ic:'🌸',l:'Hassas / Reaktif',sub:'Kizariklik, tahris'}]},
+  {step:'2/2',title:'En buyuk<br><em>endiseler?</em>',sub:'Birden fazla secebilirsin.',type:'multi',key:'concerns',opts:[{ic:'🔴',l:'Sivilce & Akne'},{ic:'🟤',l:'Leke & Hiperpigmentasyon'},{ic:'⭕',l:'Buyuk Gozenekler'},{ic:'⏳',l:'Yaslanma Karsiti'},{ic:'💦',l:'Kuruluk & Susuzluk'},{ic:'🌹',l:'Kizariklik & Hassasiyet'}]}
 ];
 var obIdx=0,obA={};
 function startOb(){obIdx=0;obA={};renderOb();}
-function renderOb(){var s=OB[obIdx];$('ob-fill').style.width=((obIdx+1)/OB.length*100)+'%';$('ob-cta').disabled=true;var h='<div class="ob-eyebrow">Adım '+s.step+'</div><div class="ob-title">'+s.title+'</div><div class="ob-sub">'+s.sub+'</div>';if(s.type==='single'){h+='<div class="ob-opts">';s.opts.forEach(function(o,i){h+='<div class="ob-opt" onclick="selOb(this,'+i+',\'single\')"><div><div>'+o.ic+' '+o.l+'</div>'+(o.sub?'<div class="ob-opt-note">'+o.sub+'</div>':'')+'</div></div>';});h+='</div>';}else{h+='<div class="ob-grid">';s.opts.forEach(function(o,i){h+='<div class="ob-gopt" onclick="selOb(this,'+i+',\'multi\')"><div class="ob-gopt-ic">'+o.ic+'</div><div class="ob-gopt-nm">'+o.l+'</div></div>';});h+='</div>';}$('ob-body').innerHTML=h;}
+function renderOb(){var s=OB[obIdx];$('ob-fill').style.width=((obIdx+1)/OB.length*100)+'%';$('ob-cta').disabled=true;var h='<div class="ob-eyebrow">Adim '+s.step+'</div><div class="ob-title">'+s.title+'</div><div class="ob-sub">'+s.sub+'</div>';if(s.type==='single'){h+='<div class="ob-opts">';s.opts.forEach(function(o,i){h+='<div class="ob-opt" onclick="selOb(this,'+i+',\'single\')"><div><div>'+o.ic+' '+o.l+'</div>'+(o.sub?'<div class="ob-opt-note">'+o.sub+'</div>':'')+'</div></div>';});h+='</div>';}else{h+='<div class="ob-grid">';s.opts.forEach(function(o,i){h+='<div class="ob-gopt" onclick="selOb(this,'+i+',\'multi\')"><div class="ob-gopt-ic">'+o.ic+'</div><div class="ob-gopt-nm">'+o.l+'</div></div>';});h+='</div>';}$('ob-body').innerHTML=h;}
 window.selOb=function(el,i,type){var s=OB[obIdx];if(type==='single'){document.querySelectorAll('.ob-opt').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');obA[s.key]=s.opts[i].l;$('ob-cta').disabled=false;}else{el.classList.toggle('sel');var sel=Array.from(document.querySelectorAll('.ob-gopt.sel')).map(function(b){return b.querySelector('.ob-gopt-nm').textContent;});obA[s.key]=sel;$('ob-cta').disabled=sel.length===0;}};
 window.nextOb=function(){if(obIdx<OB.length-1){obIdx++;renderOb();}else{finishOb();}};
 window.skipOb=function(){obA={type:'Normal Cilt',concerns:[]};finishOb();};
 function finishOb(){
-  SP=obA;showLoad('Skin twin grubun oluşturuluyor…');
+  SP=obA;showLoad('Skin twin grubun olusturuluyor...');
   var username=($('inp-username')&&$('inp-username').value.trim())||currentUser.email.split('@')[0].replace(/[^a-z0-9]/gi,'_');
-  sb.from('users').upsert({id:currentUser.id,username:username,email:currentUser.email,skin_type:SP.type,concerns:SP.concerns||[]})
-    .then(function(){hideLoad();bootApp();}).catch(function(){hideLoad();bootApp();});
+  sb.from('users').upsert({id:currentUser.id,username:username,email:currentUser.email,skin_type:SP.type,concerns:SP.concerns||[]}).then(function(){hideLoad();bootApp();}).catch(function(){hideLoad();bootApp();});
 }
 
 function bootApp(){
@@ -818,7 +855,10 @@ function bootApp(){
   if($('prof-twin-val'))$('prof-twin-val').textContent=td.twinLabel;
   renderTwinBanner(st,td);renderTwinTab(st,SP.concerns||[],td);
   renderSkinProfile();renderStreakDots();
-  loadProductsAndRender(st);showScreen('s-app');loadUserStats();
+  loadProductsAndRender(st);
+  showScreen('s-app');
+  loadUserStats();
+  initSearch();
 }
 
 function loadUserStats(){
@@ -831,69 +871,103 @@ function loadUserStats(){
 function loadProductsAndRender(st){
   sb.from('products').select('*').then(function(res){
     if(res.data)dbProducts=res.data;
-    renderFeed(st,SP.concerns||[],'all');renderTrendCards(st,SP.concerns||[]);renderDiscoverList(st,SP.concerns||[]);
+    renderFeed(st,SP.concerns||[],'all');
+    renderTrendCards(st,SP.concerns||[]);
+    renderDiscoverList(st,SP.concerns||[]);
+    renderSearchResults();
   }).catch(function(){
     dbProducts=Object.keys(PMETA).map(function(id){return{id:id,name:id,brand:id,emoji:'📦',category:'misc'};});
     renderFeed(st,SP.concerns||[],'all');renderTrendCards(st,SP.concerns||[]);renderDiscoverList(st,SP.concerns||[]);
+    renderSearchResults();
   });
 }
 
 function renderTwinBanner(st,td){
-  if($('tw-match-txt'))$('tw-match-txt').textContent=td.count.toLocaleString('tr')+' '+td.twinLabel+' kullanıcısıyla eşleştin';
-  if($('tw-banner-title'))$('tw-banner-title').innerHTML=td.twinLabel+' twin\'lerin <em>ne kullanıyor?</em>';
+  if($('tw-match-txt'))$('tw-match-txt').textContent=td.count.toLocaleString('tr')+' '+td.twinLabel+' kullanicisiyla eslesti';
+  if($('tw-banner-title'))$('tw-banner-title').innerHTML=td.twinLabel+' twin\'lerin <em>ne kullaniyor?</em>';
   if($('tw-count'))$('tw-count').textContent=td.count.toLocaleString('tr');
   if($('tw-active'))$('tw-active').textContent=td.active.toLocaleString('tr');
   if($('tw-reviews'))$('tw-reviews').textContent=(td.reviews/1000).toFixed(1)+'K';
 }
 window.filterFeed=function(f,el){document.querySelectorAll('.chip-row .chip').forEach(function(c){c.classList.remove('on');});el.classList.add('on');var st=normalizeSkinType(SP.type);renderFeed(st,SP.concerns||[],f);};
+
 function renderFeed(st,concerns,filter){
   var el=$('feed-cards');if(!el)return;
-  var filtered=FEED_ITEMS.filter(function(item){
-    if(!item.skinTypes.includes(st))return false;
-    if(filter==='trending'&&item.type!=='review')return false;
-    if(filter==='safe'&&item.type==='review'){var m=PMETA[item.productId];if(!m||m.isRisk)return false;}
-    if(filter==='risk'){if(item.type==='review'){var m=PMETA[item.productId];if(!m||!m.isRisk)return false;}else if(!item.label.includes('Risk')&&!item.label.includes('Uyarı'))return false;}
+  var allIds=Object.keys(PMETA);
+  var filtered=allIds.filter(function(id){
+    var m=PMETA[id];if(!m)return false;
+    if(filter==='safe')return !m.isRisk&&m.score>=8;
+    if(filter==='risk')return m.isRisk||m.overhypeRisk>=60;
+    if(filter==='trending')return m.tiktokHype>=80;
+    if(filter==='tiktok')return m.tiktokHype>=85;
     return true;
   });
-  var ttl=$('feed-ttl');if(ttl)ttl.textContent=filter==='all'?'📡 Skin Twin Feed':filter==='trending'?'🔥 Trending':filter==='safe'?'✅ Güvenli':'⚠️ Riskli';
-  if(!filtered.length){el.innerHTML='<div style="padding:40px 24px;text-align:center;"><div style="font-size:1.8rem;opacity:.3;margin-bottom:12px;">🔍</div><div style="font-size:.78rem;color:var(--t3);">Bu filtrede içerik bulunamadı.</div></div>';return;}
-  el.innerHTML=filtered.map(function(item){return item.type==='insight'?renderInsightCard(item):renderReviewCard(item);}).join('');
+  var scores={};filtered.forEach(function(id){scores[id]=getMatchScore(id,st,concerns);});
+  filtered.sort(function(a,b){
+    var ma=PMETA[a],mb=PMETA[b];
+    return (mb.tiktokHype+scores[b])-(ma.tiktokHype+scores[a]);
+  });
+  var ttl=$('feed-ttl');if(ttl)ttl.textContent=filter==='all'?'📡 Skin Twin Feed':filter==='trending'?'🔥 Trending':filter==='safe'?'✅ Guvenli':filter==='tiktok'?'📱 TikTok Viral':'⚠️ Riskli';
+  if(!filtered.length){el.innerHTML='<div style="padding:40px 24px;text-align:center;"><div style="font-size:1.8rem;opacity:.3;margin-bottom:12px;">🔍</div><div style="font-size:.78rem;color:var(--t3);">Icerik bulunamadi.</div></div>';return;}
+  el.innerHTML=filtered.slice(0,20).map(function(id){return renderTikTokCard(id,scores[id]);}).join('');
 }
-function renderInsightCard(item){
-  var isRisk=item.style==='risk';
-  var bg=isRisk?'linear-gradient(135deg,#F0EEF8,#E4DFF5)':'linear-gradient(135deg,#FAF6EC,#F5EDD8)';
-  var bc=isRisk?'rgba(123,111,160,.2)':'rgba(184,147,90,.2)';
-  var lc=isRisk?'var(--lav)':'var(--gold)';var ec=isRisk?'var(--rose)':'var(--gold)';
-  return '<div class="fc fc-insight" style="background:'+bg+';border-color:'+bc+'"><div class="fc-ins-lbl" style="color:'+lc+'">'+item.label+'</div><div class="fc-ins-txt">'+item.text.replace(/<em>/g,'<em style="color:'+ec+'">')+'</div><div class="fc-ins-meta">'+item.meta+'</div></div>';
+
+function renderTikTokCard(id,matchScore){
+  var m=PMETA[id];if(!m)return '';
+  var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id,name:id,category:'misc'};
+  var sc=cMap[m.vc];var bg=bgMap[m.vc];
+  var hypeColor=m.tiktokHype>=80?'var(--rose)':m.tiktokHype>=60?'var(--gold)':'var(--sage)';
+  var trustColor=m.trustScore>=80?'var(--sage)':m.trustScore>=60?'var(--gold)':'var(--rose)';
+  var riskColor=m.overhypeRisk>=60?'var(--rose)':m.overhypeRisk>=30?'var(--gold)':'var(--sage)';
+  var tagH=(m.tags||[]).slice(0,3).map(function(t){var tc=cMap[t.c]||'var(--t2)';var tbg=bgMap[t.c]||'var(--bg2)';return '<div class="tk-tag" style="background:'+tbg+';color:'+tc+'">'+t.t+'</div>';}).join('');
+  var ms=matchScore||50;
+  return '<div class="tk-card" onclick="openProduct(\''+id+'\')">'+
+    '<div class="tk-card-hero" style="background:'+bg+'">'+
+      '<span style="font-size:4rem;">'+dbP.emoji+'</span>'+
+      '<div class="tk-card-overlay"></div>'+
+      '<div class="tk-card-badges">'+
+        '<div class="tk-badge tk-badge-hype">🔥 TikTok '+m.tiktokHype+'</div>'+
+        '<div class="tk-badge tk-badge-trust">🛡️ Trust '+m.trustScore+'</div>'+
+        (m.overhypeRisk>=50?'<div class="tk-badge tk-badge-risk">⚠️ Hype?</div>':'')+
+      '</div>'+
+      '<div class="tk-card-bottom">'+
+        '<div class="tk-brand">'+dbP.brand+'</div>'+
+        '<div class="tk-name">'+dbP.name+'</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="tk-body">'+
+      '<div class="tk-scores">'+
+        '<div class="tk-score-item"><div class="tk-score-ic">🔥</div><div class="tk-score-val">'+m.tiktokHype+'</div><div class="tk-score-lbl">TikTok Hype</div></div>'+
+        '<div class="tk-score-item"><div class="tk-score-ic">🧠</div><div class="tk-score-val">'+m.trustScore+'</div><div class="tk-score-lbl">Trust Score</div></div>'+
+        '<div class="tk-score-item"><div class="tk-score-ic">🎯</div><div class="tk-score-val">'+Math.round(ms)+'</div><div class="tk-score-lbl">Uyumluluk</div></div>'+
+        '<div class="tk-score-item"><div class="tk-score-ic">⚠️</div><div class="tk-score-val" style="color:'+(m.overhypeRisk>=60?'var(--rose)':m.overhypeRisk>=30?'var(--gold)':'var(--sage)')+'">'+m.overhypeRisk+'</div><div class="tk-score-lbl">Hype Risk</div></div>'+
+      '</div>'+
+      '<div class="tk-insight">'+m.twin_insight+'</div>'+
+      '<div class="tk-tags">'+tagH+'</div>'+
+      '<div class="tk-actions">'+
+        '<button class="tk-btn tk-btn-primary" onclick="event.stopPropagation();openProduct(\''+id+'\')">İncele →</button>'+
+        '<button class="tk-btn tk-btn-secondary" onclick="event.stopPropagation();openQA(\''+id+'\')">💬 Sor</button>'+
+      '</div>'+
+    '</div>'+
+  '</div>';
 }
-function renderReviewCard(item){
-  var m=PMETA[item.productId];if(!m)return '';
-  var pb=bgMap[m.vc]||'var(--bg2)';
-  var dbP=dbProducts.find(function(p){return p.id===item.productId;})||{emoji:'📦',name:item.productId,brand:item.productId};
-  var stH=item.stats.map(function(s){return '<div class="fc-stat"><span class="fc-stat-ic">'+s.ic+'</span><span class="fc-stat-txt">'+(s.v?'<strong>'+s.v+'</strong> ':'')+s.l+'</span></div>';}).join('');
-  var tgH=item.tags.map(function(t){return '<div class="fc-tag" style="background:'+t.bg+';color:'+t.c+'">'+t.t+'</div>';}).join('');
-  return '<div class="fc" onclick="openProduct(\''+item.productId+'\')">'
-    +'<div class="fc-rev-top"><div class="fc-prod-row"><div class="fc-prod-ic" style="background:'+pb+'">'+dbP.emoji+'</div><div><div class="fc-prod-brand">'+dbP.brand+'</div><div class="fc-prod-name">'+dbP.name+'</div></div></div><div class="fc-score-big" style="color:'+item.scoreColor+'">'+item.score+'</div></div>'
-    +'<div class="fc-rev-body"><div class="fc-rev-txt">'+item.text+'</div></div>'
-    +'<div class="fc-rev-stats">'+stH+'</div>'
-    +'<div class="mbar-wrap"><div class="mbar-top"><span class="mbar-lbl">Skin Twin Memnuniyeti</span><span class="mbar-lbl" style="color:'+item.bar.color+'">%'+item.bar.pct+'</span></div><div class="mbar"><div class="mbar-fill" style="width:'+item.bar.pct+'%;background:'+item.bar.color+'"></div></div></div>'
-    +'<div class="fc-rev-foot"><div class="fc-user"><div class="fc-av">'+item.user[0].toUpperCase()+'</div><div><div class="fc-user-name">'+item.user+'</div><div class="fc-user-sub">'+item.userSkin+(item.twin?' · 👯 Twin':'')+'</div></div></div><div class="fc-tags">'+tgH+'</div></div>'
-    +'</div>';
-}
+
 function renderTrendCards(st,concerns){
   var el=$('trend-cards');if(!el)return;
   var scores={};Object.keys(PMETA).forEach(function(id){scores[id]=getMatchScore(id,st,concerns);});
-  var sorted=Object.keys(PMETA).sort(function(a,b){return scores[b]-scores[a];}).slice(0,5);
+  var sorted=Object.keys(PMETA).sort(function(a,b){return (PMETA[b].tiktokHype+scores[b])-(PMETA[a].tiktokHype+scores[a]);}).slice(0,8);
   el.innerHTML=sorted.map(function(id){
     var m=PMETA[id];var sc=scores[id];
     var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',name:id,brand:id};
     return '<div class="tc" onclick="openProduct(\''+id+'\')">'
-      +'<div class="tc-img" style="background:'+bgMap[m.vc]+'">'+dbP.emoji+'<div class="tc-bdg '+(m.isRisk?'bdg-hot':'bdg-safe')+'">'+m.verdict+'</div></div>'
+      +'<div class="tc-img" style="background:'+bgMap[m.vc]+'">'+dbP.emoji
+      +'<div class="tc-bdg '+(m.isRisk?'bdg-hot':'bdg-safe')+'">'+m.verdict.slice(0,6)+'</div></div>'
       +'<div class="tc-body"><div class="tc-brand">'+dbP.brand+'</div><div class="tc-name">'+dbP.name+'</div>'
       +'<div class="tc-meta"><div class="tc-score">'+m.score+'</div><div class="tc-pct '+(m.score>=7?'pct-g':'pct-b')+'">%'+m.pct+'</div></div>'
-      +'<div class="tc-twin">👯 %'+Math.round(sc)+' uyumluluk</div></div></div>';
+      +'<div class="tc-twin">🔥 Hype '+m.tiktokHype+' · 🛡️ Trust '+m.trustScore+'</div></div></div>';
   }).join('');
 }
+
 function renderTwinTab(st,concerns,td){
   var skinLabel=SP.type||'Normal Cilt';
   if($('twin-group-name')){var p=skinLabel.split(' ');$('twin-group-name').innerHTML=(p[0]||skinLabel)+' <em>'+(p[1]||'Cilt')+'</em>';}
@@ -902,8 +976,9 @@ function renderTwinTab(st,concerns,td){
   if($('tgs-reviews'))$('tgs-reviews').textContent=(td.reviews/1000).toFixed(1)+'K';
   var tp=$('tpc-traits');if(tp){var tr=[skinLabel];(concerns||[]).slice(0,4).forEach(function(c){tr.push(c);});tp.innerHTML=tr.map(function(t,i){return '<div class="tpc-t '+(i===0?'rose':i===2?'sage':'')+'">'+t+'</div>';}).join('');}
   var cg=$('closet-grid');if(cg){cg.innerHTML=td.topProducts.slice(0,5).map(function(id){var m=PMETA[id];if(!m)return '';var match=Math.min(Math.round(getMatchScore(id,st,concerns)),97);var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id};return '<div class="cg" onclick="openProduct(\''+id+'\')">'+'<div class="cg-img" style="background:'+bgMap[m.vc]+'">'+dbP.emoji+'<div class="cg-match">%'+match+'</div></div>'+'<div class="cg-body"><div class="cg-name">'+dbP.brand+'</div><div class="cg-score">★ '+m.score+'</div></div></div>';}).join('')+'<div class="cg" onclick="openSub(\'sub-scan\')" style="border-style:dashed;"><div class="cg-img" style="background:var(--bg2);font-size:1.3rem;color:var(--t3)">＋</div><div class="cg-body"><div class="cg-name" style="color:var(--t3)">Ekle</div><div class="cg-score" style="color:transparent">.</div></div></div>';}
-  var rc=$('risk-cards');if(rc){rc.innerHTML=td.riskProducts.map(function(id){var m=PMETA[id];if(!m)return '';var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id,name:id};return '<div class="risk-card" onclick="openProduct(\''+id+'\')">'+'<div class="risk-ic">'+dbP.emoji+'</div><div class="risk-info"><div class="risk-name">'+dbP.brand+' '+dbP.name+'</div><div class="risk-why">'+m.twin_insight.split('.')[0]+'</div></div><div class="risk-bdg">KAÇIN</div></div>';}).join('');}
+  var rc=$('risk-cards');if(rc){rc.innerHTML=td.riskProducts.map(function(id){var m=PMETA[id];if(!m)return '';var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id,name:id};return '<div class="risk-card" onclick="openProduct(\''+id+'\')">'+'<div class="risk-ic">'+dbP.emoji+'</div><div class="risk-info"><div class="risk-name">'+dbP.brand+' '+dbP.name+'</div><div class="risk-why">'+m.twin_insight.split('.')[0]+'</div></div><div class="risk-bdg">KACIN</div></div>';}).join('');}
 }
+
 function renderDiscoverList(st,concerns){
   var el=$('discover-list');if(!el)return;
   var sorted=Object.keys(PMETA).sort(function(a,b){return PMETA[b].score-PMETA[a].score;});
@@ -912,29 +987,88 @@ function renderDiscoverList(st,concerns){
     var match=Math.round(getMatchScore(id,st,concerns));
     var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id,name:id};
     return '<div class="prod-row" onclick="openProduct(\''+id+'\')">'
-      +'<div class="pr-main"><div class="pr-ic" style="background:'+bg+'">'+dbP.emoji+'</div><div class="pr-info"><div class="pr-brand">'+dbP.brand+'</div><div class="pr-name">'+dbP.name+'</div><div class="pr-reviews">'+(match>=80?'💚':match>=55?'💛':'🔴')+' %'+match+' uyumluluk</div></div><div class="pr-right"><div class="pr-score" style="color:'+sc+'">'+m.score+'</div><div class="pr-verdict" style="background:'+bg+';color:'+sc+'">'+m.verdict.toUpperCase().slice(0,7)+'</div></div></div>'
-      +'<div class="pr-metrics"><div class="prm"><span class="prm-ic">'+(m.score>=7?'✅':'⚠️')+'</span><span class="prm-txt"><strong>%'+m.pct+'</strong> memnun</span></div><div class="prm"><span class="prm-ic">👯</span><span class="prm-txt">%'+m.twinPct+' twin</span></div><div class="prm"><span class="prm-ic">💰</span><span class="prm-txt">'+m.price+'</span></div></div>'
+      +'<div class="pr-main"><div class="pr-ic" style="background:'+bg+'">'+dbP.emoji+'</div><div class="pr-info"><div class="pr-brand">'+dbP.brand+'</div><div class="pr-name">'+dbP.name+'</div><div class="pr-reviews">'+(match>=80?'💚':match>=55?'💛':'🔴')+' %'+match+' uyumluluk · 🔥'+m.tiktokHype+' hype</div></div><div class="pr-right"><div class="pr-score" style="color:'+sc+'">'+m.score+'</div><div class="pr-verdict" style="background:'+bg+';color:'+sc+'">'+m.verdict.toUpperCase().slice(0,7)+'</div></div></div>'
+      +'<div class="pr-metrics"><div class="prm"><span class="prm-ic">🛡️</span><span class="prm-txt"><strong>'+m.trustScore+'</strong> trust</span></div><div class="prm"><span class="prm-ic">⚠️</span><span class="prm-txt"><strong>'+m.overhypeRisk+'</strong> hype risk</span></div><div class="prm"><span class="prm-ic">💰</span><span class="prm-txt">₺'+m.price+'</span></div></div>'
       +'<div class="pr-bar"><div class="prb"><div class="prb-fill" style="width:'+m.pct+'%;background:'+sc+'"></div></div></div></div>';
   }).join('');
 }
+
+/* SEARCH */
+function initSearch(){renderSearchResults();}
+window.doSearch=function(q){searchQuery=q.toLowerCase();renderSearchResults();};
+window.clearSearch=function(){var inp=$('search-inp');if(inp)inp.value='';searchQuery='';renderSearchResults();};
+window.filterSearch=function(f,el){searchFilter=f;document.querySelectorAll('#tv-search .chip').forEach(function(c){c.classList.remove('on');});el.classList.add('on');renderSearchResults();};
+
+function renderSearchResults(){
+  var el=$('search-results');if(!el)return;
+  var st=normalizeSkinType(SP.type);
+  var allIds=Object.keys(PMETA);
+  var results=allIds.filter(function(id){
+    var m=PMETA[id];if(!m)return false;
+    var dbP=dbProducts.find(function(p){return p.id===id;})||{name:id,brand:id,category:'misc'};
+    if(searchFilter!=='all'&&dbP.category!==searchFilter&&m.category!==searchFilter){
+      var catMap={cleanser:['cleanser'],serum:['serum','toner'],moisturizer:['moisturizer'],spf:['spf'],mask:['mask']};
+      var cats=catMap[searchFilter]||[];
+      if(!cats.includes(dbP.category))return false;
+    }
+    if(searchQuery){
+      var haystack=(dbP.name+' '+dbP.brand+' '+id).toLowerCase();
+      if(!haystack.includes(searchQuery))return false;
+    }
+    return true;
+  });
+  var scores={};results.forEach(function(id){scores[id]=getMatchScore(id,st,SP.concerns||[]);});
+  results.sort(function(a,b){return scores[b]-scores[a];});
+  if(!results.length){
+    el.innerHTML='<div class="search-empty">'+
+      (searchQuery?'"'+searchQuery+'" ile eslesen urun bulunamadi':'Arama yapmak icin yukari yaz')+
+    '</div>';
+    return;
+  }
+  el.innerHTML=results.slice(0,30).map(function(id){
+    var m=PMETA[id];
+    var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id,name:id,category:'misc'};
+    var sc=cMap[m.vc];var bg=bgMap[m.vc];
+    var match=Math.round(scores[id]);
+    return '<div class="sr-card" onclick="openProduct(\''+id+'\')">'
+      +'<div class="sr-ic" style="background:'+bg+'">'+dbP.emoji+'</div>'
+      +'<div class="sr-info">'
+        +'<div class="sr-brand">'+dbP.brand+'</div>'
+        +'<div class="sr-name">'+dbP.name+'</div>'
+        +'<div class="sr-meta">🎯 %'+match+' uyumluluk · 🔥'+m.tiktokHype+' hype · 🛡️'+m.trustScore+' trust</div>'
+      +'</div>'
+      +'<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">'
+        +'<div class="sr-score" style="color:'+sc+'">'+m.score+'</div>'
+        +(m.overhypeRisk>=60?'<div class="sr-hype">⚠️ Hype Riski</div>':m.tiktokHype>=85?'<div class="sr-hype" style="background:rgba(201,121,106,.12);color:var(--rose)">🔥 Viral</div>':'')
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+/* PRODUCT DETAIL */
 window.openProduct=function(id){
   var m=PMETA[id];if(!m)return;
   var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id,name:id,category:'misc'};
   $('det-title').textContent=dbP.brand;
   var sc=cMap[m.vc],sdoff=Math.round((1-(m.score/10))*201);
   var st=normalizeSkinType(SP.type),ms=getMatchScore(id,st,SP.concerns||[]);
-  var ingH=m.ings.map(function(ing){var dot=ing.s==='safe'?'dot-safe':ing.s==='warn'?'dot-warn':ing.s==='risk'?'dot-risk':'dot-mid';var bs=ing.s==='safe'?'background:var(--sage-pale);color:var(--sage)':ing.s==='warn'?'background:var(--gold-pale);color:var(--gold)':ing.s==='risk'?'background:var(--rose-pale);color:var(--rose)':'display:none';var bl=ing.s==='safe'?'Güvenli':ing.s==='warn'?'Dikkat':ing.s==='risk'?'Yüksek Risk':'';return '<div class="ib-row"><div class="ib-dot '+dot+'"></div><div class="ib-body"><div class="ib-name">'+ing.n+'</div><div class="ib-desc">'+ing.d+'</div></div>'+(bl?'<div class="ib-bdg" style="'+bs+'">'+bl+'</div>':'')+'</div>';}).join('');
-  var tagH=m.tags.map(function(t){var tc=cMap[t.c]||'var(--t2)';var tbg=bgMap[t.c]||'var(--bg2)';return '<div class="det-tag" style="background:'+tbg+';color:'+tc+';border-color:'+tc+'22">'+t.t+'</div>';}).join('');
+  var ingH=(m.ings||[]).map(function(ing){var dot=ing.s==='safe'?'dot-safe':ing.s==='warn'?'dot-warn':ing.s==='risk'?'dot-risk':'dot-mid';var bs=ing.s==='safe'?'background:var(--sage-pale);color:var(--sage)':ing.s==='warn'?'background:var(--gold-pale);color:var(--gold)':ing.s==='risk'?'background:var(--rose-pale);color:var(--rose)':'display:none';var bl=ing.s==='safe'?'Guvenli':ing.s==='warn'?'Dikkat':ing.s==='risk'?'Yuksek Risk':'';return '<div class="ib-row"><div class="ib-dot '+dot+'"></div><div class="ib-body"><div class="ib-name">'+ing.n+'</div><div class="ib-desc">'+ing.d+'</div></div>'+(bl?'<div class="ib-bdg" style="'+bs+'">'+bl+'</div>':'')+'</div>';}).join('');
+  var tagH=(m.tags||[]).map(function(t){var tc=cMap[t.c]||'var(--t2)';var tbg=bgMap[t.c]||'var(--bg2)';return '<div class="det-tag" style="background:'+tbg+';color:'+tc+';border-color:'+tc+'22">'+t.t+'</div>';}).join('');
   var heroBg={sage:'linear-gradient(135deg,var(--sage-pale),#C8E4CC)',rose:'linear-gradient(135deg,var(--rose-pale),#F0D0CA)',gold:'linear-gradient(135deg,var(--gold-pale),#EDD8B0)',lav:'linear-gradient(135deg,var(--lav-pale),#DDD5F0)'};
   $('det-body').innerHTML=
     '<div class="det-hero"><div class="det-hero-bg" style="background:'+(heroBg[m.vc]||'var(--bg)')+'"></div><div class="det-hero-cnt"><span class="det-em">'+dbP.emoji+'</span><div class="det-cat" style="color:'+sc+'">'+dbP.category.toUpperCase()+'</div><div class="det-name">'+dbP.name+'</div><div class="det-brand">'+dbP.brand+'</div></div></div>'
-    +'<div class="det-score-card"><div class="dsc-top"><svg class="dsc-ring" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="rgba(44,31,26,.08)" stroke-width="4"/><circle cx="32" cy="32" r="28" fill="none" stroke="'+sc+'" stroke-width="4" stroke-dasharray="201" stroke-dashoffset="'+sdoff+'" stroke-linecap="round" transform="rotate(-90 32 32)"/></svg><div><div class="dsc-n" style="color:'+sc+'">'+m.score+'</div><div class="dsc-verdict" style="color:'+sc+'">'+m.verdict+'</div></div></div><div class="dsc-rows"><div class="dscr"><span class="dscr-lbl">Twin Memnuniyeti</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+m.twinPct+'%;background:'+sc+'"></div></div><span class="dscr-val">%'+m.twinPct+'</span></div><div class="dscr"><span class="dscr-lbl">Senin Uyumluluk</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+ms+'%;background:'+(ms>=70?'var(--sage)':ms>=50?'var(--gold)':'var(--rose)')+'"></div></div><span class="dscr-val">%'+Math.round(ms)+'</span></div><div class="dscr"><span class="dscr-lbl">Genel Skor</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+(m.score*10)+'%;background:'+sc+'"></div></div><span class="dscr-val">'+m.score+'</span></div></div></div>'
-    +'<div class="det-metrics"><div class="det-metric"><div class="dm-ic">💰</div><div class="dm-n">'+m.price+'</div><div class="dm-l">Fiyat</div></div><div class="det-metric"><div class="dm-ic">📅</div><div class="dm-n">'+m.weeks+'</div><div class="dm-l">Test</div></div><div class="det-metric"><div class="dm-ic">👯</div><div class="dm-n">%'+m.twinPct+'</div><div class="dm-l">Twin</div></div></div>'
+    +'<div style="margin:0 16px 16px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:7px;">'
+      +'<div class="det-metric"><div class="dm-ic">🔥</div><div class="dm-n" style="color:var(--rose)">'+m.tiktokHype+'</div><div class="dm-l">TikTok Hype</div></div>'
+      +'<div class="det-metric"><div class="dm-ic">🧠</div><div class="dm-n" style="color:'+(m.trustScore>=80?'var(--sage)':'var(--gold)')+'">'+m.trustScore+'</div><div class="dm-l">Trust Score</div></div>'
+      +'<div class="det-metric"><div class="dm-ic">🎯</div><div class="dm-n">'+Math.round(ms)+'</div><div class="dm-l">Uyumluluk</div></div>'
+      +'<div class="det-metric"><div class="dm-ic">⚠️</div><div class="dm-n" style="color:'+(m.overhypeRisk>=60?'var(--rose)':m.overhypeRisk>=30?'var(--gold)':'var(--sage)')+'">'+m.overhypeRisk+'</div><div class="dm-l">Hype Risk</div></div>'
+    +'</div>'
+    +'<div class="det-score-card"><div class="dsc-top"><svg class="dsc-ring" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="rgba(44,31,26,.08)" stroke-width="4"/><circle cx="32" cy="32" r="28" fill="none" stroke="'+sc+'" stroke-width="4" stroke-dasharray="201" stroke-dashoffset="'+sdoff+'" stroke-linecap="round" transform="rotate(-90 32 32)"/></svg><div><div class="dsc-n" style="color:'+sc+'">'+m.score+'</div><div class="dsc-verdict" style="color:'+sc+'">'+m.verdict+'</div></div></div><div class="dsc-rows"><div class="dscr"><span class="dscr-lbl">Twin Memnuniyeti</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+m.twinPct+'%;background:'+sc+'"></div></div><span class="dscr-val">%'+m.twinPct+'</span></div><div class="dscr"><span class="dscr-lbl">Senin Uyumluluk</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+ms+'%;background:'+(ms>=70?'var(--sage)':ms>=50?'var(--gold)':'var(--rose)')+'"></div></div><span class="dscr-val">%'+Math.round(ms)+'</span></div><div class="dscr"><span class="dscr-lbl">TikTok vs Gercek</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+m.trustScore+'%;background:'+(m.trustScore>=80?'var(--sage)':'var(--gold)')+'"></div></div><span class="dscr-val">'+m.trustScore+'</span></div></div></div>'
     +'<div class="det-tags">'+tagH+'</div>'
     +'<div style="padding:0 16px;margin-bottom:16px;"><div style="background:linear-gradient(135deg,#2C1F1A,#4A3028);border-radius:16px;padding:16px;"><div style="font-size:.48rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(232,169,156,.65);margin-bottom:8px;">👯 SKIN TWIN INSIGHT</div><div style="font-size:.78rem;color:#FAF8F5;line-height:1.75;font-weight:300;">'+m.twin_insight+'</div></div></div>'
-    +'<div class="ing-block"><div class="ib-hdr">İçerik Analizi</div>'+ingH+'</div>'
-    +'<div style="padding:0 16px;margin-bottom:16px;"><div style="font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px;">Skin Twin Yorumları</div><div id="det-reviews"><div style="font-size:.72rem;color:var(--t3);padding:8px 0;">Yükleniyor...</div></div></div>'
-    +'<div style="padding:0 16px 10px;"><button class="btn-full" onclick="openVerifiedReview(\''+id+'\')">🛡️ Doğrulanmış Yorum Yaz →</button></div>'
+    +'<div class="ing-block"><div class="ib-hdr">Icerik Analizi</div>'+ingH+'</div>'
+    +'<div style="padding:0 16px;margin-bottom:16px;"><div style="font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px;">Skin Twin Yorumlari</div><div id="det-reviews"><div style="font-size:.72rem;color:var(--t3);padding:8px 0;">Yukleniyor...</div></div></div>'
+    +'<div style="padding:0 16px 10px;"><button class="btn-full" onclick="openVerifiedReview(\''+id+'\')">🛡️ Dogrulanmis Yorum Yaz →</button></div>'
     +'<div style="padding:0 16px 10px;"><button class="btn-full" style="background:linear-gradient(135deg,#2C1F1A,#4A3028);" onclick="openQA(\''+id+'\')">💬 Skin Twin\'lere Sor →</button></div>'
     +'<div style="padding:0 16px 8px;"><button class="btn-full" style="background:transparent;color:var(--t2);border:1.5px solid var(--border2);box-shadow:none;" onclick="addToTracking(\''+id+'\')">+ Takibime Ekle</button></div>'
     +'<div style="padding:0 16px 32px;"><button style="width:100%;padding:13px;background:transparent;color:var(--t3);border:none;font-size:.7rem;cursor:pointer;" onclick="closeSub(\'sub-detail\')">← Geri</button></div>';
@@ -946,243 +1080,81 @@ function loadReviews(pid){
   sb.from('reviews').select('*,users(username,skin_type)').eq('product_id',pid).order('trust_score',{ascending:false}).limit(5)
     .then(function(res){
       var el=$('det-reviews');if(!el)return;
-      if(!res.data||!res.data.length){el.innerHTML='<div style="font-size:.72rem;color:var(--t3);padding:8px 0;">Henüz yorum yok. İlk doğrulanmış yorumu sen yap!</div>';return;}
-      el.innerHTML=res.data.map(function(r){
-        var u=(r.users&&r.users.username)||'kullanici';
-        var sk=(r.users&&r.users.skin_type)||'';
-        var sc=r.score>=7?'var(--sage)':r.score>=5?'var(--gold)':'var(--rose)';
-        var ts=r.trust_score||50;
-        var tsColor=ts>=70?'var(--sage)':ts>=50?'var(--gold)':'var(--rose)';
-        return '<div class="rev-item"><div class="ri-top"><div class="ri-user"><div class="ri-av">'+u[0].toUpperCase()+'</div><div><div class="ri-name">'+u+'</div><div class="ri-skin">'+sk+(r.usage_confirmed?' · ✓ Kullandım':'')+'</div></div></div><div class="ri-score" style="color:'+sc+'">'+r.score+'</div></div><div class="ri-trust" style="background:'+(ts>=70?'var(--sage-pale)':ts>=50?'var(--gold-pale)':'var(--rose-pale)')+';color:'+tsColor+'">🛡️ Trust '+ts+'</div><div class="ri-text">'+r.text+'</div><div class="ri-days">'+r.days_used+' günlük deneyim · '+timeAgo(r.created_at)+'</div></div>';
-      }).join('');
-    }).catch(function(){var el=$('det-reviews');if(el)el.innerHTML='<div style="font-size:.72rem;color:var(--t3);">Yüklenemedi.</div>';});
+      if(!res.data||!res.data.length){el.innerHTML='<div style="font-size:.72rem;color:var(--t3);padding:8px 0;">Henuz yorum yok. Ilk dogrulanmis yorumu sen yap!</div>';return;}
+      el.innerHTML=res.data.map(function(r){var u=(r.users&&r.users.username)||'kullanici';var sk=(r.users&&r.users.skin_type)||'';var sc=r.score>=7?'var(--sage)':r.score>=5?'var(--gold)':'var(--rose)';var ts=r.trust_score||50;var tsColor=ts>=70?'var(--sage)':ts>=50?'var(--gold)':'var(--rose)';return '<div class="rev-item"><div class="ri-top"><div class="ri-user"><div class="ri-av">'+u[0].toUpperCase()+'</div><div><div class="ri-name">'+u+'</div><div class="ri-skin">'+sk+(r.usage_confirmed?' · ✓ Kullandim':'')+'</div></div></div><div class="ri-score" style="color:'+sc+'">'+r.score+'</div></div><div class="ri-trust" style="background:'+(ts>=70?'var(--sage-pale)':ts>=50?'var(--gold-pale)':'var(--rose-pale)')+';color:'+tsColor+'">🛡️ Trust '+ts+'</div><div class="ri-text">'+r.text+'</div><div class="ri-days">'+r.days_used+' gunluk deneyim · '+timeAgo(r.created_at)+'</div></div>';}).join('');
+    }).catch(function(){var el=$('det-reviews');if(el)el.innerHTML='<div style="font-size:.72rem;color:var(--t3);">Yuklenemedi.</div>';});
 }
 
-/* VERIFIED REVIEW SYSTEM */
 window.openVerifiedReview=function(pid){
-  currentReviewProduct=pid;
-  reviewScore=0;usageConfirmed=false;
+  currentReviewProduct=pid;reviewScore=0;usageConfirmed=false;
   if($('usage-check'))$('usage-check').classList.remove('on');
-  if($('rev-text'))$('rev-text').value='';
-  if($('rev-days'))$('rev-days').value='';
-  document.querySelectorAll('.score-btn').forEach(function(b){b.classList.remove('sel');});
-  updateTrustScore();
-  var m=PMETA[pid];
-  var dbP=dbProducts.find(function(p){return p.id===pid;})||{emoji:'📦',brand:pid,name:pid};
-  if($('rev-prod-info')){
-    var bg=bgMap[(m&&m.vc)||'sage']||'var(--bg2)';
-    $('rev-prod-info').innerHTML='<div style="display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);box-shadow:var(--shadow-xs);"><div style="width:44px;height:44px;border-radius:var(--r-xs);background:'+bg+';display:flex;align-items:center;justify-content:center;font-size:1.2rem;">'+dbP.emoji+'</div><div><div style="font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;">'+dbP.brand+'</div><div style="font-size:.82rem;font-weight:600;color:var(--t1);">'+dbP.name+'</div></div></div>';
-  }
+  if($('rev-text'))$('rev-text').value='';if($('rev-days'))$('rev-days').value='';
+  document.querySelectorAll('.score-btn').forEach(function(b){b.classList.remove('sel');});updateTrustScore();
+  var m=PMETA[pid];var dbP=dbProducts.find(function(p){return p.id===pid;})||{emoji:'📦',brand:pid,name:pid};
+  if($('rev-prod-info')){var bg=bgMap[(m&&m.vc)||'sage']||'var(--bg2)';$('rev-prod-info').innerHTML='<div style="display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);box-shadow:var(--shadow-xs);"><div style="width:44px;height:44px;border-radius:var(--r-xs);background:'+bg+';display:flex;align-items:center;justify-content:center;font-size:1.2rem;">'+dbP.emoji+'</div><div><div style="font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;">'+dbP.brand+'</div><div style="font-size:.82rem;font-weight:600;color:var(--t1);">'+dbP.name+'</div></div></div>';}
   openSub('sub-review');
 };
 
 window.submitReview=function(){
-  if(!currentUser){toast('⚠ Giriş yapman gerekiyor.');return;}
-  if(!usageConfirmed){toast('⚠ Ürünü kullandığını onaylamalısın.');return;}
-  if(!reviewScore){toast('⚠ Skor seçmelisin.');return;}
+  if(!currentUser){toast('⚠ Giris yapman gerekiyor.');return;}
+  if(!usageConfirmed){toast('⚠ Urunu kullandigini onaylamalisin.');return;}
+  if(!reviewScore){toast('⚠ Skor secmelisin.');return;}
   var text=$('rev-text')&&$('rev-text').value.trim();
   if(!text||text.length<10){toast('⚠ En az 10 karakter yorum yaz.');return;}
   var days=parseInt($('rev-days')&&$('rev-days').value)||0;
   var trustScore=calcTrustScore();
   var btn=$('rev-submit-btn');if(btn)btn.disabled=true;
-  showLoad('Yorum kaydediliyor…');
-  sb.from('reviews').insert({
-    user_id:currentUser.id,
-    product_id:currentReviewProduct,
-    score:reviewScore,
-    text:text,
-    days_used:days,
-    usage_confirmed:true,
-    trust_score:trustScore,
-    verified:true
-  }).then(function(res){
-    hideLoad();if(btn)btn.disabled=false;
-    if(res.error){toast('⚠ Hata: '+res.error.message);return;}
-    toast('✓ Doğrulanmış yorumun yayınlandı! 🛡️ Trust '+trustScore);
-    closeSub('sub-review');
-    loadUserStats();
-  }).catch(function(){hideLoad();if(btn)btn.disabled=false;toast('⚠ Bağlantı hatası.');});
+  showLoad('Yorum kaydediliyor...');
+  sb.from('reviews').insert({user_id:currentUser.id,product_id:currentReviewProduct,score:reviewScore,text:text,days_used:days,usage_confirmed:true,trust_score:trustScore,verified:true})
+    .then(function(res){hideLoad();if(btn)btn.disabled=false;if(res.error){toast('⚠ Hata: '+res.error.message);return;}toast('✓ Dogrulanmis yorumun yayinlandi! 🛡️ Trust '+trustScore);closeSub('sub-review');loadUserStats();})
+    .catch(function(){hideLoad();if(btn)btn.disabled=false;toast('⚠ Baglanti hatasi.');});
 };
 
-/* Q&A */
 window.openQA=function(pid){
   var m=PMETA[pid];if(!m)return;
   currentQAProduct=pid;
   var dbP=dbProducts.find(function(p){return p.id===pid;})||{emoji:'📦',brand:pid,name:pid};
   var pb=bgMap[m.vc]||'var(--bg2)';
   if($('qa-prod-bar'))$('qa-prod-bar').innerHTML='<div class="qa-prod-bar"><div class="qa-prod-ic" style="background:'+pb+'">'+dbP.emoji+'</div><div><div style="font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;">'+dbP.brand+'</div><div style="font-size:.8rem;font-weight:600;color:var(--t1);">'+dbP.name+'</div></div></div>';
-  loadQuestions(pid);
-  openSub('sub-qa');
+  loadQuestions(pid);openSub('sub-qa');
 };
 
 function loadQuestions(pid){
   var el=$('qa-questions');if(!el)return;
-  el.innerHTML='<div style="padding:20px;text-align:center;font-size:.72rem;color:var(--t3);">Yükleniyor...</div>';
-  sb.from('questions').select('id',{count:'exact'}).eq('product_id',pid)
-    .gte('created_at',new Date(Date.now()-86400000).toISOString())
-    .then(function(r){
-      var act=$('qa-activity'),actTxt=$('qa-activity-txt');
-      if((r.count||0)>0&&act&&actTxt){act.style.display='flex';actTxt.textContent='Bugün '+(r.count||0)+' yeni soru soruldu';}
-      else if(act){act.style.display='none';}
-    });
-  sb.from('questions')
-    .select('*,users(username,skin_type),answers(id,text,created_at,helpful_count,user_id,users(username,skin_type))')
-    .eq('product_id',pid).order('created_at',{ascending:false})
+  el.innerHTML='<div style="padding:20px;text-align:center;font-size:.72rem;color:var(--t3);">Yukleniyor...</div>';
+  sb.from('questions').select('id',{count:'exact'}).eq('product_id',pid).gte('created_at',new Date(Date.now()-86400000).toISOString()).then(function(r){var act=$('qa-activity'),actTxt=$('qa-activity-txt');if((r.count||0)>0&&act&&actTxt){act.style.display='flex';actTxt.textContent='Bugun '+(r.count||0)+' yeni soru soruldu';}else if(act){act.style.display='none';}});
+  sb.from('questions').select('*,users(username,skin_type),answers(id,text,created_at,helpful_count,user_id,users(username,skin_type))').eq('product_id',pid).order('created_at',{ascending:false})
     .then(function(res){
-      if(!res.data||!res.data.length){el.innerHTML='<div class="qa-empty"><div class="qa-empty-ic">💬</div><div class="qa-empty-txt">Henüz soru yok.<br>İlk soruyu soran sen ol!</div></div>';return;}
+      if(!res.data||!res.data.length){el.innerHTML='<div class="qa-empty"><div class="qa-empty-ic">💬</div><div class="qa-empty-txt">Henuz soru yok.<br>Ilk soruyu soran sen ol!</div></div>';return;}
       el.innerHTML=res.data.map(function(q){
-        var qu=(q.users&&q.users.username)||'kullanici';
-        var qsk=(q.users&&q.users.skin_type)||'';
-        var isOwn=currentUser&&q.user_id===currentUser.id;
-        var answersHTML='';
-        if(q.answers&&q.answers.length){
-          answersHTML='<div class="qa-answers">'+q.answers.map(function(a){
-            var au=(a.users&&a.users.username)||'kullanici';
-            var ask=(a.users&&a.users.skin_type)||'';
-            return '<div class="qa-ans-item"><div class="qa-ans-av">'+au[0].toUpperCase()+'</div><div class="qa-ans-body"><div class="qa-ans-user">'+au+(ask?' <span class="qa-ans-twin">👯 '+ask+'</span>':'')+'</div><div class="qa-ans-text">'+a.text+'</div><div class="qa-ans-foot"><span class="qa-ans-time">'+timeAgo(a.created_at)+'</span><span class="qa-helpful" onclick="markHelpful(\''+a.id+'\',this)">👍 '+a.helpful_count+' faydalı</span></div></div></div>';
-          }).join('')+'</div>';
-        } else {
-          answersHTML='<div style="padding:10px 16px;font-size:.66rem;color:var(--t3);font-style:italic;">Henüz cevap yok — cevapla!</div>';
-        }
-        return '<div class="qa-q-card">'
-          +'<div class="qa-q-header"><div class="qa-q-av">'+qu[0].toUpperCase()+'</div><div class="qa-q-info"><div class="qa-q-user">'+qu+(isOwn?' (Sen)':'')+'</div><div class="qa-q-skin">'+qsk+'</div></div><div class="qa-q-time">'+timeAgo(q.created_at)+'</div></div>'
-          +'<div class="qa-q-text">'+q.text+'</div>'
-          +answersHTML
-          +'<div class="qa-reply-bar"><input class="qa-reply-inp" id="ans-inp-'+q.id+'" placeholder="Cevapla..." type="text"><button class="qa-reply-btn" onclick="sendAnswer(\''+q.id+'\')">➤</button></div>'
-          +'</div>';
+        var qu=(q.users&&q.users.username)||'kullanici';var qsk=(q.users&&q.users.skin_type)||'';var isOwn=currentUser&&q.user_id===currentUser.id;
+        var answersHTML=q.answers&&q.answers.length?'<div class="qa-answers">'+q.answers.map(function(a){var au=(a.users&&a.users.username)||'kullanici';var ask=(a.users&&a.users.skin_type)||'';return '<div class="qa-ans-item"><div class="qa-ans-av">'+au[0].toUpperCase()+'</div><div class="qa-ans-body"><div class="qa-ans-user">'+au+(ask?' <span class="qa-ans-twin">👯 '+ask+'</span>':'')+'</div><div class="qa-ans-text">'+a.text+'</div><div class="qa-ans-foot"><span class="qa-ans-time">'+timeAgo(a.created_at)+'</span><span class="qa-helpful" onclick="markHelpful(\''+a.id+'\',this)">👍 '+a.helpful_count+' faydali</span></div></div></div>';}).join('')+'</div>':'<div style="padding:10px 16px;font-size:.66rem;color:var(--t3);font-style:italic;">Henuz cevap yok — cevapla!</div>';
+        return '<div class="qa-q-card"><div class="qa-q-header"><div class="qa-q-av">'+qu[0].toUpperCase()+'</div><div class="qa-q-info"><div class="qa-q-user">'+qu+(isOwn?' (Sen)':'')+'</div><div class="qa-q-skin">'+qsk+'</div></div><div class="qa-q-time">'+timeAgo(q.created_at)+'</div></div><div class="qa-q-text">'+q.text+'</div>'+answersHTML+'<div class="qa-reply-bar"><input class="qa-reply-inp" id="ans-inp-'+q.id+'" placeholder="Cevapla..." type="text"><button class="qa-reply-btn" onclick="sendAnswer(\''+q.id+'\')">➤</button></div></div>';
       }).join('');
-    }).catch(function(){el.innerHTML='<div class="qa-empty"><div class="qa-empty-ic">⚠️</div><div class="qa-empty-txt">Yüklenemedi.</div></div>';});
+    }).catch(function(){el.innerHTML='<div class="qa-empty"><div class="qa-empty-ic">⚠️</div><div class="qa-empty-txt">Yuklenemedi.</div></div>';});
 }
 
-window.sendQuestion=function(){
-  var inp=$('qa-inp');if(!inp)return;
-  var q=inp.value.trim();if(!q)return;
-  if(!currentUser){toast('⚠ Giriş yapman gerekiyor.');return;}
-  var pid=currentQAProduct;if(!pid)return;
-  var btn=$('qa-send-btn');if(btn)btn.disabled=true;
-  sb.from('questions').insert({product_id:pid,user_id:currentUser.id,text:q})
-    .then(function(res){
-      if(btn)btn.disabled=false;
-      if(res.error){toast('⚠ Hata: '+res.error.message);return;}
-      inp.value='';loadQuestions(pid);toast('✓ Sorun gönderildi!');loadUserStats();
-    }).catch(function(){if(btn)btn.disabled=false;toast('⚠ Bağlantı hatası.');});
-};
+window.sendQuestion=function(){var inp=$('qa-inp');if(!inp)return;var q=inp.value.trim();if(!q)return;if(!currentUser){toast('⚠ Giris yapman gerekiyor.');return;}var pid=currentQAProduct;if(!pid)return;var btn=$('qa-send-btn');if(btn)btn.disabled=true;sb.from('questions').insert({product_id:pid,user_id:currentUser.id,text:q}).then(function(res){if(btn)btn.disabled=false;if(res.error){toast('⚠ Hata: '+res.error.message);return;}inp.value='';loadQuestions(pid);toast('✓ Sorun gonderildi!');loadUserStats();}).catch(function(){if(btn)btn.disabled=false;toast('⚠ Baglanti hatasi.');});};
+window.sendAnswer=function(qid){var inp=$('ans-inp-'+qid);if(!inp)return;var text=inp.value.trim();if(!text)return;if(!currentUser){toast('⚠ Giris yapman gerekiyor.');return;}inp.disabled=true;sb.from('answers').insert({question_id:qid,user_id:currentUser.id,text:text}).then(function(res){inp.disabled=false;if(res.error){toast('⚠ Hata: '+res.error.message);return;}inp.value='';loadQuestions(currentQAProduct);toast('✓ Cevabın gönderildi! 🌸');}).catch(function(){inp.disabled=false;toast('⚠ Baglanti hatasi.');});};
+window.markHelpful=function(aid,el){sb.from('answers').select('helpful_count').eq('id',aid).single().then(function(res){if(res.data){var n=(res.data.helpful_count||0)+1;sb.from('answers').update({helpful_count:n}).eq('id',aid).then(function(){el.textContent='👍 '+n+' faydali';el.style.color='var(--sage)';});}});};
+window.addToTracking=function(pid){if(!currentUser){toast('⚠ Giris yapman gerekiyor.');return;}sb.from('user_products').insert({user_id:currentUser.id,product_id:pid,status:'active',days_done:0}).then(function(res){if(res.error&&res.error.code!=='23505'){toast('⚠ Hata: '+res.error.message);return;}toast('✓ Takibine eklendi! 🌸');closeSub('sub-detail');loadUserStats();}).catch(function(){toast('⚠ Baglanti hatasi.');});};
 
-window.sendAnswer=function(qid){
-  var inp=$('ans-inp-'+qid);if(!inp)return;
-  var text=inp.value.trim();if(!text)return;
-  if(!currentUser){toast('⚠ Giriş yapman gerekiyor.');return;}
-  inp.disabled=true;
-  sb.from('answers').insert({question_id:qid,user_id:currentUser.id,text:text})
-    .then(function(res){
-      inp.disabled=false;
-      if(res.error){toast('⚠ Hata: '+res.error.message);return;}
-      inp.value='';loadQuestions(currentQAProduct);toast('✓ Cevabın gönderildi! 🌸');
-    }).catch(function(){inp.disabled=false;toast('⚠ Bağlantı hatası.');});
-};
-
-window.markHelpful=function(aid,el){
-  sb.from('answers').select('helpful_count').eq('id',aid).single().then(function(res){
-    if(res.data){var n=(res.data.helpful_count||0)+1;sb.from('answers').update({helpful_count:n}).eq('id',aid).then(function(){el.textContent='👍 '+n+' faydalı';el.style.color='var(--sage)';});}
-  });
-};
-
-window.addToTracking=function(pid){
-  if(!currentUser){toast('⚠ Giriş yapman gerekiyor.');return;}
-  sb.from('user_products').insert({user_id:currentUser.id,product_id:pid,status:'active',days_done:0})
-    .then(function(res){
-      if(res.error&&res.error.code!=='23505'){toast('⚠ Hata: '+res.error.message);return;}
-      toast('✓ Takibine eklendi! 🌸');closeSub('sub-detail');loadUserStats();
-    }).catch(function(){toast('⚠ Bağlantı hatası.');});
-};
-
-/* BARCODE SCAN */
 var sCat=null,camStream=null,barcodeDetector=null,scanInterval=null;
 window.selCat=function(el){document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');sCat=el.dataset.cat;chkScan();};
 function chkScan(){if($('scan-cta'))$('scan-cta').disabled=!($('scan-name')&&$('scan-name').value.trim()&&sCat);}
 var si=$('scan-name');if(si)si.addEventListener('input',chkScan);
-
-function startCamera(){
-  var hint=$('scan-hint');
-  if(typeof BarcodeDetector!=='undefined'){
-    barcodeDetector=new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','code_128','code_39']});
-  }
-  if(!navigator.mediaDevices){if(hint)hint.textContent='Manuel giriş yapın';return;}
-  navigator.mediaDevices.getUserMedia({video:{facingMode:'environment',width:{ideal:1280},height:{ideal:720}}})
-    .then(function(s){
-      camStream=s;var v=$('scan-vid');if(v)v.srcObject=s;
-      if(barcodeDetector&&v){
-        scanInterval=setInterval(function(){
-          barcodeDetector.detect(v).then(function(barcodes){
-            if(barcodes&&barcodes.length){
-              var code=barcodes[0].rawValue;
-              clearInterval(scanInterval);
-              handleBarcode(code);
-            }
-          }).catch(function(){});
-        },500);
-      }
-    }).catch(function(){if(hint)hint.textContent='Kamera yok — manuel girin';});
-}
-
-function stopCamera(){
-  if(scanInterval){clearInterval(scanInterval);scanInterval=null;}
-  if(camStream){camStream.getTracks().forEach(function(t){t.stop();});camStream=null;}
-}
-
-function handleBarcode(code){
-  var hint=$('scan-hint');if(hint)hint.textContent='Barkod: '+code+' · Ürün aranıyor...';
-  // DB'de barkod ara
-  sb.from('products').select('*').eq('barcode',code).single().then(function(res){
-    if(res.data){
-      showScanResult(res.data,code);
-    } else {
-      // Bilinen ürünlerde kontrol et
-      var known=Object.keys(PMETA).find(function(id){return id===code;});
-      if(known){var dbP=dbProducts.find(function(p){return p.id===known;});showScanResult(dbP||{id:known,name:known,brand:known,emoji:'📦'},code);}
-      else{if(hint)hint.textContent='Ürün bulunamadı — manuel girin';var sr=$('scan-result');if(sr)sr.classList.remove('on');}
-    }
-  }).catch(function(){if(hint)hint.textContent='Barkod: '+code+' · Manuel tamamla';});
-}
-
-function showScanResult(prod,code){
-  var sr=$('scan-result');
-  if(!sr)return;
-  sr.classList.add('on');
-  var sn=$('sr-name');if(sn)sn.textContent=prod.brand+' — '+prod.name;
-  var st=normalizeSkinType(SP.type);
-  var m=PMETA[prod.id];
-  var compat=m?'%'+Math.round(getMatchScore(prod.id,st,SP.concerns||[]))+' uyumluluk · '+m.verdict:'Yeni ürün — yorum bekliyor';
-  var sc=$('sr-compat');if(sc)sc.textContent=compat;
-  var ni=$('scan-name');if(ni)ni.value=prod.brand+' '+prod.name;
-  chkScan();
-  var hint=$('scan-hint');if(hint)hint.textContent='✓ Tanındı — kategori seç ve ekle';
-}
-
-window.addProduct=function(){
-  var name=$('scan-name').value.trim();if(!name||!sCat)return;
-  if(!currentUser){toast('⚠ Giriş yapman gerekiyor.');return;}
-  showLoad('Ürün ekleniyor…');
-  var newId='custom_'+Date.now();
-  sb.from('products').insert({id:newId,name:name,brand:name,category:sCat,emoji:'📦'})
-    .then(function(){return sb.from('user_products').insert({user_id:currentUser.id,product_id:newId,status:'active',days_done:0});})
-    .then(function(){
-      hideLoad();$('scan-name').value='';
-      document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});
-      var sr=$('scan-result');if(sr)sr.classList.remove('on');
-      sCat=null;if($('scan-cta'))$('scan-cta').disabled=true;
-      stopCamera();closeSub('sub-scan');
-      streak=Math.min(streak+1,7);renderStreakDots();
-      toast('✓ '+name+' takibine eklendi 🌸');loadUserStats();
-    }).catch(function(e){hideLoad();toast('⚠ '+(e.message||'Tekrar dene'));});
-};
+function startCamera(){var hint=$('scan-hint');if(typeof BarcodeDetector!=='undefined'){barcodeDetector=new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','code_128','code_39']});}if(!navigator.mediaDevices){if(hint)hint.textContent='Manuel giris yapin';return;}navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(function(s){camStream=s;var v=$('scan-vid');if(v)v.srcObject=s;if(barcodeDetector&&v){scanInterval=setInterval(function(){barcodeDetector.detect(v).then(function(barcodes){if(barcodes&&barcodes.length){clearInterval(scanInterval);handleBarcode(barcodes[0].rawValue);}}).catch(function(){});},500);}}).catch(function(){if(hint)hint.textContent='Kamera yok — manuel girin';});}
+function stopCamera(){if(scanInterval){clearInterval(scanInterval);scanInterval=null;}if(camStream){camStream.getTracks().forEach(function(t){t.stop();});camStream=null;}}
+function handleBarcode(code){var hint=$('scan-hint');if(hint)hint.textContent='Barkod: '+code+' · Urun aranıyor...';sb.from('products').select('*').eq('barcode',code).single().then(function(res){if(res.data){showScanResult(res.data,code);}else{var known=Object.keys(PMETA).find(function(id){return id===code;});if(known){var dbP=dbProducts.find(function(p){return p.id===known;});showScanResult(dbP||{id:known,name:known,brand:known,emoji:'📦'},code);}else{if(hint)hint.textContent='Urun bulunamadi — manuel girin';}}}).catch(function(){if(hint)hint.textContent='Barkod: '+code+' · Manuel tamamla';});}
+function showScanResult(prod,code){var sr=$('scan-result');if(!sr)return;sr.classList.add('on');var sn=$('sr-name');if(sn)sn.textContent=prod.brand+' — '+prod.name;var st=normalizeSkinType(SP.type);var m=PMETA[prod.id];var compat=m?'%'+Math.round(getMatchScore(prod.id,st,SP.concerns||[]))+' uyumluluk · '+m.verdict:'Yeni urun — yorum bekliyor';var sc=$('sr-compat');if(sc)sc.textContent=compat;var ni=$('scan-name');if(ni)ni.value=prod.brand+' '+prod.name;chkScan();var hint=$('scan-hint');if(hint)hint.textContent='✓ Tanindi — kategori sec ve ekle';}
+window.addProduct=function(){var name=$('scan-name').value.trim();if(!name||!sCat)return;if(!currentUser){toast('⚠ Giris yapman gerekiyor.');return;}showLoad('Urun ekleniyor...');var newId='custom_'+Date.now();sb.from('products').insert({id:newId,name:name,brand:name,category:sCat,emoji:'📦'}).then(function(){return sb.from('user_products').insert({user_id:currentUser.id,product_id:newId,status:'active',days_done:0});}).then(function(){hideLoad();$('scan-name').value='';document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});var sr=$('scan-result');if(sr)sr.classList.remove('on');sCat=null;if($('scan-cta'))$('scan-cta').disabled=true;stopCamera();closeSub('sub-scan');streak=Math.min(streak+1,7);renderStreakDots();toast('✓ '+name+' takibine eklendi 🌸');loadUserStats();}).catch(function(e){hideLoad();toast('⚠ '+(e.message||'Tekrar dene'));});};
 
 function renderSkinProfile(){var el=$('skin-chips');if(!el)return;var items=[];if(SP.type)items.push(SP.type);(SP.concerns||[]).slice(0,4).forEach(function(c){items.push(c);});el.innerHTML=items.length?items.map(function(t){return '<div class="skin-chip">'+t+'</div>';}).join(''):'<div class="skin-chip">Profil yok</div>';}
 function renderStreakDots(){var el=$('sc-dots');if(!el)return;var h='';for(var i=0;i<7;i++){h+='<div class="sc-dot '+(i<streak?'scd-done':i===streak?'scd-today':'scd-future')+'">'+(i<streak?'✓':i===streak?'•':'')+'</div>';}el.innerHTML=h;}
-window.swTab=function(tab){document.querySelectorAll('.tab-view').forEach(function(t){t.classList.remove('on');});document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});var tv=$('tv-'+tab),nb=$('nb-'+tab);if(tv)tv.classList.add('on');if(nb)nb.classList.add('on');};
-window.doLogout=function(){if(!confirm('Çıkış yapmak istiyor musun?'))return;sb.auth.signOut().then(function(){currentUser=null;userProfile=null;SP={};streak=0;showScreen('s-auth');});};
+window.swTab=function(tab){document.querySelectorAll('.tab-view').forEach(function(t){t.classList.remove('on');});document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});var tv=$('tv-'+tab),nb=$('nb-'+tab);if(tv)tv.classList.add('on');if(nb)nb.classList.add('on');if(tab==='search')setTimeout(function(){var inp=$('search-inp');if(inp)inp.focus();},300);};
+window.doLogout=function(){if(!confirm('Cikis yapmak istiyor musun?'))return;sb.auth.signOut().then(function(){currentUser=null;userProfile=null;SP={};streak=0;showScreen('s-auth');});};
 
-}catch(e){console.error('Lumo V6:',e);var s=document.getElementById('s-auth');if(s)s.classList.add('on');}
+}catch(e){console.error('Lumo V7:',e);var s=document.getElementById('s-auth');if(s)s.classList.add('on');}
 })();
 </script>
 </body>
