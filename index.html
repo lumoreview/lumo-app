@@ -28,12 +28,16 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .screen.on{display:flex;}
 .scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;}
 .scroll::-webkit-scrollbar{display:none;}
+
+/* SPLASH */
 #s-splash{background:linear-gradient(160deg,#F9F4EF,#EDE5DC,#E0D4C8);align-items:center;justify-content:center;z-index:100;}
 .sp-inner{display:flex;flex-direction:column;align-items:center;gap:14px;}
 .sp-logo{font-family:'Playfair Display',serif;font-size:3rem;font-weight:400;color:var(--primary);letter-spacing:5px;text-transform:uppercase;opacity:0;animation:fu .8s .3s ease-out forwards;}
 .sp-line{width:36px;height:1px;background:var(--rose-light);opacity:0;animation:fu .5s .9s ease-out forwards;}
 .sp-tag{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--t3);opacity:0;animation:fu .5s 1.1s ease-out forwards;}
 @keyframes fu{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* AUTH */
 #s-auth{background:linear-gradient(160deg,#FAF6F2,#F0E9E2);}
 .auth-wrap{flex:1;display:flex;flex-direction:column;justify-content:center;padding:var(--s8) var(--s6);}
 .auth-logo{font-family:'Playfair Display',serif;font-size:2rem;color:var(--primary);letter-spacing:3px;text-transform:uppercase;margin-bottom:var(--s2);text-align:center;}
@@ -50,6 +54,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .btn-primary{width:100%;padding:16px;background:var(--primary);color:#FAF8F5;border:none;border-radius:var(--r-md);font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;letter-spacing:.4px;cursor:pointer;box-shadow:0 4px 20px rgba(44,31,26,.25);transition:all .25s;}
 .btn-primary:active{transform:scale(.98);}
 .btn-primary:disabled{background:var(--t4);box-shadow:none;cursor:default;}
+
+/* ONBOARDING */
 #s-ob{background:linear-gradient(160deg,#FAF6F2,#F0E9E2);}
 .ob-hdr{padding:var(--s12) var(--s6) var(--s4);display:flex;justify-content:space-between;align-items:center;}
 .ob-logo{font-family:'Playfair Display',serif;font-size:1rem;color:var(--primary);letter-spacing:2px;text-transform:uppercase;}
@@ -74,6 +80,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .ob-gopt-nm{font-size:0.68rem;font-weight:500;color:var(--t2);}
 .ob-gopt.sel .ob-gopt-nm{color:var(--rose);}
 .ob-foot{padding:var(--s4) var(--s6) var(--s8);flex-shrink:0;}
+
+/* APP */
 #s-app{background:var(--bg);}
 .bnav{position:absolute;bottom:0;left:0;right:0;height:72px;background:rgba(250,250,248,.94);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;padding:0 8px 10px;z-index:50;}
 .nb{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:6px 12px;transition:transform .2s;}
@@ -87,6 +95,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .tab-view{position:absolute;inset:0;bottom:72px;display:none;flex-direction:column;overflow-y:auto;}
 .tab-view::-webkit-scrollbar{display:none;}
 .tab-view.on{display:flex;}
+
+/* FEED */
 .feed-hdr{padding:var(--s12) var(--s5) var(--s4);display:flex;justify-content:space-between;align-items:center;flex-shrink:0;position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(250,250,248,.97) 0%,rgba(250,250,248,0) 100%);}
 .feed-logo{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--primary);letter-spacing:2px;}
 .feed-logo em{font-style:italic;color:var(--rose);}
@@ -142,7 +152,6 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .fc-prod-ic{width:40px;height:40px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
 .fc-prod-brand{font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;}
 .fc-prod-name{font-size:.8rem;font-weight:600;color:var(--t1);line-height:1.2;}
-.fc-prod-cat{font-size:.5rem;color:var(--t3);margin-top:2px;}
 .fc-score-big{font-family:'Playfair Display',serif;font-size:1.9rem;line-height:1;flex-shrink:0;}
 .fc-rev-body{padding:10px var(--s5);}
 .fc-rev-txt{font-size:.75rem;color:var(--t2);line-height:1.75;font-weight:300;}
@@ -163,6 +172,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .mbar-lbl{font-size:.5rem;color:var(--t3);}
 .mbar{height:3px;background:rgba(44,31,26,.07);border-radius:2px;overflow:hidden;}
 .mbar-fill{height:100%;border-radius:2px;}
+
+/* TWIN TAB */
 .tw-top{padding:var(--s12) var(--s5) var(--s4);background:linear-gradient(160deg,#2C1F1A,#3D2820,#2C1F1A);flex-shrink:0;position:relative;overflow:hidden;}
 .tw-top::after{content:'';position:absolute;bottom:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(201,121,106,.18),transparent 70%);}
 .tw-top-logo{font-family:'Playfair Display',serif;font-size:.95rem;color:rgba(250,248,245,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--s5);}
@@ -198,6 +209,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .risk-name{font-size:.73rem;font-weight:600;color:var(--t1);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 .risk-why{font-size:.58rem;color:var(--t2);margin-top:2px;}
 .risk-bdg{font-size:.48rem;font-weight:700;padding:3px 7px;border-radius:var(--r-full);background:rgba(201,121,106,.15);color:var(--rose);flex-shrink:0;}
+
+/* DISCOVER */
 .disc-top{padding:var(--s12) var(--s5) var(--s4);flex-shrink:0;}
 .disc-ey{font-size:.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:8px;}
 .disc-h{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--t1);line-height:1.1;}
@@ -222,6 +235,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .pr-bar{padding:0 var(--s4) var(--s4);}
 .prb{height:3px;background:rgba(44,31,26,.07);border-radius:2px;overflow:hidden;}
 .prb-fill{height:100%;border-radius:2px;}
+
+/* PROFILE */
 .prof-hdr{padding:var(--s12) var(--s5) var(--s5);background:linear-gradient(160deg,var(--rose-pale),var(--bg) 60%);flex-shrink:0;}
 .prof-av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--rose-muted),#D4A08E);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--rose);margin-bottom:10px;border:2px solid rgba(255,255,255,.8);box-shadow:var(--shadow-sm);}
 .prof-name{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--t1);}
@@ -251,12 +266,16 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .mi-ic{font-size:.9rem;opacity:.4;width:20px;}
 .mi-tx{flex:1;font-size:.8rem;color:var(--t1);}
 .mi-ar{font-size:.75rem;color:var(--t4);}
+
+/* SUBS */
 .sub{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;z-index:40;}
 .sub.on{display:flex;animation:slideUp .35s cubic-bezier(.16,1,.3,1);}
 @keyframes slideUp{from{transform:translateY(24px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 .sub-nav{padding:var(--s12) var(--s5) var(--s4);display:flex;align-items:center;gap:10px;flex-shrink:0;border-bottom:1px solid var(--border);background:rgba(250,250,248,.95);backdrop-filter:blur(12px);}
 .sub-back{width:36px;height:36px;border-radius:50%;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--t1);font-size:.85rem;display:flex;align-items:center;justify-content:center;}
 .sub-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--t1);}
+
+/* SCAN */
 .scan-vf{margin:var(--s4);border-radius:var(--r-lg);background:var(--primary);aspect-ratio:4/3;position:relative;overflow:hidden;}
 .scan-vid{width:100%;height:100%;object-fit:cover;display:block;opacity:.7;}
 .scan-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
@@ -288,6 +307,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .btn-full{width:100%;padding:15px;background:var(--primary);color:#FAF8F5;border:none;border-radius:var(--r-md);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;box-shadow:0 4px 20px rgba(44,31,26,.22);transition:all .25s;}
 .btn-full:active{transform:scale(.98);}
 .btn-full:disabled{background:var(--t4);box-shadow:none;cursor:default;}
+
+/* PRODUCT DETAIL */
 .det-hero{padding:var(--s12) var(--s5) var(--s5);position:relative;overflow:hidden;}
 .det-hero-bg{position:absolute;inset:0;opacity:.4;}
 .det-hero-cnt{position:relative;z-index:1;}
@@ -326,6 +347,47 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .ib-name{font-size:.76rem;font-weight:600;color:var(--t1);margin-bottom:2px;}
 .ib-desc{font-size:.66rem;color:var(--t2);line-height:1.55;}
 .ib-bdg{font-size:.44rem;font-weight:700;padding:2px 6px;border-radius:6px;flex-shrink:0;}
+
+/* Q&A */
+.qa-prod-bar{margin:0 var(--s4) var(--s3);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);display:flex;gap:10px;align-items:center;box-shadow:var(--shadow-xs);}
+.qa-prod-ic{width:42px;height:42px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.qa-activity{margin:0 var(--s4) var(--s3);padding:10px var(--s4);background:var(--sage-pale);border-radius:var(--r-sm);font-size:.58rem;color:var(--sage);font-weight:500;display:flex;align-items:center;gap:6px;}
+.qa-compose{margin:0 var(--s4) var(--s4);}
+.qa-compose-lbl{font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:8px;}
+.qa-inp{width:100%;padding:12px var(--s4);border:1.5px solid var(--border2);border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--t1);background:var(--surface);outline:none;resize:none;min-height:44px;box-shadow:var(--shadow-xs);}
+.qa-inp:focus{border-color:var(--rose);}
+.qa-inp::placeholder{color:var(--t4);}
+.qa-send-btn{width:100%;padding:12px;background:var(--primary);color:#FAF8F5;border:none;border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:.76rem;font-weight:500;cursor:pointer;margin-top:7px;transition:all .25s;}
+.qa-send-btn:active{transform:scale(.98);}
+.qa-send-btn:disabled{background:var(--t4);cursor:default;}
+.qa-questions{padding:0 var(--s4) var(--s8);display:flex;flex-direction:column;gap:var(--s3);}
+.qa-q-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-xs);}
+.qa-q-header{padding:var(--s3) var(--s4);display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--border);}
+.qa-q-av{width:28px;height:28px;border-radius:50%;background:var(--rose-muted);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--rose);flex-shrink:0;}
+.qa-q-info{flex:1;}
+.qa-q-user{font-size:.62rem;font-weight:600;color:var(--t1);}
+.qa-q-skin{font-size:.5rem;color:var(--t3);margin-top:2px;}
+.qa-q-time{font-size:.48rem;color:var(--t4);}
+.qa-q-text{font-size:.78rem;font-weight:600;color:var(--t1);padding:var(--s3) var(--s4);border-bottom:1px solid var(--border);}
+.qa-answers{background:var(--bg2);}
+.qa-ans-item{padding:var(--s3) var(--s4);border-bottom:1px solid var(--border);display:flex;gap:8px;}
+.qa-ans-item:last-child{border:none;}
+.qa-ans-av{width:24px;height:24px;border-radius:50%;background:var(--sage-pale);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--sage);flex-shrink:0;}
+.qa-ans-body{flex:1;}
+.qa-ans-user{font-size:.6rem;font-weight:600;color:var(--t1);}
+.qa-ans-twin{font-size:.5rem;color:var(--sage);font-weight:500;}
+.qa-ans-text{font-size:.72rem;color:var(--t2);line-height:1.65;margin-top:3px;font-weight:300;}
+.qa-ans-foot{display:flex;justify-content:space-between;margin-top:5px;}
+.qa-ans-time{font-size:.48rem;color:var(--t4);}
+.qa-helpful{font-size:.5rem;color:var(--t3);cursor:pointer;}
+.qa-reply-bar{padding:var(--s2) var(--s4) var(--s3);background:var(--surface);border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;}
+.qa-reply-inp{flex:1;padding:8px var(--s3);border:1.5px solid var(--border2);border-radius:var(--r-full);font-family:'DM Sans',sans-serif;font-size:.72rem;color:var(--t1);background:var(--bg2);outline:none;}
+.qa-reply-inp:focus{border-color:var(--rose);}
+.qa-reply-inp::placeholder{color:var(--t4);}
+.qa-reply-btn{width:32px;height:32px;border-radius:50%;background:var(--rose);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:white;flex-shrink:0;}
+.qa-empty{text-align:center;padding:var(--s8) var(--s6);}
+.qa-empty-ic{font-size:2rem;opacity:.3;margin-bottom:10px;}
+.qa-empty-txt{font-size:.76rem;color:var(--t3);line-height:1.75;}
 .rev-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);margin-bottom:7px;box-shadow:var(--shadow-xs);}
 .ri-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
 .ri-user{display:flex;align-items:center;gap:7px;}
@@ -335,36 +397,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 .ri-score{font-family:'Playfair Display',serif;font-size:1.15rem;}
 .ri-type{display:inline-block;font-size:.44rem;font-weight:700;padding:2px 7px;border-radius:var(--r-full);margin-bottom:7px;}
 .rt-v{background:var(--sage-pale);color:var(--sage);}
-.rt-o{background:var(--gold-pale);color:var(--gold);}
 .ri-text{font-size:.72rem;color:var(--t2);line-height:1.75;font-weight:300;}
 .ri-days{font-size:.5rem;color:var(--t3);margin-top:7px;}
-.qa-product-bar-wrap{margin:0 var(--s4) var(--s4);background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);display:flex;gap:10px;align-items:center;box-shadow:var(--shadow-xs);}
-.qa-prod-ic{width:42px;height:42px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
-.qa-compose{margin:0 var(--s4) var(--s4);}
-.qa-compose-input{width:100%;padding:12px var(--s4);border:1.5px solid var(--border2);border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--t1);background:var(--surface);outline:none;resize:none;min-height:44px;box-shadow:var(--shadow-xs);}
-.qa-compose-input:focus{border-color:var(--rose);}
-.qa-compose-input::placeholder{color:var(--t4);}
-.qa-send-btn{width:100%;padding:12px;background:var(--primary);color:#FAF8F5;border:none;border-radius:var(--r-sm);font-family:'DM Sans',sans-serif;font-size:.76rem;font-weight:500;cursor:pointer;margin-top:7px;transition:all .25s;}
-.qa-send-btn:active{transform:scale(.98);}
-.qa-thread{padding:0 var(--s4) var(--s8);display:flex;flex-direction:column;gap:10px;}
-.qa-msg{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);box-shadow:var(--shadow-xs);}
-.qa-msg.own{background:linear-gradient(135deg,rgba(201,121,106,.07),rgba(232,169,156,.04));border-color:rgba(201,121,106,.2);}
-.qa-msg-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
-.qa-user-wrap{display:flex;align-items:center;gap:8px;}
-.qa-av{width:30px;height:30px;border-radius:50%;background:var(--rose-muted);display:flex;align-items:center;justify-content:center;font-size:.78rem;color:var(--rose);flex-shrink:0;}
-.qa-u-name{font-size:.68rem;font-weight:600;color:var(--t1);}
-.qa-u-sub{font-size:.5rem;color:var(--t3);margin-top:2px;}
-.qa-ver{font-size:.44rem;font-weight:700;padding:2px 7px;border-radius:var(--r-full);background:var(--sage-pale);color:var(--sage);}
-.qa-outcome{display:inline-flex;font-size:.52rem;font-weight:600;padding:3px 9px;border-radius:var(--r-full);margin-bottom:8px;}
-.qa-out-good{background:var(--sage-pale);color:var(--sage);}
-.qa-out-bad{background:var(--rose-pale);color:var(--rose);}
-.qa-out-mixed{background:var(--gold-pale);color:var(--gold);}
-.qa-msg-text{font-size:.75rem;color:var(--t2);line-height:1.75;font-weight:300;}
-.qa-msg-foot{display:flex;justify-content:space-between;margin-top:8px;}
-.qa-days{font-size:.52rem;color:var(--t3);}
-.qa-empty{text-align:center;padding:var(--s8) var(--s6);}
-.qa-empty-ic{font-size:2rem;opacity:.3;margin-bottom:10px;}
-.qa-empty-txt{font-size:.76rem;color:var(--t3);line-height:1.75;}
 .loading{position:absolute;inset:0;background:rgba(250,250,248,.92);backdrop-filter:blur(12px);z-index:9990;display:none;flex-direction:column;align-items:center;justify-content:center;gap:var(--s4);}
 .loading.on{display:flex;}
 .spinner{width:28px;height:28px;border:2px solid var(--rose-muted);border-top-color:var(--rose);border-radius:50%;animation:spin .8s linear infinite;}
@@ -413,6 +447,8 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
 </div>
 
 <div class="screen" id="s-app">
+
+  <!-- FEED -->
   <div class="tab-view on" id="tv-feed">
     <div class="feed-hdr">
       <div class="feed-logo">L<em>u</em>mo</div>
@@ -439,11 +475,12 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     </div>
     <div class="sec-hdr"><span class="sec-ttl">🔥 Twin Grubunda Trending</span><span class="sec-lnk" onclick="swTab('discover')">Tümünü Gör</span></div>
     <div class="hscroll" id="trend-cards"></div>
-    <div class="sec-hdr" style="margin-top:8px;"><span class="sec-ttl" id="feed-section-title">📡 Skin Twin Feed</span></div>
+    <div class="sec-hdr" style="margin-top:8px;"><span class="sec-ttl" id="feed-ttl">📡 Skin Twin Feed</span></div>
     <div id="feed-cards"></div>
     <div style="height:20px;"></div>
   </div>
 
+  <!-- TWIN TAB -->
   <div class="tab-view" id="tv-twin">
     <div class="tw-top">
       <div class="tw-top-logo">Lumo</div>
@@ -463,6 +500,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     <div style="height:20px;"></div>
   </div>
 
+  <!-- DISCOVER -->
   <div class="tab-view" id="tv-discover">
     <div class="disc-top">
       <div class="disc-ey">Topluluk Kararları</div>
@@ -474,6 +512,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     <div style="height:20px;"></div>
   </div>
 
+  <!-- PROFILE -->
   <div class="tab-view" id="tv-profile">
     <div class="prof-hdr">
       <div class="prof-av" id="prof-av-lg">?</div>
@@ -484,7 +523,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     <div class="prof-stats">
       <div class="psr"><div class="psr-n" id="psr-t">0</div><div class="psr-l">Takip</div></div>
       <div class="psr"><div class="psr-n" id="psr-r">0</div><div class="psr-l">Yorum</div></div>
-      <div class="psr"><div class="psr-n" id="psr-d">0</div><div class="psr-l">Gün</div></div>
+      <div class="psr"><div class="psr-n" id="psr-q">0</div><div class="psr-l">Soru</div></div>
       <div class="psr"><div class="psr-n" id="psr-s">0</div><div class="psr-l">Seri</div></div>
     </div>
     <div class="streak-card"><div class="sc-lbl">Bakım Serisi</div><div class="sc-dots" id="sc-dots"></div></div>
@@ -497,6 +536,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     </div>
   </div>
 
+  <!-- BOTTOM NAV -->
   <div class="bnav">
     <button class="nb on" id="nb-feed" onclick="swTab('feed')"><span class="nb-ic">◇</span><span class="nb-lb">Feed</span></button>
     <button class="nb" id="nb-twin" onclick="swTab('twin')"><span class="nb-ic">👯</span><span class="nb-lb">Twin</span></button>
@@ -505,6 +545,7 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     <button class="nb" id="nb-profile" onclick="swTab('profile')"><span class="nb-ic">◐</span><span class="nb-lb">Profil</span></button>
   </div>
 
+  <!-- SUB: SCAN -->
   <div class="sub" id="sub-scan">
     <div class="sub-nav"><button class="sub-back" onclick="closeSub('sub-scan')">←</button><span class="sub-title">Ürün Tara / Ekle</span></div>
     <div class="scroll">
@@ -525,26 +566,32 @@ body{font-family:'DM Sans',sans-serif;display:flex;justify-content:center;align-
     </div>
   </div>
 
+  <!-- SUB: PRODUCT DETAIL -->
   <div class="sub" id="sub-detail">
     <div class="sub-nav"><button class="sub-back" onclick="closeSub('sub-detail')">←</button><span class="sub-title" id="det-title">Ürün</span></div>
     <div class="scroll" id="det-body"></div>
   </div>
 
+  <!-- SUB: Q&A -->
   <div class="sub" id="sub-qa">
-    <div class="sub-nav"><button class="sub-back" onclick="closeSub('sub-qa')">←</button><span class="sub-title">Skin Twin Q&A</span></div>
+    <div class="sub-nav"><button class="sub-back" onclick="closeSub('sub-qa')">←</button><span class="sub-title">Skin Twin Soru & Cevap</span></div>
     <div class="scroll" id="qa-scroll">
-      <div id="qa-product-bar"></div>
-      <div class="qa-compose">
-        <textarea class="qa-compose-input" id="qa-input" rows="2" placeholder="Bu ürün hakkında skin twin'lere sor..."></textarea>
-        <button class="qa-send-btn" onclick="sendQA()">👯 Skin Twin'lere Sor →</button>
+      <div id="qa-prod-bar"></div>
+      <div class="qa-activity" id="qa-activity" style="display:none">
+        <span>🟢</span><span id="qa-activity-txt"></span>
       </div>
-      <div class="qa-thread" id="qa-thread"></div>
+      <div class="qa-compose">
+        <div class="qa-compose-lbl">Skin Twin'lere Sor</div>
+        <textarea class="qa-inp" id="qa-inp" rows="2" placeholder="Bu ürün hakkında bir şey sor..."></textarea>
+        <button class="qa-send-btn" id="qa-send-btn" onclick="sendQuestion()">Soruyu Gönder →</button>
+      </div>
+      <div class="qa-questions" id="qa-questions"></div>
     </div>
   </div>
-</div>
 
+</div><!-- /s-app -->
 <div class="loading" id="loading"><div class="spinner"></div><div class="load-lbl" id="load-lbl">Yükleniyor</div></div>
-</div>
+</div><!-- /phone -->
 <script>
 (function(){
 'use strict';
@@ -554,8 +601,9 @@ var SUPA_URL='https://nmbxfkozbboarkjdywbn.supabase.co';
 var SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5tYnhma296YmJvYXJramR5d2JuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzOTcyNzMsImV4cCI6MjA5Mzk3MzI3M30.RRx0KMfJvFFu61byC9stG7Bdc2Y6KHGDOeWa-l7znas';
 var sb=supabase.createClient(SUPA_URL,SUPA_KEY);
 
+/* ── PRODUCT META (local UI data) ── */
 var PMETA={
-  cerave:{vc:'sage',score:9.1,verdict:'Değer',pct:91,twinPct:91,price:'₺280',weeks:'6 hafta',isRisk:false,skins:['normal','kuru','karma','hassas'],twin_insight:'Skin twin grubunun %91\'i öneriyor. Bariyer onarım hedefli kullanıcılarda %97 olumlu.',tags:[{t:'Bariyer Onarıcı',c:'sage'},{t:'Akne Güvenli',c:'sage'},{t:'Parfümsüz',c:'lav'}],ings:[{n:'Seramidler',d:'Cilt bariyerini onarır.',s:'safe'},{n:'Hyalüronik Asit',d:'Derin nemlendirme.',s:'safe'},{n:'Niacinamide',d:'Gözenek sıkılaştırıcı.',s:'safe'}]},
+  cerave:{vc:'sage',score:9.1,verdict:'Değer',pct:91,twinPct:91,price:'₺280',weeks:'6 hafta',isRisk:false,skins:['normal','kuru','karma','hassas'],twin_insight:'Skin twin grubunun %91\'i öneriyor.',tags:[{t:'Bariyer Onarıcı',c:'sage'},{t:'Akne Güvenli',c:'sage'},{t:'Parfümsüz',c:'lav'}],ings:[{n:'Seramidler',d:'Cilt bariyerini onarır.',s:'safe'},{n:'Hyalüronik Asit',d:'Derin nemlendirme.',s:'safe'},{n:'Niacinamide',d:'Gözenek sıkılaştırıcı.',s:'safe'}]},
   ordinary:{vc:'sage',score:8.7,verdict:'Değer',pct:87,twinPct:82,price:'₺180',weeks:'6 hafta',isRisk:false,skins:['yağlı','karma'],twin_insight:'Yağlı/karma twin grubunun %87\'si öneriyor.',tags:[{t:'Gözenek Küçültücü',c:'lav'},{t:'Yağlı Cilt',c:'sage'},{t:'Uygun Fiyat',c:'sage'}],ings:[{n:'Niacinamide %10',d:'Gözenek daraltıcı, sebum kontrol.',s:'safe'},{n:'Zinc PCA',d:'Yağ üretimini dengeler.',s:'safe'}]},
   purito:{vc:'lav',score:8.2,verdict:'Bariyer Güvenli',pct:82,twinPct:80,price:'₺420',weeks:'2 hafta',isRisk:false,skins:['hassas','kuru','normal','karma'],twin_insight:'Hassas twin grubunun %80\'i öneriyor.',tags:[{t:'Beyaz İz Yok',c:'lav'},{t:'Hassas OK',c:'sage'}],ings:[{n:'Çinko Oksit %10',d:'Fiziksel UV filtresi.',s:'safe'},{n:'Bisabolol',d:'Sakinleştirici.',s:'safe'},{n:'Hafif Parfüm',d:'Çok hassas ciltlerde dikkat.',s:'warn'}]},
   drunk:{vc:'rose',score:4.2,verdict:'Riskli',pct:31,twinPct:31,price:'₺1.400',weeks:'3 hafta',isRisk:true,skins:['yağlı','normal'],twin_insight:'Akne eğilimli twin grubunun %67\'si olumsuz reaksiyon bildirdi.',tags:[{t:'Akne Tetikleyici',c:'rose'},{t:'Komedojenik',c:'rose'}],ings:[{n:'Marula Yağı',d:'Komedojenik 3-4. Yüksek risk.',s:'risk'},{n:'Meyve Özleri',d:'Hassas cildi tahriş edebilir.',s:'warn'}]},
@@ -591,6 +639,7 @@ var FEED_ITEMS=[
   {type:'insight',skinTypes:['kuru','hassas'],label:'💧 Kuru Cilt Insight',style:'gold',text:'Kuru cilt twin grubunun <em>%91\'i</em> CeraVe Nemlendirici kullanıyor.',meta:'📊 2.187 kişi · Kuru cilt profili'}
 ];
 
+/* ── STATE ── */
 var currentUser=null,userProfile=null,SP={},streak=0,currentQAProduct=null,dbProducts=[];
 var bgMap={sage:'var(--sage-pale)',rose:'var(--rose-pale)',gold:'var(--gold-pale)',lav:'var(--lav-pale)'};
 var cMap={sage:'var(--sage)',rose:'var(--rose)',gold:'var(--gold)',lav:'var(--lav)'};
@@ -604,7 +653,9 @@ function hideLoad(){$('loading').classList.remove('on');}
 function toast(m){var el=document.createElement('div');el.className='toast';el.textContent=m;document.querySelector('.phone').appendChild(el);setTimeout(function(){el.style.opacity='0';el.style.transition='opacity .4s';setTimeout(function(){el.remove();},400);},3000);}
 function normalizeSkinType(raw){if(!raw)return 'normal';raw=raw.toLowerCase();if(raw.includes('yağlı'))return 'yağlı';if(raw.includes('kuru'))return 'kuru';if(raw.includes('karma'))return 'karma';if(raw.includes('hassas')||raw.includes('reaktif'))return 'hassas';return 'normal';}
 function getMatchScore(pid,st,concerns){var m=PMETA[pid];if(!m)return 50;var s=50;if(m.skins.includes(st))s+=40;else s-=30;(concerns||[]).forEach(function(c){var cm=CONCERNS_MAP[c];if(cm){if(cm.boost.includes(pid))s+=10;if(cm.penalize.includes(pid))s-=15;}});return Math.max(0,Math.min(100,s));}
+function timeAgo(dateStr){var d=new Date(dateStr),now=new Date(),diff=Math.floor((now-d)/1000);if(diff<60)return 'Az önce';if(diff<3600)return Math.floor(diff/60)+' dk önce';if(diff<86400)return Math.floor(diff/3600)+' sa önce';return Math.floor(diff/86400)+' gün önce';}
 
+/* ── BOOT ── */
 setTimeout(function(){
   showLoad('Oturum kontrol ediliyor…');
   sb.auth.getSession().then(function(res){
@@ -614,6 +665,7 @@ setTimeout(function(){
   }).catch(function(){hideLoad();showScreen('s-auth');});
 },1800);
 
+/* ── AUTH ── */
 var authMode='login';
 window.switchAuth=function(mode){
   authMode=mode;
@@ -623,7 +675,6 @@ window.switchAuth=function(mode){
   $('auth-err').textContent='';
   $('auth-btn').textContent=mode==='register'?'Hesap Oluştur →':'Giriş Yap →';
 };
-
 window.doAuth=function(){
   var email=$('inp-email').value.trim(),pass=$('inp-pass').value;
   var err=$('auth-err');err.textContent='';
@@ -649,6 +700,7 @@ function loadUserProfile(){
   }).catch(function(){hideLoad();showScreen('s-ob');startOb();});
 }
 
+/* ── ONBOARDING ── */
 var OB=[
   {step:'1/2',title:'Cilt tipini<br><em>seçelim</em>',sub:'Skin twin grubunu belirleyeceğiz.',type:'single',key:'type',opts:[{ic:'💧',l:'Normal Cilt',sub:'Dengeli, sorunsuz'},{ic:'✨',l:'Yağlı Cilt',sub:'Parlama, gözenek'},{ic:'🌵',l:'Kuru Cilt',sub:'Çekilme, gerginlik'},{ic:'⚖️',l:'Karma Cilt',sub:'T-bölgesi yağlı'},{ic:'🌸',l:'Hassas / Reaktif',sub:'Kızarıklık, tahriş'}]},
   {step:'2/2',title:'En büyük<br><em>endişelerin?</em>',sub:'Birden fazla seçebilirsin.',type:'multi',key:'concerns',opts:[{ic:'🔴',l:'Sivilce & Akne'},{ic:'🟤',l:'Leke & Hiperpigmentasyon'},{ic:'⭕',l:'Büyük Gözenekler'},{ic:'⏳',l:'Yaşlanma Karşıtı'},{ic:'💦',l:'Kuruluk & Susuzluk'},{ic:'🌹',l:'Kızarıklık & Hassasiyet'}]}
@@ -661,12 +713,14 @@ window.nextOb=function(){if(obIdx<OB.length-1){obIdx++;renderOb();}else{finishOb
 window.skipOb=function(){obA={type:'Normal Cilt',concerns:[]};finishOb();};
 function finishOb(){
   SP=obA;showLoad('Skin twin grubun oluşturuluyor…');
-  var username=currentUser.email.split('@')[0].replace(/[^a-z0-9]/gi,'_');
+  var username=($('inp-username')&&$('inp-username').value.trim())||currentUser.email.split('@')[0].replace(/[^a-z0-9]/gi,'_');
   sb.from('users').upsert({id:currentUser.id,username:username,email:currentUser.email,skin_type:SP.type,concerns:SP.concerns||[]})
     .then(function(){hideLoad();bootApp();}).catch(function(){hideLoad();bootApp();});
 }
+
+/* ── BOOT APP ── */
 function bootApp(){
-  var email=currentUser?currentUser.email:'kullanici@lumo';
+  var email=currentUser?currentUser.email:'';
   var username=(userProfile&&userProfile.username)||email.split('@')[0];
   var av=username[0].toUpperCase();
   ['prof-av-sm','prof-av-lg'].forEach(function(id){if($(id))$(id).textContent=av;});
@@ -678,30 +732,38 @@ function bootApp(){
   renderTwinBanner(skinType,twinData);
   renderTwinTab(skinType,SP.concerns||[],twinData);
   renderSkinProfile();renderStreakDots();
-  loadProductsFromDB(skinType);
+  loadProductsAndRender(skinType);
   showScreen('s-app');
+  loadUserStats();
 }
 
-function loadProductsFromDB(skinType){
+function loadUserStats(){
+  if(!currentUser)return;
+  sb.from('user_products').select('id',{count:'exact'}).eq('user_id',currentUser.id).then(function(r){if($('psr-t'))$('psr-t').textContent=(r.count||0);});
+  sb.from('reviews').select('id',{count:'exact'}).eq('user_id',currentUser.id).then(function(r){if($('psr-r'))$('psr-r').textContent=(r.count||0);});
+  sb.from('questions').select('id',{count:'exact'}).eq('user_id',currentUser.id).then(function(r){if($('psr-q'))$('psr-q').textContent=(r.count||0);});
+}
+
+function loadProductsAndRender(skinType){
   sb.from('products').select('*').then(function(res){
     if(res.data)dbProducts=res.data;
     renderFeed(skinType,SP.concerns||[],'all');
     renderTrendCards(skinType,SP.concerns||[]);
     renderDiscoverList(skinType,SP.concerns||[]);
   }).catch(function(){
-    dbProducts=Object.keys(PMETA).map(function(id){return {id:id,name:id,brand:id,emoji:'📦',category:'misc'};});
+    dbProducts=Object.keys(PMETA).map(function(id){return{id:id,name:id,brand:id,emoji:'📦',category:'misc'};});
     renderFeed(skinType,SP.concerns||[],'all');
     renderTrendCards(skinType,SP.concerns||[]);
     renderDiscoverList(skinType,SP.concerns||[]);
   });
 }
 
-function renderTwinBanner(skinType,twinData){
-  if($('tw-match-txt'))$('tw-match-txt').textContent=twinData.count.toLocaleString('tr')+' '+twinData.twinLabel+' kullanıcısıyla eşleştin';
-  if($('tw-banner-title'))$('tw-banner-title').innerHTML=twinData.twinLabel+' twin\'lerin <em>ne kullanıyor?</em>';
-  if($('tw-count'))$('tw-count').textContent=twinData.count.toLocaleString('tr');
-  if($('tw-active'))$('tw-active').textContent=twinData.active.toLocaleString('tr');
-  if($('tw-reviews'))$('tw-reviews').textContent=(twinData.reviews/1000).toFixed(1)+'K';
+function renderTwinBanner(st,td){
+  if($('tw-match-txt'))$('tw-match-txt').textContent=td.count.toLocaleString('tr')+' '+td.twinLabel+' kullanıcısıyla eşleştin';
+  if($('tw-banner-title'))$('tw-banner-title').innerHTML=td.twinLabel+' twin\'lerin <em>ne kullanıyor?</em>';
+  if($('tw-count'))$('tw-count').textContent=td.count.toLocaleString('tr');
+  if($('tw-active'))$('tw-active').textContent=td.active.toLocaleString('tr');
+  if($('tw-reviews'))$('tw-reviews').textContent=(td.reviews/1000).toFixed(1)+'K';
 }
 
 window.filterFeed=function(f,el){document.querySelectorAll('.chip-row .chip').forEach(function(c){c.classList.remove('on');});el.classList.add('on');var st=normalizeSkinType(SP.type);renderFeed(st,SP.concerns||[],f);};
@@ -715,8 +777,7 @@ function renderFeed(skinType,concerns,filter){
     if(filter==='risk'){if(item.type==='review'){var m=PMETA[item.productId];if(!m||!m.isRisk)return false;}else if(!item.label.includes('Risk')&&!item.label.includes('Uyarı'))return false;}
     return true;
   });
-  var st=$('feed-section-title');
-  if(st)st.textContent=filter==='all'?'📡 Skin Twin Feed':filter==='trending'?'🔥 Trending':filter==='safe'?'✅ Güvenli':'⚠️ Riskli';
+  var st=$('feed-ttl');if(st)st.textContent=filter==='all'?'📡 Skin Twin Feed':filter==='trending'?'🔥 Trending':filter==='safe'?'✅ Güvenli':'⚠️ Riskli';
   if(!filtered.length){el.innerHTML='<div style="padding:40px 24px;text-align:center;"><div style="font-size:1.8rem;opacity:.3;margin-bottom:12px;">🔍</div><div style="font-size:.78rem;color:var(--t3);">Bu filtrede skin twin içeriği bulunamadı.</div></div>';return;}
   el.innerHTML=filtered.map(function(item){return item.type==='insight'?renderInsightCard(item):renderReviewCard(item);}).join('');
 }
@@ -733,11 +794,11 @@ function renderInsightCard(item){
 function renderReviewCard(item){
   var m=PMETA[item.productId];if(!m)return '';
   var pb=bgMap[m.vc]||'var(--bg2)';
-  var dbP=dbProducts.find(function(p){return p.id===item.productId;})||{emoji:'📦',name:item.productId,brand:item.productId,category:'misc'};
+  var dbP=dbProducts.find(function(p){return p.id===item.productId;})||{emoji:'📦',name:item.productId,brand:item.productId};
   var stH=item.stats.map(function(s){return '<div class="fc-stat"><span class="fc-stat-ic">'+s.ic+'</span><span class="fc-stat-txt">'+(s.v?'<strong>'+s.v+'</strong> ':'')+s.l+'</span></div>';}).join('');
   var tgH=item.tags.map(function(t){return '<div class="fc-tag" style="background:'+t.bg+';color:'+t.c+'">'+t.t+'</div>';}).join('');
   return '<div class="fc" onclick="openProduct(\''+item.productId+'\')">'
-    +'<div class="fc-rev-top"><div class="fc-prod-row"><div class="fc-prod-ic" style="background:'+pb+'">'+dbP.emoji+'</div><div><div class="fc-prod-brand">'+dbP.brand+'</div><div class="fc-prod-name">'+dbP.name+'</div><div class="fc-prod-cat">'+dbP.category+'</div></div></div><div class="fc-score-big" style="color:'+item.scoreColor+'">'+item.score+'</div></div>'
+    +'<div class="fc-rev-top"><div class="fc-prod-row"><div class="fc-prod-ic" style="background:'+pb+'">'+dbP.emoji+'</div><div><div class="fc-prod-brand">'+dbP.brand+'</div><div class="fc-prod-name">'+dbP.name+'</div></div></div><div class="fc-score-big" style="color:'+item.scoreColor+'">'+item.score+'</div></div>'
     +'<div class="fc-rev-body"><div class="fc-rev-txt">'+item.text+'</div></div>'
     +'<div class="fc-rev-stats">'+stH+'</div>'
     +'<div class="mbar-wrap"><div class="mbar-top"><span class="mbar-lbl">Skin Twin Memnuniyeti</span><span class="mbar-lbl" style="color:'+item.bar.color+'">%'+item.bar.pct+'</span></div><div class="mbar"><div class="mbar-fill" style="width:'+item.bar.pct+'%;background:'+item.bar.color+'"></div></div></div>'
@@ -745,9 +806,9 @@ function renderReviewCard(item){
     +'</div>';
 }
 
-function renderTrendCards(skinType,concerns){
+function renderTrendCards(st,concerns){
   var el=$('trend-cards');if(!el)return;
-  var scores={};Object.keys(PMETA).forEach(function(id){scores[id]=getMatchScore(id,skinType,concerns);});
+  var scores={};Object.keys(PMETA).forEach(function(id){scores[id]=getMatchScore(id,st,concerns);});
   var sorted=Object.keys(PMETA).sort(function(a,b){return scores[b]-scores[a];}).slice(0,5);
   el.innerHTML=sorted.map(function(id){
     var m=PMETA[id];var sc=scores[id];
@@ -760,23 +821,23 @@ function renderTrendCards(skinType,concerns){
   }).join('');
 }
 
-function renderTwinTab(skinType,concerns,twinData){
+function renderTwinTab(st,concerns,td){
   var skinLabel=SP.type||'Normal Cilt';
   if($('twin-group-name')){var p=skinLabel.split(' ');$('twin-group-name').innerHTML=(p[0]||skinLabel)+' <em>'+(p[1]||'Cilt')+'</em>';}
-  if($('tgs-count'))$('tgs-count').textContent=twinData.count.toLocaleString('tr');
-  if($('tgs-products'))$('tgs-products').textContent=Math.floor(twinData.count/30);
-  if($('tgs-reviews'))$('tgs-reviews').textContent=(twinData.reviews/1000).toFixed(1)+'K';
+  if($('tgs-count'))$('tgs-count').textContent=td.count.toLocaleString('tr');
+  if($('tgs-products'))$('tgs-products').textContent=Math.floor(td.count/30);
+  if($('tgs-reviews'))$('tgs-reviews').textContent=(td.reviews/1000).toFixed(1)+'K';
   var tp=$('tpc-traits');if(tp){var tr=[skinLabel];(concerns||[]).slice(0,4).forEach(function(c){tr.push(c);});tp.innerHTML=tr.map(function(t,i){return '<div class="tpc-t '+(i===0?'rose':i===2?'sage':'')+'">'+t+'</div>';}).join('');}
-  var cg=$('closet-grid');if(cg){cg.innerHTML=twinData.topProducts.slice(0,5).map(function(id){var m=PMETA[id];if(!m)return '';var match=Math.min(Math.round(getMatchScore(id,skinType,concerns)),97);var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id};return '<div class="cg" onclick="openProduct(\''+id+'\')">'+'<div class="cg-img" style="background:'+bgMap[m.vc]+'">'+dbP.emoji+'<div class="cg-match">%'+match+'</div></div>'+'<div class="cg-body"><div class="cg-name">'+dbP.brand+'</div><div class="cg-score">★ '+m.score+'</div></div></div>';}).join('')+'<div class="cg" onclick="openSub(\'sub-scan\')" style="border-style:dashed;"><div class="cg-img" style="background:var(--bg2);font-size:1.3rem;color:var(--t3)">＋</div><div class="cg-body"><div class="cg-name" style="color:var(--t3)">Ekle</div><div class="cg-score" style="color:transparent">.</div></div></div>';}
-  var rc=$('risk-cards');if(rc){rc.innerHTML=twinData.riskProducts.map(function(id){var m=PMETA[id];if(!m)return '';var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id,name:id};return '<div class="risk-card" onclick="openProduct(\''+id+'\')">'+'<div class="risk-ic">'+dbP.emoji+'</div><div class="risk-info"><div class="risk-name">'+dbP.brand+' '+dbP.name+'</div><div class="risk-why">'+m.twin_insight.split('.')[0]+'</div></div>'+'<div class="risk-bdg">KAÇIN</div></div>';}).join('');}
+  var cg=$('closet-grid');if(cg){cg.innerHTML=td.topProducts.slice(0,5).map(function(id){var m=PMETA[id];if(!m)return '';var match=Math.min(Math.round(getMatchScore(id,st,concerns)),97);var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id};return '<div class="cg" onclick="openProduct(\''+id+'\')">'+'<div class="cg-img" style="background:'+bgMap[m.vc]+'">'+dbP.emoji+'<div class="cg-match">%'+match+'</div></div>'+'<div class="cg-body"><div class="cg-name">'+dbP.brand+'</div><div class="cg-score">★ '+m.score+'</div></div></div>';}).join('')+'<div class="cg" onclick="openSub(\'sub-scan\')" style="border-style:dashed;"><div class="cg-img" style="background:var(--bg2);font-size:1.3rem;color:var(--t3)">＋</div><div class="cg-body"><div class="cg-name" style="color:var(--t3)">Ekle</div><div class="cg-score" style="color:transparent">.</div></div></div>';}
+  var rc=$('risk-cards');if(rc){rc.innerHTML=td.riskProducts.map(function(id){var m=PMETA[id];if(!m)return '';var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id,name:id};return '<div class="risk-card" onclick="openProduct(\''+id+'\')">'+'<div class="risk-ic">'+dbP.emoji+'</div><div class="risk-info"><div class="risk-name">'+dbP.brand+' '+dbP.name+'</div><div class="risk-why">'+m.twin_insight.split('.')[0]+'</div></div>'+'<div class="risk-bdg">KAÇIN</div></div>';}).join('');}
 }
 
-function renderDiscoverList(skinType,concerns){
+function renderDiscoverList(st,concerns){
   var el=$('discover-list');if(!el)return;
   var sorted=Object.keys(PMETA).sort(function(a,b){return PMETA[b].score-PMETA[a].score;});
   el.innerHTML=sorted.map(function(id){
     var m=PMETA[id];var sc=cMap[m.vc];var bg=bgMap[m.vc];
-    var match=Math.round(getMatchScore(id,skinType,concerns));
+    var match=Math.round(getMatchScore(id,st,concerns));
     var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id,name:id};
     return '<div class="prod-row" onclick="openProduct(\''+id+'\')">'
       +'<div class="pr-main"><div class="pr-ic" style="background:'+bg+'">'+dbP.emoji+'</div><div class="pr-info"><div class="pr-brand">'+dbP.brand+'</div><div class="pr-name">'+dbP.name+'</div><div class="pr-reviews">'+(match>=80?'💚':'match'>=55?'💛':'🔴')+' %'+match+' uyumluluk</div></div><div class="pr-right"><div class="pr-score" style="color:'+sc+'">'+m.score+'</div><div class="pr-verdict" style="background:'+bg+';color:'+sc+'">'+m.verdict.toUpperCase().slice(0,7)+'</div></div></div>'
@@ -784,109 +845,172 @@ function renderDiscoverList(skinType,concerns){
       +'<div class="pr-bar"><div class="prb"><div class="prb-fill" style="width:'+m.pct+'%;background:'+sc+'"></div></div></div></div>';
   }).join('');
 }
-
+/* ── PRODUCT DETAIL ── */
 window.openProduct=function(id){
   var m=PMETA[id];if(!m)return;
   var dbP=dbProducts.find(function(p){return p.id===id;})||{emoji:'📦',brand:id,name:id,category:'misc'};
   $('det-title').textContent=dbP.brand;
   var sc=cMap[m.vc],sdoff=Math.round((1-(m.score/10))*201);
-  var skinType=normalizeSkinType(SP.type);
-  var matchScore=getMatchScore(id,skinType,SP.concerns||[]);
+  var st=normalizeSkinType(SP.type),ms=getMatchScore(id,st,SP.concerns||[]);
   var ingH=m.ings.map(function(ing){var dot=ing.s==='safe'?'dot-safe':ing.s==='warn'?'dot-warn':ing.s==='risk'?'dot-risk':'dot-mid';var bs=ing.s==='safe'?'background:var(--sage-pale);color:var(--sage)':ing.s==='warn'?'background:var(--gold-pale);color:var(--gold)':ing.s==='risk'?'background:var(--rose-pale);color:var(--rose)':'display:none';var bl=ing.s==='safe'?'Güvenli':ing.s==='warn'?'Dikkat':ing.s==='risk'?'Yüksek Risk':'';return '<div class="ib-row"><div class="ib-dot '+dot+'"></div><div class="ib-body"><div class="ib-name">'+ing.n+'</div><div class="ib-desc">'+ing.d+'</div></div>'+(bl?'<div class="ib-bdg" style="'+bs+'">'+bl+'</div>':'')+'</div>';}).join('');
   var tagH=m.tags.map(function(t){var tc=cMap[t.c]||'var(--t2)';var tbg=bgMap[t.c]||'var(--bg2)';return '<div class="det-tag" style="background:'+tbg+';color:'+tc+';border-color:'+tc+'22">'+t.t+'</div>';}).join('');
   var heroBg={sage:'linear-gradient(135deg,var(--sage-pale),#C8E4CC)',rose:'linear-gradient(135deg,var(--rose-pale),#F0D0CA)',gold:'linear-gradient(135deg,var(--gold-pale),#EDD8B0)',lav:'linear-gradient(135deg,var(--lav-pale),#DDD5F0)'};
   $('det-body').innerHTML=
     '<div class="det-hero"><div class="det-hero-bg" style="background:'+(heroBg[m.vc]||'var(--bg)')+'"></div><div class="det-hero-cnt"><span class="det-em">'+dbP.emoji+'</span><div class="det-cat" style="color:'+sc+'">'+dbP.category.toUpperCase()+'</div><div class="det-name">'+dbP.name+'</div><div class="det-brand">'+dbP.brand+'</div></div></div>'
-    +'<div class="det-score-card"><div class="dsc-top"><svg class="dsc-ring" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="rgba(44,31,26,.08)" stroke-width="4"/><circle cx="32" cy="32" r="28" fill="none" stroke="'+sc+'" stroke-width="4" stroke-dasharray="201" stroke-dashoffset="'+sdoff+'" stroke-linecap="round" transform="rotate(-90 32 32)"/></svg><div><div class="dsc-n" style="color:'+sc+'">'+m.score+'</div><div class="dsc-verdict" style="color:'+sc+'">'+m.verdict+'</div></div></div><div class="dsc-rows"><div class="dscr"><span class="dscr-lbl">Twin Memnuniyeti</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+m.twinPct+'%;background:'+sc+'"></div></div><span class="dscr-val">%'+m.twinPct+'</span></div><div class="dscr"><span class="dscr-lbl">Senin Uyumluluk</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+matchScore+'%;background:'+(matchScore>=70?'var(--sage)':matchScore>=50?'var(--gold)':'var(--rose)')+'"></div></div><span class="dscr-val">%'+Math.round(matchScore)+'</span></div><div class="dscr"><span class="dscr-lbl">Genel Skor</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+(m.score*10)+'%;background:'+sc+'"></div></div><span class="dscr-val">'+m.score+'</span></div></div></div>'
+    +'<div class="det-score-card"><div class="dsc-top"><svg class="dsc-ring" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="none" stroke="rgba(44,31,26,.08)" stroke-width="4"/><circle cx="32" cy="32" r="28" fill="none" stroke="'+sc+'" stroke-width="4" stroke-dasharray="201" stroke-dashoffset="'+sdoff+'" stroke-linecap="round" transform="rotate(-90 32 32)"/></svg><div><div class="dsc-n" style="color:'+sc+'">'+m.score+'</div><div class="dsc-verdict" style="color:'+sc+'">'+m.verdict+'</div></div></div><div class="dsc-rows"><div class="dscr"><span class="dscr-lbl">Twin Memnuniyeti</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+m.twinPct+'%;background:'+sc+'"></div></div><span class="dscr-val">%'+m.twinPct+'</span></div><div class="dscr"><span class="dscr-lbl">Senin Uyumluluk</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+ms+'%;background:'+(ms>=70?'var(--sage)':ms>=50?'var(--gold)':'var(--rose)')+'"></div></div><span class="dscr-val">%'+Math.round(ms)+'</span></div><div class="dscr"><span class="dscr-lbl">Genel Skor</span><div class="dscr-bar"><div class="dscr-fill" style="width:'+(m.score*10)+'%;background:'+sc+'"></div></div><span class="dscr-val">'+m.score+'</span></div></div></div>'
     +'<div class="det-metrics"><div class="det-metric"><div class="dm-ic">💰</div><div class="dm-n">'+m.price+'</div><div class="dm-l">Fiyat</div></div><div class="det-metric"><div class="dm-ic">📅</div><div class="dm-n">'+m.weeks+'</div><div class="dm-l">Test</div></div><div class="det-metric"><div class="dm-ic">👯</div><div class="dm-n">%'+m.twinPct+'</div><div class="dm-l">Twin</div></div></div>'
     +'<div class="det-tags">'+tagH+'</div>'
     +'<div style="padding:0 16px;margin-bottom:16px;"><div style="background:linear-gradient(135deg,#2C1F1A,#4A3028);border-radius:16px;padding:16px;"><div style="font-size:.48rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(232,169,156,.65);margin-bottom:8px;">👯 SKIN TWIN INSIGHT</div><div style="font-size:.78rem;color:#FAF8F5;line-height:1.75;font-weight:300;">'+m.twin_insight+'</div></div></div>'
     +'<div class="ing-block"><div class="ib-hdr">İçerik Analizi</div>'+ingH+'</div>'
-    +'<div style="padding:0 16px;margin-bottom:16px;"><div style="font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px;">Skin Twin Yorumları</div><div id="det-reviews-list"><div style="font-size:.72rem;color:var(--t3);padding:8px 0;">Yükleniyor...</div></div></div>'
-    +'<div style="padding:0 16px 10px;"><button class="btn-full" onclick="openQA(\''+id+'\')">💬 Q&A — Twin\'lere Sor →</button></div>'
+    +'<div style="padding:0 16px;margin-bottom:16px;"><div style="font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px;">Skin Twin Yorumları</div><div id="det-reviews"><div style="font-size:.72rem;color:var(--t3);padding:8px 0;">Yükleniyor...</div></div></div>'
+    +'<div style="padding:0 16px 10px;"><button class="btn-full" onclick="openQA(\''+id+'\')">💬 Skin Twin\'lere Sor →</button></div>'
     +'<div style="padding:0 16px 8px;"><button class="btn-full" style="background:transparent;color:var(--t2);border:1.5px solid var(--border2);box-shadow:none;" onclick="addToTracking(\''+id+'\')">+ Takibime Ekle</button></div>'
     +'<div style="padding:0 16px 32px;"><button style="width:100%;padding:13px;background:transparent;color:var(--t3);border:none;font-size:.7rem;cursor:pointer;" onclick="closeSub(\'sub-detail\')">← Geri</button></div>';
   openSub('sub-detail');
   loadReviews(id);
 };
 
-function loadReviews(productId){
-  sb.from('reviews').select('*, users(username,skin_type)').eq('product_id',productId).order('created_at',{ascending:false}).limit(10)
+function loadReviews(pid){
+  sb.from('reviews').select('*,users(username,skin_type)').eq('product_id',pid).order('created_at',{ascending:false}).limit(5)
     .then(function(res){
-      var el=$('det-reviews-list');if(!el)return;
+      var el=$('det-reviews');if(!el)return;
       if(!res.data||!res.data.length){el.innerHTML='<div style="font-size:.72rem;color:var(--t3);padding:8px 0;">Henüz yorum yok. İlk yorumu sen yap!</div>';return;}
-      el.innerHTML=res.data.map(function(r){var uname=(r.users&&r.users.username)||'kullanici';var uskin=(r.users&&r.users.skin_type)||'Bilinmiyor';var sc=r.score>=7?'var(--sage)':r.score>=5?'var(--gold)':'var(--rose)';return '<div class="rev-item"><div class="ri-top"><div class="ri-user"><div class="ri-av">'+uname[0].toUpperCase()+'</div><div><div class="ri-name">'+uname+'</div><div class="ri-skin">'+uskin+'</div></div></div><div class="ri-score" style="color:'+sc+'">'+r.score+'</div></div><div class="ri-type rt-v">Doğrulanmış Sonuç</div><div class="ri-text">'+r.text+'</div><div class="ri-days">'+r.days_used+' günlük deneyim</div></div>';}).join('');
-    }).catch(function(){var el=$('det-reviews-list');if(el)el.innerHTML='<div style="font-size:.72rem;color:var(--t3);">Yorumlar yüklenemedi.</div>';});
+      el.innerHTML=res.data.map(function(r){
+        var u=(r.users&&r.users.username)||'kullanici';
+        var sk=(r.users&&r.users.skin_type)||'';
+        var sc=r.score>=7?'var(--sage)':r.score>=5?'var(--gold)':'var(--rose)';
+        return '<div class="rev-item"><div class="ri-top"><div class="ri-user"><div class="ri-av">'+u[0].toUpperCase()+'</div><div><div class="ri-name">'+u+'</div><div class="ri-skin">'+sk+(r.verified?' · 👯 Twin':'')+'</div></div></div><div class="ri-score" style="color:'+sc+'">'+r.score+'</div></div><div class="ri-type rt-v">Doğrulanmış Sonuç</div><div class="ri-text">'+r.text+'</div><div class="ri-days">'+r.days_used+' günlük deneyim · '+timeAgo(r.created_at)+'</div></div>';
+      }).join('');
+    }).catch(function(){var el=$('det-reviews');if(el)el.innerHTML='<div style="font-size:.72rem;color:var(--t3);">Yüklenemedi.</div>';});
 }
 
-window.openQA=function(productId){
-  var m=PMETA[productId];if(!m)return;
-  currentQAProduct=productId;
-  var dbP=dbProducts.find(function(p){return p.id===productId;})||{emoji:'📦',brand:productId,name:productId};
+/* ── Q&A — REAL HUMAN SYSTEM ── */
+window.openQA=function(pid){
+  var m=PMETA[pid];if(!m)return;
+  currentQAProduct=pid;
+  var dbP=dbProducts.find(function(p){return p.id===pid;})||{emoji:'📦',brand:pid,name:pid};
   var pb=bgMap[m.vc]||'var(--bg2)';
-  if($('qa-product-bar'))$('qa-product-bar').innerHTML='<div class="qa-product-bar-wrap"><div class="qa-prod-ic" style="background:'+pb+'">'+dbP.emoji+'</div><div><div style="font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;">'+dbP.brand+'</div><div style="font-size:.8rem;font-weight:600;color:var(--t1);">'+dbP.name+'</div></div></div>';
-  loadQAThread(productId);
+  if($('qa-prod-bar'))$('qa-prod-bar').innerHTML='<div class="qa-prod-bar"><div class="qa-prod-ic" style="background:'+pb+'">'+dbP.emoji+'</div><div><div style="font-size:.46rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;">'+dbP.brand+'</div><div style="font-size:.8rem;font-weight:600;color:var(--t1);">'+dbP.name+'</div></div></div>';
+  loadQuestions(pid);
   openSub('sub-qa');
 };
 
-function loadQAThread(productId){
-  var el=$('qa-thread');if(!el)return;
+function loadQuestions(pid){
+  var el=$('qa-questions');if(!el)return;
   el.innerHTML='<div style="padding:20px;text-align:center;font-size:.72rem;color:var(--t3);">Yükleniyor...</div>';
-  sb.from('qa_messages').select('*, users(username,skin_type)').eq('product_id',productId).order('created_at',{ascending:true})
+
+  // Activity indicator
+  sb.from('questions').select('id',{count:'exact'}).eq('product_id',pid)
+    .gte('created_at',new Date(Date.now()-86400000).toISOString())
+    .then(function(r){
+      var act=$('qa-activity'),actTxt=$('qa-activity-txt');
+      if(r.count>0&&act&&actTxt){act.style.display='flex';actTxt.textContent='Bugün '+r.count+' yeni soru soruldu';}
+    });
+
+  sb.from('questions')
+    .select('*,users(username,skin_type),answers(id,text,created_at,helpful_count,user_id,users(username,skin_type))')
+    .eq('product_id',pid)
+    .order('created_at',{ascending:false})
     .then(function(res){
-      if(!res.data||!res.data.length){el.innerHTML='<div class="qa-empty"><div class="qa-empty-ic">💬</div><div class="qa-empty-txt">Henüz soru yok.<br>İlk soruyu soran sen ol!</div></div>';return;}
-      el.innerHTML=res.data.map(function(qa){
-        var uname=(qa.users&&qa.users.username)||'kullanici';
-        var uskin=(qa.users&&qa.users.skin_type)||'Bilinmiyor';
-        var isOwn=currentUser&&qa.user_id===currentUser.id;
-        var oc=qa.outcome==='good'?'qa-out-good':qa.outcome==='bad'?'qa-out-bad':'qa-out-mixed';
-        var ol=qa.outcome==='good'?'Uyumlu':qa.outcome==='bad'?'Kaçın':'Karma';
-        return '<div class="qa-msg'+(isOwn?' own':'')+'">'
-          +'<div style="font-size:.72rem;font-weight:600;color:var(--t1);margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border);">💬 '+qa.question+'</div>'
-          +'<div class="qa-msg-top"><div class="qa-user-wrap"><div class="qa-av">'+uname[0].toUpperCase()+'</div><div><div class="qa-u-name">'+uname+'</div><div class="qa-u-sub">👯 Skin Twin · '+uskin+'</div></div></div></div>'
-          +(qa.outcome?'<div class="qa-outcome '+oc+'">'+ol+'</div>':'')
-          +(qa.answer?'<div class="qa-msg-text">'+qa.answer+'</div>':'<div class="qa-msg-text" style="color:var(--t3);font-style:italic;">Yanıt bekleniyor...</div>')
+      if(!res.data||!res.data.length){
+        el.innerHTML='<div class="qa-empty"><div class="qa-empty-ic">💬</div><div class="qa-empty-txt">Henüz soru yok.<br>İlk soruyu soran sen ol!</div></div>';
+        return;
+      }
+      el.innerHTML=res.data.map(function(q){
+        var qu=(q.users&&q.users.username)||'kullanici';
+        var qsk=(q.users&&q.users.skin_type)||'';
+        var isOwn=currentUser&&q.user_id===currentUser.id;
+        var answersHTML='';
+        if(q.answers&&q.answers.length){
+          answersHTML='<div class="qa-answers">'+q.answers.map(function(a){
+            var au=(a.users&&a.users.username)||'kullanici';
+            var ask=(a.users&&a.users.skin_type)||'';
+            return '<div class="qa-ans-item">'
+              +'<div class="qa-ans-av">'+au[0].toUpperCase()+'</div>'
+              +'<div class="qa-ans-body">'
+              +'<div class="qa-ans-user">'+au+' '+(ask?'<span class="qa-ans-twin">👯 '+ask+'</span>':'')+'</div>'
+              +'<div class="qa-ans-text">'+a.text+'</div>'
+              +'<div class="qa-ans-foot"><span class="qa-ans-time">'+timeAgo(a.created_at)+'</span><span class="qa-helpful" onclick="markHelpful(\''+a.id+'\',this)">👍 '+a.helpful_count+' faydalı</span></div>'
+              +'</div></div>';
+          }).join('')+'</div>';
+        } else {
+          answersHTML='<div style="padding:10px 16px;font-size:.66rem;color:var(--t3);font-style:italic;">Henüz cevap yok — sen cevapla!</div>';
+        }
+        var replyBar='<div class="qa-reply-bar">'
+          +'<input class="qa-reply-inp" id="ans-inp-'+q.id+'" placeholder="Cevapla (skin twin olarak)..." type="text">'
+          +'<button class="qa-reply-btn" onclick="sendAnswer(\''+q.id+'\')">➤</button>'
+          +'</div>';
+        return '<div class="qa-q-card">'
+          +'<div class="qa-q-header"><div class="qa-q-av">'+qu[0].toUpperCase()+'</div><div class="qa-q-info"><div class="qa-q-user">'+qu+(isOwn?' (Sen)':'')+'</div><div class="qa-q-skin">'+qsk+'</div></div><div class="qa-q-time">'+timeAgo(q.created_at)+'</div></div>'
+          +'<div class="qa-q-text">'+q.text+'</div>'
+          +answersHTML
+          +replyBar
           +'</div>';
       }).join('');
-      setTimeout(function(){if($('qa-scroll'))$('qa-scroll').scrollTop=99999;},100);
-    }).catch(function(){el.innerHTML='<div class="qa-empty"><div class="qa-empty-ic">⚠️</div><div class="qa-empty-txt">Yüklenemedi.</div></div>';});
+    }).catch(function(){
+      el.innerHTML='<div class="qa-empty"><div class="qa-empty-ic">⚠️</div><div class="qa-empty-txt">Yüklenemedi. Bağlantını kontrol et.</div></div>';
+    });
 }
 
-window.sendQA=function(){
-  var inp=$('qa-input');if(!inp)return;
+window.sendQuestion=function(){
+  var inp=$('qa-inp');if(!inp)return;
   var q=inp.value.trim();if(!q)return;
-  if(!currentUser){toast('⚠ Giriş yapman gerekiyor.');return;}
-  var productId=currentQAProduct;if(!productId)return;
-  var m=PMETA[productId];if(!m)return;
-  var btn=document.querySelector('.qa-send-btn');if(btn)btn.disabled=true;
-  var skinType=normalizeSkinType(SP.type);
-  var matchScore=getMatchScore(productId,skinType,SP.concerns||[]);
-  var autoAnswer='Skin twin grubun bu ürünü %'+m.twinPct+' oranında olumlu değerlendiriyor. '+m.twin_insight;
-  var outcome=matchScore>=70?'good':matchScore>=50?'mixed':'bad';
-  sb.from('qa_messages').insert({product_id:productId,user_id:currentUser.id,question:q,answer:autoAnswer,outcome:outcome})
+  if(!currentUser){toast('⚠ Soru sormak için giriş yapman gerekiyor.');return;}
+  var pid=currentQAProduct;if(!pid)return;
+  var btn=$('qa-send-btn');if(btn)btn.disabled=true;
+  sb.from('questions').insert({product_id:pid,user_id:currentUser.id,text:q})
     .then(function(res){
       if(btn)btn.disabled=false;
       if(res.error){toast('⚠ Gönderilemedi: '+res.error.message);return;}
-      inp.value='';loadQAThread(productId);toast('✓ Sorun gönderildi!');
+      inp.value='';
+      loadQuestions(pid);
+      toast('✓ Sorun gönderildi! Skin twin\'ler cevaplarsa bildirim alırsın.');
+      loadUserStats();
     }).catch(function(){if(btn)btn.disabled=false;toast('⚠ Bağlantı hatası.');});
 };
 
-window.addToTracking=function(productId){
+window.sendAnswer=function(questionId){
+  var inp=$('ans-inp-'+questionId);if(!inp)return;
+  var text=inp.value.trim();if(!text)return;
+  if(!currentUser){toast('⚠ Cevap yazmak için giriş yapman gerekiyor.');return;}
+  inp.disabled=true;
+  sb.from('answers').insert({question_id:questionId,user_id:currentUser.id,text:text})
+    .then(function(res){
+      inp.disabled=false;
+      if(res.error){toast('⚠ Gönderilemedi: '+res.error.message);return;}
+      inp.value='';
+      loadQuestions(currentQAProduct);
+      toast('✓ Cevabın gönderildi! 🌸');
+    }).catch(function(){inp.disabled=false;toast('⚠ Bağlantı hatası.');});
+};
+
+window.markHelpful=function(answerId,el){
+  sb.from('answers').select('helpful_count').eq('id',answerId).single()
+    .then(function(res){
+      if(res.data){
+        var newCount=(res.data.helpful_count||0)+1;
+        sb.from('answers').update({helpful_count:newCount}).eq('id',answerId)
+          .then(function(){el.textContent='👍 '+newCount+' faydalı';el.style.color='var(--sage)';});
+      }
+    });
+};
+
+window.addToTracking=function(pid){
   if(!currentUser){toast('⚠ Giriş yapman gerekiyor.');return;}
-  sb.from('user_products').insert({user_id:currentUser.id,product_id:productId,status:'active',days_done:0})
+  sb.from('user_products').insert({user_id:currentUser.id,product_id:pid,status:'active',days_done:0})
     .then(function(res){
       if(res.error&&res.error.code!=='23505'){toast('⚠ Hata: '+res.error.message);return;}
-      toast('✓ Takibine eklendi! 🌸');closeSub('sub-detail');
+      toast('✓ Takibine eklendi! 🌸');closeSub('sub-detail');loadUserStats();
     }).catch(function(){toast('⚠ Bağlantı hatası.');});
 };
 
+/* ── SCAN ── */
 var sCat=null,camStream=null;
 window.selCat=function(el){document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');sCat=el.dataset.cat;chkScan();};
 function chkScan(){if($('scan-cta'))$('scan-cta').disabled=!($('scan-name')&&$('scan-name').value.trim()&&sCat);}
 var si=$('scan-name');if(si)si.addEventListener('input',chkScan);
 function startCamera(){var h=document.querySelector('.scan-hint');if(!navigator.mediaDevices){if(h)h.textContent='Manuel giriş yapın';return;}navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(function(s){camStream=s;var v=$('scan-vid');if(v)v.srcObject=s;}).catch(function(){if(h)h.textContent='Kamera yok — manuel girin';});}
 function stopCamera(){if(camStream){camStream.getTracks().forEach(function(t){t.stop();});camStream=null;}}
-
 window.addProduct=function(){
   var name=$('scan-name').value.trim();if(!name||!sCat)return;
   if(!currentUser){toast('⚠ Giriş yapman gerekiyor.');return;}
@@ -895,21 +1019,22 @@ window.addProduct=function(){
   sb.from('products').insert({id:newId,name:name,brand:name,category:sCat,emoji:'📦'})
     .then(function(){return sb.from('user_products').insert({user_id:currentUser.id,product_id:newId,status:'active',days_done:0});})
     .then(function(){
-      hideLoad();
-      $('scan-name').value='';document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});
+      hideLoad();$('scan-name').value='';
+      document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});
       sCat=null;if($('scan-cta'))$('scan-cta').disabled=true;
       stopCamera();closeSub('sub-scan');
       streak=Math.min(streak+1,7);renderStreakDots();
-      toast('✓ '+name+' takibine eklendi 🌸');
+      toast('✓ '+name+' takibine eklendi 🌸');loadUserStats();
     }).catch(function(e){hideLoad();toast('⚠ Hata: '+(e.message||'Tekrar dene'));});
 };
 
+/* ── PROFILE ── */
 function renderSkinProfile(){var el=$('skin-chips');if(!el)return;var items=[];if(SP.type)items.push(SP.type);(SP.concerns||[]).slice(0,4).forEach(function(c){items.push(c);});el.innerHTML=items.length?items.map(function(t){return '<div class="skin-chip">'+t+'</div>';}).join(''):'<div class="skin-chip">Profil yok</div>';}
 function renderStreakDots(){var el=$('sc-dots');if(!el)return;var h='';for(var i=0;i<7;i++){h+='<div class="sc-dot '+(i<streak?'scd-done':i===streak?'scd-today':'scd-future')+'">'+(i<streak?'✓':i===streak?'•':'')+'</div>';}el.innerHTML=h;}
 window.swTab=function(tab){document.querySelectorAll('.tab-view').forEach(function(t){t.classList.remove('on');});document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on');});var tv=$('tv-'+tab),nb=$('nb-'+tab);if(tv)tv.classList.add('on');if(nb)nb.classList.add('on');};
 window.doLogout=function(){if(!confirm('Çıkış yapmak istiyor musun?'))return;sb.auth.signOut().then(function(){currentUser=null;userProfile=null;SP={};streak=0;showScreen('s-auth');});};
 
-}catch(e){console.error('Lumo V4:',e);var s=document.getElementById('s-auth');if(s)s.classList.add('on');}
+}catch(e){console.error('Lumo V5:',e);var s=document.getElementById('s-auth');if(s)s.classList.add('on');}
 })();
 </script>
 </body>
