@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumo — Verified Beauty Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#FAF8F5;--surface:#FFFFFF;--dark:#1A0F0A;
+  --rose:#C9796A;--rose-light:#E8A99C;--rose-pale:#FAF0EE;--rose-muted:#EDD5D0;
+  --gold:#B8935A;--sage:#5A7A65;--sage-pale:#E8F0EA;
+  --t1:#1A1614;--t2:#5C504A;--t3:#9C8F88;
+  --border:rgba(44,31,26,0.1);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,248,245,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:4px;color:var(--dark);text-transform:uppercase;}
+.nav-logo em{font-style:italic;color:var(--rose);}
+.nav-cta{background:var(--dark);color:var(--bg);padding:10px 24px;border-radius:100px;font-size:.75rem;font-weight:500;letter-spacing:.5px;text-decoration:none;transition:all .2s;}
+.nav-cta:hover{background:var(--rose);}
+@media(max-width:600px){nav{padding:16px 20px;}}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#F9F4EF 0%,#F0E9E0 40%,#E8DDD0 100%);}
+.hero-orb1{position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,121,106,.15),transparent 70%);}
+.hero-orb2{position:absolute;bottom:-150px;left:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(90,122,101,.08),transparent 70%);}
+.hero-content{position:relative;z-index:1;max-width:780px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,121,106,.1);border:1px solid rgba(201,121,106,.25);border-radius:100px;padding:6px 16px;margin-bottom:32px;opacity:0;animation:fadeUp .8s .2s ease-out forwards;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--rose);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.8);}}
+.hero-badge-txt{font-size:.62rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--rose);}
+.hero-headline{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:400;line-height:1.05;color:var(--dark);margin-bottom:24px;opacity:0;animation:fadeUp .9s .4s ease-out forwards;}
+.hero-headline em{font-style:italic;color:var(--rose);}
+.hero-sub{font-size:clamp(.9rem,2.5vw,1.05rem);color:var(--t2);line-height:1.8;max-width:520px;margin:0 auto 48px;font-weight:300;opacity:0;animation:fadeUp .9s .6s ease-out forwards;}
+.hero-sub strong{color:var(--t1);font-weight:500;}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s .8s ease-out forwards;}
+.btn-hero-primary{background:var(--dark);color:var(--bg);padding:16px 32px;border-radius:100px;font-size:.8rem;font-weight:500;letter-spacing:.5px;text-decoration:none;transition:all .25s;display:inline-flex;align-items:center;gap:8px;}
+.btn-hero-primary:hover{background:var(--rose);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,121,106,.35);}
+.btn-hero-secondary{background:transparent;color:var(--t1);padding:16px 32px;border-radius:100px;font-size:.8rem;font-weight:500;letter-spacing:.5px;text-decoration:none;transition:all .25s;border:1.5px solid var(--border);display:inline-flex;align-items:center;gap:8px;}
+.btn-hero-secondary:hover{border-color:var(--rose);color:var(--rose);}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:72px;opacity:0;animation:fadeUp .9s 1s ease-out forwards;}
+.hero-stat-n{font-family:'Playfair Display',serif;font-size:2rem;color:var(--dark);}
+.hero-stat-l{font-size:.56rem;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px;}
+.hero-stat-div{width:1px;background:var(--border);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.problem{padding:100px 24px;background:var(--dark);position:relative;overflow:hidden;}
+.problem-orb{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(201,121,106,.07),transparent 60%);}
+.problem-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+.section-eyebrow{font-size:.55rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:20px;}
+.problem-headline{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);color:#FAF8F5;line-height:1.1;margin-bottom:20px;}
+.problem-headline em{font-style:italic;color:var(--rose-light);}
+.problem-sub{font-size:.95rem;color:rgba(250,248,245,.45);line-height:1.85;max-width:560px;font-weight:300;margin-bottom:60px;}
+.problem-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.prob-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:32px;}
+.prob-card-ic{font-size:1.5rem;margin-bottom:16px;}
+.prob-card-n{font-family:'Playfair Display',serif;font-size:1.05rem;color:#FAF8F5;margin-bottom:8px;}
+.prob-card-d{font-size:.76rem;color:rgba(250,248,245,.4);line-height:1.75;}
+.how{padding:100px 24px;background:var(--bg);}
+.how-inner{max-width:1000px;margin:0 auto;}
+.how-top{text-align:center;margin-bottom:70px;}
+.section-headline{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);color:var(--dark);line-height:1.1;margin-bottom:16px;}
+.section-headline em{font-style:italic;color:var(--rose);}
+.section-sub{font-size:.9rem;color:var(--t2);line-height:1.8;max-width:480px;margin:0 auto;font-weight:300;}
+.how-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;}
+.how-step{text-align:center;}
+.how-step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--rose-muted),var(--rose-pale));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--rose);}
+.how-step-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--dark);margin-bottom:8px;}
+.how-step-desc{font-size:.76rem;color:var(--t2);line-height:1.75;}
+.scores{padding:100px 24px;background:linear-gradient(160deg,#F4EFE8,#EDE5D8);}
+.scores-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.scores-right{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.score-card{background:var(--surface);border-radius:20px;padding:28px;box-shadow:0 4px 24px rgba(44,31,26,.06);border:1px solid rgba(44,31,26,.06);}
+.score-card-ic{font-size:1.3rem;margin-bottom:12px;}
+.score-card-val{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:4px;}
+.score-card-lbl{font-size:.58rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);}
+.score-card-desc{font-size:.7rem;color:var(--t2);margin-top:8px;line-height:1.6;}
+.sc-rose .score-card-val{color:var(--rose);}
+.sc-sage .score-card-val{color:var(--sage);}
+.sc-gold .score-card-val{color:var(--gold);}
+.sc-dark .score-card-val{color:var(--dark);}
+@media(max-width:700px){.scores-inner{grid-template-columns:1fr;}.scores-right{grid-template-columns:1fr 1fr;}}
+.trust{padding:100px 24px;background:var(--dark);}
+.trust-inner{max-width:900px;margin:0 auto;text-align:center;}
+.trust-headline{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);color:#FAF8F5;line-height:1.1;margin-bottom:16px;}
+.trust-headline em{font-style:italic;color:var(--rose-light);}
+.trust-sub{font-size:.9rem;color:rgba(250,248,245,.45);line-height:1.8;max-width:520px;margin:0 auto 60px;font-weight:300;}
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.trust-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:32px 24px;text-align:center;}
+.trust-item-ic{font-size:1.8rem;margin-bottom:16px;}
+.trust-item-n{font-family:'Playfair Display',serif;font-size:1rem;color:#FAF8F5;margin-bottom:8px;}
+.trust-item-d{font-size:.74rem;color:rgba(250,248,245,.4);line-height:1.75;}
+@media(max-width:600px){.trust-grid{grid-template-columns:1fr;}}
+.reviews-preview{padding:100px 24px;background:var(--bg);}
+.reviews-inner{max-width:1000px;margin:0 auto;}
+.reviews-feed{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.rev-card{background:var(--surface);border:1px solid rgba(44,31,26,.07);border-radius:20px;padding:28px;box-shadow:0 2px 16px rgba(44,31,26,.05);}
+.rev-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+.rev-card-prod{display:flex;gap:10px;align-items:center;}
+.rev-card-ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.rev-card-brand{font-size:.48rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;}
+.rev-card-name{font-size:.78rem;font-weight:600;color:var(--t1);}
+.rev-card-score{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--sage);}
+.rev-trust{font-size:.5rem;font-weight:700;padding:3px 10px;border-radius:100px;background:var(--sage-pale);color:var(--sage);display:inline-block;margin-bottom:12px;}
+.rev-text{font-size:.76rem;color:var(--t2);line-height:1.75;font-weight:300;}
+.rev-user{display:flex;align-items:center;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+.rev-av{width:26px;height:26px;border-radius:50%;background:var(--rose-muted);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--rose);font-weight:600;}
+.rev-uname{font-size:.63rem;font-weight:600;color:var(--t1);}
+.rev-uskin{font-size:.52rem;color:var(--t3);}
+.rev-verified{font-size:.48rem;font-weight:700;color:var(--sage);}
+.diff{padding:100px 24px;background:linear-gradient(160deg,#2C1F1A,#1A0F0A);}
+.diff-inner{max-width:900px;margin:0 auto;}
+.diff-top{text-align:center;margin-bottom:60px;}
+.diff-headline{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);color:#FAF8F5;line-height:1.1;margin-bottom:16px;}
+.diff-headline em{font-style:italic;color:var(--rose-light);}
+.diff-sub{font-size:.9rem;color:rgba(250,248,245,.4);line-height:1.8;max-width:500px;margin:0 auto;font-weight:300;}
+.diff-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;}
+.diff-col{border-radius:20px;padding:36px;}
+.diff-col-bad{background:rgba(201,121,106,.06);border:1px solid rgba(201,121,106,.15);}
+.diff-col-good{background:rgba(90,122,101,.08);border:1px solid rgba(90,122,101,.2);}
+.diff-col-title{font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;}
+.diff-col-bad .diff-col-title{color:var(--rose-light);}
+.diff-col-good .diff-col-title{color:#7AB885;}
+.diff-item{display:flex;gap:10px;margin-bottom:16px;align-items:flex-start;}
+.diff-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:.6rem;}
+.diff-dot-bad{background:rgba(201,121,106,.2);color:var(--rose-light);}
+.diff-dot-good{background:rgba(90,122,101,.2);color:#7AB885;}
+.diff-item-txt{font-size:.76rem;color:rgba(250,248,245,.6);line-height:1.6;}
+@media(max-width:600px){.diff-compare{grid-template-columns:1fr;}}
+.cta{padding:120px 24px;background:var(--bg);text-align:center;}
+.cta-inner{max-width:680px;margin:0 auto;}
+.cta-line{width:60px;height:1px;background:var(--rose-muted);margin:0 auto 32px;}
+.cta-headline{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,4rem);color:var(--dark);line-height:1.05;margin-bottom:20px;}
+.cta-headline em{font-style:italic;color:var(--rose);}
+.cta-sub{font-size:.9rem;color:var(--t2);line-height:1.8;max-width:460px;margin:0 auto 48px;font-weight:300;}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-cta-primary{background:linear-gradient(135deg,var(--rose),#B5604F);color:white;padding:18px 40px;border-radius:100px;font-size:.82rem;font-weight:500;letter-spacing:.5px;text-decoration:none;transition:all .25s;box-shadow:0 8px 32px rgba(201,121,106,.35);}
+.btn-cta-primary:hover{transform:translateY(-2px);box-shadow:0 16px 48px rgba(201,121,106,.45);}
+.cta-note{font-size:.6rem;color:var(--t3);margin-top:20px;letter-spacing:.5px;}
+footer{padding:40px;background:var(--dark);display:flex;justify-content:space-between;align-items:center;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.1rem;letter-spacing:3px;color:rgba(250,248,245,.4);text-transform:uppercase;}
+.footer-logo em{font-style:italic;color:var(--rose);}
+.footer-tagline{font-size:.56rem;color:rgba(250,248,245,.2);letter-spacing:2px;text-transform:uppercase;}
+@media(max-width:600px){footer{flex-direction:column;gap:12px;text-align:center;padding:32px 20px;}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+.reveal-delay-4{transition-delay:.4s;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">L<em>u</em>mo</div>
+  <a href="https://lumoreview.github.io/lumo-app/" class="nav-cta">Uygulamaya Git &rarr;</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span class="hero-badge-txt">T&uuml;rkiye'nin İlk Kullanım Kanıtlı G&uuml;zellik Platformu</span>
+    </div>
+    <h1 class="hero-headline">
+      G&uuml;zellik &uuml;r&uuml;n&uuml; satın almadan &ouml;nce<br><em>kime soruyorsun?</em>
+    </h1>
+    <p class="hero-sub">
+      T&uuml;rkiye'de her yıl milyonlarca TL, sponsorlu i&ccedil;erik ve bot yorumlar y&uuml;z&uuml;nden yanlış &uuml;r&uuml;ne gidiyor. Lumo, satın almadan &ouml;nce <strong>ger&ccedil;ek kullananların kanıtlanmış verisini</strong> sunar &mdash; cilt tipine g&ouml;re, reklamsız.
+    </p>
+    <div class="hero-actions">
+      <a href="https://lumoreview.github.io/lumo-app/" class="btn-hero-primary">Cilt tipini gir, twin grubunun &ouml;nerilerini g&ouml;r &rarr;</a>
+      <a href="#how" class="btn-hero-secondary">Nasıl &ccedil;alışır?</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-n">50+</div>
+        <div class="hero-stat-l">Analiz Edilen &Uuml;r&uuml;n</div>
+      </div>
+      <div class="hero-stat-div"></div>
+      <div>
+        <div class="hero-stat-n">4</div>
+        <div class="hero-stat-l">Boyutlu &Uuml;r&uuml;n Analizi</div>
+      </div>
+      <div class="hero-stat-div"></div>
+      <div>
+        <div class="hero-stat-n">0</div>
+        <div class="hero-stat-l">Sponsorlu İ&ccedil;erik</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="problem">
+  <div class="problem-orb"></div>
+  <div class="problem-inner">
+    <div class="section-eyebrow reveal">Problem</div>
+    <h2 class="problem-headline reveal">Her şey satılıyor.<br><em>Satılmayan tek şey kalmadı: kanıt.</em></h2>
+    <p class="problem-sub reveal">G&uuml;zellik i&ccedil;eri&eth;i artık her yerde. Kanıtlı i&ccedil;erik yok.</p>
+    <div class="problem-cards">
+      <div class="prob-card reveal reveal-delay-1">
+        <div class="prob-card-ic">&#129302;</div>
+        <div class="prob-card-n">%42 Sahte Yorum</div>
+        <div class="prob-card-d">Global g&uuml;zellik yorumlarının %42'si sahte veya teşvikli. (Bazaarvoice, 2023) &Uuml;r&uuml;n&uuml; alan değil, markayı seven yazıyor.</div>
+      </div>
+      <div class="prob-card reveal reveal-delay-2">
+        <div class="prob-card-ic">&#128176;</div>
+        <div class="prob-card-n">%73 Gizli Sponsor</div>
+        <div class="prob-card-d">"Kendi deneyimim" diye başlayan i&ccedil;eriklerin %73'&uuml; a&ccedil;ıklanmamış sponsorlu i&ccedil;erik. (FTC, 2022)</div>
+      </div>
+      <div class="prob-card reveal reveal-delay-3">
+        <div class="prob-card-ic">&#128247;</div>
+        <div class="prob-card-n">%1 Derm Onaylı</div>
+        <div class="prob-card-d">TikTok'ta viral olan g&uuml;zellik &uuml;r&uuml;nlerinin %1'i dermatolog onaylı. (JAAD, 2023) Viral = etkili değil.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="how-top reveal">
+      <div class="section-eyebrow">&Ccedil;&ouml;z&uuml;m</div>
+      <h2 class="section-headline">Sahte yorum i&ccedil;in <em>sistemi ge&ccedil;men</em> gerekir.<br>Ge&ccedil;emezsin.</h2>
+      <p class="section-sub">Her adım birer kanıt &uuml;retir. Kanıtsız yorum hakkı yok.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal reveal-delay-1">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Barkod Tara</div>
+        <div class="how-step-desc">Barkod tara veya &uuml;r&uuml;n adını gir. Sistem kullanım başlangı&ccedil; tarihini sabitler &mdash; sonradan değiştirilemez.</div>
+      </div>
+      <div class="how-step reveal reveal-delay-2">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Kategoriye G&ouml;re Bekle</div>
+        <div class="how-step-desc">Serum: 42 g&uuml;n. Nemlendirici: 14 g&uuml;n. SPF: 5 g&uuml;n. Dermatolog literat&uuml;r&uuml;ne dayalı minimum etki s&uuml;releri. S&uuml;re dolmadan yorum ekranı a&ccedil;ılmıyor.</div>
+      </div>
+      <div class="how-step reveal reveal-delay-3">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">3 Check-in Yap</div>
+        <div class="how-step-desc">G&uuml;nl&uuml;k "Daha iyi / Aynı / K&ouml;t&uuml;" check-in. 3 check-in tamamlanmadan yorum hakkı yok. Her check-in kullanım kanıtı + &uuml;r&uuml;n trend verisi.</div>
+      </div>
+      <div class="how-step reveal reveal-delay-4">
+        <div class="how-step-num">4</div>
+        <div class="how-step-title">Trust Score Kazan</div>
+        <div class="how-step-desc">Kullanım s&uuml;resi + check-in sayısı + i&ccedil;erik kalitesi = Trust Score (0-100). D&uuml;ş&uuml;k skorlu yorumlar otomatik olarak s&iacute;ralamada geriye d&uuml;şer.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scores">
+  <div class="scores-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">4 Boyutlu Analiz</div>
+      <h2 class="section-headline">Her &uuml;r&uuml;n i&ccedil;in<br><em>4 ger&ccedil;ek skor</em></h2>
+      <p class="section-sub" style="margin:0;">TikTok pop&uuml;lerli&eth;i ile ger&ccedil;ek kullanım memnuniyeti &ccedil;o&eth;u zaman ters orantılı. 4 skor bu farkı g&ouml;r&uuml;n&uuml;r kılar.</p>
+    </div>
+    <div class="scores-right">
+      <div class="score-card sc-rose reveal reveal-delay-1">
+        <div class="score-card-ic">&#128293;</div>
+        <div class="score-card-val">95</div>
+        <div class="score-card-lbl">TikTok Hype</div>
+        <div class="score-card-desc">Sosyal medya g&ouml;r&uuml;n&uuml;rl&uuml;&eth;&uuml;. Y&uuml;ksek olması kalite değil &mdash; dikkat &ccedil;ekme g&uuml;c&uuml;.</div>
+      </div>
+      <div class="score-card sc-sage reveal reveal-delay-2">
+        <div class="score-card-ic">&#129504;</div>
+        <div class="score-card-val">86</div>
+        <div class="score-card-lbl">Trust Score</div>
+        <div class="score-card-desc">Kanıtlanmış kullanımdan gelen memnuniyet ortalaması. Sistemin &uuml;retti&eth;i tek ger&ccedil;ek skor.</div>
+      </div>
+      <div class="score-card sc-gold reveal reveal-delay-3">
+        <div class="score-card-ic">&#127919;</div>
+        <div class="score-card-val">92</div>
+        <div class="score-card-lbl">Cilt Uyumu</div>
+        <div class="score-card-desc">Senin cilt tipindeki kullanıcıların memnuniyet oranı. Herkes i&ccedil;in değil, senin i&ccedil;in.</div>
+      </div>
+      <div class="score-card sc-dark reveal reveal-delay-4">
+        <div class="score-card-ic">&#9888;</div>
+        <div class="score-card-val">22</div>
+        <div class="score-card-lbl">Hype Risk</div>
+        <div class="score-card-desc">TikTok Hype ile Trust Score arasındaki fark. Y&uuml;ksekse &uuml;r&uuml;n abartılıyor.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="trust-inner">
+    <div class="section-eyebrow reveal">G&uuml;ven Sistemi</div>
+    <h2 class="trust-headline reveal">Veri kalitesi,<br>kullanıcı sayısından <em>&ouml;nce gelir.</em></h2>
+    <p class="trust-sub reveal">Her doğrulanmış yorum, en az 3 check-in ve kategori bazlı beklemeyi tamamlamış kullanıcıdan geliyor. Her veri noktası minimum kanıt standardını taşıyor.</p>
+    <div class="trust-grid">
+      <div class="trust-item reveal reveal-delay-1">
+        <div class="trust-item-ic">&#9200;</div>
+        <div class="trust-item-n">Zaman Kilidi</div>
+        <div class="trust-item-d">Serum i&ccedil;in 42 g&uuml;n, nemlendirici i&ccedil;in 14 g&uuml;n ge&ccedil;meden yorum ekranı a&ccedil;ılmıyor. Ge&ccedil;miş tarih girilemiyor.</div>
+      </div>
+      <div class="trust-item reveal reveal-delay-2">
+        <div class="trust-item-ic">&#128202;</div>
+        <div class="trust-item-n">Check-in Kanıtı</div>
+        <div class="trust-item-d">3 check-in tamamlanmadan yorum hakkı kazanılmıyor. Her check-in sistemde kayıtlı &mdash; değiştirilemez.</div>
+      </div>
+      <div class="trust-item reveal reveal-delay-3">
+        <div class="trust-item-ic">&#128737;</div>
+        <div class="trust-item-n">Otomatik Filtreleme</div>
+        <div class="trust-item-d">D&uuml;ş&uuml;k Trust Score yorumlar g&ouml;r&uuml;n&uuml;rl&uuml;k kaybeder. Sistem bot değil, kanıtsız yorumu filtreler.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews-preview">
+  <div class="reviews-inner">
+    <div style="text-align:center;margin-bottom:56px;" class="reveal">
+      <div class="section-eyebrow">Ger&ccedil;ek Yorumlar</div>
+      <h2 class="section-headline">Skin twin'lerin <em>ne dedi?</em></h2>
+      <p class="section-sub" style="margin:0 auto;">Sadece senin cilt tipine benzeyen kullanıcıların kanıtlanmış yorumları.</p>
+    </div>
+    <div class="reviews-feed">
+      <div class="rev-card reveal reveal-delay-1">
+        <div class="rev-card-top">
+          <div class="rev-card-prod">
+            <div class="rev-card-ic" style="background:#E8F0EA;">&#129516;</div>
+            <div>
+              <div class="rev-card-brand">The Ordinary</div>
+              <div class="rev-card-name">Niacinamide 10%</div>
+            </div>
+          </div>
+          <div class="rev-card-score">9</div>
+        </div>
+        <div class="rev-trust">&#128737; Trust 88</div>
+        <div class="rev-text">"TikTok'ta g&ouml;rd&uuml;m, ş&uuml;pheyle aldım ama 6 haftada g&ouml;zeneklerim ciddi k&uuml;&ccedil;&uuml;ld&uuml;. Fiyatına inanamıyorum a&ccedil;ı&eth;a."</div>
+        <div class="rev-user">
+          <div class="rev-av">A</div>
+          <div>
+            <div class="rev-uname">ayse.cilt</div>
+            <div class="rev-uskin">Karma Cilt &middot; 42 g&uuml;n kullanım</div>
+          </div>
+          <div class="rev-verified" style="margin-left:auto;">&#10003; Doğrulandı</div>
+        </div>
+      </div>
+      <div class="rev-card reveal reveal-delay-2">
+        <div class="rev-card-top">
+          <div class="rev-card-prod">
+            <div class="rev-card-ic" style="background:#E8F0EA;">&#9728;</div>
+            <div>
+              <div class="rev-card-brand">La Roche-Posay</div>
+              <div class="rev-card-name">Anthelios SPF50+</div>
+            </div>
+          </div>
+          <div class="rev-card-score">10</div>
+        </div>
+        <div class="rev-trust">&#128737; Trust 95</div>
+        <div class="rev-text">"Ya&eth;lı cilt olarak yıllarca SPF kullanamadım. Bu mat bırakıyor, g&ouml;zenek tıkamıyor. Hayat değişti."</div>
+        <div class="rev-user">
+          <div class="rev-av">S</div>
+          <div>
+            <div class="rev-uname">selin.glow</div>
+            <div class="rev-uskin">Ya&eth;lı Cilt &middot; 45 g&uuml;n kullanım</div>
+          </div>
+          <div class="rev-verified" style="margin-left:auto;">&#10003; Doğrulandı</div>
+        </div>
+      </div>
+      <div class="rev-card reveal reveal-delay-3">
+        <div class="rev-card-top">
+          <div class="rev-card-prod">
+            <div class="rev-card-ic" style="background:#FAF0EE;">&#128308;</div>
+            <div>
+              <div class="rev-card-brand">The Ordinary</div>
+              <div class="rev-card-name">AHA 30% Peeling</div>
+            </div>
+          </div>
+          <div class="rev-card-score" style="color:var(--rose);">4</div>
+        </div>
+        <div class="rev-trust" style="background:var(--rose-pale);color:var(--rose);">&#9888; Trust 60</div>
+        <div class="rev-text">"İlk kullanımda y&uuml;z&uuml;m yandı. Yeni başlayanlar i&ccedil;in kesinlikle değil. 5 dakikadan fazla bırakmayın."</div>
+        <div class="rev-user">
+          <div class="rev-av">E</div>
+          <div>
+            <div class="rev-uname">elif.beauty</div>
+            <div class="rev-uskin">Hassas Cilt &middot; 3 g&uuml;n kullanım</div>
+          </div>
+          <div class="rev-verified" style="margin-left:auto;">&#10003; Doğrulandı</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="diff">
+  <div class="diff-inner">
+    <div class="diff-top reveal">
+      <div class="section-eyebrow">Lumo vs Di&eth;erleri</div>
+      <h2 class="diff-headline">Neden <em>kopyalanamaz?</em></h2>
+      <p class="diff-sub">Her check-in, her bekleme s&uuml;resi ve her doğrulanmış yorum Lumo'nun veri tabanında kalır. Bu verinin başka bir platformda &uuml;retilmesi i&ccedil;in aynı s&uuml;renin tekrar yaşanması gerekir.</p>
+    </div>
+    <div class="diff-compare">
+      <div class="diff-col diff-col-bad reveal reveal-delay-1">
+        <div class="diff-col-title">Di&eth;er Platformlar</div>
+        <div class="diff-item"><div class="diff-dot diff-dot-bad">&#10005;</div><div class="diff-item-txt">Herkes anında yorum yazabilir</div></div>
+        <div class="diff-item"><div class="diff-dot diff-dot-bad">&#10005;</div><div class="diff-item-txt">Bot ve sahte hesap koruması yok</div></div>
+        <div class="diff-item"><div class="diff-dot diff-dot-bad">&#10005;</div><div class="diff-item-txt">Sponsorlu i&ccedil;erik belirtilmiyor</div></div>
+        <div class="diff-item"><div class="diff-dot diff-dot-bad">&#10005;</div><div class="diff-item-txt">Cilt tipine g&ouml;re filtreleme yok</div></div>
+        <div class="diff-item"><div class="diff-dot diff-dot-bad">&#10005;</div><div class="diff-item-txt">TikTok hype = kalite olarak sunuluyor</div></div>
+      </div>
+      <div class="diff-col diff-col-good reveal reveal-delay-2">
+        <div class="diff-col-title">Lumo</div>
+        <div class="diff-item"><div class="diff-dot diff-dot-good">&#10003;</div><div class="diff-item-txt">3 check-in + bekleme s&uuml;resi zorunlu</div></div>
+        <div class="diff-item"><div class="diff-dot diff-dot-good">&#10003;</div><div class="diff-item-txt">Sahte yorum yapısal olarak imk&acirc;nsız</div></div>
+        <div class="diff-item"><div class="diff-dot diff-dot-good">&#10003;</div><div class="diff-item-txt">Sıfır sponsorlu i&ccedil;erik, sıfır reklam</div></div>
+        <div class="diff-item"><div class="diff-dot diff-dot-good">&#10003;</div><div class="diff-item-txt">Skin twin sistemi &mdash; sadece sana uygun</div></div>
+        <div class="diff-item"><div class="diff-dot diff-dot-good">&#10003;</div><div class="diff-item-txt">Hype risk skoru &mdash; viral &ne; g&uuml;venilir</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-inner">
+    <div class="cta-line reveal"></div>
+    <h2 class="cta-headline reveal">Cilt tipini gir.<br>Twin grubunun en g&uuml;venilir<br><em>5 &uuml;r&uuml;n&uuml;n&uuml; g&ouml;r.</em></h2>
+    <p class="cta-sub reveal">50+ &uuml;r&uuml;n. 4 boyutlu analiz. Sadece senin cilt tipindeki kullanıcıların kanıtlanmış verileri.</p>
+    <div class="cta-buttons reveal">
+      <a href="https://lumoreview.github.io/lumo-app/" class="btn-cta-primary">Uygulamayı A&ccedil; &rarr;</a>
+    </div>
+    <div class="cta-note reveal">Sponsorsuz &middot; Reklamsız &middot; Veri kullanıcıya ait</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">L<em>u</em>mo</div>
+  <div class="footer-tagline">Verified Beauty Intelligence &middot; 2026</div>
+</footer>
+
+<script>
+var reveals=document.querySelectorAll('.reveal');
+var observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}
+  });
+},{threshold:0.12});
+reveals.forEach(function(el){observer.observe(el);});
+</script>
+</body>
+</html>
